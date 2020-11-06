@@ -287,6 +287,7 @@ def CLI( option ):
     if option == "disable":
         if os.getuid() == 0:
             disable_kiosk()
+            print( "MyConnector KIOSK mode disabled!" )
             exit( 0 )
         else:
             print( "Permission denied!" )
