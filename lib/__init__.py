@@ -39,7 +39,6 @@ def parseArgs():
     return args.parse_args()
 
 def main():
-    system( "xdg-mime default myconnector.desktop application/x-myconnector" )
     args = parseArgs()
     if args.quit:
         from .ui import quitApp as quit
@@ -52,6 +51,7 @@ def main():
         except ImportError:
             print( "The mode KIOSK unavailable, package is not installed." )
             exit( 127 )
+    system( "xdg-mime default myconnector.desktop application/x-myconnector" )
     if args.debug:
         from .ui import startDebug as debug
         debug()
