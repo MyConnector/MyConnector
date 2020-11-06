@@ -46,7 +46,7 @@ def main():
     if args.kiosk:
         try:
             from myconnector.kiosk import CLI
-            cli( args.kiosk )
+            CLI( args.kiosk )
             exit( 0 )
         except ImportError:
             print( "The mode KIOSK unavailable, package is not installed." )
