@@ -284,11 +284,16 @@ class Kiosk(Gtk.Window):
 
 def CLI( option ):
     """MyConnector KIOSK mode control"""
-    if option == "disable":
+    if option in ( "disable", "status", "enable"):
         if os.getuid() == 0:
-            disable_kiosk()
-            print( "MyConnector KIOSK mode disabled!" )
-            exit( 0 )
+            if option == "disable":
+                disable_kiosk()
+                print( "MyConnector KIOSK mode disabled!" )
+                exit( 0 )
+            if option == "status":
+                print( "MyConnector KIOSK config file %s:" % _kiosk_conf )
+                os.system( "cat %s" % _kiosk_conf )
+                exit( 0 )
         else:
             print( "Permission denied!" )
             exit( 126 )
@@ -298,6 +303,7 @@ def CLI( option ):
 Usage: myconnector --kiosk <option>
 
 Options:
+  status             display current status of the mode;
   disable            disable the mode;
   enable             enable the mode with additional options;
   help               show this text and exit.""" )
