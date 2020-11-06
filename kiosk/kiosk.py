@@ -282,5 +282,29 @@ class Kiosk(Gtk.Window):
         self.entryKioskWeb.set_text('')
         self.initParams()
 
+def CLI( option ):
+    """MyConnector KIOSK mode control"""
+    if option == "disable":
+        if os.getuid() == 0:
+            disable_kiosk()
+            exit( 0 )
+        else:
+            print( "Permission denied!" )
+            exit( 126 )
+    if option == "help":
+        print( """myconnector --kiosk - MyConnector KIOSK mode control
+
+Usage: myconnector --kiosk <option>
+
+Options:
+  disable            disable the mode;
+  enable             enable the mode with additional options;
+  help               show this text and exit.""" )
+        exit( 0 )
+    else:
+        print( "myconnector --kiosk: invalid command: %s\n"
+               "Try 'myconnector --kiosk help' for more information." % option )
+        exit( 1 )
+
 if __name__ == '__main__':
     pass

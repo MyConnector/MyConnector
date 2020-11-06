@@ -16,8 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see http://www.gnu.org/licenses/.
 
-from os import ( system,
-                 getuid )
+from os import system
 from argparse import ( ArgumentParser,
                        RawTextHelpFormatter )
 from .config import ( VERSION,
@@ -39,35 +38,6 @@ def parseArgs():
     args.add_argument( "name", type = str, nargs = "?", metavar="FILE", help = "name of the file (.myc, .remmina, .rdp)" )
     return args.parse_args()
 
-def parseKiosk( option ):
-    """MyConnector KIOSK mode control"""
-    if option == "disable":
-        if getuid() == 0:
-            try:
-                from kiosk.kiosk import disable_kiosk
-                disable_kiosk()
-                exit( 0 )
-            except ImportError:
-                print( "The mode KIOSK unavailable, package is not installed." )
-                exit( 127 )
-        else:
-            print( "Permission denied!" )
-            exit( 126 )
-    if option == "help":
-        print( """myconnector --kiosk - MyConnector KIOSK mode control
-
-Usage: myconnector --kiosk <option>
-
-Options:
-  disable            disable the mode;
-  enable             enable the mode with additional options;
-  help               show this text and exit.""" )
-        exit( 0 )
-    else:
-        print( "myconnector --kiosk: invalid command: %s\n"
-               "Try 'myconnector --kiosk help' for more information." % option )
-        exit( 1 )
-
 def main():
     system( "xdg-mime default myconnector.desktop application/x-myconnector" )
     args = parseArgs()
@@ -75,7 +45,13 @@ def main():
         from .ui import quitApp as quit
         quit()
     if args.kiosk:
-        parseKiosk( args.kiosk )
+        try:
+            from myconnector.kiosk import CLI
+            cli( args.kiosk )
+            exit( 0 )
+        except ImportError:
+            print( "The mode KIOSK unavailable, package is not installed." )
+            exit( 127 )
     if args.debug:
         from .ui import startDebug as debug
         debug()
