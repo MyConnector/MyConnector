@@ -292,6 +292,13 @@ def CLI( option ):
                 print( "MyConnector KIOSK mode disabled!" )
                 exit( 0 )
             if option == "status":
+                result = _config.read( _kiosk_conf )
+                if not result: config_init( True )
+                mode = _config.get( "kiosk", "mode" )
+                if mode == "0":
+                    print( "Status: disabled\n----------------" )
+                else:
+                    print( "Status: enabled\n---------------" )
                 print( "MyConnector KIOSK config file %s:" % _kiosk_conf )
                 os.system( "cat %s" % _kiosk_conf )
                 exit( 0 )
