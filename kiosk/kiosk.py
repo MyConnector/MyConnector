@@ -24,6 +24,7 @@ from gi.repository import Gtk
 from configparser import ConfigParser
 from urllib.parse import unquote
 import pwd
+from subprocess import call
 from shutil import ( copy,
                      chown,
                      SameFileError )
@@ -283,13 +284,23 @@ class Kiosk(Gtk.Window):
         self.entryKioskWeb.set_text('')
         self.initParams()
 
+def kiosk_disabled():
+    print( "MyConnector KIOSK mode disabled!" )
+
+def enable_from_cli():
+    check_user ( _config[ "kiosk" ][ "user" ] )
+    enable_kiosk()
+    fix_shortcut( "kiosk", "$CTOR", "" )
+    print( "MyConnector KIOSK standalone mode enabled!\n"
+           "Try 'myconnector --kiosk status' for more information." )
+
 def CLI( option ):
     """MyConnector KIOSK mode control"""
     if option in ( "disable", "status", "enable", "edit" ):
         if os.getuid() == 0:
             if option == "disable":
                 disable_kiosk()
-                print( "MyConnector KIOSK mode disabled!" )
+                kiosk_disabled()
                 exit( 0 )
             if option == "status":
                 result = _config.read( _kiosk_conf )
@@ -306,15 +317,25 @@ def CLI( option ):
                 disable_kiosk()
                 config_init( False )
                 _config[ "kiosk" ][ "mode" ] = "1"
-                enable_kiosk()
-                fix_shortcut( "kiosk", "$CTOR", "" )
+                enable_from_cli()
                 with open( _kiosk_conf, "w" ) as configfile:
                     _config.write( configfile )
-                print( "MyConnector KIOSK mode enabled!\n"
-                       "Try 'myconnector --kiosk status' for more information." )
                 exit( 0 )
             if option == "edit":
-                exit( 0 )
+                editor = os.getenv( "EDITOR" )
+                if not editor: editor = os.getenv( "VISUAL" )
+                if not editor: editor = "vi"
+                result = _config.read( _kiosk_conf )
+                if not result: config_init( True )
+                call( [ editor, _kiosk_conf ] )
+                _config.read( _kiosk_conf )
+                disable_kiosk()
+                if _config[ "kiosk" ].get( "mode", "0" ) == "0":
+                    kiosk_disabled()
+                    exit( 0 )
+                if _config[ "kiosk" ][ "mode" ] == "1":
+                    enable_from_cli()
+                    exit( 0 )
         else:
             print( "Permission denied!" )
             exit( 126 )
@@ -324,11 +345,12 @@ def CLI( option ):
 Usage: myconnector --kiosk <option>
 
 Options:
-  enable             enable the standalone mode;
-  edit               edit config file for enable/disable the mode;
-  disable            disable the mode;
-  status             display current status of the mode;
-  help               show this text and exit.
+  enable        enable the standalone mode;
+  edit          edit config file for enable/disable the mode
+                (will use any the editor defines by VISUAL or EDITOR, default: vi);
+  disable       disable the mode;
+  status        display current status of the mode;
+  help          show this text and exit.
 
 See also: man myconnector-kiosk
 
