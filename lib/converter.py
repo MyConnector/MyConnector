@@ -155,7 +155,7 @@ def ctor_import( filename ):
             params_to_myc[ "microphone"      ] = bool( params_from_ctor[ 17 ] )
             params_to_myc[ "multimon"        ] = bool( params_from_ctor[ 18 ] )
             params_to_myc[ "compression"     ] = bool( params_from_ctor[ 19 ] )
-            params_to_myc[ "compr_level"     ] = str( params_from_ctor[ 20 ] )
+            params_to_myc[ "compr_level"     ] = str(  params_from_ctor[ 20 ] )
             params_to_myc[ "fonts"           ] = bool( params_from_ctor[ 21 ] )
             params_to_myc[ "aero"            ] = bool( params_from_ctor[ 22 ] )
             params_to_myc[ "drag"            ] = bool( params_from_ctor[ 23 ] )
@@ -164,19 +164,33 @@ def ctor_import( filename ):
             params_to_myc[ "wallpapers"      ] = bool( params_from_ctor[ 26 ] )
             params_to_myc[ "nsc"             ] = bool( params_from_ctor[ 27 ] )
             params_to_myc[ "jpeg"            ] = bool( params_from_ctor[ 28 ] )
-            params_to_myc[ "jpeg_quality"    ] = str( params_from_ctor[ 29 ] )
+            params_to_myc[ "jpeg_quality"    ] = str(  params_from_ctor[ 29 ] )
             params_to_myc[ "usb"             ] = bool( params_from_ctor[ 30 ] )
             params_to_myc[ "disable_nla"     ] = bool( params_from_ctor[ 31 ] )
-            params_to_myc[ "workarea"        ] = bool( params_from_ctor[ 32 ] )
-            params_to_myc[ "span"            ] = bool( params_from_ctor[ 33 ] )
-            params_to_myc[ "desktop"         ] = bool( params_from_ctor[ 34 ] )
-            params_to_myc[ "downloads"       ] = bool( params_from_ctor[ 35 ] )
-            params_to_myc[ "documents"       ] = bool( params_from_ctor[ 36 ] )
-            params_to_myc[ "gdi"             ] = bool( params_from_ctor[ 37 ] )
-            params_to_myc[ "reconnect"       ] = bool( params_from_ctor[ 38 ] )
-            params_to_myc[ "certignore"      ] = bool( params_from_ctor[ 39 ] )
-            params_to_myc[ "glyph"           ] = bool( params_from_ctor[ 42 ] )
-            params_to_myc[ "userparams"      ] = params_from_ctor[ 43 ]
+            try:
+                params_to_myc[ "workarea"        ] = bool( params_from_ctor[ 32 ] )
+            except IndexError: pass
+            try:
+                params_to_myc[ "span"            ] = bool( params_from_ctor[ 33 ] )
+            except IndexError: pass
+            try:
+                params_to_myc[ "desktop"         ] = bool( params_from_ctor[ 34 ] )
+                params_to_myc[ "downloads"       ] = bool( params_from_ctor[ 35 ] )
+                params_to_myc[ "documents"       ] = bool( params_from_ctor[ 36 ] )
+            except IndexError: pass
+            try:
+                params_to_myc[ "gdi"             ] = bool( params_from_ctor[ 37 ] )
+            except IndexError: pass
+            try:
+                params_to_myc[ "reconnect"       ] = bool( params_from_ctor[ 38 ] )
+                params_to_myc[ "certignore"      ] = bool( params_from_ctor[ 39 ] )
+            except IndexError: pass
+            try:
+                params_to_myc[ "glyph"           ] = bool( params_from_ctor[ 42 ] )
+            except IndexError: pass
+            try:
+                params_to_myc[ "userparams"      ] = params_from_ctor[ 43 ]
+            except IndexError: pass
 
     if protocol == "NX":
         params_to_myc[ "username"            ] = params_from_ctor[ 2 ]
