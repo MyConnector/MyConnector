@@ -253,9 +253,8 @@ def myc_save( args ):
     """Save imported parameters to myc file"""
     _config = ConfigParser()
     ctorfile = args.input
-    try:
-        mycfile = args.output
-    except:
+    mycfile = args.output
+    if not mycfile:
         mycfile = ctorfile.replace( ".ctor", ".myc" )
     _config [ "myconnector" ] = ctor_import( ctorfile )
     try:
