@@ -58,6 +58,7 @@ cp -av lib/*.py %buildroot%python3_sitelibdir/%name
 cp -r share %buildroot%_usr/
 install -pm755 bin/%name-check-* %buildroot%basedir
 install -pDm644 %name.man %buildroot%_man1dir/%name.1
+install -pm755 bin/ctor2myc %buildroot%_bindir/ctor2myc
 mkdir -p %buildroot%basedir/kiosk/
 install -pm644 kiosk/kiosk.py %buildroot%python3_sitelibdir/%name
 install -pm644 kiosk/kiosk.ui %buildroot%basedir/ui
@@ -65,7 +66,7 @@ install -pm755 kiosk/myconnector-*kiosk %buildroot%basedir/kiosk
 install -pm755 kiosk/myconnector-kiosk-check %buildroot%basedir/kiosk
 install -pm755 kiosk/*.desktop %buildroot%basedir/kiosk
 install -pDm600 kiosk/kiosk.conf %buildroot%_sysconfdir/%name/kiosk.conf
-install -pDm644 kiosk/%name-kiosk.man %buildroot%_man1dir/%name-kiosk.1
+install -pm644 kiosk/%name-kiosk.man %buildroot%_man1dir/%name-kiosk.1
 
 %files
 %_bindir/*
