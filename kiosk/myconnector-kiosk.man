@@ -11,13 +11,13 @@ Configuration file for MyConnector mode KIOSK - /etc/myconnector/kiosk.conf
 "0" - disable
 .RE
 .RS 3
-"1" - enable (run MyConnector)
+"1" - enable the standalone mode (run MyConnector)
 .RE
 .RS 3
-"2" - enable (run saved connection, from 'file')
+"2" - enable the file mode (run saved connection, from 'file')
 .RE
 .RS 3
-"3" - enable WEB-kiosk (open 'url')
+"3" - enable the WEB-kiosk (open 'url')
 
 .RE
 \fBfile\fR - file for mode=2

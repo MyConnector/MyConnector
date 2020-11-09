@@ -285,7 +285,7 @@ class Kiosk(Gtk.Window):
 
 def CLI( option ):
     """MyConnector KIOSK mode control"""
-    if option in ( "disable", "status" ):
+    if option in ( "disable", "status", "enable", "edit" ):
         if os.getuid() == 0:
             if option == "disable":
                 disable_kiosk()
@@ -302,12 +302,6 @@ def CLI( option ):
                 print( "MyConnector KIOSK config file %s:" % _kiosk_conf )
                 os.system( "cat %s" % _kiosk_conf )
                 exit( 0 )
-        else:
-            print( "Permission denied!" )
-            exit( 126 )
-    if option.find( "enable" ) == 0:
-        if os.getuid() == 0:
-            conf = {}
             if option == "enable":
                 disable_kiosk()
                 config_init( False )
@@ -319,6 +313,8 @@ def CLI( option ):
                 print( "MyConnector KIOSK mode enabled!\n"
                        "Try 'myconnector --kiosk status' for more information." )
                 exit( 0 )
+            if option == "edit":
+                exit( 0 )
         else:
             print( "Permission denied!" )
             exit( 126 )
@@ -328,10 +324,15 @@ def CLI( option ):
 Usage: myconnector --kiosk <option>
 
 Options:
-  status             display current status of the mode;
+  enable             enable the standalone mode;
+  edit               edit config file for enable/disable the mode;
   disable            disable the mode;
-  enable             enable the mode with additional options;
-  help               show this text and exit.""" )
+  status             display current status of the mode;
+  help               show this text and exit.
+
+See also: man myconnector-kiosk
+
+Copyright (C) 2014-2020 Evgeniy Korneechev <ek@myconnector.ru>""" )
         exit( 0 )
     else:
         print( "myconnector --kiosk: invalid command: %s\n"
