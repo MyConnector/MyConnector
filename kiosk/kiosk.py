@@ -68,7 +68,10 @@ def load_kiosk_user():
     """Load username for KIOSK from the config file"""
     tmp = ConfigParser( interpolation = None )
     tmp.read( _kiosk_conf )
-    return tmp[ "kiosk" ].get( "user", "kiosk" )
+    try:
+        return tmp[ "kiosk" ].get( "user", "kiosk" )
+    except:
+        return "kiosk"
 
 def autologin_enable(username):
     """Enable autologin for the mode KIOSK"""
