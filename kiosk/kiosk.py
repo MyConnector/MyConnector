@@ -91,7 +91,7 @@ test -n "$e" && `$e`""" % shortcut, file = f)
 def enable_kiosk( mode = "kiosk" ):
     """Exec MyConnector in the mode KIOSK"""
     username = _config[ "kiosk" ].get( "user", "kiosk" )
-    if _config['kiosk']['autologin'] == "True":
+    if _config[ "kiosk" ][ "autologin" ] in _true:
         autologin_enable( username )
     else:
         dm_clear_autologin()
@@ -134,7 +134,7 @@ def disable_ctrl():
     os.system( "sed -i s/while/\"setxkbmap -v -option ctrl:swapcaps\\nxmodmap"
                " -e 'keycode 105 = '\\nxmodmap -e 'keycode 37 = '\\nwhile\"/g %s" % _webkiosk )
 
-def config_init():
+def config_init( write ):
     """Default config for KIOSK"""
     _config["kiosk"] = { 'mode': '0',
                          'user': 'kiosk',
@@ -142,8 +142,9 @@ def config_init():
                          'file': '',
                          'url': '',
                          'ctrl_disabled': 'false' }
-    with open( _kiosk_conf, 'w' ) as configfile:
-        _config.write( configfile )
+    if write:
+        with open( _kiosk_conf, 'w' ) as configfile:
+            _config.write( configfile )
 
 def check_user( user ):
     """User existence check"""
@@ -181,7 +182,7 @@ class Kiosk(Gtk.Window):
         self.connect("delete-event", self.onClose)
         self.show_all()
         result = _config.read( _kiosk_conf )
-        if not result: config_init()
+        if not result: config_init( True )
         self.initParams()
 
     def onClose (self, window, *args):
@@ -284,7 +285,7 @@ class Kiosk(Gtk.Window):
 
 def CLI( option ):
     """MyConnector KIOSK mode control"""
-    if option in ( "disable", "status", "enable"):
+    if option in ( "disable", "status" ):
         if os.getuid() == 0:
             if option == "disable":
                 disable_kiosk()
@@ -293,6 +294,23 @@ def CLI( option ):
             if option == "status":
                 print( "MyConnector KIOSK config file %s:" % _kiosk_conf )
                 os.system( "cat %s" % _kiosk_conf )
+                exit( 0 )
+        else:
+            print( "Permission denied!" )
+            exit( 126 )
+    if option.find( "enable" ) == 0:
+        if os.getuid() == 0:
+            conf = {}
+            if option == "enable":
+                disable_kiosk()
+                config_init( False )
+                _config[ "kiosk" ][ "mode" ] = "1"
+                enable_kiosk()
+                fix_shortcut( "kiosk", "$CTOR", "" )
+                with open( _kiosk_conf, "w" ) as configfile:
+                    _config.write( configfile )
+                print( "MyConnector KIOSK mode enabled!\n"
+                       "Try 'myconnector --kiosk status' for more information." )
                 exit( 0 )
         else:
             print( "Permission denied!" )
