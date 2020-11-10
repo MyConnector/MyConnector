@@ -297,6 +297,7 @@ def check_user_from_cli():
         check_user( user )
     else:
         print( "Config error: user not specified!" )
+        disable_kiosk()
         kiosk_disabled()
         exit( 1 )
 
@@ -321,6 +322,7 @@ def enable_from_cli_web():
             enable_ctrl()
     else:
         print( "Config error: URL for webkiosk not specified!" )
+        disable_kiosk()
         kiosk_disabled()
         exit( 1 )
 
