@@ -290,12 +290,38 @@ class Kiosk(Gtk.Window):
 def kiosk_disabled():
     print( "MyConnector KIOSK mode disabled!" )
 
+def check_user_from_cli():
+    user = _config[ "kiosk" ].get( "user", "" )
+    if user:
+        check_user( user )
+    else:
+        print( "Config error: user not specified!" )
+        kiosk_disabled()
+        exit( 1 )
+
 def enable_from_cli():
-    check_user ( _config[ "kiosk" ][ "user" ] )
+    check_user_from_cli()
     enable_kiosk()
     fix_shortcut( "kiosk", "$CTOR", "" )
     print( "MyConnector KIOSK standalone mode enabled!\n"
            "Try 'myconnector --kiosk status' for more information." )
+
+def enable_from_cli_ctor():
+    pass
+
+def enable_from_cli_web():
+    check_user_from_cli()
+    url  = _config[ "kiosk" ].get( "url",  "" )
+    if url:
+        enable_kiosk_web( url )
+        if _config[ "kiosk" ].get( "ctrl_disabled", "False" ) in _true:
+            disable_ctrl()
+        else:
+            enable_ctrl()
+    else:
+        print( "Config error: URL for webkiosk not specified!" )
+        kiosk_disabled()
+        exit( 1 )
 
 def CLI( option ):
     """MyConnector KIOSK mode control"""
@@ -339,6 +365,12 @@ def CLI( option ):
                 if _config[ "kiosk" ][ "mode" ] == "1":
                     enable_from_cli()
                     exit( 0 )
+                if _config[ "kiosk" ][ "mode" ] == "2":
+                    enable_from_cli_ctor()
+                    exit( 0 )
+                if _config[ "kiosk" ][ "mode" ] == "3":
+                    enable_from_cli_web()
+                    exit( 0 )
         else:
             print( "Permission denied!" )
             exit( 126 )
@@ -349,8 +381,8 @@ Usage: myconnector --kiosk <option>
 
 Options:
   enable        enable the standalone mode;
-  edit          edit config file for enable/disable the mode
-                (will use any the editor defines by VISUAL or EDITOR, default: vi);
+  edit          edit config file for enable/disable the mode (will use
+                any the editor defines by VISUAL or EDITOR, default: vi);
   disable       disable the mode;
   status        display current status of the mode;
   help          show this text and exit.
