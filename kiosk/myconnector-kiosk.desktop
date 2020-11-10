@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=MyConnector - KIOSK
-Exec=/usr/share/myconnector/kiosk/myconnector-kiosk $CTOR
+Exec=/usr/share/myconnector/kiosk/myconnector-kiosk $MYC
 Icon=myconnector
 Terminal=false
 Type=Application

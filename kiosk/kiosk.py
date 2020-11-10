@@ -108,11 +108,11 @@ def fix_shortcut(mode, _input, output):
     shortcut = "%s/myconnector-%s.desktop" % (_etc_dir, mode)
     os.system ("sed -i \"s|\%s|%s|g\" %s" % (_input, output, shortcut))
 
-def enable_kiosk_ctor(_file):
-    """Exec MyConnector (with ctor-file) in the mode KIOSK"""
+def enable_kiosk_myc( _file ):
+    """Exec MyConnector (with myc-file) in the mode KIOSK"""
     mode = "kiosk"
     enable_kiosk(mode)
-    fix_shortcut(mode, "$CTOR", "'%s'" % _file)
+    fix_shortcut( mode, "$MYC", "'%s'" % _file )
 
 def enable_kiosk_web(url):
     """Exec chromium in the mode KIOSK"""
@@ -222,7 +222,7 @@ class Kiosk(Gtk.Window):
         if self.changeKioskAll.get_active():
             mode = "1"
             enable_kiosk()
-            fix_shortcut("kiosk", "$CTOR", "")
+            fix_shortcut( "kiosk", "$MYC", "" )
         if self.changeKioskCtor.get_active():
             mode = "2"
             uri = self.entryKioskCtor.get_uri()
@@ -237,7 +237,7 @@ class Kiosk(Gtk.Window):
                     return 1
                 except SameFileError:
                     pass
-                enable_kiosk_ctor( file )
+                enable_kiosk_myc( file )
             else:
                 os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='No connection file specified!'" )
                 return 1
@@ -304,11 +304,11 @@ def check_user_from_cli():
 def enable_from_cli():
     check_user_from_cli()
     enable_kiosk()
-    fix_shortcut( "kiosk", "$CTOR", "" )
+    fix_shortcut( "kiosk", "$MYC", "" )
     print( "MyConnector KIOSK standalone mode enabled!\n"
            "Try 'myconnector --kiosk status' for more information." )
 
-def enable_from_cli_ctor():
+def enable_from_cli_myc():
     pass
 
 def enable_from_cli_web():
@@ -325,6 +325,8 @@ def enable_from_cli_web():
         disable_kiosk()
         kiosk_disabled()
         exit( 1 )
+    print( "MyConnector WEB-KIOSK enabled!\n"
+           "Try 'myconnector --kiosk status' for more information." )
 
 def CLI( option ):
     """MyConnector KIOSK mode control"""
@@ -369,7 +371,7 @@ def CLI( option ):
                     enable_from_cli()
                     exit( 0 )
                 if _config[ "kiosk" ][ "mode" ] == "2":
-                    enable_from_cli_ctor()
+                    enable_from_cli_myc()
                     exit( 0 )
                 if _config[ "kiosk" ][ "mode" ] == "3":
                     enable_from_cli_web()
