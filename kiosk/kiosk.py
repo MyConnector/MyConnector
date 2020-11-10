@@ -355,6 +355,9 @@ def enable_from_cli_web():
 
 def CLI( option ):
     """MyConnector KIOSK mode control"""
+    if not os.path.exists( "/etc/altlinux-release" ):
+        print( "Unsupported OS! Need ALT!" )
+        exit( 1 )
     if option in ( "disable", "status", "enable", "edit" ):
         if os.getuid() == 0:
             if option == "disable":
