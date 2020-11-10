@@ -120,12 +120,13 @@ def enable_kiosk_web(url):
     enable_kiosk(mode)
     fix_shortcut(mode, "$URL", url)
 
-def disable_kiosk():
+def disable_kiosk( reset_conf = True):
     """Disable the mode KIOSK"""
     dm_clear_autologin()
-    os.system( "rm -f /etc/X11/xsession.user.d/%s" % load_kiosk_user() )
+    os.system( "rm -f /etc/X11/xsession.user.d/%s 2>/dev/null" % load_kiosk_user() )
     os.system( "rm -f %s/myconnector-*.desktop" % _etc_dir )
-    os.system( "sed -i s/^mode.*/mode\ =\ 0/g %s" % _kiosk_conf )
+    if reset_conf:
+        os.system( "sed -i s/^mode.*/mode\ =\ 0/g %s" % _kiosk_conf )
 
 def enable_ctrl():
     """Enable key 'Ctrl' in webkiosk"""
@@ -343,7 +344,7 @@ def CLI( option ):
                 os.system( "cat %s" % _kiosk_conf )
                 exit( 0 )
             if option == "enable":
-                disable_kiosk()
+                disable_kiosk( False )
                 config_init( False )
                 _config[ "kiosk" ][ "mode" ] = "1"
                 enable_from_cli()
@@ -358,7 +359,7 @@ def CLI( option ):
                 if not result: config_init( True )
                 call( [ editor, _kiosk_conf ] )
                 _config.read( _kiosk_conf )
-                disable_kiosk()
+                disable_kiosk( False )
                 if _config[ "kiosk" ].get( "mode", "0" ) == "0":
                     kiosk_disabled()
                     exit( 0 )
