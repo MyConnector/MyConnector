@@ -160,6 +160,20 @@ def check_user( user ):
         os.system( "zenity --info --title='MyConnector Kiosk' --icon-name=myconnector"
                    " --text='User \"%s\" will been created without password! Set, if need.'" % user )
 
+def myc_save( user, _input ):
+    """Save file for mode = 2"""
+    output = "/home/%s/%s" % ( user, os.path.basename( _input ) )
+    result = ""
+    try:
+        copy( _input, output )
+        chown( output, user, user )
+    except FileNotFoundError as result:
+        return result
+    except SameFileError:
+        pass
+    enable_kiosk_myc( output )
+    return result
+
 class Kiosk(Gtk.Window):
     def __init__(self):
         """Window with settings of the mode KIOSK"""
@@ -228,16 +242,10 @@ class Kiosk(Gtk.Window):
             uri = self.entryKioskCtor.get_uri()
             if uri:
                 source = unquote( uri.replace( "file://" , "" ))
-                file = "/home/%s/%s" % ( user, os.path.basename( source ) )
-                try:
-                    copy( source, file )
-                    chown( file, user, user )
-                except FileNotFoundError as e:
-                    os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='%s'" % e )
+                result = myc_save( user, source )
+                if result:
+                    os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text=\"%s\"" % result )
                     return 1
-                except SameFileError:
-                    pass
-                enable_kiosk_myc( file )
             else:
                 os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='No connection file specified!'" )
                 return 1
@@ -295,6 +303,7 @@ def check_user_from_cli():
     user = _config[ "kiosk" ].get( "user", "" )
     if user:
         check_user( user )
+        return user
     else:
         print( "Config error: user not specified!" )
         disable_kiosk()
@@ -309,7 +318,23 @@ def enable_from_cli():
            "Try 'myconnector --kiosk status' for more information." )
 
 def enable_from_cli_myc():
-    pass
+    user = check_user_from_cli()
+    file  = _config[ "kiosk" ].get( "file",  "" )
+    error = False
+    if file:
+        result = myc_save( user, file )
+        if result:
+            print( "Config error: %s" % result )
+            error = True
+    else:
+        print( "Config error: FILE for KIOSK not specified!" )
+        error = True
+    if error:
+        disable_kiosk()
+        kiosk_disabled()
+        exit( 1 )
+    print( "MyConnector KIOSK the mode 2 enabled! File: %s\n"
+           "Try 'myconnector --kiosk status' for more information." % file )
 
 def enable_from_cli_web():
     check_user_from_cli()
