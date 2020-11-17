@@ -1450,13 +1450,14 @@ class Gui(Gtk.Application):
         if response == Gtk.ResponseType.YES:
             for connect in open( connections ):
                 try:
-                    record = connect.strip().split( ":::" )
-                    name     = record[ 0 ]
+                    record   = connect.strip().split( ":::" )
+                    name     = record[ 0 ].replace( "/", "" )
                     ctorfile = "%s/.connector/%s" % ( HOMEFOLDER, record[ 3 ] )
-                    mycfile = "%s/%s_import.myc" % ( WORKFOLDER, name.lower() )
-                    call( [ "ctor2myc", ctorfile, mycfile ] )
-                    with open( mycfile, "a" ) as f:
-                        print( "name = %s" % name, file = f )
+                    mycfile  = "%s/%s_import.myc" % ( WORKFOLDER, name.lower() )
+                    code     = call( "ctor2myc %s %s >> %s/import.log 2>&1" % ( ctorfile, mycfile, LOGFOLDER ), shell = True )
+                    if code == 0:
+                        with open( mycfile, "a" ) as f:
+                            print( "name = %s" % name, file = f )
                 except: pass
             self.setSavesToListstore()
         dialog.destroy()
