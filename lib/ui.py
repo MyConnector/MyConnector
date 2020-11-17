@@ -125,8 +125,8 @@ def getSaveConnections( fileFromConnection = "" ):
         if mycfile != fileFromConnection: # pass editing file
             if Path( mycfile ).suffix.lower() == ".myc":
                 conf = ConfigParser( interpolation = None )
-                conf.read( "%s/%s" % ( WORKFOLDER, mycfile ) )
                 try:
+                    conf.read( "%s/%s" % ( WORKFOLDER, mycfile ) )
                     name     = conf[ "myconnector" ].get( "name",  "" )
                     group    = conf[ "myconnector" ].get( "group", "" )
                     protocol = conf[ "myconnector" ][ "protocol" ].upper()
@@ -139,7 +139,7 @@ def getSaveConnections( fileFromConnection = "" ):
                              GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol ) ) ]
                     saves.append( save )
                     if group: groups.append( group )
-                except KeyError: pass
+                except: pass
     return saves, list( set( groups ) ) #unique groups
 
 def changeProgram( protocol, program = "" ):
