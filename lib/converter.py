@@ -38,7 +38,7 @@ def rdp_import( filename ):
         text = f.read().replace( "\x00", "" ).replace( "\n\n", "\n" )
         print( sub( ":.*:", "=", text ), file = tmpfile )
     tmpfile.close()
-    conf = ConfigParser()
+    conf = ConfigParser( interpolation = None )
     try:
         conf.read( tmpconf )
         try:
@@ -76,7 +76,7 @@ def rdp_import( filename ):
 
 def remmina_import( filename ):
     """Get parameters from remmina file"""
-    conf = ConfigParser()
+    conf = ConfigParser( interpolation = None )
     try:
         conf.read( filename )
         try:
@@ -245,13 +245,13 @@ def ctor_import( filename ):
         params_to_myc[ "passwd"              ] = params_from_ctor[ 4 ]
         params_to_myc[ "fullscreen"          ] = params_from_ctor[ 5 ]
 
-    conf = ConfigParser()
+    conf = ConfigParser( interpolation = None )
     conf [ "myconnector" ] = params_to_myc
     return conf [ "myconnector" ]
 
 def myc_save( args ):
     """Save imported parameters to myc file"""
-    _config = ConfigParser()
+    _config = ConfigParser( interpolation = None )
     ctorfile = args.input
     mycfile = args.output
     if not mycfile:

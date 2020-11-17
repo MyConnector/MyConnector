@@ -124,7 +124,7 @@ def getSaveConnections( fileFromConnection = "" ):
     for mycfile in os.listdir( WORKFOLDER ):
         if mycfile != fileFromConnection: # pass editing file
             if Path( mycfile ).suffix.lower() == ".myc":
-                conf = ConfigParser()
+                conf = ConfigParser( interpolation = None )
                 conf.read( "%s/%s" % ( WORKFOLDER, mycfile ) )
                 try:
                     name     = conf[ "myconnector" ].get( "name",  "" )

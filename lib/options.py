@@ -35,7 +35,7 @@ log = FakeLog()
 
 def saveInFile(filename, obj):
     """Save connection parameters to file *.myc)"""
-    conf = ConfigParser()
+    conf = ConfigParser( interpolation = None )
     conf [ "myconnector" ] = obj
     with open( "%s/%s" % ( WORKFOLDER, filename ), "w" ) as fileCtor:
         conf.write( fileCtor )
@@ -68,7 +68,7 @@ def loadFromFile( filename, window = None, _import = False ):
             msg_error( "Файл \"%s\" c сохраненными настройками не найден." % filename, log.exception )
             return None
     try:
-        conf = ConfigParser()
+        conf = ConfigParser( interpolation = None )
         try:
             conf.read( filepath )
             try:
