@@ -667,8 +667,8 @@ class Gui(Gtk.Application):
             if args.getboolean( "aero"       ): self.RDP_aero.set_active(          True )
             if args.getboolean( "drag"       ): self.RDP_drag.set_active(          True )
             if args.getboolean( "animation"  ): self.RDP_animation.set_active(     True )
-            if args.getboolean( "theme"      ): self.RDP_theme.set_active(        False )
-            if args.getboolean( "wallpapers" ): self.RDP_wallpapers.set_active(   False )
+            if args.getboolean( "theme"      ): self.RDP_theme.set_active(         True )
+            if args.getboolean( "wallpapers" ): self.RDP_wallpapers.set_active(    True )
             if args.getboolean( "nsc"        ): self.RDP_nsc.set_active(           True )
             if args.getboolean( "jpeg" ):
                 self.RDP_jpeg.set_active( True )
@@ -899,8 +899,8 @@ class Gui(Gtk.Application):
                 aero        = "True"  if self.RDP_aero.get_active()       else "False",
                 drag        = "True"  if self.RDP_drag.get_active()       else "False",
                 animation   = "True"  if self.RDP_animation.get_active()  else "False",
-                theme       = "False" if self.RDP_theme.get_active()      else "True",
-                wallpapers  = "False" if self.RDP_wallpapers.get_active() else "True",
+                theme       = "True"  if self.RDP_theme.get_active()      else "False",
+                wallpapers  = "True"  if self.RDP_wallpapers.get_active() else "False",
                 nsc         = "True"  if self.RDP_nsc.get_active()        else "False",
                 usb         = "True"  if self.RDP_usb.get_active()        else "False",
                 disable_nla = "True"  if self.RDP_nla.get_active()        else "False",

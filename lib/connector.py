@@ -85,8 +85,8 @@ class XFreeRdp:
                 if args.get( "aero", "False"        ) == "True": command += " +aero"
                 if args.get( "drag", "False"        ) == "True": command += " +window-drag"
                 if args.get( "animation", "False"   ) == "True": command += " +menu-anims"
-                if args.get( "theme", "False"       ) == "True": command += " -themes"
-                if args.get( "wallpapers", "False"  ) == "True": command += " -wallpaper"
+                if args.get( "theme", "False"       ) =="False": command += " -themes"
+                if args.get( "wallpapers", "False"  ) =="False": command += " -wallpaper"
                 if args.get( "nsc", "False"         ) == "True": command += " /nsc"
                 if args.get( "jpeg", "False"        ) == "True": command += " /jpeg /jpeg-quality:%s" % args.get( "jpeg_quality" , "80.0" )
                 if args.get( "usb", "False" ) and os.path.exists( USBPATH ):
