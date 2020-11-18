@@ -390,12 +390,17 @@ def CLI( option ):
                 exit( 0 )
             if option == "enable":
                 disable_kiosk( False )
-                config_init( False )
-                _config[ "kiosk" ][ "mode" ] = "1"
-                enable_from_cli()
-                with open( _kiosk_conf, "w" ) as configfile:
-                    _config.write( configfile )
-                exit( 0 )
+                _config.read( _kiosk_conf )
+                try:
+                    mode = _config.get( "kiosk", "mode" )
+                except NoSectionError:
+                    config_init( True )
+                finally:
+                    _config[ "kiosk" ][ "mode" ] = "1"
+                    enable_from_cli()
+                    with open( _kiosk_conf, 'w' ) as configfile:
+                        _config.write( configfile )
+                    exit( 0 )
             if option == "edit":
                 editor = os.getenv( "EDITOR" )
                 if not editor: editor = os.getenv( "VISUAL" )
