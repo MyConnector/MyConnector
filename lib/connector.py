@@ -327,14 +327,13 @@ class Vmware:
                 options.log.info ("VMware: подключение к серверу %s", args)
                 options.log.info (command)
             else:
-                if type( args ) == dict: args = ConfigParser()
                 command = 'vmware-view -q -s %s' %  args[ "server" ]
                 if args.get( "username", "" ): command += " -u %s" % args[ "username" ]
                 if args.get( "domain",   "" ): command += " -d %s" % args[ "domain"   ]
                 if args.get( "fullscreen", "False" ) == "True": command += " --fullscreen"
                 options.log.info ( "VMware: подключение к серверу %s", args[ "server" ] )
                 options.log.info (command)
-                if args.get( "passwd",   "" ): command += ' -p %s' % args[ "password" ]
+                if args.get( "passwd",   "" ): command += " -p %s" % args[ "passwd"   ]
             os.system(command + STD_TO_LOG)
         else:
             options.msg_error ( "VMware Horizon Client не установлен!", options.log.warning )
