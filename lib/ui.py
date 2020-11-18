@@ -556,7 +556,7 @@ class Gui(Gtk.Application):
             self.VMWARE_domain.set_text( args.get( "domain", "" ) )
             password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
             if args.getboolean( "passwdsave" ) or password: self.VMWARE_pwdsave.set_active( True )
-            if not password: password = args.get( "password", "" )
+            if not password: password = args.get( "passwd", "" )
             self.VMWARE_password.set_text( password )
             if args.getboolean( "fullscreen" ): self.VMWARE_fullscreen.set_active( True )
 
