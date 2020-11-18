@@ -21,7 +21,8 @@ require_version('Gtk', '3.0')
 
 import os
 from gi.repository import Gtk
-from configparser import ConfigParser
+from configparser import ( ConfigParser,
+                           NoSectionError )
 from urllib.parse import unquote
 import pwd
 from subprocess import call
@@ -365,9 +366,14 @@ def CLI( option ):
                 kiosk_disabled()
                 exit( 0 )
             if option == "status":
-                result = _config.read( _kiosk_conf )
-                if not result: config_init( True )
-                mode = _config.get( "kiosk", "mode" )
+                _config.read( _kiosk_conf )
+                try:
+                    mode = _config.get( "kiosk", "mode" )
+                except NoSectionError as e:
+                    print( "Error: %s. Config does not exists or contains errors." % e )
+                    print( "The default settings are set." )
+                    config_init( True )
+                    mode = "0"
                 if mode == "0":
                     print( "Status: disabled\n----------------" )
                 else:
