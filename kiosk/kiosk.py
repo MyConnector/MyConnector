@@ -22,6 +22,7 @@ require_version('Gtk', '3.0')
 import os
 from gi.repository import Gtk
 from configparser import ( ConfigParser,
+                           NoOptionError,
                            NoSectionError )
 from urllib.parse import unquote
 import pwd
@@ -96,7 +97,7 @@ test -n "$e" && `$e`""" % shortcut, file = f)
 def enable_kiosk( mode = "kiosk" ):
     """Exec MyConnector in the mode KIOSK"""
     username = _config[ "kiosk" ].get( "user", "kiosk" )
-    if _config[ "kiosk" ][ "autologin" ] in _true:
+    if _config[ "kiosk" ].get( "autologin", "True" ) in _true:
         autologin_enable( username )
     else:
         dm_clear_autologin()
@@ -376,9 +377,9 @@ def CLI( option ):
                 _config.read( _kiosk_conf )
                 try:
                     mode = _config.get( "kiosk", "mode" )
-                except NoSectionError as e:
-                    print( "Error: %s. Config does not exists or contains errors." % e )
-                    print( "The default settings are set." )
+                except ( NoOptionError, NoSectionError ) as e:
+                    print( "Error: %s." % e )
+                    print( "Config does not exists or contains errors.\nThe default settings are set:" )
                     config_init( True )
                     mode = "0"
                 if mode == "0":
@@ -405,21 +406,26 @@ def CLI( option ):
                 editor = os.getenv( "EDITOR" )
                 if not editor: editor = os.getenv( "VISUAL" )
                 if not editor: editor = "vi"
-                result = _config.read( _kiosk_conf )
-                if not result: config_init( True )
                 call( [ editor, _kiosk_conf ] )
                 _config.read( _kiosk_conf )
                 disable_kiosk( False )
-                if _config[ "kiosk" ].get( "mode", "0" ) == "0":
+                try:
+                    mode = _config[ "kiosk" ].get( "mode", "0" )
+                except KeyError:
+                    print( "Config contains errors. The default settings are set." )
+                    config_init( True )
+                    kiosk_disabled()
+                    exit( 1 )
+                if mode == "0":
                     kiosk_disabled()
                     exit( 0 )
-                if _config[ "kiosk" ][ "mode" ] == "1":
+                if mode == "1":
                     enable_from_cli()
                     exit( 0 )
-                if _config[ "kiosk" ][ "mode" ] == "2":
+                if mode == "2":
                     enable_from_cli_myc()
                     exit( 0 )
-                if _config[ "kiosk" ][ "mode" ] == "3":
+                if mode == "3":
                     enable_from_cli_web()
                     exit( 0 )
         else:
