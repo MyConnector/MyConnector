@@ -127,7 +127,14 @@ def disable_kiosk( reset_conf = True):
     os.system( "rm -f /etc/X11/xsession.user.d/%s 2>/dev/null" % load_kiosk_user() )
     os.system( "rm -f %s/myconnector-*.desktop" % _etc_dir )
     if reset_conf:
-        os.system( "sed -i s/^mode.*/mode\ =\ 0/g %s" % _kiosk_conf )
+        _config.read( _kiosk_conf )
+        try:
+            _config[ "kiosk" ][ "mode" ] = "0"
+        except KeyError:
+            config_init( True )
+        else:
+            with open( _kiosk_conf, 'w' ) as configfile:
+                _config.write( configfile )
 
 def enable_ctrl():
     """Enable key 'Ctrl' in webkiosk"""
