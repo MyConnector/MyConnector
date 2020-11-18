@@ -1233,7 +1233,9 @@ class Gui(Gtk.Application):
                 server_not_found( nameConnect )
                 return None
             if ( name == "RDP1" or name =="VMWARE" ) and parameters.getboolean( "passwdsave" ):
-                parameters[ "passwd" ] = keyring.get_password( server, parameters.get( "username", "" ) )
+                try:
+                    parameters[ "passwd" ] = keyring.get_password( server, parameters.get( "username", "" ) )
+                except: pass
             viewStatus( self.statusbar, "Соединение с \"%s\"..." % nameConnect )
             connect = definition( name )
             connect.start( parameters )
