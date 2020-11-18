@@ -1016,11 +1016,13 @@ class Gui(Gtk.Application):
         """Нажатие кнопки Отмена в окне доп. параметров"""
         window.destroy()
         self.prefClick = False
+        if hasattr( self, "fileCtor" ): self.fileCtor = ""
 
     def onClose (self, window, *args):
         """Закрытие окна доп. параметров"""
         window.destroy()
         self.prefClick = False
+        if hasattr( self, "fileCtor" ): self.fileCtor = ""
 
     def onFolderChoose(self, widget, *args):
         """При нажатии на выбор папки в окне доп. параметров"""
@@ -1266,8 +1268,8 @@ class Gui(Gtk.Application):
     def onPopupCopy(self, treeView):
         """Копирование выбранного подключения"""
         table, indexRow = treeView.get_selection().get_selected()
-        nameConnect, self.fileCtor = table[indexRow][0], table[indexRow][4]
-        parameters = options.loadFromFile(self.fileCtor, self.window)
+        nameConnect, fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
+        parameters = options.loadFromFile( fileCtor, self.window )
         if parameters is not None: #если файл .myc имеет верный формат
             try:
                 protocol = parameters[ "protocol" ].upper()
