@@ -21,9 +21,12 @@ require_version('Gtk', '3.0')
 
 import os
 from gi.repository import Gtk
-from configparser import ConfigParser
+from configparser import ( ConfigParser,
+                           NoOptionError,
+                           NoSectionError )
 from urllib.parse import unquote
 import pwd
+from subprocess import call
 from shutil import ( copy,
                      chown,
                      SameFileError )
@@ -67,7 +70,10 @@ def load_kiosk_user():
     """Load username for KIOSK from the config file"""
     tmp = ConfigParser( interpolation = None )
     tmp.read( _kiosk_conf )
-    return tmp[ "kiosk" ].get( "user", "kiosk" )
+    try:
+        return tmp[ "kiosk" ].get( "user", "kiosk" )
+    except:
+        return "kiosk"
 
 def autologin_enable(username):
     """Enable autologin for the mode KIOSK"""
@@ -91,7 +97,7 @@ test -n "$e" && `$e`""" % shortcut, file = f)
 def enable_kiosk( mode = "kiosk" ):
     """Exec MyConnector in the mode KIOSK"""
     username = _config[ "kiosk" ].get( "user", "kiosk" )
-    if _config['kiosk']['autologin'] == "True":
+    if _config[ "kiosk" ].get( "autologin", "True" ) in _true:
         autologin_enable( username )
     else:
         dm_clear_autologin()
@@ -104,11 +110,11 @@ def fix_shortcut(mode, _input, output):
     shortcut = "%s/myconnector-%s.desktop" % (_etc_dir, mode)
     os.system ("sed -i \"s|\%s|%s|g\" %s" % (_input, output, shortcut))
 
-def enable_kiosk_ctor(_file):
-    """Exec MyConnector (with ctor-file) in the mode KIOSK"""
+def enable_kiosk_myc( _file ):
+    """Exec MyConnector (with myc-file) in the mode KIOSK"""
     mode = "kiosk"
     enable_kiosk(mode)
-    fix_shortcut(mode, "$CTOR", "'%s'" % _file)
+    fix_shortcut( mode, "$MYC", "'%s'" % _file )
 
 def enable_kiosk_web(url):
     """Exec chromium in the mode KIOSK"""
@@ -116,12 +122,20 @@ def enable_kiosk_web(url):
     enable_kiosk(mode)
     fix_shortcut(mode, "$URL", url)
 
-def disable_kiosk():
+def disable_kiosk( reset_conf = True):
     """Disable the mode KIOSK"""
     dm_clear_autologin()
-    os.system( "rm -f /etc/X11/xsession.user.d/%s" % load_kiosk_user() )
+    os.system( "rm -f /etc/X11/xsession.user.d/%s 2>/dev/null" % load_kiosk_user() )
     os.system( "rm -f %s/myconnector-*.desktop" % _etc_dir )
-    os.system( "sed -i s/^mode.*/mode\ =\ 0/g %s" % _kiosk_conf )
+    if reset_conf:
+        _config.read( _kiosk_conf )
+        try:
+            _config[ "kiosk" ][ "mode" ] = "0"
+        except KeyError:
+            config_init( True )
+        else:
+            with open( _kiosk_conf, 'w' ) as configfile:
+                _config.write( configfile )
 
 def enable_ctrl():
     """Enable key 'Ctrl' in webkiosk"""
@@ -134,7 +148,7 @@ def disable_ctrl():
     os.system( "sed -i s/while/\"setxkbmap -v -option ctrl:swapcaps\\nxmodmap"
                " -e 'keycode 105 = '\\nxmodmap -e 'keycode 37 = '\\nwhile\"/g %s" % _webkiosk )
 
-def config_init():
+def config_init( write ):
     """Default config for KIOSK"""
     _config["kiosk"] = { 'mode': '0',
                          'user': 'kiosk',
@@ -142,8 +156,9 @@ def config_init():
                          'file': '',
                          'url': '',
                          'ctrl_disabled': 'false' }
-    with open( _kiosk_conf, 'w' ) as configfile:
-        _config.write( configfile )
+    if write:
+        with open( _kiosk_conf, 'w' ) as configfile:
+            _config.write( configfile )
 
 def check_user( user ):
     """User existence check"""
@@ -153,6 +168,20 @@ def check_user( user ):
         os.system( "xterm -e 'adduser %s'" % user )
         os.system( "zenity --info --title='MyConnector Kiosk' --icon-name=myconnector"
                    " --text='User \"%s\" will been created without password! Set, if need.'" % user )
+
+def myc_save( user, _input ):
+    """Save file for mode = 2"""
+    output = "/home/%s/%s" % ( user, os.path.basename( _input ) )
+    result = ""
+    try:
+        copy( _input, output )
+        chown( output, user, user )
+    except FileNotFoundError as result:
+        return result
+    except SameFileError:
+        pass
+    enable_kiosk_myc( output )
+    return result
 
 class Kiosk(Gtk.Window):
     def __init__(self):
@@ -181,7 +210,7 @@ class Kiosk(Gtk.Window):
         self.connect("delete-event", self.onClose)
         self.show_all()
         result = _config.read( _kiosk_conf )
-        if not result: config_init()
+        if not result: config_init( True )
         self.initParams()
 
     def onClose (self, window, *args):
@@ -216,22 +245,16 @@ class Kiosk(Gtk.Window):
         if self.changeKioskAll.get_active():
             mode = "1"
             enable_kiosk()
-            fix_shortcut("kiosk", "$CTOR", "")
+            fix_shortcut( "kiosk", "$MYC", "" )
         if self.changeKioskCtor.get_active():
             mode = "2"
             uri = self.entryKioskCtor.get_uri()
             if uri:
                 source = unquote( uri.replace( "file://" , "" ))
-                file = "/home/%s/%s" % ( user, os.path.basename( source ) )
-                try:
-                    copy( source, file )
-                    chown( file, user, user )
-                except FileNotFoundError as e:
-                    os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='%s'" % e )
+                result = myc_save( user, source )
+                if result:
+                    os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text=\"%s\"" % result )
                     return 1
-                except SameFileError:
-                    pass
-                enable_kiosk_ctor( file )
             else:
                 os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='No connection file specified!'" )
                 return 1
@@ -281,6 +304,154 @@ class Kiosk(Gtk.Window):
         self.entryKioskCtor.set_uri('')
         self.entryKioskWeb.set_text('')
         self.initParams()
+
+def kiosk_disabled():
+    print( "MyConnector KIOSK mode disabled!" )
+
+def check_user_from_cli():
+    user = _config[ "kiosk" ].get( "user", "" )
+    if user:
+        check_user( user )
+        return user
+    else:
+        print( "Config error: user not specified!" )
+        disable_kiosk()
+        kiosk_disabled()
+        exit( 1 )
+
+def enable_from_cli():
+    check_user_from_cli()
+    enable_kiosk()
+    fix_shortcut( "kiosk", "$MYC", "" )
+    print( "MyConnector KIOSK standalone mode enabled!\n"
+           "Try 'myconnector --kiosk status' for more information." )
+
+def enable_from_cli_myc():
+    user = check_user_from_cli()
+    file  = _config[ "kiosk" ].get( "file",  "" )
+    error = False
+    if file:
+        result = myc_save( user, file )
+        if result:
+            print( "Config error: %s" % result )
+            error = True
+    else:
+        print( "Config error: FILE for KIOSK not specified!" )
+        error = True
+    if error:
+        disable_kiosk()
+        kiosk_disabled()
+        exit( 1 )
+    print( "MyConnector KIOSK the mode 2 enabled! File: %s\n"
+           "Try 'myconnector --kiosk status' for more information." % file )
+
+def enable_from_cli_web():
+    check_user_from_cli()
+    url  = _config[ "kiosk" ].get( "url",  "" )
+    if url:
+        enable_kiosk_web( url )
+        if _config[ "kiosk" ].get( "ctrl_disabled", "False" ) in _true:
+            disable_ctrl()
+        else:
+            enable_ctrl()
+    else:
+        print( "Config error: URL for webkiosk not specified!" )
+        disable_kiosk()
+        kiosk_disabled()
+        exit( 1 )
+    print( "MyConnector WEB-KIOSK enabled!\n"
+           "Try 'myconnector --kiosk status' for more information." )
+
+def CLI( option ):
+    """MyConnector KIOSK mode control"""
+    if not os.path.exists( "/etc/altlinux-release" ):
+        print( "Unsupported OS! Need ALT!" )
+        exit( 1 )
+    if option in ( "disable", "status", "enable", "edit" ):
+        if os.getuid() == 0:
+            if option == "disable":
+                disable_kiosk()
+                kiosk_disabled()
+                exit( 0 )
+            if option == "status":
+                _config.read( _kiosk_conf )
+                try:
+                    mode = _config.get( "kiosk", "mode" )
+                except ( NoOptionError, NoSectionError ) as e:
+                    print( "Error: %s." % e )
+                    print( "Config does not exists or contains errors.\nThe default settings are set:" )
+                    config_init( True )
+                    mode = "0"
+                if mode == "0":
+                    print( "Status: disabled\n----------------" )
+                else:
+                    print( "Status: enabled\n---------------" )
+                print( "MyConnector KIOSK config file %s:" % _kiosk_conf )
+                os.system( "cat %s" % _kiosk_conf )
+                exit( 0 )
+            if option == "enable":
+                disable_kiosk( False )
+                _config.read( _kiosk_conf )
+                try:
+                    mode = _config.get( "kiosk", "mode" )
+                except NoSectionError:
+                    config_init( True )
+                finally:
+                    _config[ "kiosk" ][ "mode" ] = "1"
+                    enable_from_cli()
+                    with open( _kiosk_conf, 'w' ) as configfile:
+                        _config.write( configfile )
+                    exit( 0 )
+            if option == "edit":
+                editor = os.getenv( "EDITOR" )
+                if not editor: editor = os.getenv( "VISUAL" )
+                if not editor: editor = "vi"
+                call( [ editor, _kiosk_conf ] )
+                _config.read( _kiosk_conf )
+                disable_kiosk( False )
+                try:
+                    mode = _config[ "kiosk" ].get( "mode", "0" )
+                except KeyError:
+                    print( "Config contains errors. The default settings are set." )
+                    config_init( True )
+                    kiosk_disabled()
+                    exit( 1 )
+                if mode == "0":
+                    kiosk_disabled()
+                    exit( 0 )
+                if mode == "1":
+                    enable_from_cli()
+                    exit( 0 )
+                if mode == "2":
+                    enable_from_cli_myc()
+                    exit( 0 )
+                if mode == "3":
+                    enable_from_cli_web()
+                    exit( 0 )
+        else:
+            print( "Permission denied!" )
+            exit( 126 )
+    if option == "help":
+        print( """myconnector --kiosk - MyConnector KIOSK mode control
+
+Usage: myconnector --kiosk <option>
+
+Options:
+  enable        enable the standalone mode;
+  edit          edit config file for enable/disable the mode (will use
+                any the editor defines by VISUAL or EDITOR, default: vi);
+  disable       disable the mode;
+  status        display current status of the mode;
+  help          show this text and exit.
+
+See also: man myconnector-kiosk
+
+Copyright (C) 2014-2020 Evgeniy Korneechev <ek@myconnector.ru>""" )
+        exit( 0 )
+    else:
+        print( "myconnector --kiosk: invalid command: %s\n"
+               "Try 'myconnector --kiosk help' for more information." % option )
+        exit( 1 )
 
 if __name__ == '__main__':
     pass

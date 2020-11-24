@@ -16,8 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see http://www.gnu.org/licenses/.
 
-from os import ( system,
-                 getuid )
+from os import system
 from argparse import ( ArgumentParser,
                        RawTextHelpFormatter )
 from .config import ( VERSION,
@@ -32,7 +31,7 @@ def parseArgs():
     args.add_argument( "-c", "--connection", help = "name of the saved connection" )
     args.add_argument( "-f", "--file", help = "name of the file (.myc, .remmina, .rdp)" )
     args.add_argument( "-l", "--list", action = "store_true", default = False, help = "list of the saved connections" )
-    args.add_argument( "--disable-kiosk", action = "store_true", default = False, help = "disable the mode KIOSK" )
+    args.add_argument( "--kiosk", metavar="<option>", help = "KIOSK mode control ('--kiosk help' for more information)" )
     args.add_argument( "-v", "--version", action = "version", help = "show the application version", version = about)
     args.add_argument( "-d", "--debug", action = "store_true", default = False, help = "show log files online")
     args.add_argument( "-q", "--quit", action = "store_true", default = False, help = "quit the application")
@@ -40,23 +39,19 @@ def parseArgs():
     return args.parse_args()
 
 def main():
-    system( "xdg-mime default myconnector.desktop application/x-myconnector" )
     args = parseArgs()
     if args.quit:
         from .ui import quitApp as quit
         quit()
-    if args.disable_kiosk:
-        if getuid() == 0:
-            try:
-                from kiosk.kiosk import disable_kiosk
-                disable_kiosk()
-                exit (0)
-            except ImportError:
-                print ( "The mode KIOSK unavailable, package is not installed." )
-                exit (127)
-        else:
-            print ( "Permission denied!" )
-            exit (126)
+    if args.kiosk:
+        try:
+            from myconnector.kiosk import CLI
+            CLI( args.kiosk )
+            exit( 0 )
+        except ImportError:
+            print( "The mode KIOSK unavailable, package is not installed." )
+            exit( 127 )
+    system( "xdg-mime default myconnector.desktop application/x-myconnector" )
     if args.debug:
         from .ui import startDebug as debug
         debug()
