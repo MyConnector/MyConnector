@@ -18,7 +18,7 @@
 
 import myconnector.options as options
 from myconnector.config import *
-from re import escape
+from re import ( escape, sub )
 try: import keyring
 except Exception as error:
     class Keyring:
@@ -151,6 +151,11 @@ class Remmina:
         """Run connection via Remmina"""
         self.create_cfg_file( parameters )
         options.log.info ( "Remmina: подключение по протоколу %s к серверу: %s", self.cfg[ "protocol" ], self.cfg[ "server" ] )
+        knock = parameters.get( "knocking", "" )
+        if knock:
+            cmd = "knock %s %s" % ( sub( ":.*", "", parameters[ "server" ] ), knock )
+            options.log.info ( cmd )
+            os.system( "%s%s" % ( cmd, STD_TO_LOG ) )
         command = "remmina -c \"%s/%s\"" % ( WORKFOLDER, self.f_name )
         options.log.info ( command )
         os.system( "cd $HOME && %s%s" % ( command, STD_TO_LOG ) )
