@@ -578,6 +578,7 @@ class Gui(Gtk.Application):
             self.SSH_path_keyfile.set_filename( args.get( "ssh_privatekey", "" ) )
             self.SSH_charset.set_text(          args.get( "ssh_charset",    "" ) )
             self.SSH_exec.set_text(             args.get( "exec",           "" ) )
+            self.SSH_knock.set_text(            args.get( "knocking",       "" ) )
             if   args.get( "ssh_auth" ) == "3": self.SSH_publickey.set_active( True )
             elif args.get( "ssh_auth" ) == "1": self.SSH_keyfile.set_active(   True )
             else:
@@ -589,6 +590,7 @@ class Gui(Gtk.Application):
             self.SFTP_path_keyfile.set_filename( args.get( "ssh_privatekey",    "" ) )
             self.SFTP_charset.set_text(          args.get( "ssh_charset",       "" ) )
             self.SFTP_execpath.set_text(         args.get( "execpath",          "" ) )
+            self.SFTP_knock.set_text(             args.get( "knocking",          "" ) )
             if   args.get( "ssh_auth" ) == "3": self.SFTP_publickey.set_active( True )
             elif args.get( "ssh_auth" ) == "1": self.SFTP_keyfile.set_active(   True )
             else:
@@ -816,6 +818,7 @@ class Gui(Gtk.Application):
             self.SSH_path_keyfile = self.pref_builder.get_object( "SSH_keyfile"         )
             self.SSH_exec         = self.pref_builder.get_object( "entry_SSH_exec"      )
             self.SSH_charset      = self.pref_builder.get_object( "entry_SSH_charset"   )
+            self.SSH_knock        = self.pref_builder.get_object( "entry_SSH_knock"     )
             self.SSH_path_keyfile.set_current_folder( HOMEFOLDER )
 
         if protocol == "SFTP":
@@ -825,6 +828,7 @@ class Gui(Gtk.Application):
             self.SFTP_path_keyfile = self.pref_builder.get_object( "SFTP_keyfile"         )
             self.SFTP_execpath     = self.pref_builder.get_object( "entry_SFTP_execpath"  )
             self.SFTP_charset      = self.pref_builder.get_object( "entry_SFTP_charset"   )
+            self.SFTP_knock        = self.pref_builder.get_object( "entry_SFTP_knock"     )
             self.SFTP_path_keyfile.set_current_folder( HOMEFOLDER )
 
         if protocol == "VMWARE":
@@ -971,6 +975,7 @@ class Gui(Gtk.Application):
         if protocol == "SSH":
             args = dict(
                 username    = self.SSH_user.get_text(),
+                knocking    = self.SSH_knock.get_text(),
                 ssh_charset = self.SSH_charset.get_text() )
             args[ "exec"  ] = self.SSH_exec.get_text()
             if self.SSH_publickey.get_active():
@@ -984,6 +989,7 @@ class Gui(Gtk.Application):
         if protocol == "SFTP":
             args = dict(
                 username    = self.SFTP_user.get_text(),
+                knocking    = self.SFTP_knock.get_text(),
                 ssh_charset = self.SFTP_charset.get_text(),
                 execpath    = self.SFTP_execpath.get_text() )
             if self.SFTP_publickey.get_active():

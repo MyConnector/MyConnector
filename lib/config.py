@@ -221,11 +221,13 @@ DEF_PROTO[ "SSH" ] = {   "username"          : "",
                          "ssh_auth"          : "0",
                          "ssh_privatekey"    : "",
                          "ssh_charset"       : "UTF-8",
+                         "knocking"          : "",
                          "exec"              : "" }
 DEF_PROTO[ "SFTP" ] = {  "username"          : "",
                          "ssh_auth"          : "0",
                          "ssh_privatekey"    : "",
                          "ssh_charset"       : "UTF-8",
+                         "knocking"          : "",
                          "execpath"          : "/" }
 _config = ConfigParser( interpolation = None )
 _config_file = "%s/myconnector.conf" % WORKFOLDER

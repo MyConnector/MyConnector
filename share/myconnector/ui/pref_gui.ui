@@ -320,11 +320,35 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           </packing>
         </child>
         <child>
-          <object class="GtkSeparator" id="separator15">
+          <object class="GtkFrame" id="frame_SFTP_knock">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">10</property>
+            <property name="tooltip_text" translatable="yes">Необходим клиент knock!</property>
             <property name="margin_bottom">10</property>
+            <property name="label_xalign">0</property>
+            <child>
+              <object class="GtkAlignment" id="align_SFTP_knock">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="bottom_padding">10</property>
+                <property name="left_padding">10</property>
+                <property name="right_padding">10</property>
+                <child>
+                  <object class="GtkEntry" id="entry_SFTP_knock">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="placeholder_text" translatable="yes">Например: 7000 8000:udp 9000:tcp</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="label_SFTP_knock">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Port knocking:</property>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -344,7 +368,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">10</property>
+            <property name="position">11</property>
           </packing>
         </child>
         <child>
@@ -383,7 +407,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">11</property>
+            <property name="position">12</property>
           </packing>
         </child>
         <child>
@@ -427,7 +451,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">12</property>
+            <property name="position">13</property>
           </packing>
         </child>
         <child>
@@ -440,7 +464,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">13</property>
+            <property name="position">14</property>
           </packing>
         </child>
         <child>
@@ -495,7 +519,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">14</property>
+            <property name="position">15</property>
           </packing>
         </child>
       </object>
@@ -1204,11 +1228,35 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       </packing>
     </child>
     <child>
-      <object class="GtkSeparator" id="separator12">
+      <object class="GtkFrame" id="frame_SSH_knock">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_top">10</property>
+        <property name="tooltip_text" translatable="yes">Необходим клиент knock!</property>
         <property name="margin_bottom">10</property>
+        <property name="label_xalign">0</property>
+        <child>
+          <object class="GtkAlignment" id="align_SSH_knock">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="bottom_padding">10</property>
+            <property name="left_padding">10</property>
+            <property name="right_padding">10</property>
+            <child>
+              <object class="GtkEntry" id="entry_SSH_knock">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="placeholder_text" translatable="yes">Например: 7000 8000:udp 9000:tcp</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="label">
+          <object class="GtkLabel" id="label_SSH_knock">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Port knocking:</property>
+          </object>
+        </child>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -1228,7 +1276,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">10</property>
+        <property name="position">11</property>
       </packing>
     </child>
     <child>
@@ -1267,7 +1315,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">11</property>
+        <property name="position">12</property>
       </packing>
     </child>
     <child>
@@ -1311,7 +1359,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">12</property>
+        <property name="position">13</property>
       </packing>
     </child>
     <child>
@@ -1324,7 +1372,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">13</property>
+        <property name="position">14</property>
       </packing>
     </child>
     <child>
@@ -1379,7 +1427,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">14</property>
+        <property name="position">15</property>
       </packing>
     </child>
   </object>
