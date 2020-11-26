@@ -113,7 +113,7 @@ class XFreeRdp:
                     password = passwd( server, username )
                 if password:
                     command += " /p:%s" % escape( password )
-                if password != False: #if there is password after zenity
+                if password != None: #if there is password
                     options.log.info ("FreeRDP: подключение к серверу %s. Команда запуска:", server)
                     try: cmd2log = command.replace("/p:" + command.split("/p:")[1].split(' ')[0],"/p:<hidden>")
                     except: cmd2log = command
@@ -461,15 +461,14 @@ def freerdpCheckFloatbar():
 
 def passwd(server, username):
     """Ввод пароля и запрос о его сохранении в связке ключей"""
-    separator = "|CoNnEcToR|"
-    try:
-        password, save = check_output( "zenity --forms --title=\"Аутентификация (with NLA)\" --text=\"Имя пользователя: %s\""
-            " --add-password=\"Пароль:\" --add-combo=\"Хранить пароль в связке ключей:\" --combo-values=\"Да|Нет\""
-            " --separator=\"%s\" 2>/dev/null" % (username, separator),shell=True, universal_newlines=True).strip().split(separator)
-        if save == "Да" and password: keyring.set_password(str(server),str(username),str(password))
-    except ValueError:
-        password = False
+    from myconnector.nla_auth import NlaAuth
+    dialog = NlaAuth( username )
+    password, save = dialog.run()
+    if password == None:
         options.log.info ("FreeRDP: подключение отменено пользователем (окно запроса пароля закрыто или нажата кнопка Отмена).")
+    else:
+        if save and password:
+            keyring.set_password( str( server ), str( username ), str( password ) )
     return password
 
 if __name__ == "__main__":
