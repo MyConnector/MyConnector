@@ -63,7 +63,9 @@ class XFreeRdp:
                 command = "xfreerdp /v:%s /t:'%s'" % ( server, args.get( "name", server ) )
                 if username                                    : command += " /u:%s" % username
                 if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
-                if args.get( "fullscreen", "True"   ) == "True": command += " /f"
+                if args.get( "fullscreen", "True"   ) == "True":
+                    if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off"
+                    else: command += " /f"
                 if args.get( "clipboard" , "True"   ) == "True": command += " +clipboard"
                 if args.get( "resolution" , ""                ): command += " /size:%s" % args[ "resolution" ]
                 if args.get( "color" , ""                     ): command += " /bpp:%s" % args[ "color" ]
@@ -450,6 +452,12 @@ def freerdpCheckVersion():
     version = check_output( "xfreerdp /version; exit 0",shell=True, universal_newlines=True ).strip().split( '\t' )
     version = version[0].split(" "); version = version[4].split("-")[0];
     return version
+
+def freerdpCheckFloatbar():
+    """Checking for existence /floatbar in FreeRDP"""
+    check = int( check_output( "xfreerdp --help | grep floatbar > /dev/null; echo $?", shell=True, universal_newlines=True ).strip() )
+    check = not bool(check)
+    return check
 
 def passwd(server, username):
     """Ввод пароля и запрос о его сохранении в связке ключей"""
