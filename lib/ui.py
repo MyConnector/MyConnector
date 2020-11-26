@@ -472,9 +472,10 @@ class Gui(Gtk.Application):
                 except KeyError:
                     try: parameters = DEF_PROTO[ name ].copy()
                     except KeyError: parameters = server
-                try:
-                    parameters[ "server" ] = server #для заголовка окна
-                except: pass
+            try:
+                parameters[ "server"   ] = server
+                parameters[ "protocol" ] = protocol
+            except: pass
             connect.start(parameters)
             viewStatus(self.statusbar, "Подключение к серверу " + server + "...")
             self.writeServerInDb(entry)
