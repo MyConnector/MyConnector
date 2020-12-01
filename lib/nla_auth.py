@@ -28,6 +28,7 @@ class NlaAuth( Gtk.Window ):
         Gtk.Window.__init__( self, title = "Аутентификация (with NLA)" )
         builder = Gtk.Builder()
         self.set_resizable( False )
+        self.set_modal( True )
         builder.add_from_file( "%s/nla_auth.ui" % UIFOLDER )
         builder.connect_signals(self)
         frame_nla          = builder.get_object( "frame_nla"    )
