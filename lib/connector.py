@@ -136,6 +136,7 @@ class Remmina:
         server, login = options.searchSshUser( args[ "server" ] )
         args[ "server" ] = server
         if login: args[ "username" ] = login
+        args[ "ssh_username" ] = args[ "username" ]
         self.cfg[ "name" ] += args.get( "name" , server )
         f = open( "%s/%s" % ( WORKFOLDER, self.f_name ), "w" )
         f.write( "[remmina]\n" )
