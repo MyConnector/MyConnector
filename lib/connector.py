@@ -91,7 +91,7 @@ class XFreeRdp:
                 if args.get( "wallpapers", "False"  ) =="False": command += " -wallpaper"
                 if args.get( "nsc", "False"         ) == "True": command += " /nsc"
                 if args.get( "jpeg", "False"        ) == "True": command += " /jpeg /jpeg-quality:%s" % args.get( "jpeg_quality" , "80.0" )
-                if args.get( "usb", "False" ) and os.path.exists( USBPATH ):
+                if args.get( "usb", "False"         ) == "True" and os.path.exists( USBPATH ):
                     command += " /drive:MEDIA,%s" % USBPATH
                 if args.get( "workarea", "False"    ) == "True": command += " /workarea"
                 if args.get( "span", "False"        ) == "True": command += " /span"

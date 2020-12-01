@@ -89,7 +89,7 @@ if OS == "altlinux":
     #Папка монтирования устройств
     _udisks2 = check_output( "/usr/sbin/control udisks2; exit 0", shell=True, universal_newlines=True ).strip()
     if _udisks2 == 'default':
-        USBPATH = "/run/media/$USER"
+        USBPATH = "/run/media/%s" % os.getenv( "USER" )
     else:
         USBPATH = "/media"
 
@@ -114,7 +114,7 @@ elif OS == "linuxmint" or OS == "ubuntu":
             RELEASE = _package_info[1]
         except IndexError: RELEASE = "git"
 
-    USBPATH = "/media/$USER"
+    USBPATH = "/media/%s" % os.getenv( "USER" )
 
     CITRIX_CHECK = "dpkg -s icaclient > "
 
