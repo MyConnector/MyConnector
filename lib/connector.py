@@ -113,7 +113,7 @@ class XFreeRdp:
                     password = passwd( server, username )
                 if password:
                     command += " /p:%s" % escape( password )
-                if password != None: #if there is password
+                if password != False: #if there is password
                     options.log.info ("FreeRDP: подключение к серверу %s. Команда запуска:", server)
                     try: cmd2log = command.replace("/p:" + command.split("/p:")[1].split(' ')[0],"/p:<hidden>")
                     except: cmd2log = command

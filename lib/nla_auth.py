@@ -38,13 +38,13 @@ class NlaAuth( Gtk.Window ):
         label_nla.set_text( "Имя пользователя: %s" % username )
         self.add( frame_nla )
         self.connect( "delete-event", self.onCancel )
-        self.passwd = ""
+        self.passwd = False
         self.save   = False
         self.show_all()
 
     def onCancel( self, *args ):
-        self.passwd = None
-        self.save   = None
+        self.passwd = False
+        self.save   = False
         self.quit()
 
     def onStart( self, *args ):
