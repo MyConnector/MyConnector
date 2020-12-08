@@ -28,6 +28,7 @@ endif
 MAN := $(PREFIX)/man/man1
 APS := $(PREFIX)/applications
 MIME := $(PREFIX)/mime
+BASHCOMP := $(PREFIX)/bash-completion/completions
 ETC := /etc/$(TARGET)
 KIOSK := kiosk.conf
 KIOSK_DIR := $(BASE)/kiosk
@@ -64,6 +65,8 @@ install:
 	install -m644 kiosk/kiosk.py $(PYTHON)
 	install -m644 kiosk/*.ui $(BASE)/ui
 	@if [ ! -f $(ETC)/$(KIOSK) ]; then install -m600 kiosk/$(KIOSK) $(ETC); fi
+	mkdir -p $(BASHCOMP)
+	install -m644 $(TARGET).bashcomp $(BASHCOMP)/$(TARGET)
 	update-mime-database $(MIME)
 	update-desktop-database
 	@make clean
@@ -77,6 +80,7 @@ uninstall:
 	rm -f $(MIME)/packages/$(TARGET).xml
 	@if [ -f $(ETC)/$(KIOSK) ]; then mv -f $(ETC)/$(KIOSK) $(ETC)/$(KIOSK).makesave; fi
 	find $(PREFIX)/icons/hicolor -name $(TARGET).png -delete
+	rm -f $(BASHCOMP)/$(TARGET)
 	update-mime-database $(MIME)
 	update-desktop-database
 

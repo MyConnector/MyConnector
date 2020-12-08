@@ -1,4 +1,4 @@
-# MyConnector completion
+# MyConnector bash completion
 # Copyright (C) 2014-2020 Evgeniy Korneechev <ek@myconnector.ru>
 
 # This program is free software; you can redistribute it and/or
@@ -17,11 +17,28 @@ _myconnector()
 {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    subcommands_1="--help --connection --file --list --kiosk --version --debug --quit"
-    if [[ ${COMP_CWORD} == 1 ]] ; then
-        COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) )
+    subcommands="--help --connection --file --list --kiosk --version --debug --quit"
+    kioskcommands="enable edit disable status help"
+    if [[ $COMP_CWORD == 1 ]] ; then
+        COMPREPLY=( $(compgen -W "$subcommands" -- $cur) )
         return 0
     fi
+
+    subcmd_1="${COMP_WORDS[1]}"
+    case "$subcmd_1" in
+    --connection)
+        COMPREPLY=( $(compgen -W "`myconnector --list`" -- $cur))
+        return 0
+        ;;
+    --file)
+        COMPREPLY=( $(compgen -f -- $cur) )
+        return 0
+        ;;
+    --kiosk)
+        COMPREPLY=( $(compgen -W "$kioskcommands" -- $cur) )
+        return 0
+        ;;
+    esac
 
 } &&
 complete -F _myconnector myconnector

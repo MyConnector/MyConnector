@@ -67,6 +67,7 @@ install -pm755 kiosk/myconnector-kiosk-check %buildroot%basedir/kiosk
 install -pm755 kiosk/*.desktop %buildroot%basedir/kiosk
 install -pDm600 kiosk/kiosk.conf %buildroot%_sysconfdir/%name/kiosk.conf
 install -pm644 kiosk/%name-kiosk.man %buildroot%_man1dir/%name-kiosk.1
+install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%name
 
 %files
 %_bindir/*
@@ -82,6 +83,7 @@ install -pm644 kiosk/%name-kiosk.man %buildroot%_man1dir/%name-kiosk.1
 %_man1dir/%name.*
 %_datadir/mime/packages/%name.xml
 %_iconsdir/hicolor/*/apps/%name.png
+%_datadir/bash-completion/completions/%name
 
 %files kiosk
 %basedir/kiosk
