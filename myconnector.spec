@@ -10,7 +10,7 @@ Group:    Networking/Remote access
 
 Url:      http://myconnector.ru
 Source0:  %name-%version.tar.gz
-Packager: Korneechev Evgeniy <ekorneechev@altlinux.org>
+Packager: Evgeniy Korneechev <ekorneechev@altlinux.org>
 
 BuildRequires(pre): rpm-build-python3
 Requires: control
@@ -347,7 +347,7 @@ install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%
 * Tue Jun 23 2015 Evgeniy Korneechev <ekorneechev@altlinux.org> 1.3.12-alt4
 - Update SPEC
 
-* Mon Jun 22 2015 Korneechev Evgeniy <ekorneechev@altlinux.org> 1.3.12-alt3
+* Mon Jun 22 2015 Evgeniy Korneechev <ekorneechev@altlinux.org> 1.3.12-alt3
 - Initial build by GEAR
 
 * Tue Jun 16 2015 Michael Shigorin <mike@altlinux.org> 1.3.12-alt2
