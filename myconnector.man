@@ -1,55 +1,60 @@
 .\" -*- mode: troff; coding: UTF-8 -*-
-.TH myconnector 1  "June 10, 2020" "version 2.0" "USER COMMANDS"
+.TH myconnector 1  "Dec 9, 2020" "version 2.0" "USER COMMANDS"
 .SH NAME
-myconnector \- Инструмент системного администратора
+MyConnector \- remote desktop client.
 .SH SYNOPSIS
 .B myconnector
 [options]
 .SH DESCRIPTION
-Программа-агрегатор для осуществления подключения к различным
-компьютерным системам по всем распространенным протоколам (RDP, VNC,
-Citrix, VMware и прочие).
+This is an aggregator program to connect to various servers using all of the popular remote desktop protocols (RDP, VNC, Citrix, VMware, etc).
 .SH OPTIONS
 .TP
-\fBбез\ опций\fR
+\fB<not options>\fR
 .RS 3
-запуск программы с GUI
+Do not specify parameters for starting the GUI.
 .RE
 .PP
-\fB<имя_подключения>\fR
+\fB-c CONNECTION, --connection CONNECTION\fR
 .RS 3
-быстрое соединение c указанным сохраненным подключением
+name of the saved connection
 .RE
 .PP
-\fB<имя_файла>\fR
+\fBFILE, -f FILE, --file FILE\fR
 .RS 3
-возможно подключение с помощью файлов .myc, .remmina и .rdp
+name of the file (.myc, .remmina, .rdp)
 .RE
 .PP
-\fB--kiosk\fR
+\fB-l, --list\fR
 .RS 3
-настройка режима Киоск (при наличии доступа и пакета \fImyconnector-kiosk\fR)
+list of the saved connections
 .RE
 .PP
-\fB-h,\ --help\fR
+\fB--kiosk <option>\fR
 .RS 3
-вывести справку
+KIOSK mode control ('--kiosk help' for more information)
 .RE
 .PP
-\fB-v,\ --version\fR
+\fB-v, --version\fR
 .RS 3
-вывести версию и релиз программы
+show the application version
 .RE
 .PP
-\fB-d,\ --debug\fR
+\fB-d, --debug\fR
 .RS 3
-запустить в режиме отладки (отображение логов)
+show log files online
 .RE
 .PP
-\fB-q,\ --quit\fR
+\fB-h, --help\fR
 .RS 3
-принудительно завершить работу имеющейся копии программы
+show help message and exit
+.RE
+.PP
+\fB-q, --quit\fR
+.RS 3
+quit the application
 .SH LINKS
 http://myconnector.ru/
+.TP
+http://wiki.myconnector.ru
 .SH AUTHOR
-Korneechev Evgeniy <ek@myconnector.ru>
+Evgeniy Korneechev <ek@myconnector.ru>
