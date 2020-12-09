@@ -17,6 +17,8 @@
 .. _`Workspace App`: https://www.citrix.com/downloads/workspace-app/linux/
 .. _`VMware Horizon Client`: https://my.vmware.com/web/vmware/downloads/details?downloadGroup=CART21FQ3_LIN64_550&productId=863
 
+.. _rst-install:
+
 Установка
 =========
 
@@ -60,7 +62,7 @@ Linux Mint & Ubuntu
 git & make
 ~~~~~~~~~~
 
-После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в `spec-файле <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16>`_ в секциях requires)::
+После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в `spec-файле <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16>`_ в секциях requires) выполните (пакет *git* тоже должен быть установлен)::
 
     $ git clone https://github.com/ekorneechev/MyConnector
     $ cd MyConnector

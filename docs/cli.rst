@@ -13,8 +13,14 @@
 .. You should have received a copy of the GNU General Public License
 .. along with this program. If not, see http://www.gnu.org/licenses/.
 
+.. _rst-cli:
+
 Использование в командной строке
 ================================
+
+Настроен bash completion (автоподстановка параметров по нажатию клавиши :guilabel:`&Tab`).
+
+Ниже приведены страницы документации, входящие в состав пакета.
 
 ::
 
@@ -53,3 +59,30 @@
       help          show this text and exit.
 
     See also: man myconnector-kiosk
+
+    $ man myconnector-kiosk
+    NAME
+           myconnector-kiosk - Mode KIOSK for 'MyConnector'
+
+    DESCRIPTION
+           Configuration file for MyConnector mode KIOSK - /etc/myconnector/kiosk.conf
+
+           mode - one of the following operating modes:
+              "0" - disable
+              "1" - enable the standalone mode (run MyConnector)
+              "2" - enable the file mode (run saved connection, from 'file')
+              "3" - enable the WEB-kiosk (open 'url')
+
+           file - file for mode=2
+
+           url - url for WEB-kiosk
+
+           user - user for the mode KIOSK
+
+           autologin - enable/disable user autologin
+              True,Yes - enable
+              False,No - disable
+
+           ctrl_disabled - disable key 'Ctrl' in the webkiosk
+              True,Yes - disable
+              False,No - enable
