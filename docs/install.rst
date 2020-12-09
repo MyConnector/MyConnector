@@ -62,7 +62,7 @@ Linux Mint & Ubuntu
 git & make
 ~~~~~~~~~~
 
-После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в `spec-файле <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16>`_ в секциях requires) выполните (пакет *git* тоже должен быть установлен)::
+После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в `spec-файле <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16>`_ в секциях requires) выполните (пакет ``git`` тоже должен быть установлен)::
 
     $ git clone https://github.com/ekorneechev/MyConnector
     $ cd MyConnector
