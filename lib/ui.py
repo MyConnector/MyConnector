@@ -1156,7 +1156,6 @@ class Gui(Gtk.Application):
             else: newfile = True
             if newfile:
                 fileName = self.saveFileCtor( namesave, protocol, server )
-                self.initSubmenuTray()
             else:
                 fileName = self.resaveFileCtor( namesave, protocol, server )
             options.saveInFile( fileName, parameters )
@@ -1164,6 +1163,7 @@ class Gui(Gtk.Application):
             self.pref_window.destroy()
             self.prefClick = False
             if group: self.initGroups()
+            self.initSubmenuTray()
             viewStatus( self.statusbar, "Подключение \"%s\" сохранено..." % namesave )
             self.fileCtor = ""
         if error:
@@ -1192,12 +1192,12 @@ class Gui(Gtk.Application):
             else: newfile = True
             if newfile:
                 fileName = self.saveFileCtor( name, protocol, server )
-                self.initSubmenuTray()
             else:
                 fileName = self.resaveFileCtor( name, protocol, server )
             options.saveInFile(fileName, parameters)
             self.setSavesToListstore()
             if group: self.initGroups()
+            self.initSubmenuTray()
             viewStatus(self.statusbar, "Подключение \"" + name + "\" сохранено...")
             self.fileCtor = ""
         if error:
