@@ -1353,6 +1353,19 @@ class Gui(Gtk.Application):
             options.log.info("Для подключения '%s' сохранен ярлык быстрого запуска: '%s'", nameConnect, filename)
         dialog.destroy()
 
+    def onPopupText(self, treeView):
+        """Open with Text Editor"""
+        table, indexRow = treeView.get_selection().get_selected()
+        name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
+        editor = CONFIG.get( "editor", "pluma" )
+        status = "Подключение \"%s\" открывается в текстовом редакторе..." % name
+        viewStatus( self.statusbar, status )
+        options.log.info( status )
+        try:
+            Popen( [ editor, "%s/%s" % ( WORKFOLDER, fileMyc ) ] )
+        except FileNotFoundError as e:
+            options.log.error( e )
+
     def listFilter(self, model, iter, data):
         """Функция для фильтра подключений в списке"""
         row = ''

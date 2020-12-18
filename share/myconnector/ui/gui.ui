@@ -78,6 +78,41 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="can_focus">False</property>
     <property name="icon_name">myconnector</property>
   </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-revert</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">../icons/WEB.png</property>
+  </object>
+  <object class="GtkImage" id="image_connect">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-connect</property>
+  </object>
+  <object class="GtkImage" id="image_help">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-dialog-question</property>
+  </object>
+  <object class="GtkImage" id="image_home">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-home</property>
+  </object>
+  <object class="GtkImage" id="image_param_tray">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-preferences</property>
+  </object>
+  <object class="GtkImage" id="image_popup_file">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-file</property>
+  </object>
   <object class="GtkMenu" id="menu_popup">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -141,36 +176,23 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <signal name="activate" handler="onPopupRemove" object="treeview_connections" swapped="no"/>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">document-revert</property>
-  </object>
-  <object class="GtkImage" id="image4">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">../icons/WEB.png</property>
-  </object>
-  <object class="GtkImage" id="image_connect">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-connect</property>
-  </object>
-  <object class="GtkImage" id="image_help">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-dialog-question</property>
-  </object>
-  <object class="GtkImage" id="image_home">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-home</property>
-  </object>
-  <object class="GtkImage" id="image_param_tray">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-preferences</property>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="separatormenuitem4">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="menu_popup_text">
+        <property name="label" translatable="yes">Открыть как текст</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Открыть файл подключения в текстовом редакторе</property>
+        <property name="image">image_popup_file</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="onPopupText" object="treeview_connections" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkListStore" id="liststore_CITRIX">
     <columns>
