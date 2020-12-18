@@ -29,7 +29,6 @@ from myconnector.config import *
 
 def viewStatus(bar, message):
     """Функция отображения происходящих действий в строке состояния"""
-    message = message[:65] + '...' if len(message) > 65 else message #для обреза длинных сообщений
     bar.push(bar.get_context_id ("statusbar"), message)
 
 def connectFile(filename, openFile = False):
