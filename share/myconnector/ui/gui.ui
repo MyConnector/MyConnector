@@ -364,6 +364,23 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       </attributes>
     </child>
   </object>
+  <object class="GtkListStore" id="liststore_X2GO">
+    <columns>
+      <!-- column-name server -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_X2GO">
+    <property name="model">liststore_X2GO</property>
+    <property name="text_column">0</property>
+    <property name="inline_completion">True</property>
+    <child>
+      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
   <object class="GtkListStore" id="liststore_XDMCP">
     <columns>
       <!-- column-name server -->
@@ -375,7 +392,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="text_column">0</property>
     <property name="inline_completion">True</property>
     <child>
-      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+      <object class="GtkCellRendererText" id="cellrenderertext9"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
@@ -432,6 +449,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <row>
         <col id="0" translatable="yes">10</col>
         <col id="1" translatable="yes">FS</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">11</col>
+        <col id="1" translatable="yes">X2GO</col>
       </row>
     </data>
   </object>
@@ -490,6 +511,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="preferences_image9">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-preferences</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="preferences_imageX2GO">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-preferences</property>
@@ -2449,6 +2476,129 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 <property name="tab_fill">False</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkBox" id="box_X2GO">
+                <property name="width_request">300</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label_X2GO">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Удалённый доступ по протоколу NX</property>
+                    <attributes>
+                      <attribute name="underline" value="True"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="box141">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="margin_top">20</property>
+                    <property name="margin_bottom">20</property>
+                    <property name="spacing">5</property>
+                    <child>
+                      <object class="GtkComboBox" id="combo_serv_X2GO">
+                        <property name="width_request">250</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_X2GO</property>
+                        <property name="has_entry">True</property>
+                        <property name="entry_text_column">0</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="entry_serv_X2GO">
+                            <property name="name">SSH</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
+ - [имя@]сервер
+ - [имя@]сервер:порт</property>
+                            <property name="primary_icon_pixbuf">../icons/X2GO.png</property>
+                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="completion">completion_X2GO</property>
+                            <signal name="activate" handler="onButtonConnect" swapped="no"/>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="button_connect_X2GO">
+                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="width_request">130</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="halign">start</property>
+                        <property name="use_underline">True</property>
+                        <signal name="clicked" handler="onButtonConnect" object="entry_serv_X2GO" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button_pref_X2GO">
+                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="width_request">230</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="halign">center</property>
+                    <property name="image">preferences_imageX2GO</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="onButtonPref" object="entry_serv_X2GO" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">7</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="list_X2GO">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">X2GO</property>
+                <property name="width_chars">8</property>
+                <attributes>
+                  <attribute name="foreground" value="#2e2e34343636"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="position">11</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -2530,7 +2680,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">2</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext9"/>
+                          <object class="GtkCellRendererText" id="cellrenderertext10"/>
                           <attributes>
                             <attribute name="text">2</attribute>
                           </attributes>
@@ -2545,7 +2695,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">3</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext10"/>
+                          <object class="GtkCellRendererText" id="cellrenderertext14"/>
                           <attributes>
                             <attribute name="text">3</attribute>
                           </attributes>
