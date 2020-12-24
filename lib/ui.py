@@ -465,7 +465,7 @@ class Gui(Gtk.Application):
             if self.prefClick: #если нажата кнопка Доп. Параметры
                 parameters = self.applyPreferences( name )
                 parameters[ "server" ] = server
-                if name == "RDP1" or name == "VMWARE":
+                if name == "RDP1" or name == "VMWARE" or name == "X2GO":
                     self.saveKeyring ( parameters.copy() )
             else:
                 try: parameters = CONFIGS[ name ]
@@ -709,6 +709,27 @@ class Gui(Gtk.Application):
             self.FS_folder.set_text(    args.get( "folder", "" ) )
             self.FS_type.set_active_id( args.get( "type",   "" ) )
 
+        if protocol == "X2GO":
+            username = args.get( "username", "" )
+            self.X2GO_user.set_text( username   )
+            self.X2GO_session.set_text(  args.get( "session",  "" ) )
+            self.X2GO_port.set_text(     args.get( "port",     "" ) )
+            geometry = args.get( "geometry", "fullscreen" )
+            if geometry in ( "fullscreen", "" ):
+                self.X2GO_fullscreen.set_active( True )
+                self.X2GO_geometry.set_sensitive( False )
+                self.X2GO_geometry.set_text( "" )
+            else:
+                self.X2GO_geometry_hand = self.pref_builder.get_object( "radio_X2GO_geometry"   )
+                self.X2GO_geometry_hand.set_active( True )
+                self.X2GO_geometry.set_text( geometry )
+            password = keyring.get_password( args.get( "server", "" ), username )
+            if args.getboolean( "passwdsave" ) or password: self.X2GO_pwdsave.set_active( True )
+            if not password: password = args.get( "passwd", "" )
+            self.X2GO_pwd.set_text( password )
+            if args.getboolean( "printers"   ): self.X2GO_print.set_active(      True )
+            if args.getboolean( "sound"      ): self.X2GO_sound.set_active(      True )
+
     def initPreferences( self, protocol ):
         """В этой функции определяются различные для протоколов параметры"""
         if protocol == "RDP": #remmina
@@ -854,6 +875,18 @@ class Gui(Gtk.Application):
             self.FS_folder = self.pref_builder.get_object( "entry_FS_folder" )
             self.FS_type   = self.pref_builder.get_object( "entry_FS_type"   )
             self.FS_server = self.pref_builder.get_object( "entry_FS_serv"   )
+
+        if protocol == "X2GO":
+            self.X2GO_user       = self.pref_builder.get_object( "entry_X2GO_user"       )
+            self.X2GO_pwd        = self.pref_builder.get_object( "entry_X2GO_pwd"        )
+            self.X2GO_pwdsave    = self.pref_builder.get_object( "check_X2GO_pwd"        )
+            self.X2GO_session    = self.pref_builder.get_object( "entry_X2GO_session"    )
+            self.X2GO_port       = self.pref_builder.get_object( "entry_X2GO_port"       )
+            self.X2GO_fullscreen = self.pref_builder.get_object( "radio_X2GO_fullscreen" )
+            self.X2GO_geometry   = self.pref_builder.get_object( "entry_X2GO_geometry"   )
+            self.X2GO_print      = self.pref_builder.get_object( "check_X2GO_print"      )
+            self.X2GO_sound      = self.pref_builder.get_object( "check_X2GO_sound"      )
+            self.X2GO_geometry.set_sensitive( False )
 
     def applyPreferences( self, protocol ):
         """В этой функции параметры для подключения собираются из окна Доп. параметры в список"""
@@ -1017,6 +1050,17 @@ class Gui(Gtk.Application):
                 folder = self.FS_folder.get_text(),
                 type   = self.FS_type.get_active_id() )
 
+        if protocol == "X2GO":
+            args = dict(
+                username   = self.X2GO_user.get_text(),
+                passwd     = self.X2GO_pwd.get_text(),
+                session    = self.X2GO_session.get_text(),
+                port       = self.X2GO_port.get_text(),
+                passwdsave = "True" if self.X2GO_pwdsave.get_active()    else "False",
+                printers   = "True" if self.X2GO_print.get_active()      else "False",
+                sound      = "True" if self.X2GO_sound.get_active()      else "False",
+                geometry   = "fullscreen" if self.X2GO_fullscreen.get_active() else self.X2GO_geometry.get_text() )
+
         return args
 
     def onCancel (self, button, window):
@@ -1145,7 +1189,7 @@ class Gui(Gtk.Application):
             parameters[ "protocol" ] = protocol
             parameters[ "server"   ] = server
             parameters[ "group"    ] = group
-            if ( name == "RDP1" or name =="VMWARE" ) and parameters.get ( "username", "" ):
+            if ( name == "RDP1" or name == "VMWARE" or name == "X2GO" ) and parameters.get ( "username", "" ):
                 self.saveKeyring ( parameters.copy() )
                 parameters [ "passwd" ] = ""
             program = self.getProgram( name )
@@ -1239,7 +1283,7 @@ class Gui(Gtk.Application):
             if not server:
                 server_not_found( nameConnect )
                 return None
-            if ( name == "RDP1" or name =="VMWARE" ) and parameters.getboolean( "passwdsave" ):
+            if ( name == "RDP1" or name == "VMWARE" or name == "X2GO" ) and parameters.getboolean( "passwdsave" ):
                 try:
                     parameters[ "passwd" ] = keyring.get_password( server, parameters.get( "username", "" ) )
                 except: pass

@@ -415,6 +415,30 @@ class FileServer:
         options.log.info (command)
         os.system (command + STD_TO_LOG)
 
+class X2goClient:
+    """Class for connect to X2GO server"""
+    def start(self, args):
+        if x2goCheck():
+            if type(args) == str:
+                command = "pyhoca-cli -N --add-to-known-hosts --server %s" % args
+                options.log.info( "X2GO: подключение к серверу %s", args )
+                options.log.info( command )
+            else:
+                command = "pyhoca-cli -N --add-to-known-hosts --server %s" %  args[ "server" ]
+                if args.get( "username", ""     ): command += " --user %s" % args[ "username" ]
+                if args.get( "port",     "22"   ): command += " --port %s" % args[ "port" ]
+                if args.get( "session",  "MATE" ): command += " --command %s" % args[ "session" ]
+                geometry = args.get( "geometry", "fullscreen" )
+                if geometry: command += " --geometry %s" % args[ "geometry" ]
+                if args.get( "printers", "False" ) == "True": command += " --printing"
+                if args.get( "sound", "False"    ) == "True": command += " --sound pulse"
+                options.log.info( "X2GO: подключение к серверу %s", args[ "server" ] )
+                options.log.info( command )
+                if args.get( "passwd",   "" ): command += " --password %s" % args[ "passwd"   ]
+            os.system(command + STD_TO_LOG)
+        else:
+            options.msg_error ( "Клиент 'pyhoca-cli' для X2GO не установлен!", options.log.warning )
+
 def definition( name ):
     """Функция определения протокола"""
     protocols = { "VNC"    : VncRemmina(),
@@ -429,7 +453,8 @@ def definition( name ):
                   "CITRIX" : Citrix(),
                   "WEB"    : Web(),
                   "SPICE"  : SpiceRemmina(),
-                  "FS"     : FileServer() }
+                  "FS"     : FileServer(),
+                  "X2GO"   : X2goClient() }
     if name in protocols:
         return protocols[ name ]
     else:
@@ -444,6 +469,12 @@ def citrixCheck():
 def vmwareCheck():
     """Фунцкия проверки наличия в системе VMware Horizon Client"""
     check = int( check_output( "which vmware-view > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
+    check = not bool(check)
+    return check
+
+def x2goCheck():
+    """Checking exist pyhoca-cli"""
+    check = int( check_output( "which pyhoca-cli > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
     check = not bool(check)
     return check
 

@@ -2185,7 +2185,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             <property name="entry_text_column">0</property>
             <child internal-child="entry">
               <object class="GtkEntry" id="entry_X2GO_serv">
-                <property name="name">NX</property>
+                <property name="name">X2GO</property>
                 <property name="can_focus">True</property>
                 <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
  - сервер
@@ -2635,7 +2635,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             <property name="sensitive">False</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <signal name="activate" handler="onButtonSave" object="entry_X2GO_serv" swapped="no"/>
+            <signal name="clicked" handler="onButtonSave" object="entry_X2GO_serv" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -2662,7 +2662,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <signal name="activate" handler="onButtonConnect" object="entry_X2GO_serv" swapped="no"/>
+            <signal name="clicked" handler="onButtonConnect" object="entry_X2GO_serv" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

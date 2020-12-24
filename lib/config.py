@@ -230,6 +230,13 @@ DEF_PROTO[ "SFTP" ] = {  "username"          : "",
                          "ssh_charset"       : "UTF-8",
                          "knocking"          : "",
                          "execpath"          : "/" }
+DEF_PROTO[ "X2GO" ] = {  "username"          : "",
+                         "session"           : "",
+                         "port"              : "",
+                         "geometry"          : "fullscreen",
+                         "passwdsave"        : "False",
+                         "printers"          : "False",
+                         "sound"             : "False" }
 _config = ConfigParser( interpolation = None )
 _config_file = "%s/myconnector.conf" % WORKFOLDER
 
@@ -246,6 +253,7 @@ def config_save( default = False ):
         _config[ "xdmcp"       ] = DEF_PROTO[ "XDMCP" ].copy()
         _config[ "spice"       ] = DEF_PROTO[ "SPICE" ].copy()
         _config[ "freerdp"     ] = DEF_PROTO[ "RDP1"  ].copy()
+        _config[ "x2go"        ] = DEF_PROTO[ "X2GO"  ].copy()
     with open( _config_file, 'w' ) as configfile:
         _config.write( configfile )
 
@@ -261,7 +269,8 @@ def config_init():
                   "XDMCP"  : _config[ "xdmcp"       ],
                   "SPICE"  : _config[ "spice"       ],
                   "SSH"    : _config[ "ssh"         ],
-                  "SFTP"   : _config[ "sftp"        ] }
+                  "SFTP"   : _config[ "sftp"        ],
+                  "X2GO"   : _config[ "x2go"        ] }
     return main, protocols
 
 try:
