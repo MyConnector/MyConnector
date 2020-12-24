@@ -111,6 +111,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <col id="0" translatable="yes">10</col>
         <col id="1" translatable="yes">FS</col>
       </row>
+      <row>
+        <col id="0" translatable="yes">11</col>
+        <col id="1" translatable="yes">X2GO</col>
+      </row>
     </data>
   </object>
   <object class="GtkBox" id="box_properties">

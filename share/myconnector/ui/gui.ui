@@ -63,6 +63,11 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="can_focus">False</property>
     <property name="pixbuf">../icons/VNC.png</property>
   </object>
+  <object class="GtkImage" id="X2GO_image">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">../icons/X2GO.png</property>
+  </object>
   <object class="GtkImage" id="XDMCP_image">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -712,6 +717,16 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="image">CITRIX_image</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="onWCMenu" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_connect_X2GO">
+                        <property name="label" translatable="yes">X2GO - Удалённый доступ по протоколу NX</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="image">X2GO_image</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="onButtonPref" object="entry_serv_X2GO" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -2516,7 +2531,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="entry_text_column">0</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="entry_serv_X2GO">
-                            <property name="name">SSH</property>
+                            <property name="name">X2GO</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
@@ -2581,7 +2596,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
               </object>
               <packing>
-                <property name="position">7</property>
+                <property name="position">11</property>
               </packing>
             </child>
             <child type="tab">

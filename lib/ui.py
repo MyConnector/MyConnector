@@ -203,7 +203,8 @@ class Gui(Gtk.Application):
                            "NX"     : self.builder.get_object( "liststore_NX"     ),
                            "WEB"    : self.builder.get_object( "liststore_WEB"    ),
                            "SPICE"  : self.builder.get_object( "liststore_SPICE"  ),
-                           "FS"     : self.builder.get_object( "liststore_FS"     ) }
+                           "FS"     : self.builder.get_object( "liststore_FS"     ),
+                           "X2GO"   : self.builder.get_object( "liststore_X2GO"   ) }
 
         self.liststore_connect = Gtk.ListStore( str, str, str, str, str, GdkPixbuf.Pixbuf )
         self.setSavesToListstore()
