@@ -1,5 +1,5 @@
 .. MyConnector
-.. Copyright (C) 2014-2020 Evgeniy Korneechev <ek@myconnector.ru>
+.. Copyright (C) 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>
 
 .. This program is free software; you can redistribute it and/or
 .. modify it under the terms of the version 2 of the GNU General
@@ -49,4 +49,4 @@
 * Citrix Receiver_/`Workspace App`_ (ICA Client);
 * `VMware Horizon Client`_.
 
-Copyright |copy| 2014-2020 Evgeniy Korneechev <ek@myconnector.ru>
+Copyright |copy| 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>
