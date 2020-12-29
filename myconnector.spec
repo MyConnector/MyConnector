@@ -44,6 +44,9 @@ Requires: myconnector = %EVR
 Requires: xinitrc
 Requires: xterm
 
+Provides: connector-kiosk = %EVR
+Conflicts: connector-kiosk < %EVR
+
 %description kiosk
 Files for connector mode "KIOSK"
 
