@@ -18,7 +18,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkFrame" id="frame_nla">
+  <object class="GtkFrame" id="frame_passwd">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="margin_left">10</property>
@@ -27,7 +27,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="margin_bottom">10</property>
     <property name="label_xalign">0</property>
     <child>
-      <object class="GtkAlignment" id="align_nla">
+      <object class="GtkAlignment" id="align_passwd">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="bottom_padding">10</property>
@@ -44,7 +44,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkLabel" id="label_passwd">
+                  <object class="GtkLabel" id="label_pwd">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Пароль: </property>
@@ -140,7 +140,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       </object>
     </child>
     <child type="label">
-      <object class="GtkLabel" id="label_nla">
+      <object class="GtkLabel" id="label_passwd">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">user</property>

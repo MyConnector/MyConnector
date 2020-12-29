@@ -22,21 +22,21 @@ require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from myconnector.config import UIFOLDER
 
-class NlaAuth( Gtk.Window ):
-    """Windows for NLA-authentication"""
+class PasswdDialog( Gtk.Window ):
+    """Window for authentication (as zenity)"""
     def __init__( self, username ):
-        Gtk.Window.__init__( self, title = "Аутентификация (with NLA)" )
+        Gtk.Window.__init__( self, title = "Аутентификация..." )
         builder = Gtk.Builder()
         self.set_resizable( False )
         self.set_modal( True )
-        builder.add_from_file( "%s/nla_auth.ui" % UIFOLDER )
+        builder.add_from_file( "%s/passwd.ui" % UIFOLDER )
         builder.connect_signals(self)
-        frame_nla          = builder.get_object( "frame_nla"    )
-        label_nla          = builder.get_object( "label_nla"    )
+        frame_passwd       = builder.get_object( "frame_passwd" )
+        label_passwd       = builder.get_object( "label_passwd" )
         self.entry_passwd  = builder.get_object( "entry_passwd" )
         self.check_passwd  = builder.get_object( "check_passwd" )
-        label_nla.set_text( "Имя пользователя: %s" % username )
-        self.add( frame_nla )
+        label_passwd.set_text( "Имя пользователя: %s" % username )
+        self.add( frame_passwd )
         self.connect( "delete-event", self.onCancel )
         self.passwd = False
         self.save   = False

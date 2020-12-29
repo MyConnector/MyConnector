@@ -498,8 +498,8 @@ def freerdpCheckFloatbar():
 
 def passwd(server, username):
     """Ввод пароля и запрос о его сохранении в связке ключей"""
-    from myconnector.nla_auth import NlaAuth
-    dialog = NlaAuth( username )
+    from myconnector.passwd import PasswdDialog
+    dialog = PasswdDialog( username )
     password, save = dialog.run()
     if password == None:
         options.log.info ("FreeRDP: подключение отменено пользователем (окно запроса пароля закрыто или нажата кнопка Отмена).")
