@@ -341,7 +341,7 @@ class Vmware:
                 if args.get( "fullscreen", "False" ) == "True": command += " --fullscreen"
                 options.log.info ( "VMware: подключение к серверу %s", args[ "server" ] )
                 options.log.info (command)
-                if args.get( "passwd",   "" ): command += " -p %s" % args[ "passwd"   ]
+                if args.get( "passwd",   "" ): command += " -p %s" % escape( args[ "passwd" ] )
             os.system(command + STD_TO_LOG)
         else:
             options.msg_error ( "VMware Horizon Client не установлен!", options.log.warning )
@@ -434,7 +434,7 @@ class X2goClient:
                 if args.get( "sound", "False"    ) == "True": command += " --sound pulse"
                 options.log.info( "X2GO: подключение к серверу %s", args[ "server" ] )
                 options.log.info( command )
-                if args.get( "passwd",   "" ): command += " --password %s" % args[ "passwd"   ]
+                if args.get( "passwd",   "" ): command += " --password %s"  % escape( args[ "passwd" ] )
             os.system(command + STD_TO_LOG)
         else:
             options.msg_error ( "Клиент 'pyhoca-cli' для X2GO не установлен!", options.log.warning )
