@@ -313,7 +313,7 @@ class Gui(Gtk.Application):
             image = Gtk.Image()
             image.set_from_pixbuf( GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol )))
             item.set_image(image)
-            item.connect("activate",self.onTrayConnect, name)
+            item.connect( "activate", self.onSaveConnect, name )
             if group:
                 menus[ group ].append( item )
             else:
@@ -323,11 +323,6 @@ class Gui(Gtk.Application):
             tray_noexist.set_sensitive(False)
             self.tray_submenu.append(tray_noexist)
         self.tray_submenu.show_all()
-
-    def onTrayConnect(self, menuitem, name):
-        """Функция запуска сохраненного подключения из трея"""
-        fileCtor = self.filenameFromName( name )
-        if fileCtor: connectFile(fileCtor)
 
     def optionEnabled(self, option):
         try:
@@ -1267,10 +1262,14 @@ class Gui(Gtk.Application):
         protocol = item.get_name()
         self.onWCEdit( "", "", protocol, "" )
 
-    def onSaveConnect(self, treeView, *args):
-        """Установка подключения по двойному щелчку на элементе списка"""
-        table, indexRow = treeView.get_selection().get_selected()
-        nameConnect, fileCtor = table[indexRow][0], table[indexRow][4]
+    def onSaveConnect(self, *args):
+        """Connect to save connection from main window or tray"""
+        if type( args[ 0 ] ) == Gtk.TreeView: #from list_connect
+            table, indexRow = args[0].get_selection().get_selected()
+            nameConnect, fileCtor = table[indexRow][0], table[indexRow][4]
+        else: #from tray
+            nameConnect = args[ 1 ]
+            fileCtor = self.filenameFromName( nameConnect )
         parameters = options.loadFromFile(fileCtor, self.window)
         if parameters is not None: #если файл .myc имеет верный формат
             parameters[ "name" ] = nameConnect
