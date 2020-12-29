@@ -1403,12 +1403,16 @@ class Gui(Gtk.Application):
         name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         editor = CONFIG.get( "editor", "pluma" )
         status = "Подключение \"%s\" открывается в текстовом редакторе..." % name
-        viewStatus( self.statusbar, status )
         options.log.info( status )
         try:
             Popen( [ editor, "%s/%s" % ( WORKFOLDER, fileMyc ) ] )
-        except FileNotFoundError as e:
-            options.log.error( e )
+        except FileNotFoundError:
+            status = "Тектовый редактор \"%s\" не обнаружен!" % editor
+            options.log.error( status )
+        except PermissionError:
+            status = "Тектовый редактор не указан!"
+            options.log.error( status )
+        viewStatus( self.statusbar, status )
 
     def listFilter(self, model, iter, data):
         """Функция для фильтра подключений в списке"""
