@@ -155,6 +155,7 @@ class Properties(Gtk.Window):
         self.checkVersion = builder.get_object("check_VERSION")
         self.checkLog = builder.get_object("check_LOG")
         self.combo_sort = builder.get_object("combo_sort")
+        self.editor = builder.get_object( "entry_editor" )
         self.initParameters()
         self.add(box)
         self.connect("delete-event", self.onClose)
@@ -179,6 +180,8 @@ class Properties(Gtk.Window):
         except KeyError: self.checkLog.set_active( DEFAULT[ 'log' ] )
         try: self.combo_sort.set_active_id( CONFIG[ 'sort' ] )
         except KeyError: self.combo_tabs.set_active_id( '0' )
+        try: self.editor.set_text( CONFIG[ "editor" ] )
+        except KeyError: self.entryFS.set_text( DEFAULT[ "editor" ] )
 
     def onCancel (self, button, window):
         window.destroy()
@@ -210,6 +213,7 @@ class Properties(Gtk.Window):
         CONFIG[ 'check_version' ] = str( self.checkVersion.get_active() )
         CONFIG[ 'log' ] = str( self.checkLog.get_active() )
         CONFIG[ 'sort' ] = self.combo_sort.get_active_id()
+        CONFIG[ 'editor' ] = self.editor.get_text()
         config_save()
         myconnector.ui.viewStatus(self.statusbar, "Настройки сохранены в файле myconnector.conf...")
         log.info("Новые настройки для программы сохранены в файле myconnector.conf.")
