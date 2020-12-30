@@ -107,6 +107,7 @@ class XFreeRdp:
                 disable_nla = args.get( "disable_nla", "True" )
                 if disable_nla == "True"                       : command += " -sec-nla"
                 password = args.get( "passwd" , "" )
+                options.log.info ( "FreeRDP: подключение к серверу %s. Команда запуска:", server )
                 if not password:
                     password = keyring.get_password( server, username )
                 if not password and disable_nla != "True":
@@ -114,7 +115,6 @@ class XFreeRdp:
                 if password:
                     command += " /p:%s" % escape( password )
                 if password != False: #if there is password
-                    options.log.info ("FreeRDP: подключение к серверу %s. Команда запуска:", server)
                     try: cmd2log = command.replace("/p:" + command.split("/p:")[1].split(' ')[0],"/p:<hidden>")
                     except: cmd2log = command
                     options.log.info (cmd2log)
@@ -424,18 +424,28 @@ class X2goClient:
                 options.log.info( "X2GO: подключение к серверу %s", args )
                 options.log.info( command )
             else:
-                command = "pyhoca-cli -N --add-to-known-hosts --server %s" %  args[ "server" ]
-                if args.get( "username", ""     ): command += " --user %s" % args[ "username" ]
+                server = args[ "server" ]
+                username = args.get( "username", "" )
+                command = "pyhoca-cli -N --add-to-known-hosts --server %s" % server
+                if username: command += " --user %s" % args[ "username" ]
                 if args.get( "port",     "22"   ): command += " --port %s" % args[ "port" ]
                 if args.get( "session",  "MATE" ): command += " --command %s" % args[ "session" ]
                 geometry = args.get( "geometry", "fullscreen" )
                 if geometry: command += " --geometry %s" % args[ "geometry" ]
                 if args.get( "printers", "False" ) == "True": command += " --printing"
                 if args.get( "sound", "False"    ) == "True": command += " --sound pulse"
-                options.log.info( "X2GO: подключение к серверу %s", args[ "server" ] )
+                options.log.info( "X2GO: подключение к серверу %s. Команда запуска:", server )
+                password = args.get( "passwd", "" )
+                if not password:
+                    password = keyring.get_password( server, username )
+                if password:
+                    password = escape( password )
+                else:
+                    password = passwd( server, username )
+                command += " --password %s" % password
+            if password != False: #if there is not password
                 options.log.info( command )
-                if args.get( "passwd",   "" ): command += " --password %s"  % escape( args[ "passwd" ] )
-            os.system(command + STD_TO_LOG)
+                os.system( command + STD_TO_LOG )
         else:
             options.msg_error ( "Клиент 'pyhoca-cli' для X2GO не установлен!", options.log.warning )
 
@@ -501,8 +511,8 @@ def passwd(server, username):
     from myconnector.passwd import PasswdDialog
     dialog = PasswdDialog( username )
     password, save = dialog.run()
-    if password == None:
-        options.log.info ("FreeRDP: подключение отменено пользователем (окно запроса пароля закрыто или нажата кнопка Отмена).")
+    if password == False:
+        options.log.info ("Подключение отменено пользователем или не был указан пароль!.")
     else:
         if save and password:
             keyring.set_password( str( server ), str( username ), str( password ) )
