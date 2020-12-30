@@ -23,11 +23,12 @@
 .. _Receiver: https://www.citrix.com/downloads/citrix-receiver/linux/
 .. _`Workspace App`: https://www.citrix.com/downloads/workspace-app/linux/
 .. _`VMware Horizon Client`: https://my.vmware.com/web/vmware/downloads/details?downloadGroup=CART21FQ3_LIN64_550&productId=863
+.. _pyhoca-cli: https://wiki.x2go.org/doku.php/doc:usage:pyhoca-cli
 
 Описание
 ========
 
-|name| - инструмент системного администратора для осуществления удаленного доступа к компьютерам с различными операционными системами с использованием распространенных типов подключения - таких как RDP, VNC, NX, XDMCP, SSH, SFTP, SPICE и технологий Citrix и VMware. C помощью |name| также есть возможность подключения к web-ресурсам и файловым серверам (:ref:`rst-fs`).
+|name| - инструмент системного администратора для осуществления удаленного доступа к компьютерам с различными операционными системами с использованием распространенных типов подключения - таких как RDP, VNC, NX, XDMCP, X2GO, SSH, SFTP, SPICE и технологий Citrix и VMware. C помощью |name| также есть возможность подключения к web-ресурсам и файловым серверам (:ref:`rst-fs`).
 
 Преимущества данной программы:
 
@@ -47,6 +48,7 @@
 * Клиенты VNC - RealVNC_ или TigerVNC_;
 * Remmina_;
 * Citrix Receiver_/`Workspace App`_ (ICA Client);
-* `VMware Horizon Client`_.
+* `VMware Horizon Client`_;
+* pyhoca-cli_ (консольный клиент X2G0).
 
 Copyright |copy| 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>
