@@ -446,6 +446,9 @@ class X2goClient:
             if password != False: #if there is not password
                 options.log.info( command )
                 os.system( command + STD_TO_LOG )
+                if enableLog:
+                    signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
+                    Popen( [ MAINFOLDER + "/myconnector-check-x2go-errors" ] )
         else:
             options.msg_error ( "Клиент 'pyhoca-cli' для X2GO не установлен!", options.log.warning )
 
