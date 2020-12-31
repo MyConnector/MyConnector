@@ -107,7 +107,8 @@ class XFreeRdp:
                 disable_nla = args.get( "disable_nla", "True" )
                 if disable_nla == "True"                       : command += " -sec-nla"
                 password = args.get( "passwd" , "" )
-                options.log.info ( "FreeRDP: подключение к серверу %s. Команда запуска:", server )
+                options.log.info( "FreeRDP: подключение к серверу %s. Команда запуска:", server )
+                options.log.info( command )
                 if not password:
                     password = keyring.get_password( server, username )
                 if not password and disable_nla != "True":
@@ -115,9 +116,6 @@ class XFreeRdp:
                 if password:
                     command += " /p:%s" % escape( password )
                 if password != False: #if there is password
-                    try: cmd2log = command.replace("/p:" + command.split("/p:")[1].split(' ')[0],"/p:<hidden>")
-                    except: cmd2log = command
-                    options.log.info (cmd2log)
                     os.system(command + STD_TO_LOG)
                     if enableLog:
                         signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
@@ -435,6 +433,7 @@ class X2goClient:
                 if args.get( "printers", "False" ) == "True": command += " --printing"
                 if args.get( "sound", "False"    ) == "True": command += " --sound pulse"
                 options.log.info( "X2GO: подключение к серверу %s. Команда запуска:", server )
+                options.log.info( command )
                 password = args.get( "passwd", "" )
                 if not password:
                     password = keyring.get_password( server, username )
@@ -444,7 +443,6 @@ class X2goClient:
                     password = passwd( server, username )
                 command += " --password %s" % password
             if password != False: #if there is not password
-                options.log.info( command )
                 os.system( command + STD_TO_LOG )
                 if enableLog:
                     signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
