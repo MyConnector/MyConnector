@@ -98,8 +98,8 @@ install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%
 %_man1dir/%name-kiosk.*
 
 %changelog
-* Mon Jul 06 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.0.rc0-alt1
-- MyConnector 2.0
+* Thu Dec 31 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.0.rc0-alt1
+- First release candidate - MyConnector 2.0
 
 * Mon Jul 06 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 1.9.6-alt1
 - kiosk:
