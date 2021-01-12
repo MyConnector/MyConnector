@@ -27,7 +27,7 @@ Requires: xfreerdp
 Requires: zenity
 
 Provides: connector = %EVR
-Conflicts: connector < %EVR
+Obsoletes: connector
 
 BuildArch: noarch
 
@@ -45,7 +45,7 @@ Requires: xinitrc
 Requires: xterm
 
 Provides: connector-kiosk = %EVR
-Conflicts: connector-kiosk < %EVR
+Obsoletes: connector-kiosk
 
 %description kiosk
 Files for connector mode "KIOSK"
