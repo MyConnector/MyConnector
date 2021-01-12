@@ -1,4 +1,5 @@
 %define basedir %_datadir/%name
+%define xdgdir  %_xdgconfigdir/autostart
 
 Name:     myconnector
 Version:  2.0.rc0
@@ -13,6 +14,8 @@ Source0:  %name-%version.tar.gz
 Packager: Evgeniy Korneechev <ekorneechev@altlinux.org>
 
 BuildRequires(pre): rpm-build-python3
+BuildRequires(pre): rpm-build-xdg
+
 Requires: control
 Requires: libgtk+3
 Requires: libgtk+3-gir
@@ -26,7 +29,7 @@ Requires: xdg-utils
 Requires: xfreerdp
 Requires: zenity
 
-Provides: connector = %EVR
+Provides:  connector = %EVR
 Obsoletes: connector
 
 BuildArch: noarch
@@ -44,11 +47,24 @@ Requires: myconnector = %EVR
 Requires: xinitrc
 Requires: xterm
 
-Provides: connector-kiosk = %EVR
+Provides:  connector-kiosk = %EVR
 Obsoletes: connector-kiosk
 
 %description kiosk
 Files for connector mode "KIOSK"
+
+%package autostart
+Summary: Autostart connector within desktop session
+Group:   Networking/Remote access
+
+Requires: myconnector = %EVR
+
+Provides:  connector-autostart = %EVR
+Obsoletes: connector-autostart
+
+%description autostart
+#thanks mike@
+Autostart MyConnector within desktop session
 
 %prep
 %setup
@@ -71,6 +87,13 @@ install -pm755 kiosk/*.desktop %buildroot%basedir/kiosk
 install -pDm600 kiosk/kiosk.conf %buildroot%_sysconfdir/%name/kiosk.conf
 install -pm644 kiosk/%name-kiosk.man %buildroot%_man1dir/%name-kiosk.1
 install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%name
+mkdir -p %buildroot%xdgdir
+cat > %buildroot%xdgdir/myconnector.desktop << EOF
+[Desktop Entry]
+Type=Application
+Name=MyConnector
+Exec=/usr/bin/myconnector
+EOF
 
 %files
 %_bindir/*
@@ -96,6 +119,9 @@ install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%
 %dir %_sysconfdir/%name
 %config(noreplace) %_sysconfdir/%name/kiosk.conf
 %_man1dir/%name-kiosk.*
+
+%files autostart
+%xdgdir/myconnector.desktop
 
 %changelog
 * Thu Dec 31 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.0.rc0-alt1
