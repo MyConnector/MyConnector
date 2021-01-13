@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Документация MyConnector latest</title>
+    <link rel="canonical" href="https://docs.myconnector.ru/" />
+    <link rel="author" title="Об этих документах" href="#" />
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="shortcut icon" href="_img/myconnector.png" title="MyConnector">
+</head>
+<body class="wy-body-for-nav">  <div class="wy-grid-for-nav">    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#myconnector" class="icon icon-home">MyConnector</a>
+        </div>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-about">Описание</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-install">Установка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-first">Первый запуск</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-prog_settings">Параметры программы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-conn_settings">Дополнительные параметры подключений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-list">Список сохраненных подключений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-kiosk">Режим КИОСК</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-fs">Доступ к файловым ресурсам</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-tray">Значок в области уведомлений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-cli">Использование в командной строке</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-other">Прочие возможности</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-diff">Отличия от Connector</a></li>
+</ul>
+</div>
+        </div>      </div>
+    </nav>    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">  <div class="section" id="myconnector">
+<h1>Программа удаленного доступа MyConnector<a class="headerlink" href="#myconnector" title="Ссылка на этот заголовок">¶</a></h1>
+<p>В руководстве описаны функциональные характеристики программы и описание ее возможностей. MyConnector является новой версией (2.x) программы <a class="reference external" href="https://github.com/ekorneechev/connector">Connector</a> - <a class="reference internal" href="index.html#rst-diff"><span class="std std-ref">Отличия от Connector</span></a>.</p>
+<div class="figure align-default">
+<img alt="_img/main.png" src="_img/main.png" />
+</div>
+<p><a class="reference external" href="http://myconnector.ru/">http://myconnector.ru/</a></p>
+<div class="toctree-wrapper compound">
+<span id="document-about"></span><div class="section" id="id1">
+<h2>Описание<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>MyConnector - инструмент системного администратора для осуществления удаленного доступа к компьютерам с различными операционными системами с использованием распространенных типов подключения - таких как RDP, VNC, NX, XDMCP, X2GO, SSH, SFTP, SPICE и технологий Citrix и VMware. C помощью MyConnector также есть возможность подключения к web-ресурсам и файловым серверам (<a class="reference internal" href="index.html#rst-fs"><span class="std std-ref">Доступ к файловым ресурсам</span></a>).</p>
+<p>Преимущества данной программы:</p>
+<ul class="simple">
+<li><p>все необходимые программы удаленного доступа собраны в одной программе - MyConnector, нет необходимости искать нужную;</p></li>
+<li><p>есть возможность как быстрого подключения, так и с определенными параметрами;</p></li>
+<li><p>GUI-интерфейс для работы с программой FreeRDP (удаленный доступ по протоколу RDP);</p></li>
+<li><p>возможность сохранять кнопку быстрого подключения в любое место компьютера;</p></li>
+<li><p>ведение списка сохраненных подключений с возможностью группировки;</p></li>
+<li><p>ведение логов, как самой программы, так и каждого подключения;</p></li>
+<li><p><a class="reference internal" href="index.html#rst-kiosk"><span class="std std-ref">Режим КИОСК</span></a>.</p></li>
+</ul>
+<p>Программа написана на Python (3-ей версии) с использованием GTK+ для графического интерфейса.</p>
+<p>MyConnector является программой, реализующей интерфейс для пользователя к предустановленным программам для запуска их с введенными параметрами. Такими программами на данный момент являются:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.freerdp.com/">FreeRDP</a>;</p></li>
+<li><p>Клиенты VNC - <a class="reference external" href="https://www.realvnc.com/">RealVNC</a> или <a class="reference external" href="https://tigervnc.org/">TigerVNC</a>;</p></li>
+<li><p><a class="reference external" href="https://remmina.org/">Remmina</a>;</p></li>
+<li><p>Citrix <a class="reference external" href="https://www.citrix.com/downloads/citrix-receiver/linux/">Receiver</a>/<a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/">Workspace App</a> (ICA Client);</p></li>
+<li><p><a class="reference external" href="https://my.vmware.com/web/vmware/downloads/details?downloadGroup=CART21FQ3_LIN64_550&amp;productId=863">VMware Horizon Client</a>;</p></li>
+<li><p><a class="reference external" href="https://wiki.x2go.org/doku.php/doc:usage:pyhoca-cli">pyhoca-cli</a> (консольный клиент X2G0).</p></li>
+</ul>
+<p>Copyright © 2014-2021 Evgeniy Korneechev &lt;<a class="reference external" href="mailto:ek&#37;&#52;&#48;myconnector&#46;ru">ek<span>&#64;</span>myconnector<span>&#46;</span>ru</a>&gt;</p>
+</div>
+<span id="document-install"></span><div class="section" id="rst-install">
+<span id="id1"></span><h2>Установка<a class="headerlink" href="#rst-install" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="alt-linux">
+<h3>Alt Linux<a class="headerlink" href="#alt-linux" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Актуальная версия пакета всегда доступна в репозиториях:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ su -
+# apt-get update
+# apt-get install myconnector
+</pre></div>
+</div>
+</div>
+<div class="section" id="linux-mint-ubuntu">
+<h3>Linux Mint &amp; Ubuntu<a class="headerlink" href="#linux-mint-ubuntu" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для оптимальной работы приложения необходимо установить следующие пакеты:</p>
+<ul class="simple">
+<li><p>libgtk-3-0 (версия 3.10 и выше);</p></li>
+<li><p>python3 (&gt;=3.2);</p></li>
+<li><p>python3-gi (&gt;=3.2);</p></li>
+<li><p>remmina (&gt;=1.0);</p></li>
+<li><p>freerdp-x11 (&gt;=1.2.0) (для Ubuntu14/Mint17), freerdp2-x11 (Ubuntu18/Mint19);</p></li>
+<li><p>vncviewer;</p></li>
+<li><p>python3-keyring.</p></li>
+</ul>
+<p>Все данные программы можно установить либо в <em>Менеджере пакетов Synaptic</em>, либо через командную строку:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get install libgtk-3-0 python3 python3-gi remmina vncviewer python3-keyring
+</pre></div>
+</div>
+<p>Не обязательными, но необходимыми для полного функционала программы являются:</p>
+<ul class="simple">
+<li><p>Citrix <a class="reference external" href="https://www.citrix.com/downloads/citrix-receiver/linux/">Receiver</a>/<a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/">Workspace App</a> (icaclient)</p></li>
+<li><p><a class="reference external" href="https://my.vmware.com/web/vmware/downloads/details?downloadGroup=CART21FQ3_LIN64_550&amp;productId=863">VMware Horizon Client</a> (vmware-view)</p></li>
+</ul>
+<p>После этого можно устанавливать MyConnector. Готовый бинарный пакет для установки можно скачать <a class="reference external" href="http://get.myconnector.ru">здесь</a>. Также можно собственноручно собрать пакет по <a class="reference external" href="https://github.com/MyConnector/MyConnector/blob/master/deb/README.md">инструкции</a> или установить напрямую из исходников с помощью утилиты <cite>make</cite>.</p>
+</div>
+<div class="section" id="git-make">
+<h3>git &amp; make<a class="headerlink" href="#git-make" title="Ссылка на этот заголовок">¶</a></h3>
+<p>После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в <a class="reference external" href="https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16">spec-файле</a> в секциях requires) выполните (пакет <code class="docutils literal notranslate"><span class="pre">git</span></code> тоже должен быть установлен):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/ekorneechev/MyConnector
+$ cd MyConnector
+$ git checkout &lt;release&gt; # по умолчанию &#39;master&#39;, список релизов: `git tag -l`
+$ sudo make install
+</pre></div>
+</div>
+</div>
+</div>
+<span id="document-first"></span><div class="section" id="rst-first">
+<span id="id1"></span><h2>Первый запуск<a class="headerlink" href="#rst-first" title="Ссылка на этот заголовок">¶</a></h2>
+<p>После установки программы MyConnector Вы можете его найти в главном меню, в категории «Интернет»/»Сеть». Либо запустить из командной строки:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myconnector
+</pre></div>
+</div>
+<p>После запуска перед Вами откроется главное окно приложения:</p>
+<div class="figure align-default">
+<img alt="_img/main.png" src="_img/main.png" />
+</div>
+<p>Сверху справа Вы можете увидеть выпадающий список с названиями технологий (протоколов) подключения. При выборе того или иного элемента внешний вид приложения изменится, будет написано как будет происходить подключение к указанному Вами адресу сервера.</p>
+<p>Имеется поле ввода адреса и кнопка для быстрого подключения с параметрами по умолчанию. После ввода адреса и после нажатия данной кнопки (или клавиши Enter) произойдет запуск той или иной программы для подключения к указанному серверу по выбранному протоколу.</p>
+<p>Также имеется кнопка «Дополнительные параметры» для указания параметров подключения отличных от параметров по умолчанию, таких как имя пользователя, домен, пароль и т.п. Подробнее об этом в разделе <a class="reference internal" href="index.html#rst-conn-settings"><span class="std std-ref">Дополнительные параметры подключений</span></a>.</p>
+<p>Ниже в располагается область с <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a>.</p>
+</div>
+<span id="document-prog_settings"></span><div class="section" id="rst-prog-settings">
+<span id="id1"></span><h2>Параметры программы<a class="headerlink" href="#rst-prog-settings" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для выбора программ, используемых по умолчанию для подключения по протоколам RDP и VNC, необходимо открыть главное меню программы и выбрать «Параметры» (или через <a class="reference internal" href="index.html#rst-tray"><span class="std std-ref">Значок в области уведомлений</span></a>), либо нажать комбинацию клавиш Ctrl+P. После этого откроется окно настройки параметров приложения:</p>
+<div class="figure align-default">
+<img alt="_img/params1.png" src="_img/params1.png" />
+</div>
+<p>Есть возможность сменить программу для RDP-соединения - Remmina или FreeRDP. Для подключения по VNC тоже есть два варианта - Remmina и vncviewer (любая программа, предоставляющая данный функционал). По умолчанию подключение по RDP настроено через FreeRDP, VNC - через vncviewer.</p>
+<p>Также Вы можете настроить отображение определенного протокола на главном окне приложения по умолчанию и сортировку для <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a>.</p>
+<p>На вкладке «Расширенные» настраивается отображение значка в трее, проверка обновлений программы, ведение логов и редактор для файлов подключений. Есть возможность очистить базу адресов серверов, к которым было совершено подключение (выпадающий список при вводе адреса на главном окне или в доп. параметрах), и <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a>. Или произвести сброс всех параметров программы.</p>
+<div class="figure align-default">
+<img alt="_img/params2.png" src="_img/params2.png" />
+</div>
+</div>
+<span id="document-conn_settings"></span><div class="section" id="rst-conn-settings">
+<span id="id1"></span><h2>Дополнительные параметры подключений<a class="headerlink" href="#rst-conn-settings" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При нажатии кнопки «Дополнительные параметры» в области одного из протоколов, откроется окно для ввода настроек подключения по нему. Также данное окно можно открыть из главного меню программы.</p>
+<p>Ниже продемонстрированы дополнительные параметры подключения к удаленному рабочему столу Windows (RDP) с использованием наиболее значимых опций программы FreeRDP:</p>
+<div class="figure align-default">
+<img alt="_img/rdp.png" src="_img/rdp.png" />
+</div>
+<p>Как видно из изображения, Вы также можете сохранить введенные значения в <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a>. Для этого Вам необходимо ввести имя подключения и нажать кнопку «Сохранить».</p>
+<p>Также можно сохранить введенные параметры как параметры по умолчанию для текущего протокола - они будут применяться при быстром подключении с главного окна или при их отсутсвии в открываемых или импортируемых файлах (<a class="reference internal" href="index.html#rst-other"><span class="std std-ref">Прочие возможности</span></a>).</p>
+</div>
+<span id="document-list"></span><div class="section" id="rst-list">
+<span id="id1"></span><h2>Список сохраненных подключений<a class="headerlink" href="#rst-list" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Расположен в нижней части главного окна программы.</p>
+<div class="figure align-default">
+<img alt="_img/main.png" src="_img/main.png" />
+</div>
+<p>Сохраненные подключения в списке представляют собой файлы с расширением .myc, сохраняемые в домашней папке текущего пользователя в папке .myconnector. Эти файлы возможно открывать на других компьютерах с установленным MyConnector или редактировать в любом удобном текстовом редакторе.</p>
+<p>При двойном щелчке на одном из подключений произойдет запуск требуемой программы для соединения (или нажатие правой кнопкой мыши на нужном соединении и далее выбрать пункт меню «Подключение»).</p>
+<p>Также через нажатие правой кнопки мыши на любом из сохраненных соединений, Вы можете выбрать пункт «Изменить» - тогда откроется окно дополнительных настроек данного подключения с заполненными полями. При выборе пункта «Копировать» - откроется такое же окно, однако при сохранении добавится новое подключение с измененными Вами параметрами. При выборе пункта «Удалить» - Вы удалите подключение из списка.</p>
+<p>Пункт данного меню «Сохранить ярлык» позволяет создать кнопку запуска приложения MyConnector с быстрым подключением к выбранному соединению в любом месте на Вашем компьютере (по умолчанию на рабочем столе). Также это можно сделать простым перетаскиванием подключения в нужное место. Формат команды:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myconnector -c|--connection &lt;имя_подключения&gt;
+</pre></div>
+</div>
+<p>Список поддерживает сортировку и группировку (группа указывается в <a class="reference internal" href="index.html#rst-conn-settings"><span class="std std-ref">Дополнительные параметры подключений</span></a>).</p>
+</div>
+<span id="document-kiosk"></span><div class="section" id="rst-kiosk">
+<span id="id1"></span><h2>Режим КИОСК<a class="headerlink" href="#rst-kiosk" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Данная функция находится в режиме тестирования и доступна только на семействе операционных систем Альт. За основу взята статья <a class="reference external" href="https://wiki.altlinux.org/kiosk">https://wiki.altlinux.org/kiosk</a>.</p>
+<div class="section" id="id2">
+<h3>Доступ к настройке<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Доступ к настройке данного режима открывается через пункт главного меню «Режим КИОСК»:</p>
+<div class="figure align-default">
+<img alt="_img/kiosk_off.png" src="_img/kiosk_off.png" />
+</div>
+<p>Как видно на данном изображении, по умолчанию доступ к настройке отключен. Для получения доступа необходимо выполнение следующих условий:</p>
+<ul>
+<li><p>ОС принадлежит семейству Альт (Alt Linux);</p></li>
+<li><p>наличие установленного пакета <code class="docutils literal notranslate"><span class="pre">myconnector-kiosk</span></code>;</p></li>
+<li><p>наличие одного из поддерживаемых дисплейных менеджеров - LightDM или SDDM;</p></li>
+<li><p>программа MyConnector запущена с правами администратора:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ su -
+# myconnector
+или
+$ sudo connector
+</pre></div>
+</div>
+</li>
+</ul>
+<p>При выполнении всех условий пункт меню будет активным и после нажатия на него откроется окно настройки режима КИОСК:</p>
+<div class="figure align-default">
+<img alt="_img/kiosk.png" src="_img/kiosk.png" />
+</div>
+<p>Также пункт меню «Режим КИОСК» может быть недоступен еще по двум причинам:</p>
+</div>
+<div class="section" id="id3">
+<h3>Режимы работы<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>1. Отключен.</strong> Можно также выключить режим киоска из командной строки (sudo или root):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># myconnector --kiosk disable</span>
+</pre></div>
+</div>
+<p><strong>2. Запуск программы MyConnector.</strong> В окружении пользователя запускается сама программа MyConnector, с возможностью подключения к любым ресурсам.</p>
+<p><strong>3. Запуск выбранного подключения.</strong> Запускается отдельное подключение (с помощью диалога открытия необходимо указать заранее сохраненный файл поддерживаемого формата: .myc, .rdp или .remmina). Указанный файл будет скопирован в домашнюю папку пользователя.</p>
+<p><strong>Подключение к WEB-ресурсу.</strong> Так называемый WEB-киоск. Запускается браузер Chromium со следующими параметрами командной строки:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chromium</span> <span class="o">--</span><span class="n">kiosk</span> <span class="o">--</span><span class="n">incognito</span> <span class="o">&lt;</span><span class="n">указанный_в_настройках_URL</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Или же (если Chromium не установлен) запускается Mozilla Firefox cо следующими:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">firefox</span> <span class="o">--</span><span class="n">kiosk</span> <span class="o">--</span><span class="n">private</span><span class="o">-</span><span class="n">window</span> <span class="o">&lt;</span><span class="n">указанный_в_настройках_URL</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Ключ <code class="docutils literal notranslate"><span class="pre">--kiosk</span></code> появился в Firefox с версии 71, если версия будет ниже - откроется обычное приватное окно браузера.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Дополнительные параметры<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>По умолчанию пользователь для режима определен как <code class="docutils literal notranslate"><span class="pre">kiosk</span></code>. Но можно указать любого другого (как существующего, так и нет - пользователь будет создан автоматически (пароль для которого, если необходимо, указывается самостоятельно) во время сохранения параметров).</p>
+<p>Также имеется возможность настройки автовхода в систему для указанного пользователя.</p>
+<p>Так как ни один из используемых браузеров для режима WEB-киоск не имеет возможность отключения сочетаний горячих клавиш в режиме киоска, в <code class="docutils literal notranslate"><span class="pre">myconnector-kiosk</span></code> есть возможность отключить клавишу <span class="guilabel"><span class="accelerator">C</span>trl</span>, чтобы исключить создание новых окон и вкладок, просмотр истории и прочих возможностей по сочетаниям клавиш c <span class="guilabel"><span class="accelerator">C</span>trl</span>. Для администраторов же оставлена возможность ее использования - ее функцию выполняет клавиша <span class="guilabel"><span class="accelerator">C</span>apsLock</span>. То есть для запуска терминала нужно использовать <span class="guilabel"><span class="accelerator">C</span>apsLock</span> + <span class="guilabel"><span class="accelerator">A</span>lt</span> + <span class="guilabel"><span class="accelerator">T</span></span>, для входа в другие TTY - <span class="guilabel"><span class="accelerator">C</span>apsLock</span> + <span class="guilabel"><span class="accelerator">A</span>lt</span> + <span class="guilabel">F[2-9]</span>.</p>
+</div>
+<div class="section" id="id5">
+<h3>Конфигурационный файл<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Все произведенные настройки записываются в файл <code class="docutils literal notranslate"><span class="pre">/etc/myconnector/kiosk.conf</span></code> (используется только для отображения в окне параметров режима). Подробнее (а также о настройке через командную строку) в разделе <a class="reference internal" href="index.html#rst-cli"><span class="std std-ref">Использование в командной строке</span></a>.</p>
+</div>
+</div>
+<span id="document-fs"></span><div class="section" id="rst-fs">
+<span id="id1"></span><h2>Доступ к файловым ресурсам<a class="headerlink" href="#rst-fs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Имеется возможность подключения к сетевым файловым ресурсам, организованным по распространенным протоколам: FTP, SMB, WebDAV и AFP (поддерживаемые большинством файловых менеджеров).</p>
+<p>Программа для открытия ресурсов указывается в параметрах программы. По умолчанию, устанавливается команда xdg-open.</p>
+<p>Для подключения к сетевым файловым ресурсам в строке адреса (как на главном окне, так и в дополнительных параметрах) обязательно указание протокола подключения:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ftp://</span></code> - для подключения к FTP-серверу;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sftp://</span></code> - для подключения по протоколу SFTP;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smb://</span></code> - ресурсы Windows, доступные по протоколу SMB;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dav://</span></code> или <code class="docutils literal notranslate"><span class="pre">davs://</span></code> - подключение через WebDAV (расширение протокола HTTP или HTTPS);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">afp://</span></code> - доступ к файлам Mac OS (протокол AFP);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file://</span></code> - открытие локального каталога (например, <code class="docutils literal notranslate"><span class="pre">file:///home/user</span></code>).</p></li>
+</ul>
+<p>Для быстрого подключения из главного окна программы можно использовать следующий формат адреса (в квадратных скобках указываются необязательные параметры, их также можно указать в окне дополнительных настроек подключения):</p>
+<p><code class="docutils literal notranslate"><span class="pre">Протокол://[Имя_пользователя&#64;]Сервер[:Порт]/[Папка]</span></code></p>
+</div>
+<span id="document-tray"></span><div class="section" id="rst-tray">
+<span id="id1"></span><h2>Значок в области уведомлений<a class="headerlink" href="#rst-tray" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Программу можно свернуть в трей:</p>
+<div class="figure align-default">
+<img alt="_img/tray.png" src="_img/tray.png" />
+</div>
+<p>По умолчанию, данный функционал отключен, включить его можно в настройках программы на вкладке «Расширенные» (<a class="reference internal" href="index.html#rst-prog-settings"><span class="std std-ref">Параметры программы</span></a>), которые доступны из этого меню. Также доступно главное окно программы и быстрое подключение к сохраненным подключениям.</p>
+</div>
+<span id="document-cli"></span><div class="section" id="rst-cli">
+<span id="id1"></span><h2>Использование в командной строке<a class="headerlink" href="#rst-cli" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Настроен <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">completion</span></code> (автоподстановка параметров по нажатию клавиши <span class="guilabel"><span class="accelerator">T</span>ab</span>).</p>
+<p>Ниже приведены страницы документации, входящие в состав пакета.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myconnector --help
+usage: myconnector [options]MyConnector - remote desktop client.positional arguments:
+  FILE                  name of the file (.myc, .remmina, .rdp)optional arguments:
+  -h, --help            show this help message and exit
+  -c CONNECTION, --connection CONNECTION
+                    name of the saved connection
+  -f FILE, --file FILE  name of the file (.myc, .remmina, .rdp)
+  -l, --list            list of the saved connections
+  --kiosk &lt;option&gt;      KIOSK mode control (&#39;--kiosk help&#39; for more information)
+  -v, --version         show the application version
+  -d, --debug           show log files online
+  -q, --quit            quit the applicationDo not specify parameters for starting the GUI.$ myconnector --kiosk help
+myconnector --kiosk - MyConnector KIOSK mode controlUsage: myconnector --kiosk &lt;option&gt;Options:
+  enable        enable the standalone mode;
+  edit          edit config file for enable/disable the mode (will use
+                any the editor defines by VISUAL or EDITOR, default: vi);
+  disable       disable the mode;
+  status        display current status of the mode;
+  help          show this text and exit.See also: man myconnector-kiosk$ man myconnector-kiosk
+NAME
+       myconnector-kiosk - Mode KIOSK for &#39;MyConnector&#39;DESCRIPTION
+       Configuration file for MyConnector mode KIOSK - /etc/myconnector/kiosk.conf       mode - one of the following operating modes:
+          &quot;0&quot; - disable
+          &quot;1&quot; - enable the standalone mode (run MyConnector)
+          &quot;2&quot; - enable the file mode (run saved connection, from &#39;file&#39;)
+          &quot;3&quot; - enable the WEB-kiosk (open &#39;url&#39;)       file - file for mode=2       url - url for WEB-kiosk       user - user for the mode KIOSK       autologin - enable/disable user autologin
+          True,Yes - enable
+          False,No - disable       ctrl_disabled - disable key &#39;Ctrl&#39; in the webkiosk
+          True,Yes - disable
+          False,No - enable
+</pre></div>
+</div>
+</div>
+<span id="document-other"></span><div class="section" id="rst-other">
+<span id="id1"></span><h2>Прочие возможности<a class="headerlink" href="#rst-other" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id2">
+<h3>Открытие файлов<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h3>
+<p>В программе есть возможность открытия файлов .myc, .rdp и .remmina. Для этого в пункте меню «Файл» выберите «Открыть», либо дважды щелкните на нем в файловом менеджере. После выбора необходимого файла будет произведена попытка соединения - если файл не содержит параметров или содержит ошибки, то отобразится соответствующее сообщение. В другом случае - произойдет успешное подключение к серверу.</p>
+</div>
+<div class="section" id="id3">
+<h3>Импорт файлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Вы также можете импортировать параметры из файлов (.myc, .ctor, .rdp и .remmina) либо для изменения параметров, либо для сохранения в свой список подключений. Для этого в пункте меню «Файл» выберите «Импорт…», после этого откроется диалог открытия файла, а после его выбора откроется окно дополнительных параметров того типа подключения, который записан в данный файл.</p>
+<p>Импорт из старого формата файлов .ctor помимо главного меню доступен через утилиту <code class="docutils literal notranslate"><span class="pre">ctor2myc</span></code>, входящую в состав пакета:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ctor2myc
+usage: ctor2myc [-v] input.ctor [output.myc]
+</pre></div>
+</div>
+<p>Также при первом запуске MyConnector и при наличие рабочей папки .connector в домашней папке пользователя будет выдан запрос на автоматический импорт всех имеющихся там соединений.</p>
+</div>
+<div class="section" id="id4">
+<h3>Ведение логов<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Располагаются в рабочей папке программы: <code class="docutils literal notranslate"><span class="pre">~/.myconnector/logs</span></code>. Файл <code class="docutils literal notranslate"><span class="pre">all.log</span></code> содержит отладочную информацию от запускаемых программ, а <code class="docutils literal notranslate"><span class="pre">myconnector.log</span></code> - информацию по работе самого MyConnector (три уровня сообщений: info, warning и error) и ошибки в его работе. В «Параметрах программы» есть возможность отключения ведения логов.</p>
+</div>
+<div class="section" id="myconnector">
+<h3>Справка по программе MyConnector<a class="headerlink" href="#myconnector" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Ссылка на данную страницу Wiki всегда доступна из приложения - пункт главного меню «Справка». Там же краткие сведения о программе и об ее разработчике. Также справочную информацию можно просмотреть и на компьютере (данную вики планируется разместить в отдельном пакете <code class="docutils literal notranslate"><span class="pre">myconnector-docs</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ man myconnector
+$ myconnector --help
+</pre></div>
+</div>
+</div>
+</div>
+<span id="document-diff"></span><div class="section" id="connector">
+<span id="rst-diff"></span><h2>Отличия от Connector<a class="headerlink" href="#connector" title="Ссылка на этот заголовок">¶</a></h2>
+<p><img alt="connector" src="_img/connector.png" /> <img alt="right" src="_img/right.png" /> <img alt="myconnector" src="_img/myconnector.png" /></p>
+<p>MyConnector является обновленной версией программы <a class="reference external" href="https://github.com/ekorneechev/connector">Connector</a>. Основные отличия (на 13.01.2021):</p>
+<ul class="simple">
+<li><p>обновленный графический интерфейс;</p></li>
+<li><p>текстовый формат файлов подключений <code class="docutils literal notranslate"><span class="pre">.myc</span></code> (с автоимпортом подключений из Connector), что означает возможную правку и создание подключений с помощью любого текстового редактора (плюс возможность открыть через контекстное меню списка подключений);</p></li>
+<li><p>возможность группировки в списке сохраненных подключений;</p></li>
+<li><p>импорт подключений RDP, Remmina (и формата .ctor);</p></li>
+<li><p>интерфейс командной строки для настройки <a class="reference internal" href="index.html#rst-kiosk"><span class="std std-ref">Режим КИОСК</span></a>;</p></li>
+<li><p>X2GO-подключение (консольный клиент pyhoca-cli).</p></li>
+</ul>
+<p>С основными отличиями можете ознакомиться на странице первого кандидата в релиз <a class="reference external" href="https://github.com/MyConnector/MyConnector/projects/3">2.0.rc0</a>.</p>
+</div>
+</div>
+</div>
+           </div>          </div>
+          <footer>  <hr/>  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+      <span class="commit">        Revision <code>2e2ebbfa</code>.
+      </span>    </p>
+  </div>    Built with <a href="https://www.sphinx-doc.org/" target="_blank">Sphinx</a> using a    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank">theme</a>    provided by <a href="https://readthedocs.org" target="_blank">Read the Docs</a>.</footer>
+        </div>
+      </div>    </section>  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Downloads</dt>          <dd><a href="https://docs.myconnector.ru/_/downloads/ru/latest/pdf/">pdf</a></dd>          <dd><a href="https://docs.myconnector.ru/_/downloads/ru/latest/htmlzip/">html</a></dd>          <dd><a href="https://docs.myconnector.ru/_/downloads/ru/latest/epub/">epub</a></dd>      </dl>
+      <dl>        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="https://docs.myconnector.ru/" target="_blank">Project Home</a>
+          </dd>
+          <dd>
+            <a href="https://readthedocs.org/projects/myconnector/builds/" target="_blank">Builds</a>
+          </dd>
+      </dl>
+    </div>
+  </div>
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+</body>
+</html>

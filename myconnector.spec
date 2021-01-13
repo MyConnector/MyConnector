@@ -66,6 +66,13 @@ Obsoletes: connector-autostart
 #thanks mike@
 Autostart MyConnector within desktop session
 
+%package docs
+Summary: Documentation for MyConnector
+Group:   Documentation
+
+%description docs
+This package contains MyConnector docs in reStructuredText and HTML formats.
+
 %prep
 %setup
 
@@ -122,6 +129,9 @@ EOF
 
 %files autostart
 %xdgdir/myconnector.desktop
+
+%files docs
+%doc docs/*
 
 %changelog
 * Thu Dec 31 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.0.rc0-alt1
