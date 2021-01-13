@@ -1,0 +1,60 @@
+.\" -*- mode: troff; coding: UTF-8 -*-
+.TH myconnector 1  "Jan 13, 2021" "version 2.0" "КОМАНДЫ ПОЛЬЗОВАТЕЛЯ"
+.SH НАИМЕНОВАНИЕ
+MyConnector \- remote desktop client.
+.SH СИНТАКСИС
+.B myconnector
+[options]
+.SH ОПИСАНИЕ
+Программа-фронтэнд для удаленного администрирования компьютеров с различными операционными системами. Поддерживается большинство распространенных типов подключения (RDP, VNC, X2GO, Citrix, VMware, etc).
+.SH ОПЦИИ
+.TP
+\fB<без опций>\fR
+.RS 3
+Запустить программу в режиме графического интерфейса.
+.RE
+.PP
+\fB-c CONNECTION, --connection CONNECTION\fR
+.RS 3
+Подключиться к сохраненному подключению по его имени.
+.RE
+.PP
+\fBFILE, -f FILE, --file FILE\fR
+.RS 3
+Подключиться с помощью файла подключения (.myc, .remmina, .rdp).
+.RE
+.PP
+\fB-l, --list\fR
+.RS 3
+Вывести список сохраненных подключений.
+.RE
+.PP
+\fB--kiosk <option>\fR
+.RS 3
+Управление режимом КИОСК (подробнее: '--kiosk help').
+.RE
+.PP
+\fB-v, --version\fR
+.RS 3
+Вывести информацию о версии программы и завершить работу.
+.RE
+.PP
+\fB-d, --debug\fR
+.RS 3
+Запуск программы в режиме отображения журналов работы в реальном времени.
+.RE
+.PP
+\fB-h, --help\fR
+.RS 3
+Вывести краткую справку и завершить работу.
+.RE
+.PP
+\fB-q, --quit\fR
+.RS 3
+Закрыть все существующие копии программы.
+.SH ССЫЛКИ
+http://myconnector.ru/
+.TP
+http://wiki.myconnector.ru
+.SH АВТОР
+Evgeniy Korneechev <ek@myconnector.ru>

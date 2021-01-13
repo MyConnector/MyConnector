@@ -1,0 +1,55 @@
+.\" -*- mode: troff; coding: UTF-8 -*-
+.TH myconnector-kiosk 1  "Jan 13, 2021" "version 2.0" "КОМАНДЫ ПОЛЬЗОВАТЕЛЯ"
+.SH НАИМЕНОВАНИЕ
+myconnector-kiosk \- Mode KIOSK for 'MyConnector'
+.SH ОПИСАНИЕ
+Конфигурационный файл режима КИОСК программы MyConnector - /etc/myconnector/kiosk.conf
+
+.RE
+\fBmode\fR - один из следующих режимов работы:
+.RS 3
+"0" - КИОСК отключен
+.RE
+.RS 3
+"1" - запуск программы MyConnector в режиме КИОСК
+.RE
+.RS 3
+"2" - соединение с сохраненным подключением
+.RE
+.RS 3
+"3" - ВЕБ-киоск
+
+.RE
+\fBfile\fR - файл подключения для mode=2
+
+.RE
+\fBurl\fR - URL для ВЕБ-киоска
+
+.RE
+\fBuser\fR - имя пользователя для режима КИОСК
+
+.RE
+\fBautologin\fR - управление автовходом пользователя
+.RE
+.RS 3
+True,Yes - включен
+.RE
+.RS 3
+False,No - отключен
+.RE
+
+\fBctrl_disabled\fR - отключение "Ctrl" в ВЕБ-киоске
+.RE
+.RS 3
+True,Yes - отключен
+.RE
+.RS 3
+False,No - включен
+.SH СМ. ТАКЖЕ
+\fImyconnector\fP(1)
+.SH ССЫЛКИ
+http://myconnector.ru
+.TP
+http://wiki.myconnector.ru/kiosk.html
+.SH АВТОР
+Evgeniy Korneechev <ek@myconnector.ru>

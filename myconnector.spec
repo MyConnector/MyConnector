@@ -83,7 +83,6 @@ mkdir -p %buildroot%python3_sitelibdir/%name
 cp -av lib/*.py %buildroot%python3_sitelibdir/%name
 cp -r share %buildroot%_usr/
 install -pm755 bin/%name-check-* %buildroot%basedir
-install -pDm644 %name.man %buildroot%_man1dir/%name.1
 install -pm755 bin/ctor2myc %buildroot%_bindir/ctor2myc
 mkdir -p %buildroot%basedir/kiosk/
 install -pm644 kiosk/kiosk.py %buildroot%python3_sitelibdir/%name
@@ -92,7 +91,6 @@ install -pm755 kiosk/myconnector-*kiosk %buildroot%basedir/kiosk
 install -pm755 kiosk/myconnector-kiosk-check %buildroot%basedir/kiosk
 install -pm755 kiosk/*.desktop %buildroot%basedir/kiosk
 install -pDm600 kiosk/kiosk.conf %buildroot%_sysconfdir/%name/kiosk.conf
-install -pm644 kiosk/%name-kiosk.man %buildroot%_man1dir/%name-kiosk.1
 install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%name
 mkdir -p %buildroot%xdgdir
 cat > %buildroot%xdgdir/myconnector.desktop << EOF
@@ -101,8 +99,10 @@ Type=Application
 Name=MyConnector
 Exec=/usr/bin/myconnector
 EOF
+%find_lang --with-man %name
+%find_lang --with-man %name-kiosk
 
-%files
+%files -f %name.lang
 %_bindir/*
 %python3_sitelibdir/%name
 %exclude %python3_sitelibdir/%name/kiosk.py
@@ -118,7 +118,7 @@ EOF
 %_iconsdir/hicolor/*/apps/%name.png
 %_datadir/bash-completion/completions/%name
 
-%files kiosk
+%files kiosk -f %name-kiosk.lang
 %basedir/kiosk
 %basedir/ui/kiosk.ui
 %python3_sitelibdir/%name/kiosk.py

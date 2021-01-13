@@ -18,7 +18,6 @@
 TARGET=myconnector
 USR=$TARGET/usr
 BIN=$USR/bin
-MAN=$USR/share/man/man1
 PYTHON=$USR/lib/python3/dist-packages/$TARGET
 BASHCOMP=$USR/share/bash-completion/completions
 
@@ -30,10 +29,9 @@ chmod 755 $BIN/*
 ln -s $TARGET $BIN/connector
 mv $BIN/$TARGET-check-* $USR/share/$TARGET
 cp ../lib/* $PYTHON/
-mkdir -p $MAN
-cp ../$TARGET.man $MAN/$TARGET.1
 mkdir -p $BASHCOMP
 cp ../$TARGET.bashcomp $BASHCOMP/$TARGET
+find $USR -name myconnector-kiosk.1 -delete
 INST_SIZE=`du -s myconnector | cut -f 1`
 mkdir -p $TARGET/DEBIAN
 cd $TARGET

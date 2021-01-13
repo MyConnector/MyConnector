@@ -25,7 +25,7 @@ ifdef ALT
 else
 	PYTHON := /usr/lib/python3/dist-packages/$(TARGET)
 endif
-MAN := $(PREFIX)/man/man1
+MAN := $(PREFIX)/man
 APS := $(PREFIX)/applications
 MIME := $(PREFIX)/mime
 BASHCOMP := $(PREFIX)/bash-completion/completions
@@ -54,11 +54,9 @@ install:
 	install -m755 bin/$(TARGET) $(PREFIX_BIN)
 	install -m755 bin/ctor2myc $(PREFIX_BIN)
 	cp -r share $(LOCAL)
-	mkdir -p $(PYTHON) $(MAN) $(ETC) $(KIOSK_DIR)
+	mkdir -p $(PYTHON) $(ETC) $(KIOSK_DIR)
 	install -m644 lib/*.py $(PYTHON)
 	install -m755 bin/$(TARGET)-check-* $(BASE)
-	install -m644 $(TARGET).man $(MAN)/$(TARGET).1
-	install -m644 kiosk/$(TARGET)-kiosk.man $(MAN)/$(TARGET)-kiosk.1
 	install -m644 kiosk/*.desktop $(KIOSK_DIR)
 	install -m755 kiosk/$(TARGET)-*kiosk $(KIOSK_DIR)
 	install -m755 kiosk/$(TARGET)-kiosk-check $(KIOSK_DIR)
@@ -74,8 +72,8 @@ install:
 uninstall:
 	rm -f $(PREFIX_BIN)/$(TARGET)
 	rm -rf $(BASE) $(PYTHON)
-	rm -f $(MAN)/$(TARGET).1
-	rm -f $(MAN)/$(TARGET)-kiosk.1
+	rm -f $(MAN)/man1/$(TARGET)*
+	rm -f $(MAN)/ru/man1/$(TARGET)*
 	rm -f $(APS)/$(TARGET).desktop
 	rm -f $(MIME)/packages/$(TARGET).xml
 	@if [ -f $(ETC)/$(KIOSK) ]; then mv -f $(ETC)/$(KIOSK) $(ETC)/$(KIOSK).makesave; fi
