@@ -15,10 +15,16 @@
 
 .. |date| date:: %d.%m.%Y
 
+.. |connector|   image:: _img/connector.png
+.. |right|       image:: _img/right.png
+.. |myconnector| image:: _img/myconnector.png
+
 .. _rst-diff:
 
 Отличия от Connector
 ====================
+
+|connector| |right| |myconnector|
 
 MyConnector является обновленной версией программы `Connector <https://github.com/ekorneechev/connector>`_. Основные отличия (на |date|):
 
