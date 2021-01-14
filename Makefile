@@ -18,7 +18,6 @@ LOCAL := /usr/local
 PREFIX := $(LOCAL)/share
 BASE := $(PREFIX)/$(TARGET)
 PREFIX_BIN := $(LOCAL)/bin
-PY := /usr/lib/python3/dist-packages/$(TARGET)
 ALT := $(shell cat /etc/altlinux-release 2>/dev/null)
 ifdef ALT
 	PYTHON := /usr/lib/python3/site-packages/$(TARGET)
@@ -34,6 +33,7 @@ KIOSK := kiosk.conf
 KIOSK_DIR := $(BASE)/kiosk
 DATESTAMP := $(shell git log --pretty="%cd" --date=short -1 | sed s/-//g 2>/dev/null)
 GLOBAL := lib/config.py
+LOCALE := $(PREFIX)/locale/ru/LC_MESSAGES
 
 .PHONY: help install uninstall clean remove
 
@@ -54,7 +54,7 @@ install:
 	install -m755 bin/$(TARGET) $(PREFIX_BIN)
 	install -m755 bin/ctor2myc $(PREFIX_BIN)
 	cp -r share $(LOCAL)
-	mkdir -p $(PYTHON) $(ETC) $(KIOSK_DIR)
+	mkdir -p $(PYTHON) $(ETC) $(KIOSK_DIR) $(LOCALE)
 	install -m644 lib/*.py $(PYTHON)
 	install -m755 bin/$(TARGET)-check-* $(BASE)
 	install -m644 kiosk/*.desktop $(KIOSK_DIR)
@@ -62,6 +62,7 @@ install:
 	install -m755 kiosk/$(TARGET)-kiosk-check $(KIOSK_DIR)
 	install -m644 kiosk/kiosk.py $(PYTHON)
 	install -m644 kiosk/*.ui $(BASE)/ui
+	msgfmt ru.po -o $(LOCALE)/$(TARGET).mo
 	@if [ ! -f $(ETC)/$(KIOSK) ]; then install -m600 kiosk/$(KIOSK) $(ETC); fi
 	mkdir -p $(BASHCOMP)
 	install -m644 $(TARGET).bashcomp $(BASHCOMP)/$(TARGET)
@@ -79,6 +80,7 @@ uninstall:
 	@if [ -f $(ETC)/$(KIOSK) ]; then mv -f $(ETC)/$(KIOSK) $(ETC)/$(KIOSK).makesave; fi
 	find $(PREFIX)/icons/hicolor -name $(TARGET).png -delete
 	rm -f $(BASHCOMP)/$(TARGET)
+	rm -f $(LOCALE)/$(TARGET).mo
 	update-mime-database $(MIME)
 	update-desktop-database
 

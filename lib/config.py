@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see http://www.gnu.org/licenses/.
 
+import gettext
+import locale
 import os
 import signal
 from subprocess import ( check_output,
@@ -25,6 +27,7 @@ from configparser import ( ConfigParser,
                            ParsingError )
 from pathlib import Path
 
+APP         = "myconnector"
 VERSION     = "2.0.rc0"
 HOMEFOLDER  = os.getenv( "HOME" )
 MAINFOLDER  = "/usr/share/myconnector"
@@ -35,6 +38,12 @@ LOGFOLDER   = "%s/logs"            % WORKFOLDER
 LOGFILE     = "%s/myconnector.log" % LOGFOLDER
 STDLOGFILE  = "%s/all.log"         % LOGFOLDER
 FIRSTRUN    = False if os.path.exists( WORKFOLDER ) else True
+MO_FOLDER   = "/usr/share/locale"
+
+locale.bindtextdomain(  APP, MO_FOLDER )
+gettext.bindtextdomain( APP, MO_FOLDER )
+gettext.textdomain( APP )
+_ = gettext.gettext
 
 os.system( "mkdir -p %s" % LOGFOLDER )
 

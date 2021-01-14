@@ -20,22 +20,24 @@ from gi import require_version
 require_version('Gtk', '3.0')
 
 from gi.repository import Gtk
-from myconnector.config import UIFOLDER
+from myconnector.config import ( UIFOLDER,
+                                 APP, _ )
 
 class PasswdDialog( Gtk.Window ):
     """Window for authentication (as zenity)"""
     def __init__( self, username ):
-        Gtk.Window.__init__( self, title = "Аутентификация..." )
+        Gtk.Window.__init__( self, title = _("Authentication...") )
         builder = Gtk.Builder()
         self.set_resizable( False )
         self.set_modal( True )
+        builder.set_translation_domain( APP )
         builder.add_from_file( "%s/passwd.ui" % UIFOLDER )
         builder.connect_signals(self)
         frame_passwd       = builder.get_object( "frame_passwd" )
         label_passwd       = builder.get_object( "label_passwd" )
         self.entry_passwd  = builder.get_object( "entry_passwd" )
         self.check_passwd  = builder.get_object( "check_passwd" )
-        label_passwd.set_text( "Имя пользователя: %s" % username )
+        label_passwd.set_text( "%s: %s" % ( _("Username"), username ) )
         self.add( frame_passwd )
         self.connect( "delete-event", self.onCancel )
         self.passwd = False
