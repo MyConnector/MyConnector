@@ -18,8 +18,14 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+msgid "Additional parameters"
+msgstr "Дополнительные параметры"
+
 msgid "Authentication..."
 msgstr "Аутентификация..."
+
+msgid "Autologin"
+msgstr "Автовход"
 
 msgid "Cancel"
 msgstr "Отмена"
@@ -33,11 +39,26 @@ msgstr "Конфигурационный файл не существует ил
 msgid "Config error"
 msgstr "Ошибка в конфигурационном файле"
 
+msgid "Connecting from a file"
+msgstr "Подключение из файла"
+
+msgid "Connecting to a website"
+msgstr "Открыть ВЕБ-ресурс"
+
+msgid "Disable the Ctrl key in the webkiosk"
+msgstr "Отключить клавишу Ctrl в WEB-киоске"
+
+msgid "Disabled"
+msgstr "Отключен"
+
 msgid "Do not specify parameters for starting the GUI"
 msgstr "Не указывайте опций для запуска графического интерфейса"
 
 msgid "Error"
 msgstr "Ошибка"
+
+msgid "File for connecting..."
+msgstr "Файл для подключения..."
 
 msgid "KIOSK config file"
 msgstr "Конфигурационный файл режима КИОСК"
@@ -60,14 +81,20 @@ msgstr "Файл для подключения в режиме КИОСКа не
 msgid "Options"
 msgstr "Опции"
 
-msgid "Password: "
-msgstr "Пароль: "
+msgid "Password"
+msgstr "Пароль"
 
 msgid "Permission denied!"
 msgstr "Доступ запрещен!"
 
+msgid "Reset"
+msgstr "Сбросить"
+
 msgid "Root is not allowed to use the mode!"
 msgstr "Пользователю 'root' запрещено использовать режим КИОСКа!"
+
+msgid "Save"
+msgstr "Сохранить"
 
 msgid "Save password"
 msgstr "Хранить пароль в связке ключей"
@@ -78,11 +105,17 @@ msgstr "См. также"
 msgid "Status"
 msgstr "Статус"
 
+msgid "Swap with the CapsLock key"
+msgstr "Ее функцию в сеансе будет выполнять клавиша CapsLock"
+
 msgid "The default settings are set."
 msgstr "Установлены настройки по умолчанию."
 
 msgid "The mode KIOSK unavailable, package is not installed."
 msgstr "Режим КИОСКа не доступен, пакет не установлен."
+
+msgid "The standalone mode (run MyConnector)"
+msgstr "Запуск программы MyConnector"
 
 msgid "Try"
 msgstr "Попробуйте"
@@ -131,6 +164,9 @@ msgstr "для подробной информации"
 
 msgid "invalid command"
 msgstr "неверная команда"
+
+msgid "kiosk (default)"
+msgstr "kiosk (по умолчанию)"
 
 msgid "list of the saved connections"
 msgstr "список сохраненных подключений"

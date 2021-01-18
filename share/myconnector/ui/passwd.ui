@@ -47,7 +47,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_pwd">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Password: </property>
+                    <property name="margin_right">3</property>
+                    <property name="label" translatable="yes">Password</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
