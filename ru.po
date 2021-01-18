@@ -18,23 +18,120 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: passwd.ui
 msgid "Password: "
 msgstr "Пароль: "
 
-#: passwd.ui
 msgid "Save password"
 msgstr "Хранить пароль в связке ключей"
 
-#: passwd.ui
 msgid "Cancel"
 msgstr "Отмена"
 
-#: passwd.py:29
 msgid "Authentication..."
 msgstr "Аутентификация..."
 
-#: passwd.py:40
 msgid "Username"
 msgstr "Имя пользователя"
+
+msgid "Config contains errors."
+msgstr "Конфигурационный файл содержит ошибки."
+
+msgid "Config does not exists or contains errors"
+msgstr "Конфигурационный файл не существует или содержит ошибки"
+
+msgid "Config error"
+msgstr "Ошибка в конфигурационном файле"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "KIOSK config file"
+msgstr "Конфигурационный файл режима КИОСК"
+
+msgid "KIOSK mode control"
+msgstr "Управление режимом КИОСКа"
+
+msgid "KIOSK mode disabled!"
+msgstr "Режим КИОСКа отключен!"
+
+msgid "KIOSK standalone mode enabled!"
+msgstr "Включен запуск программы MyConnector в режим КИОСКа!"
+
+msgid "KIOSK the filemode enabled! File"
+msgstr "Включен запуск подключения из файла в режим КИОСКа! Файл"
+
+msgid "No connection file specified!"
+msgstr "Файл для подключения в режиме КИОСКа не указан!"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Permission denied!"
+msgstr "Доступ запрещен!"
+
+msgid "Root is not allowed to use the mode!"
+msgstr "Пользователю 'root' запрещено использовать режим КИОСКа!"
+
+msgid "See also"
+msgstr "См. также"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "The default settings are set."
+msgstr "Установлены настройки по умолчанию."
+
+msgid "Try"
+msgstr "Попробуйте"
+
+msgid "URL for webkiosk not specified!"
+msgstr "URL для ВЕБ-КИОСКа не указан!"
+
+msgid "Unsupported OS! Need ALT!"
+msgstr "Неподдерживаемая ОС! Необходим Альт!"
+
+msgid "Usage"
+msgstr "Использование"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "WEB-KIOSK enabled!"
+msgstr "Режим ВЕБ-КИОСКа включен!"
+
+msgid "any the editor defines by VISUAL or EDITOR, default"
+msgstr "редактор, указанный в VISUAL или EDITOR, по умолчанию"
+
+msgid "disable the mode"
+msgstr "отключить режим"
+
+msgid "disabled"
+msgstr "отключен"
+
+msgid "display current status of the mode"
+msgstr "показать текущий статус режима"
+
+msgid "edit config file for enable/disable the mode (will use"
+msgstr "редактировать конфигурационный файл (будет использоваться"
+
+msgid "enable the standalone mode"
+msgstr "включить простой режим (запуск программы MyConnector)"
+
+msgid "enabled"
+msgstr "включен"
+
+msgid "for more information"
+msgstr "для подробной информации"
+
+msgid "invalid command"
+msgstr "неверная команда"
+
+msgid "show this text and exit"
+msgstr "показать эту справку и выйти"
+
+msgid "user not specified!"
+msgstr "пользователь не указан!"
+
+msgid "was created without password! Set, if need."
+msgstr "был создан без пароля! Установите, если требуется!"
 
