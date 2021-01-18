@@ -21,6 +21,9 @@ msgstr ""
 msgid "Additional parameters"
 msgstr "Дополнительные параметры"
 
+msgid "Advanced"
+msgstr "Расширенные"
+
 msgid "Authentication..."
 msgstr "Аутентификация..."
 
@@ -29,6 +32,18 @@ msgstr "Автовход"
 
 msgid "Cancel"
 msgstr "Отмена"
+
+msgid "Check for new versions at startup"
+msgstr "Проверять при запуске наличие новых версий"
+
+msgid "Clear autofill data"
+msgstr "Очистить данные автозаполнения"
+
+msgid "Clear the list of saved connections"
+msgstr "Очистить список сохраненных подключений"
+
+msgid "Common"
+msgstr "Общие"
 
 msgid "Config contains errors."
 msgstr "Конфигурационный файл содержит ошибки."
@@ -54,11 +69,22 @@ msgstr "Отключен"
 msgid "Do not specify parameters for starting the GUI"
 msgstr "Не указывайте опций для запуска графического интерфейса"
 
+msgid "Enable logging (need to restart the program)"
+msgstr "Вести журнал работы программы (требуется перезапуск программы)"
+
+msgid "Enter the command to connect file resources (default: from MIME)"
+msgstr ""
+"Введите команду для подключения файловых ресурсов\n"
+"(по умолчанию берется из списка MIME-типов пользователя)"
+
 msgid "Error"
 msgstr "Ошибка"
 
 msgid "File for connecting..."
 msgstr "Файл для подключения..."
+
+msgid "Group"
+msgstr "Группа"
 
 msgid "KIOSK config file"
 msgstr "Конфигурационный файл режима КИОСК"
@@ -75,6 +101,12 @@ msgstr "Включен запуск программы MyConnector в режим
 msgid "KIOSK the filemode enabled! File"
 msgstr "Включен запуск подключения из файла в режим КИОСКа! Файл"
 
+msgid "MyConnector Preferences"
+msgstr "Настройки MyConnector"
+
+msgid "Name"
+msgstr "Название"
+
 msgid "No connection file specified!"
 msgstr "Файл для подключения в режиме КИОСКа не указан!"
 
@@ -86,6 +118,9 @@ msgstr "Пароль"
 
 msgid "Permission denied!"
 msgstr "Доступ запрещен!"
+
+msgid "Protocol"
+msgstr "Протокол"
 
 msgid "Reset"
 msgstr "Сбросить"
@@ -102,11 +137,26 @@ msgstr "Хранить пароль в связке ключей"
 msgid "See also"
 msgstr "См. также"
 
+msgid "Select your default applications"
+msgstr "Выбор программ для подключения"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "Sorting the list of connections"
+msgstr "Сортировка списка подключений"
+
 msgid "Status"
 msgstr "Статус"
 
 msgid "Swap with the CapsLock key"
 msgstr "Ее функцию в сеансе будет выполнять клавиша CapsLock"
+
+msgid "Text editor for connections"
+msgstr "Текстовый редактор для подключени"
+
+msgid "The default protocol"
+msgstr "Протокол по умолчанию"
 
 msgid "The default settings are set."
 msgstr "Установлены настройки по умолчанию."
@@ -116,6 +166,12 @@ msgstr "Режим КИОСКа не доступен, пакет не уста�
 
 msgid "The standalone mode (run MyConnector)"
 msgstr "Запуск программы MyConnector"
+
+msgid "To reset the program"
+msgstr "Выполнить сброс параметров программы"
+
+msgid "Tray icon"
+msgstr "Отображать иконку приложения в области уведомлений (трей)"
 
 msgid "Try"
 msgstr "Попробуйте"

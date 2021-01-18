@@ -22,6 +22,7 @@ require_version('Gtk', '3.0')
 import myconnector.ui
 from gi.repository import Gtk
 from myconnector.config import *
+from myconnector.config import _
 from logging import ( getLogger,
                       basicConfig,
                       INFO )
@@ -128,7 +129,7 @@ def msg_error( msg, func ):
 
 class Properties(Gtk.Window):
     def __init__(self, mainWindow):
-        Gtk.Window.__init__(self, title = "Параметры программы")
+        Gtk.Window.__init__(self, title = _("MyConnector Preferences") )
         builder = Gtk.Builder()
         self.main_window = mainWindow
         self.labelRDP = mainWindow.labelRDP
@@ -139,7 +140,8 @@ class Properties(Gtk.Window):
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)
         self.set_modal(True)
-        self.set_default_icon_name( "myconnector" )
+        self.set_default_icon_name( APP )
+        builder.set_translation_domain( APP )
         builder.add_from_file( "%s/properties.ui" % UIFOLDER )
         builder.connect_signals(self)
         box = builder.get_object("box_properties")

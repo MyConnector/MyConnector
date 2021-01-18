@@ -42,20 +42,20 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">0</col>
-        <col id="1" translatable="yes">Название</col>
+        <col id="0">0</col>
+        <col id="1" translatable="yes">Name</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1</col>
-        <col id="1" translatable="yes">Группа</col>
+        <col id="0">1</col>
+        <col id="1" translatable="yes">Group</col>
       </row>
       <row>
-        <col id="0" translatable="yes">2</col>
-        <col id="1" translatable="yes">Протокол</col>
+        <col id="0">2</col>
+        <col id="1" translatable="yes">Protocol</col>
       </row>
       <row>
-        <col id="0" translatable="yes">3</col>
-        <col id="1" translatable="yes">Адрес сервера</col>
+        <col id="0">3</col>
+        <col id="1" translatable="yes">Server</col>
       </row>
     </data>
   </object>
@@ -68,52 +68,52 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">0</col>
-        <col id="1" translatable="yes">RDP</col>
+        <col id="0">0</col>
+        <col id="1">RDP</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1</col>
-        <col id="1" translatable="yes">NX</col>
+        <col id="0">1</col>
+        <col id="1">NX</col>
       </row>
       <row>
-        <col id="0" translatable="yes">2</col>
-        <col id="1" translatable="yes">VNC</col>
+        <col id="0">2</col>
+        <col id="1">VNC</col>
       </row>
       <row>
-        <col id="0" translatable="yes">3</col>
-        <col id="1" translatable="yes">XDMCP</col>
+        <col id="0">3</col>
+        <col id="1">XDMCP</col>
       </row>
       <row>
-        <col id="0" translatable="yes">4</col>
-        <col id="1" translatable="yes">SPICE</col>
+        <col id="0">4</col>
+        <col id="1">SPICE</col>
       </row>
       <row>
-        <col id="0" translatable="yes">5</col>
-        <col id="1" translatable="yes">VMware</col>
+        <col id="0">5</col>
+        <col id="1">VMware</col>
       </row>
       <row>
-        <col id="0" translatable="yes">6</col>
-        <col id="1" translatable="yes">Citrix</col>
+        <col id="0">6</col>
+        <col id="1">Citrix</col>
       </row>
       <row>
-        <col id="0" translatable="yes">7</col>
-        <col id="1" translatable="yes">SSH</col>
+        <col id="0">7</col>
+        <col id="1">SSH</col>
       </row>
       <row>
-        <col id="0" translatable="yes">8</col>
-        <col id="1" translatable="yes">SFTP</col>
+        <col id="0">8</col>
+        <col id="1">SFTP</col>
       </row>
       <row>
-        <col id="0" translatable="yes">9</col>
-        <col id="1" translatable="yes">WEB</col>
+        <col id="0">9</col>
+        <col id="1">WEB</col>
       </row>
       <row>
-        <col id="0" translatable="yes">10</col>
-        <col id="1" translatable="yes">FS</col>
+        <col id="0">10</col>
+        <col id="1">FS</col>
       </row>
       <row>
-        <col id="0" translatable="yes">11</col>
-        <col id="1" translatable="yes">X2GO</col>
+        <col id="0">11</col>
+        <col id="1">X2GO</col>
       </row>
     </data>
   </object>
@@ -140,7 +140,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Выбор программ для подключения:</property>
+                <property name="label" translatable="yes">Select your default applications</property>
                 <attributes>
                   <attribute name="underline" value="True"/>
                 </attributes>
@@ -190,7 +190,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="can_focus">False</property>
                         <property name="margin_left">10</property>
                         <property name="margin_right">10</property>
-                        <property name="label" translatable="yes">RDP:</property>
+                        <property name="label">RDP</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -205,7 +205,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkRadioButton" id="radio_RDP_remmina">
-                            <property name="label" translatable="yes">Remmina</property>
+                            <property name="label">Remmina</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
@@ -221,7 +221,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="radio_RDP_freeRDP">
-                            <property name="label" translatable="yes">FreeRDP</property>
+                            <property name="label">FreeRDP</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
@@ -273,7 +273,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="can_focus">False</property>
                         <property name="margin_left">10</property>
                         <property name="margin_right">10</property>
-                        <property name="label" translatable="yes">VNC:</property>
+                        <property name="label">VNC</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -288,7 +288,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkRadioButton" id="radio_VNC_remmina">
-                            <property name="label" translatable="yes">Remmina</property>
+                            <property name="label">Remmina</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
@@ -304,7 +304,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="radio_VNC_viewer">
-                            <property name="label" translatable="yes">vncviewer</property>
+                            <property name="label">vncviewer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
@@ -361,7 +361,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_FS">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">FS:</property>
+                    <property name="label">FS</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -374,8 +374,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="width_request">185</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Введите команду для подключения файловых ресурсов
-(по умолчанию берется из списка MIME-типов пользователя)</property>
+                    <property name="tooltip_text" translatable="yes">Enter the command to connect file resources (default: from MIME)</property>
                     <signal name="activate" handler="onSave" swapped="no"/>
                   </object>
                   <packing>
@@ -414,7 +413,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
                     <property name="margin_right">3</property>
-                    <property name="label" translatable="yes">Протокол по умолчанию:</property>
+                    <property name="label" translatable="yes">The default protocol</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -466,7 +465,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
                     <property name="margin_right">3</property>
-                    <property name="label" translatable="yes">Сортировка списка подключений:</property>
+                    <property name="label" translatable="yes">Sorting the list of connections</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -499,7 +498,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <object class="GtkLabel" id="tab1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Общие</property>
+            <property name="label" translatable="yes">Common</property>
             <attributes>
               <attribute name="foreground" value="#2e2e34343636"/>
             </attributes>
@@ -517,7 +516,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkCheckButton" id="check_TRAY">
-                <property name="label" translatable="yes"> Отображать иконку приложения в области уведомлений (трей)</property>
+                <property name="label" translatable="yes">Tray icon</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
@@ -532,7 +531,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             </child>
             <child>
               <object class="GtkCheckButton" id="check_VERSION">
-                <property name="label" translatable="yes"> Проверять при запуске наличие новых версий программы</property>
+                <property name="label" translatable="yes">Check for new versions at startup</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
@@ -548,7 +547,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             </child>
             <child>
               <object class="GtkCheckButton" id="check_LOG">
-                <property name="label" translatable="yes"> Вести журнал работы программы (требуется перезапуск программы)</property>
+                <property name="label" translatable="yes">Enable logging (need to restart the program)</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
@@ -583,7 +582,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_editor">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Текстовый редактор для подключений: </property>
+                    <property name="margin_right">3</property>
+                    <property name="label" translatable="yes">Text editor for connections</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -647,7 +647,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
                     <property name="margin_left">5</property>
-                    <property name="label" translatable="yes">Очистить данные автозаполнения</property>
+                    <property name="label" translatable="yes">Clear autofill data</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -687,7 +687,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_left">5</property>
-                    <property name="label" translatable="yes">Очистить список сохраненных подключений</property>
+                    <property name="label" translatable="yes">Clear the list of saved connections</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -725,6 +725,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="margin_bottom">5</property>
                     <property name="image">image_delete1</property>
                     <signal name="clicked" handler="onButtonReset" swapped="no"/>
                   </object>
@@ -739,7 +740,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="width_request">0</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes"> Выполнить сброс параметров программы</property>
+                    <property name="margin_left">5</property>
+                    <property name="label" translatable="yes">To reset the program</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -763,7 +765,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           <object class="GtkLabel" id="tab2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Расширенные</property>
+            <property name="label" translatable="yes">Advanced</property>
             <attributes>
               <attribute name="foreground" value="#2e2e34343636"/>
             </attributes>
@@ -790,7 +792,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <property name="homogeneous">True</property>
         <child>
           <object class="GtkButton" id="button_save">
-            <property name="label" translatable="yes">Сохранить</property>
+            <property name="label" translatable="yes">Save</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -805,7 +807,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         </child>
         <child>
           <object class="GtkButton" id="button_cancel">
-            <property name="label" translatable="yes">Отмена</property>
+            <property name="label" translatable="yes">Cancel</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
