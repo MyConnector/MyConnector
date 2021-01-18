@@ -463,7 +463,7 @@ Copyright (C) 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>""" % (
         _("any the editor defines by VISUAL or EDITOR, default"),
         _("disable the mode"),
         _("display current status of the mode"),
-        _("show this text and exit"),
+        _("show this help message and exit"),
         _("See also"), ) )
         exit( 0 )
     else:

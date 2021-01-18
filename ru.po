@@ -18,20 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "Password: "
-msgstr "Пароль: "
-
-msgid "Save password"
-msgstr "Хранить пароль в связке ключей"
-
-msgid "Cancel"
-msgstr "Отмена"
-
 msgid "Authentication..."
 msgstr "Аутентификация..."
 
-msgid "Username"
-msgstr "Имя пользователя"
+msgid "Cancel"
+msgstr "Отмена"
 
 msgid "Config contains errors."
 msgstr "Конфигурационный файл содержит ошибки."
@@ -41,6 +32,9 @@ msgstr "Конфигурационный файл не существует ил
 
 msgid "Config error"
 msgstr "Ошибка в конфигурационном файле"
+
+msgid "Do not specify parameters for starting the GUI"
+msgstr "Не указывайте опций для запуска графического интерфейса"
 
 msgid "Error"
 msgstr "Ошибка"
@@ -66,11 +60,17 @@ msgstr "Файл для подключения в режиме КИОСКа не
 msgid "Options"
 msgstr "Опции"
 
+msgid "Password: "
+msgstr "Пароль: "
+
 msgid "Permission denied!"
 msgstr "Доступ запрещен!"
 
 msgid "Root is not allowed to use the mode!"
 msgstr "Пользователю 'root' запрещено использовать режим КИОСКа!"
+
+msgid "Save password"
+msgstr "Хранить пароль в связке ключей"
 
 msgid "See also"
 msgstr "См. также"
@@ -80,6 +80,9 @@ msgstr "Статус"
 
 msgid "The default settings are set."
 msgstr "Установлены настройки по умолчанию."
+
+msgid "The mode KIOSK unavailable, package is not installed."
+msgstr "Режим КИОСКа не доступен, пакет не установлен."
 
 msgid "Try"
 msgstr "Попробуйте"
@@ -95,6 +98,9 @@ msgstr "Использование"
 
 msgid "User"
 msgstr "Пользователь"
+
+msgid "Username"
+msgstr "Имя пользователя"
 
 msgid "WEB-KIOSK enabled!"
 msgstr "Режим ВЕБ-КИОСКа включен!"
@@ -126,7 +132,28 @@ msgstr "для подробной информации"
 msgid "invalid command"
 msgstr "неверная команда"
 
-msgid "show this text and exit"
+msgid "list of the saved connections"
+msgstr "список сохраненных подключений"
+
+msgid "name of the file"
+msgstr "имя файла подключения"
+
+msgid "name of the saved connection"
+msgstr "имя сохраненного подключения"
+
+msgid "quit the application"
+msgstr "закрыть все копии приложения"
+
+msgid "remote desktop client"
+msgstr "клиент удаленного рабочего стола"
+
+msgid "show log files online"
+msgstr "отображение журнала работы в режиме реального времени"
+
+msgid "show the application version"
+msgstr "показать версию приложения"
+
+msgid "show this help message and exit"
 msgstr "показать эту справку и выйти"
 
 msgid "user not specified!"
