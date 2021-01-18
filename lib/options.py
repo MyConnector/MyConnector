@@ -225,25 +225,29 @@ class Properties(Gtk.Window):
         self.combo_protocols.set_active_id( CONFIG[ 'tab' ] )
         self.updateTray()
 
-    def clearFile(self, filename, title, message):
+    def clearFile(self, target, title, message):
         """Функция для очисти БД серверов или списка подключений"""
         dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK_CANCEL, title)
         dialog.format_secondary_text(message)
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            f = open( "%s/%s" % ( WORKFOLDER, filename ), "w" )
-            f.close()
-            myconnector.ui.viewStatus(self.statusbar, "Выполнено, изменения вступят в силу после перезапуска...")
-            log.info("Очищен файл %s", filename)
+            if target == "servers":
+                f = open( "%s/%s" % ( WORKFOLDER, filename ), "w" )
+                f.close()
+                myconnector.ui.viewStatus( self.statusbar, "Выполнено, изменения вступят в силу после перезапуска..." )
+                log.info( "Очищен файл %s.db", target)
+            if target == "connections":
+                os.system( "rm -f %s/*.myc" % WORKFOLDER )
+                myconnector.ui.Gui.setSavesToListstore( self.main_window )
         dialog.destroy()
 
-    def onClearServers(self, widget):
-        self.clearFile("servers.db", "Подтвердите очистку данных автозаполнения",
-                      "Вы потеряете всю историю посещений!!!")
+    def onClearServers( self, *args ):
+        self.clearFile( "servers", "Подтвердите очистку данных автозаполнения",
+                        "Вы потеряете всю историю посещений!!!" )
 
-    def onClearConnects(self, widget):
-        self.clearFile("connections.db", "Подтвердите очистку списка подключений",
-                      "Все Ваши сохраненные подключения удалятся!!!")
+    def onClearConnects( self, *args ):
+        self.clearFile( "connections", "Подтвердите очистку списка подключений",
+                        "Все Ваши сохраненные подключения удалятся!!!" )
 
     def onButtonReset(self,*args):
         """Сброс параметров программы"""
