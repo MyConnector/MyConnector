@@ -142,7 +142,7 @@ class Properties(Gtk.Window):
         self.set_modal(True)
         self.set_default_icon_name( APP )
         builder.set_translation_domain( APP )
-        builder.add_from_file( "%s/properties.ui" % UIFOLDER )
+        builder.add_from_file( "%s/preferences.ui" % UIFOLDER )
         builder.connect_signals(self)
         box = builder.get_object("box_properties")
         cancel = builder.get_object("button_cancel")
