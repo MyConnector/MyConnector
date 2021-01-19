@@ -326,7 +326,10 @@ msgid "Swap with the CapsLock key"
 msgstr "Ее функцию в сеансе будет выполнять клавиша CapsLock"
 
 msgid "Text editor for connections"
-msgstr "Текстовый редактор для подключени"
+msgstr "Текстовый редактор для подключений"
+
+msgid "The configuration file is corrupted, a new one has been created!"
+msgstr "Конфигурационный файл поврежден, создан новый!"
 
 msgid "The default protocol"
 msgstr "Протокол по умолчанию"
@@ -391,6 +394,15 @@ msgstr "URL для ВЕБ-КИОСКа не указан!"
 
 msgid "Unsupported OS! Need ALT!"
 msgstr "Неподдерживаемая ОС! Необходим Альт!"
+
+msgid ""
+"Unsupported OS!\n"
+"Some features of the program may not work!\n"
+"Learn more about supported OS"
+msgstr ""
+"Ваша операционная система не поддерживается.\n"
+"Некоторые функции программы могут не работать!\n"
+"Подробнее о поддерживаемых ОС"
 
 msgid "Usage"
 msgstr "Использование"
@@ -466,6 +478,9 @@ msgstr "для подробной информации"
 
 msgid "has an invalid format"
 msgstr "имеет неверный формат"
+
+msgid "here"
+msgstr "здесь"
 
 msgid "invalid command"
 msgstr "неверная команда"

@@ -132,8 +132,8 @@ elif OS == "linuxmint" or OS == "ubuntu":
 
 else:
     VERSION = RELEASE = USBPATH = CITRIX_CHECK = SCARD = ""
-    os.system( "zenity --error --no-wrap --icon-name=myconnector --text='Ваша операционная система не поддерживается.\n"
-              "Некоторые функции программы могут не работать!\nПодробнее о поддерживаемых ОС <a href=\"http://wiki.myconnector.ru\">здесь</a>.'" )
+    os.system( "zenity --error --no-wrap --icon-name=myconnector --text='%s <a href=\"https://docs.myconnector.ru\">%s</a>.'" %
+             ( _("Unsupported OS!\nSome features of the program may not work!\nLearn more about supported OS"), _("here") ) )
 
 #Protocols' default options
 DEF_PROTO = {}
@@ -286,7 +286,8 @@ try:
     CONFIG, CONFIGS = config_init()
 except KeyError:
     if os.path.exists( _config_file ):
-        os.system( "zenity --error --no-wrap --icon-name=myconnector --text='Конфигурационный файл поврежден, создан новый!'" )
+        os.system( "zenity --error --no-wrap --icon-name=myconnector --text='%s'" %
+                   _("The configuration file is corrupted, a new one has been created!") )
         os.rename( _config_file, "%s.bak" % _config_file )
     config_save( default = True )
     CONFIG, CONFIGS = config_init()
