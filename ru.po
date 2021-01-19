@@ -18,6 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+msgid "Actual"
+msgstr "Актуальная"
+
 msgid "Additional parameters"
 msgstr "Дополнительные параметры"
 
@@ -160,6 +163,15 @@ msgstr "Файл для подключения..."
 msgid "FreeNX technology"
 msgstr "Технология FreeNX"
 
+msgid ""
+"FreeRDP error.\n"
+"Check that the connection command is correct.\n"
+"Read more in"
+msgstr ""
+"Ошибка FreeRDP.\n"
+"Проверьте правильность команды подключения.\n"
+"Подробнее в"
+
 msgid "Group"
 msgstr "Группа"
 
@@ -171,6 +183,12 @@ msgstr "Ошибка импорта"
 
 msgid "Import from file"
 msgstr "Импорт из файла"
+
+msgid "Installed"
+msgstr "Текущая"
+
+msgid "Invalid username or password."
+msgstr "Неверное имя пользователя или пароль."
 
 msgid "Is this Connector's file"
 msgstr "Это файла формата Connector"
@@ -250,6 +268,9 @@ msgstr "Доступ запрещен!"
 
 msgid "Preferences"
 msgstr "Параметры"
+
+msgid "Program"
+msgstr "Программа"
 
 msgid "Protocol"
 msgstr "Протокол"
@@ -449,6 +470,9 @@ msgstr "XDMCP - Удаленное подключение к X-серверу"
 
 msgid "You will lose your entire browsing history!!!"
 msgstr "Вы потеряете всю историю посещений!!!"
+
+msgid "Your version is outdated"
+msgstr "Ваша версия устарела"
 
 msgid "any the editor defines by VISUAL or EDITOR, default"
 msgstr "редактор, указанный в VISUAL или EDITOR, по умолчанию"
