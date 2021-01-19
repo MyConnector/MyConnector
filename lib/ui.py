@@ -187,6 +187,7 @@ class Gui(Gtk.Application):
         Gtk.Application.__init__(self, application_id="ru.myconnector.MyConnector", flags=Gio.ApplicationFlags.FLAGS_NONE)
         self.prefClick = False
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain( APP )
         self.builder.add_from_file( "%s/gui.ui" % UIFOLDER )
         self.conn_note = self.builder.get_object( "list_connect" )
         self.builder.connect_signals(self)
