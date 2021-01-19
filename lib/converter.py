@@ -24,10 +24,10 @@ from myconnector.connector import options
 from os.path import basename
 from re import sub
 from pickle import load
-from myconnector.config import CONFIGS
+from myconnector.config import ( CONFIGS, _ )
 
 _version = "0.1"
-_info    = "Converter from .ctor (outdated format Connector) to new .myc (MyConnector)"
+_info    = _("Converter from .ctor (outdated format Connector) to new .myc (MyConnector)")
 
 def rdp_import( filename ):
     """Get parameters from RDP file"""
@@ -44,7 +44,7 @@ def rdp_import( filename ):
         try:
             config = conf[ "rdp" ]
         except KeyError:
-            options.log.exception( "Файл \"%s\" не содержит секцию [rdp]." % filename )
+            options.log.exception( "%s \"%s\" %s [rdp]." % ( _("File"), filename, _("does not contain a section") ) )
             return None
         config[ "program"    ] = "freerdp"
         config[ "protocol"   ] = "RDP"
@@ -71,7 +71,7 @@ def rdp_import( filename ):
         config[ "animation"  ] = "False" if config.getboolean( "disable menu anims" )  else "True"
         return config
     except ParsingError:
-        options.log.exception( "Файл \"%s\" содержит ошибки." % filename )
+        options.log.exception( "%s \"%s\" %s." % ( _("File"), filename, _("contains errors") ) )
         return None
 
 def remmina_import( filename ):
@@ -83,10 +83,10 @@ def remmina_import( filename ):
             conf[ "remmina" ][ "program" ] = "remmina"
             return conf[ "remmina" ]
         except KeyError:
-            options.log.exception( "Файл \"%s\" не содержит секцию [remmina]." % filename )
+            options.log.exception( "%s \"%s\" %s [remmina]." % ( _("File"), filename, _("does not contain a section") ) )
             return None
     except ParsingError:
-        options.log.exception( "Файл \"%s\" содержит ошибки." % filename )
+        options.log.exception( "%s \"%s\" %s." % ( _("File"), filename, _("contains errors") ) )
         return None
 
 def ctor_import( filename ):
@@ -95,10 +95,10 @@ def ctor_import( filename ):
         with open( filename, "rb" ) as ctorfile:
             params_from_ctor = load( ctorfile )
     except FileNotFoundError as e:
-        print( "Import error. %s"% e )
+        print( "%s. %s" % ( _("Import error"), e ) )
         exit( 1 )
     except:
-        print( "Import error. Is this Connector's file?" )
+        print( "%s. %s?" % ( _("Import error"), _("Is this Connector's file") ) )
         exit( 1 )
     protocol = params_from_ctor[ 0 ]
     params_to_myc = {}
@@ -260,15 +260,14 @@ def myc_save( args ):
     try:
         with open( mycfile, "w" ) as configfile:
             _config.write( configfile )
-        print( "The file (%s) has been successfully converted to the new format  - %s " % ( ctorfile, mycfile ) )
+        print( "%s (%s) %s - %s " % ( _("File"), ctorfile, _("has been successfully converted to the new format"), mycfile ) )
     except FileNotFoundError as e:
-        print( "Import error. %s"% e )
+        print( "%s. %s" % ( _("Import error"), e ) )
 
 def parseArgs():
     """Description of the command line argument parser"""
     args = ArgumentParser( prog = "ctor2myc", formatter_class = RawTextHelpFormatter, add_help=False )
-    args.add_argument( "-v", "--version", action = "version", help = "show the application version",
-                       version = "ctor2myc v%s\n%s." % ( _version, _info ) )
+    args.add_argument( "-v", "--version", action = "version", version = "ctor2myc v%s\n%s." % ( _version, _info ) )
     args.add_argument( "input",  type = str, metavar = "input.ctor" )
     args.add_argument( "output", type = str, metavar = "output.myc", nargs = "?" )
     return args.parse_args()

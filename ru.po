@@ -84,7 +84,6 @@ msgstr "Подключиться к"
 msgid "Connecting from a file"
 msgstr "Подключение из файла"
 
-
 msgid "Connecting to a file server"
 msgstr "Подключение к файловому серверу"
 
@@ -96,6 +95,11 @@ msgstr "Открыть ВЕБ-ресурс"
 
 msgid "Connecting to the server Citrix"
 msgstr "Подключение к серверу Citrix"
+
+msgid ""
+"Converter from .ctor (outdated format Connector) to new .myc (MyConnector)"
+msgstr ""
+"Конвертер файлов подключений .ctor (устаревший формат Connector) в новый - .myc (MyConnector)"
 
 msgid "Copy parameters to a new connection"
 msgstr "Копировать параметры в новое подключение"
@@ -162,8 +166,14 @@ msgstr "Группа"
 msgid "Import"
 msgstr "Импорт"
 
+msgid "Import error"
+msgstr "Ошибка импорта"
+
 msgid "Import from file"
 msgstr "Импорт из файла"
+
+msgid "Is this Connector's file"
+msgstr "Это файла формата Connector"
 
 msgid "KIOSK config file"
 msgstr "Конфигурационный файл режима КИОСК"
@@ -478,6 +488,9 @@ msgstr "для подробной информации"
 
 msgid "has an invalid format"
 msgstr "имеет неверный формат"
+
+msgid "has been successfully converted to the new format"
+msgstr "был успешно сконвертирован в новый формат"
 
 msgid "here"
 msgstr "здесь"
