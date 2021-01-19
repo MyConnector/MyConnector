@@ -24,8 +24,14 @@ msgstr "Дополнительные параметры"
 msgid "Advanced"
 msgstr "Расширенные"
 
+msgid "All your saved connections will be deleted!!!"
+msgstr "Все сохраненные подключения будут удалены!!!"
+
 msgid "Authentication..."
 msgstr "Аутентификация..."
+
+msgid "Autofill data is cleared."
+msgstr "Данные автозаполнения очищены."
 
 msgid "Autologin"
 msgstr "Автовход"
@@ -54,6 +60,15 @@ msgstr "Конфигурационный файл не существует ил
 msgid "Config error"
 msgstr "Ошибка в конфигурационном файле"
 
+msgid "Confirm clearing the autofill data"
+msgstr "Подтвердите очистку данных автозаполнения"
+
+msgid "Confirm clearing the connection list"
+msgstr "Подтвердите очистку списка подключений"
+
+msgid "Confirm resetting the program parameters to their default values."
+msgstr "Подтвердите сброс параметров программы к значениям по умолчанию"
+
 msgid "Connecting from a file"
 msgstr "Подключение из файла"
 
@@ -69,6 +84,9 @@ msgstr "Отключен"
 msgid "Do not specify parameters for starting the GUI"
 msgstr "Не указывайте опций для запуска графического интерфейса"
 
+msgid "Done, the changes will take effect after the restart..."
+msgstr "Выполнено, изменения вступят в силу после перезапуска..."
+
 msgid "Enable logging (need to restart the program)"
 msgstr "Вести журнал работы программы (требуется перезапуск программы)"
 
@@ -80,11 +98,17 @@ msgstr ""
 msgid "Error"
 msgstr "Ошибка"
 
+msgid "File"
+msgstr "Файл"
+
 msgid "File for connecting..."
 msgstr "Файл для подключения..."
 
 msgid "Group"
 msgstr "Группа"
+
+msgid "Import from file"
+msgstr "Импорт из файла"
 
 msgid "KIOSK config file"
 msgstr "Конфигурационный файл режима КИОСК"
@@ -100,6 +124,12 @@ msgstr "Включен запуск программы MyConnector в режим
 
 msgid "KIOSK the filemode enabled! File"
 msgstr "Включен запуск подключения из файла в режим КИОСКа! Файл"
+
+msgid "LOGGING WILL BE DISABLED AFTER THE PROGRAM IS RESTARTED!"
+msgstr "ВЕДЕНИЕ ЖУРНАЛА ПОСЛЕ ПЕРЕЗАПУСКА ПРОГРАММЫ БУДЕТ ОТКЛЮЧЕНО!"
+
+msgid "Log"
+msgstr "Лог"
 
 msgid "MyConnector Preferences"
 msgstr "Настройки MyConnector"
@@ -124,6 +154,9 @@ msgstr "Протокол"
 
 msgid "Reset"
 msgstr "Сбросить"
+
+msgid "Reset the program"
+msgstr "Сброс программы"
 
 msgid "Root is not allowed to use the mode!"
 msgstr "Пользователю 'root' запрещено использовать режим КИОСКа!"
@@ -164,6 +197,12 @@ msgstr "Установлены настройки по умолчанию."
 msgid "The mode KIOSK unavailable, package is not installed."
 msgstr "Режим КИОСКа не доступен, пакет не установлен."
 
+msgid "The preferences are saved in a file"
+msgstr "Параметры программы сохранены в файл"
+
+msgid "The program is reset to the default value."
+msgstr "Параметры программы сброшены к значения по умолчанию."
+
 msgid "The standalone mode (run MyConnector)"
 msgstr "Запуск программы MyConnector"
 
@@ -194,8 +233,14 @@ msgstr "Имя пользователя"
 msgid "WEB-KIOSK enabled!"
 msgstr "Режим ВЕБ-КИОСКа включен!"
 
+msgid "You will lose your entire browsing history!!!"
+msgstr "Вы потеряете всю историю посещений!!!"
+
 msgid "any the editor defines by VISUAL or EDITOR, default"
 msgstr "редактор, указанный в VISUAL или EDITOR, по умолчанию"
+
+msgid "contains errors"
+msgstr "содержит ошибки"
 
 msgid "disable the mode"
 msgstr "отключить режим"
@@ -206,6 +251,9 @@ msgstr "отключен"
 msgid "display current status of the mode"
 msgstr "показать текущий статус режима"
 
+msgid "does not contain a section"
+msgstr "не содержит секцию"
+
 msgid "edit config file for enable/disable the mode (will use"
 msgstr "редактировать конфигурационный файл (будет использоваться"
 
@@ -215,8 +263,17 @@ msgstr "включить простой режим (запуск програм�
 msgid "enabled"
 msgstr "включен"
 
+msgid "exceeded the allowed size (10mb), been archived"
+msgstr "превысил допустимый размер (10Мб), упакован в архив"
+
+msgid "failed"
+msgstr "не удался"
+
 msgid "for more information"
 msgstr "для подробной информации"
+
+msgid "has an invalid format"
+msgstr "имеет неверный формат"
 
 msgid "invalid command"
 msgstr "неверная команда"
@@ -232,6 +289,9 @@ msgstr "имя файла подключения"
 
 msgid "name of the saved connection"
 msgstr "имя сохраненного подключения"
+
+msgid "not found"
+msgstr "не найден"
 
 msgid "quit the application"
 msgstr "закрыть все копии приложения"

@@ -56,7 +56,7 @@ def loadFromFile( filename, window = None, _import = False ):
         if ext in [ ".rdp", ".rdpx" ]:
             result = rdp_import( filename )
         if result == None:
-            msg_error( "Импорт из файла \"%s\" не удался!" % filename, log.error )
+            msg_error( "%s \"%s\" %s!" % ( _("Import from file"), filename, _("failed") ), log.error )
             return None
         elif result:
             return result
@@ -66,7 +66,7 @@ def loadFromFile( filename, window = None, _import = False ):
         filepath = "%s/%s" % ( WORKFOLDER, filename )
         filename = filename.replace( "tmp_", "" )
         if not os.path.isfile( filepath ):
-            msg_error( "Файл \"%s\" c сохраненными настройками не найден." % filename, log.exception )
+            msg_error( "%s \"%s\" %s." % ( _("File"), filename, _("not found") ), log.exception )
             return None
     try:
         conf = ConfigParser( interpolation = None )
@@ -75,11 +75,11 @@ def loadFromFile( filename, window = None, _import = False ):
             try:
                 return conf[ "myconnector" ]
             except KeyError:
-                msg_error( "Файл \"%s\" не содержит секцию [myconnector]." % filename, log.exception )
+                msg_error( "%s \"%s\" %s [myconnector]." % ( _("File"), filename, _("does not contain a section") ), log.exception )
         except ParsingError:
-            msg_error( "Файл \"%s\" содержит ошибки." % filename, log.exception )
+            msg_error( "%s \"%s\" %s." % ( _("File"), filename, _("contains errors") ), log.exception )
     except:
-        msg_error( "Файл \"%s\" имеет неверный формат!" % filename, log.exception )
+        msg_error( "%s \"%s\" %s!" % ( _("File"), filename, _("has an invalid format") ), log.exception )
         return None
 
 try: enableLog = CONFIG.getboolean( 'log' )
@@ -119,7 +119,8 @@ def checkLogFile(filePath):
             tar.add(filename); os.remove(filename)
             os.chdir(MAINFOLDER)
             tar.close()
-            msg = "Логфайл %s превысил допустимый размер (10Мб), упакован в архив %s" % (filename, os.path.basename(tarName))
+            msg = "%s %s %s %s" % ( _("Log"), filename,
+                  _("exceeded the allowed size (10mb), been archived"), os.path.basename( tarName ) )
             os.system( 'echo "--- INFO       %s  %s" >> %s' % ( str( dt ), msg, LOGFILE ))
 
 def msg_error( msg, func ):
@@ -217,9 +218,11 @@ class Properties(Gtk.Window):
         CONFIG[ 'sort' ] = self.combo_sort.get_active_id()
         CONFIG[ 'editor' ] = self.editor.get_text()
         config_save()
-        myconnector.ui.viewStatus(self.statusbar, "Настройки сохранены в файле myconnector.conf...")
-        log.info("Новые настройки для программы сохранены в файле myconnector.conf.")
-        if not self.checkLog.get_active(): log.warning("ВЕДЕНИЕ ЖУРНАЛА ПОСЛЕ ПЕРЕЗАПУСКА ПРОГРАММЫ БУДЕТ ОТКЛЮЧЕНО!")
+        msg_save = "%s myconnector.conf..." % _("The preferences are saved in a file")
+        myconnector.ui.viewStatus( self.statusbar, msg_save )
+        log.info( msg_save )
+        if not self.checkLog.get_active():
+            log.warning( _("LOGGING WILL BE DISABLED AFTER THE PROGRAM IS RESTARTED!") )
         myconnector.ui.Gui.initLabels(True, self.labelRDP, self.labelVNC, self.labelFS)
         self.conn_note.set_current_page( int( CONFIG[ 'tab' ] ) )
         self.combo_protocols.set_active_id( CONFIG[ 'tab' ] )
@@ -234,29 +237,29 @@ class Properties(Gtk.Window):
             if target == "servers":
                 f = open( "%s/%s" % ( WORKFOLDER, filename ), "w" )
                 f.close()
-                myconnector.ui.viewStatus( self.statusbar, "Выполнено, изменения вступят в силу после перезапуска..." )
-                log.info( "Очищен файл %s.db", target)
+                myconnector.ui.viewStatus( self.statusbar, _("Done, the changes will take effect after the restart...") )
+                log.info( _("Autofill data is cleared.") )
             if target == "connections":
                 os.system( "rm -f %s/*.myc" % WORKFOLDER )
                 myconnector.ui.Gui.setSavesToListstore( self.main_window )
         dialog.destroy()
 
     def onClearServers( self, *args ):
-        self.clearFile( "servers", "Подтвердите очистку данных автозаполнения",
-                        "Вы потеряете всю историю посещений!!!" )
+        self.clearFile( "servers", _("Confirm clearing the autofill data"),
+                        _("You will lose your entire browsing history!!!") )
 
     def onClearConnects( self, *args ):
-        self.clearFile( "connections", "Подтвердите очистку списка подключений",
-                        "Все Ваши сохраненные подключения удалятся!!!" )
+        self.clearFile( "connections", _("Confirm clearing the connection list"),
+                        _("All your saved connections will be deleted!!!") )
 
     def onButtonReset(self,*args):
         """Сброс параметров программы"""
-        dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK_CANCEL, "Сброс параметров")
-        dialog.format_secondary_text("Подтвердите сброс параметров программы к значениям по умолчанию")
+        dialog = Gtk.MessageDialog( self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK_CANCEL, _("Reset the program") )
+        dialog.format_secondary_text( _("Confirm resetting the program parameters to their default values.") )
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             config_save( default = True )
-            log.info("Выполнен сброс программы к значения по умолчанию.")
+            log.info( _("The program is reset to the default value.") )
         dialog.destroy()
         self.initParameters()
         self.updateTray()

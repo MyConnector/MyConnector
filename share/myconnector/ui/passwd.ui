@@ -99,7 +99,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 <property name="can_focus">False</property>
                 <child>
                   <object class="GtkButton" id="button_ok">
-                    <property name="label" translatable="yes">OK</property>
+                    <property name="label">OK</property>
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -144,7 +144,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <object class="GtkLabel" id="label_passwd">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">user</property>
+        <property name="label">user</property>
       </object>
     </child>
   </object>
