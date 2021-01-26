@@ -18,6 +18,7 @@
 
 import myconnector.options as options
 from myconnector.config import *
+from myconnector.config import _
 from re import ( escape, sub )
 try: import keyring
 except Exception as error:
@@ -25,7 +26,7 @@ except Exception as error:
         def set_password(self, *args): pass
         def get_password(self, *args): return ""
     keyring = Keyring()
-    options.log.warning("Python 3: %s. Password storage is not available for FreeRDP." % error)
+    options.log.warning("Python 3: %s. %s." % ( error, _("Password storage is not available for FreeRDP") ) )
 
 try: enableLog = CONFIG.getboolean( 'log' )
 except KeyError: enableLog = DEFAULT[ 'log' ]
@@ -36,7 +37,7 @@ class VncViewer:
     """Класс для настройки VNC-соединения через VncViewer"""
     def start(self, args):
         if type(args) == str:
-            options.log.info ("VNC: подключение к серверу %s", args)
+            options.log.info( "VNC: %s %s", _("Connecting to the server"), args )
             command = 'vncviewer ' + args
             server = args
         else:
@@ -46,8 +47,8 @@ class VncViewer:
             command = 'vncviewer %s ' % server
             if args.get( "fullscreen", "False" ) == "True": command += "-fullscreen "
             if args.get( "viewonly", "False"   ) == "True": command += "-viewonly "
-        options.log.info ("VNC: подключение к серверу %s. Команда запуска:", server)
-        options.log.info (command)
+        options.log.info( "VNC: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
+        options.log.info( command )
         os.system(command + STD_TO_LOG)
 
 class XFreeRdp:
@@ -107,7 +108,7 @@ class XFreeRdp:
                 disable_nla = args.get( "disable_nla", "True" )
                 if disable_nla == "True"                       : command += " -sec-nla"
                 password = args.get( "passwd" , "" )
-                options.log.info( "FreeRDP: подключение к серверу %s. Команда запуска:", server )
+                options.log.info( "FreeRDP: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
                 options.log.info( command )
                 if not password:
                     password = keyring.get_password( server, username )
@@ -121,9 +122,10 @@ class XFreeRdp:
                         signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
                         Popen( [ MAINFOLDER + "/myconnector-check-xfreerdp-errors" ] )
             else:
-                options.msg_error ( "Версия FreeRDP (%s) не соответствует минимальным требованиям!" % freerdpVersion, options.log.warning )
+                options.msg_error ( "%s FreeRDP (%s) %s!" % ( _("Version"),
+                                    freerdpVersion, _("does not meet the minimum requirements") ), options.log.warning )
         else:
-            options.msg_error ( "FreeRDP не установлен!", options.log.warning )
+            options.msg_error ( "FreeRDP %s!" % _("not installed"), options.log.warning )
 
 class Remmina:
     """Connection via Remmina"""
@@ -149,14 +151,15 @@ class Remmina:
     def start( self, parameters ):
         """Run connection via Remmina"""
         self.create_cfg_file( parameters )
-        options.log.info ( "Remmina: подключение по протоколу %s к серверу: %s", self.cfg[ "protocol" ], self.cfg[ "server" ] )
+        options.log.info( "Remmina: %s %s %s: %s", _("connecting via the protocol"), self.cfg[ "protocol" ],
+                           _("to the server"), self.cfg[ "server" ] )
         knock = parameters.get( "knocking", "" )
         if knock:
             cmd = "knock %s %s" % ( sub( ":.*", "", parameters[ "server" ] ), knock )
-            options.log.info ( cmd )
+            options.log.info( cmd )
             os.system( "%s%s" % ( cmd, STD_TO_LOG ) )
         command = "remmina -c \"%s/%s\"" % ( WORKFOLDER, self.f_name )
-        options.log.info ( command )
+        options.log.info( command )
         os.system( "cd $HOME && %s%s" % ( command, STD_TO_LOG ) )
 
 class RdpRemmina( Remmina ):
@@ -330,23 +333,23 @@ class Vmware:
         if vmwareCheck():
             if type(args) == str:
                 command = 'vmware-view -q -s ' + args
-                options.log.info ("VMware: подключение к серверу %s", args)
-                options.log.info (command)
+                options.log.info( "VMware: %s %s", _("Connecting to the server"), args )
+                options.log.info( command )
             else:
                 command = 'vmware-view -q -s %s' %  args[ "server" ]
                 if args.get( "username", "" ): command += " -u %s" % args[ "username" ]
                 if args.get( "domain",   "" ): command += " -d %s" % args[ "domain"   ]
                 if args.get( "fullscreen", "False" ) == "True": command += " --fullscreen"
-                options.log.info ( "VMware: подключение к серверу %s", args[ "server" ] )
-                options.log.info (command)
+                options.log.info( "VMware:  %s %s", _("Connecting to the server"), args[ "server" ] )
+                options.log.info( command )
                 if args.get( "passwd",   "" ): command += " -p %s" % escape( args[ "passwd" ] )
             os.system(command + STD_TO_LOG)
         else:
-            options.msg_error ( "VMware Horizon Client не установлен!", options.log.warning )
+            options.msg_error( "VMware Horizon Client %s!" % _("not installed"), options.log.warning )
 
 def _missCitrix():
     """Message for user, if Citrix Receiver not installed"""
-    options.msg_error ( "Citrix Receiver/Workspace не установлен!", options.log.warning )
+    options.msg_error( "Citrix Receiver/Workspace %s!" % _("not installed"), options.log.warning )
 
 class Citrix:
     """Класс для настройки ICA-соединения к Citrix-серверу"""
@@ -356,14 +359,14 @@ class Citrix:
         else:
             addr = args [ "server" ]
         if citrixCheck():
-            options.log.info ("Citrix: подключение к серверу %s", addr)
+            options.log.info( "Citrix: %s %s", _("Connecting to the server"), addr )
             os.system('/opt/Citrix/ICAClient/util/storebrowse --addstore ' + addr + STD_TO_LOG)
             os.system('/opt/Citrix/ICAClient/selfservice --icaroot /opt/Citrix/ICAClient' + STD_TO_LOG)
         else: _missCitrix()
 
     def preferences():
         if citrixCheck():
-            options.log.info ("Citrix: открытие настроек программы")
+            options.log.info( "Citrix: %s." % _("Opening the program settings") )
             os.system('/opt/Citrix/ICAClient/util/configmgr --icaroot /opt/Citrix/ICAClient' + STD_TO_LOG)
         else: _missCitrix()
 
@@ -377,8 +380,8 @@ class Web:
         if  not addr.find("://") != -1:
             addr = "http://" + addr
         command = 'xdg-open "' + addr + '"'
-        options.log.info ("WWW: открытие web-ресурса %s", addr)
-        options.log.info (command)
+        options.log.info( "WWW: %s %s", _("Opening a web resource"), addr )
+        options.log.info( command )
         os.system ( command + STD_TO_LOG)
 
 class FileServer:
@@ -387,8 +390,8 @@ class FileServer:
         _exec = CONFIG[ 'fs' ] + ' "'
         if type(args) == str:
             if  not args.find("://") != -1:
-                os.system( "zenity --warning --text='Введите протокол подключения!\n"
-                          "Или выберите из списка в дополнительных параметрах.' --no-wrap --icon-name=myconnector" )
+                os.system( "zenity --warning --text='%s!\n%s.' --no-wrap --icon-name=myconnector" %
+                         ( _("Enter the connection protocol"), _("Or select from the list in the advanced options") ) )
                 return 1
             else:
                 command = _exec + args + '"'
@@ -401,7 +404,7 @@ class FileServer:
                 try:
                     protocol = args[ "type" ]
                 except KeyError:
-                    options.msg_error( "Конфигурационный файл FS-подключения поврежден - отсутствует тип!", options.log.exception )
+                    options.msg_error( _("The FS connection configuration file is corrupted - the type is missing!"), options.log.exception )
                     return 1
             command = _exec + protocol + "://"
             if args.get( "domain" , "" ): command += "%s;" % args[ "domain" ]
@@ -409,8 +412,8 @@ class FileServer:
             command += server
             if args.get( "folder" , "" ): command += "/%s" % args[ "folder" ]
             command += '"'
-        options.log.info ("Открытие файлового сервера %s. Команда запуска:", server)
-        options.log.info (command)
+        options.log.info( "%s %s. %s:", _("Connecting to a file server"), server, _("Launch Command") )
+        options.log.info( command )
         os.system (command + STD_TO_LOG)
 
 class X2goClient:
@@ -419,7 +422,7 @@ class X2goClient:
         if x2goCheck():
             if type(args) == str:
                 command = "pyhoca-cli -N --add-to-known-hosts --server %s" % args
-                options.log.info( "X2GO: подключение к серверу %s", args )
+                options.log.info( "X2GO: %s %s", _("Connecting to the server"), args )
                 options.log.info( command )
             else:
                 server = args[ "server" ]
@@ -432,7 +435,7 @@ class X2goClient:
                 if geometry: command += " --geometry %s" % args[ "geometry" ]
                 if args.get( "printers", "False" ) == "True": command += " --printing"
                 if args.get( "sound", "False"    ) == "True": command += " --sound pulse"
-                options.log.info( "X2GO: подключение к серверу %s. Команда запуска:", server )
+                options.log.info( "X2GO: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
                 options.log.info( command )
                 password = args.get( "passwd", "" )
                 if not password:
@@ -448,7 +451,7 @@ class X2goClient:
                     signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
                     Popen( [ MAINFOLDER + "/myconnector-check-x2go-errors" ] )
         else:
-            options.msg_error ( "Клиент 'pyhoca-cli' для X2GO не установлен!", options.log.warning )
+            options.msg_error ( _("The 'pyhoca-cli' client for X2GO is not installed!"), options.log.warning )
 
 def definition( name ):
     """Функция определения протокола"""
@@ -513,7 +516,7 @@ def passwd(server, username):
     dialog = PasswdDialog( username )
     password, save = dialog.run()
     if password == False:
-        options.log.info ("Подключение отменено пользователем или не был указан пароль!.")
+        options.log.info( _("The connection was canceled by the user or the password was not specified!") )
     else:
         if save and password:
             keyring.set_password( str( server ), str( username ), str( password ) )

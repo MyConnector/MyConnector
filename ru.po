@@ -96,6 +96,9 @@ msgstr "Подключение к виртуальной машине VMware"
 msgid "Connecting to a website"
 msgstr "Открыть ВЕБ-ресурс"
 
+msgid "Connecting to the server"
+msgstr "Подключение к серверу"
+
 msgid "Connecting to the server Citrix"
 msgstr "Подключение к серверу Citrix"
 
@@ -138,6 +141,9 @@ msgid "Enter the command to connect file resources (default: from MIME)"
 msgstr ""
 "Введите команду для подключения файловых ресурсов\n"
 "(по умолчанию берется из списка MIME-типов пользователя)"
+
+msgid "Enter the connection protocol"
+msgstr "Введите протокол подключения"
 
 msgid "Enter the server address..."
 msgstr "Введите адрес сервера..."
@@ -214,6 +220,9 @@ msgstr "Включен запуск подключения из файла в р
 msgid "LOGGING WILL BE DISABLED AFTER THE PROGRAM IS RESTARTED!"
 msgstr "ВЕДЕНИЕ ЖУРНАЛА ПОСЛЕ ПЕРЕЗАПУСКА ПРОГРАММЫ БУДЕТ ОТКЛЮЧЕНО!"
 
+msgid "Launch Command"
+msgstr "Команда запуска"
+
 msgid "Log"
 msgstr "Лог"
 
@@ -257,11 +266,23 @@ msgstr "Открыть окно дополнительных параметро�
 msgid "Open the connection file in a text editor"
 msgstr "Открыть файл подключения в текстовом редакторе"
 
+msgid "Opening a web resource"
+msgstr "Открытие ВЕБ-ресурса"
+
+msgid "Opening the program settings"
+msgstr "Открытие параметров программы"
+
 msgid "Options"
 msgstr "Опции"
 
+msgid "Or select from the list in the advanced options"
+msgstr "Или выберите из списка в дополнительных параметрах"
+
 msgid "Password"
 msgstr "Пароль"
+
+msgid "Password storage is not available for FreeRDP"
+msgstr "Хранение пароля не доступно для FreeRDP"
 
 msgid "Permission denied!"
 msgstr "Доступ запрещен!"
@@ -359,8 +380,21 @@ msgstr "Ее функцию в сеансе будет выполнять кла
 msgid "Text editor for connections"
 msgstr "Текстовый редактор для подключений"
 
+msgid "The 'pyhoca-cli' client for X2GO is not installed!"
+msgstr "Клиент 'pyhoca-cli' для X2GO не установлен!"
+
+msgid ""
+"The FS connection configuration file is corrupted - the type is missing!"
+msgstr ""
+"Конфигурационный файл FS-подключения поврежден - отсутствует тип!"
+
 msgid "The configuration file is corrupted, a new one has been created!"
 msgstr "Конфигурационный файл поврежден, создан новый!"
+
+msgid ""
+"The connection was canceled by the user or the password was not specified!"
+msgstr ""
+"Подключение отменено пользователем или не был указан пароль!"
 
 msgid "The default protocol"
 msgstr "Протокол по умолчанию"
@@ -444,6 +478,9 @@ msgstr "Пользователь"
 msgid "Username"
 msgstr "Имя пользователя"
 
+msgid "Version"
+msgstr "Версия"
+
 msgid "VMware - Connecting to a virtual machine VMware"
 msgstr "VMware - Подключение к виртуальной машине VMware"
 
@@ -477,6 +514,9 @@ msgstr "Ваша версия устарела"
 msgid "any the editor defines by VISUAL or EDITOR, default"
 msgstr "редактор, указанный в VISUAL или EDITOR, по умолчанию"
 
+msgid "connecting via the protocol"
+msgstr "подключение с помощью протокола"
+
 msgid "contains errors"
 msgstr "содержит ошибки"
 
@@ -491,6 +531,9 @@ msgstr "показать текущий статус режима"
 
 msgid "does not contain a section"
 msgstr "не содержит секцию"
+
+msgid "does not meet the minimum requirements"
+msgstr "не соответствует минимальным требованиям"
 
 msgid "edit config file for enable/disable the mode (will use"
 msgstr "редактировать конфигурационный файл (будет использоваться"
@@ -534,6 +577,9 @@ msgstr "имя файла подключения"
 msgid "name of the saved connection"
 msgstr "имя сохраненного подключения"
 
+msgid "not installed"
+msgstr "не установлен"
+
 msgid "not found"
 msgstr "не найден"
 
@@ -551,6 +597,9 @@ msgstr "показать версию приложения"
 
 msgid "show this help message and exit"
 msgstr "показать эту справку и выйти"
+
+msgid "to the server"
+msgstr "к серверу"
 
 msgid "user not specified!"
 msgstr "пользователь не указан!"
