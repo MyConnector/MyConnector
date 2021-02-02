@@ -2,7 +2,7 @@
 %define xdgdir  %_xdgconfigdir/autostart
 
 Name:     myconnector
-Version:  2.0.rc0
+Version:  2.0.rc1
 Release:  alt1
 
 Summary:  MyConnector - remote desktop client
@@ -134,8 +134,8 @@ EOF
 %doc docs/*
 
 %changelog
-* Thu Dec 31 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.0.rc0-alt1
-- First release candidate - MyConnector 2.0
+* Tue Feb 02 2021 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.0.rc1-alt1
+- Initial build for Sisyphus
 
 * Mon Jul 06 2020 Evgeniy Korneechev <ekorneechev@altlinux.org> 1.9.6-alt1
 - kiosk:

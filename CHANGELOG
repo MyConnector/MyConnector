@@ -1,3 +1,8 @@
+2.0.rc1:
+- Added subpackages: myconnector-autostart & myconnector-docs
+- New emblem and icons
+- Added russian manual pages
+
 2.0.rc0 includes:
 - https://github.com/ekorneechev/connector, release: 1.9.6
 - https://github.com/MyConnector/MyConnector/projects/3 - column "Done"
