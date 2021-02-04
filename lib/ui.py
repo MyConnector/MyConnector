@@ -497,6 +497,7 @@ class Gui(Gtk.Application):
         self.pref_window.set_modal(True)
         self.pref_window.resize(400, 400)
         self.pref_builder = Gtk.Builder()
+        self.pref_builder.set_translation_domain( APP )
         self.pref_builder.add_from_file( "%s/protocols.ui" % UIFOLDER )
         self.pref_builder.connect_signals(self)
         if 'loadParameters' in dir(entry_server): #если изменяется или копируется соединение, то загружаем параметры (фэйковый класс Entry)

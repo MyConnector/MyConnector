@@ -18,6 +18,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+msgid " - quality"
+msgstr " - качество"
+
+msgid "'knock' needed!"
+msgstr "Необходим клиент 'knock'"
+
+msgid "256 colors"
+msgstr "256 цветов"
+
+msgid "256 colors (8 bit)"
+msgstr "256 цветов (8 bit)"
+
 msgid ""
 "A frontend program for remote administration of computers with various OS. "
 "Most common connection types are supported."
@@ -44,6 +56,9 @@ msgstr "Все файлы"
 msgid "All your saved connections will be deleted!!!"
 msgstr "Все сохраненные подключения будут удалены!!!"
 
+msgid "Authentication type:"
+msgstr "Тип аутентификации:"
+
 msgid "Authentication..."
 msgstr "Аутентификация..."
 
@@ -53,14 +68,23 @@ msgstr "Данные автозаполнения очищены."
 msgid "Autologin"
 msgstr "Автовход"
 
+msgid "Black and white"
+msgstr "Оттенки серого"
+
 msgid "Cancel"
 msgstr "Отмена"
 
 msgid "Changes in the program parameters (Ctrl+P)"
 msgstr "Изменяется в параметрах программы (Ctrl+P"
 
+msgid "Charset"
+msgstr "Кодировка"
+
 msgid "Check for new versions at startup"
 msgstr "Проверять при запуске наличие новых версий"
+
+msgid "Choose a folder"
+msgstr "Выберите папку"
 
 msgid "Citrix - Connecting to the server Citrix"
 msgstr "Подключение к серверу Citrix"
@@ -71,8 +95,23 @@ msgstr "Очистить данные автозаполнения"
 msgid "Clear the list of saved connections"
 msgstr "Очистить список сохраненных подключений"
 
+msgid "Client"
+msgstr "Клиентское разрешение"
+
+msgid "Clipboard"
+msgstr "Буфер обмена"
+
+msgid "Color depth"
+msgstr "Глубина цвета"
+
 msgid "Common"
 msgstr "Общие"
+
+msgid "Compression"
+msgstr "Сжатие"
+
+msgid "Compression level"
+msgstr "Уровень сжатия"
 
 msgid "Config contains errors."
 msgstr "Конфигурационный файл содержит ошибки."
@@ -125,6 +164,12 @@ msgstr "Подключение удалено"
 msgid "Connection files of the old version of the program were detected"
 msgstr "Обнаружены файлы подключений старой версии программы"
 
+msgid "Connection name"
+msgstr "Имя подключения"
+
+msgid "Console"
+msgstr "Консоль администрирования"
+
 msgid ""
 "Converter from .ctor (outdated format Connector) to new .myc (MyConnector)"
 msgstr ""
@@ -133,8 +178,26 @@ msgstr ""
 msgid "Copy parameters to a new connection"
 msgstr "Копировать параметры в новое подключение"
 
+msgid "Default"
+msgstr "По умолчанию"
+
 msgid "Delete this connection:"
 msgstr "Удалить данное подключение"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "Desktop composition"
+msgstr "Композиция рабочего стола"
+
+msgid "Disable NLA protocol security"
+msgstr "Отключить проверку на уровне сети (NLA)"
+
+msgid "Disable clipboard"
+msgstr "Отключить буфер обмена"
+
+msgid "Disable encryption"
+msgstr "Отключить шифрование"
 
 msgid "Disable the Ctrl key in the webkiosk"
 msgstr "Отключить клавишу Ctrl в WEB-киоске"
@@ -142,14 +205,26 @@ msgstr "Отключить клавишу Ctrl в WEB-киоске"
 msgid "Disabled"
 msgstr "Отключен"
 
+msgid "Disconnect after first session"
+msgstr "Отключаться после одного сеанса"
+
 msgid "Do not specify parameters for starting the GUI"
 msgstr "Не указывайте опций для запуска графического интерфейса"
 
 msgid "Documentation"
 msgstr "Документация"
 
+msgid "Documents"
+msgstr "Документы"
+
+msgid "Domain"
+msgstr "Домен"
+
 msgid "Done, the changes will take effect after the restart..."
 msgstr "Выполнено, изменения вступят в силу после перезапуска..."
+
+msgid "Downloads"
+msgstr "Загрузки"
 
 msgid "Email us"
 msgstr "Связь с разрабочиком"
@@ -180,6 +255,12 @@ msgstr "Ошибка"
 msgid "Error in the file"
 msgstr "Ошибка в файле"
 
+msgid "Example: 7000 8000:udp 9000:tcp"
+msgstr "Пример: 7000 8000:udp 9000:tcp"
+
+msgid "Example: 800x600"
+msgstr "Пример: 800x600"
+
 msgid "Example: MyServer"
 msgstr "Пример: МойСервер"
 
@@ -194,6 +275,12 @@ msgstr "Файл"
 
 msgid "File for connecting..."
 msgstr "Файл для подключения..."
+
+msgid "Folder"
+msgstr "Папка"
+
+msgid "Folder redirection:"
+msgstr "Перенаправление папок:"
 
 msgid "For connection"
 msgstr "Для подключения"
@@ -210,8 +297,32 @@ msgstr ""
 "Проверьте правильность команды подключения.\n"
 "Подробнее в"
 
+msgid "Fullscreen"
+msgstr "Полноэкранный режим"
+
+msgid "Fullscreen (Ctrl+Alt+Enter)"
+msgstr "Полноэкранный режим (Ctrl+Alt+Enter)"
+
+msgid "Glyph cache"
+msgstr "Кэш glyph"
+
+msgid "Good"
+msgstr "Хорошее"
+
 msgid "Group"
 msgstr "Группа"
+
+msgid "Hardware rendering"
+msgstr "Аппаратный видеорендеринг"
+
+msgid "High"
+msgstr "Высокое"
+
+msgid "Identity file"
+msgstr "Файл идентификации"
+
+msgid "Ignore certificate"
+msgstr "Игнорировать сертификат"
 
 msgid "Import"
 msgstr "Импорт"
@@ -261,6 +372,12 @@ msgstr "ВЕДЕНИЕ ЖУРНАЛА ПОСЛЕ ПЕРЕЗАПУСКА ПРОГ
 msgid "Launch Command"
 msgstr "Команда запуска"
 
+msgid "Local"
+msgstr "Локальный"
+
+msgid "Local folder"
+msgstr "Локальная папка"
+
 msgid "Log"
 msgstr "Лог"
 
@@ -270,8 +387,20 @@ msgstr "Ведение журнала отключено. Режим отлад�
 msgid "Login session on an X server"
 msgstr "Удаленное подключение к X-серверу"
 
+msgid "Low"
+msgstr "Низкое"
+
 msgid "Main window"
 msgstr "Главное окно программы"
+
+msgid "Manually"
+msgstr "Вручную"
+
+msgid "Medium"
+msgstr "Среднее"
+
+msgid "Menu animations"
+msgstr "Анимация меню"
 
 msgid "MyConnector Preferences"
 msgstr "Настройки MyConnector"
@@ -325,6 +454,9 @@ msgstr "Опции"
 msgid "Or select from the list in the advanced options"
 msgstr "Или выберите из списка в дополнительных параметрах"
 
+msgid "Other"
+msgstr "Прочее"
+
 msgid "Outdated format file! Use 'ctor2myc' or 'Import' from menu."
 msgstr "Устаревший формат файла! Используйте ковертер 'ctor2myc' или Импорт из меню"
 
@@ -334,20 +466,53 @@ msgstr "Пароль"
 msgid "Password storage is not available for FreeRDP"
 msgstr "Хранение пароля не доступно для FreeRDP"
 
+msgid "Performance"
+msgstr "Производительность"
+
 msgid "Permission denied!"
 msgstr "Доступ запрещен!"
 
 msgid "Preferences"
 msgstr "Параметры"
 
+msgid "Press F8 for additional parameters"
+msgstr "Нажмите F8 для дополнительных параметров"
+
+msgid "Printers"
+msgstr "Принтеры"
+
 msgid "Program"
 msgstr "Программа"
+
+msgid "Program run"
+msgstr "Запуск программы"
 
 msgid "Protocol"
 msgstr "Протокол"
 
+msgid "Public key"
+msgstr "Публичный ключ"
+
+msgid "Quality"
+msgstr "Качество"
+
 msgid "RDP - Windows remote desktop"
 msgstr "RDP - Удаленный рабочий стол Windows"
+
+msgid "Read more: xfreerdp /help"
+msgstr "Подробнее: xfreerdp /help"
+
+msgid "Redirect local microphone"
+msgstr "Перенаправление микрофона"
+
+msgid "Remote"
+msgstr "Удаленный"
+
+msgid "Remote Desktop Gateway:"
+msgstr "Шлюз удаленных рабочих столов:"
+
+msgid "Remote sound"
+msgstr "Удаленный звук"
 
 msgid "Remove a connection from the list"
 msgstr "Удалить подключение из списка"
@@ -364,6 +529,12 @@ msgstr "Сбросить фильтр"
 msgid "Reset the program"
 msgstr "Сброс программы"
 
+msgid "Resize guest to match window size"
+msgstr "Изменение размера под размер окна"
+
+msgid "Resolution"
+msgstr "Разрешение экрана"
+
 msgid "Root is not allowed to use the mode!"
 msgstr "Пользователю 'root' запрещено использовать режим КИОСКа!"
 
@@ -376,11 +547,17 @@ msgstr "SPICE - Простой протокол для независимых в
 msgid "SSH - Secure connection to the command line"
 msgstr "SSH - Безопасное подключение к командной строке"
 
+msgid "SSH port"
+msgstr "Порт SSH"
+
 msgid "Save"
 msgstr "Сохранить"
 
 msgid "Save a shortcut to this connection"
 msgstr "Сохранить ярлык данного подключения"
+
+msgid "Save as default settings"
+msgstr "Сохранить как параметры по умолчанию"
 
 msgid "Save password"
 msgstr "Хранить пароль в связке ключей"
@@ -400,6 +577,9 @@ msgstr "Безопасное подключение к командной стр
 msgid "Secure file transfer"
 msgstr "Защищенная передача файлов"
 
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Защищенный WebDAV (HTTPS)"
+
 msgid "See also"
 msgstr "См. также"
 
@@ -412,8 +592,14 @@ msgstr "Выбор программ для подключения"
 msgid "Server"
 msgstr "Сервер"
 
+msgid "Server CA certificate"
+msgstr "Сертификат сервера ЦС"
+
 msgid "Server not specified!"
 msgstr "Адрес сервера не указан!"
+
+msgid "Session (or command)"
+msgstr "Сессия (или команда)"
 
 msgid ""
 "Setting up a KIOSK mode\n"
@@ -424,14 +610,35 @@ msgstr ""
 "(доступно при наличии прав root, пакета myconnector-kiosk\n"
 "и одного из DM - LightDM или SDDM - LightDM or SDDM)"
 
+msgid "Share folder"
+msgstr "Общая папка"
+
+msgid "Shared resources"
+msgstr "Общие ресурсы"
+
 msgid "Should I import them into this version?"
 msgstr "Импортировать их в данную версию?"
+
+msgid "Show cursor"
+msgstr "Показывать курсор"
 
 msgid "Simple Protocol for Independent Computing Environments"
 msgstr "Простой протокол для независимых вычислительных сред"
 
+msgid "Smartcards"
+msgstr "Смарткарты"
+
+msgid "Smooth fonts"
+msgstr "Сглаживание шрифтов"
+
 msgid "Sorting the list of connections"
 msgstr "Сортировка списка подключений"
+
+msgid "Sound"
+msgstr "Звук"
+
+msgid "Span screen over multiple monitors"
+msgstr "Расширить экран на все мониторы"
 
 msgid "Specify a name for the connection!"
 msgstr "Укажите имя подключения!"
@@ -530,6 +737,9 @@ msgstr ""
 msgid "The mode KIOSK unavailable, package is not installed."
 msgstr "Режим КИОСКа не доступен, пакет не установлен."
 
+msgid "The path run"
+msgstr "Путь запуска"
+
 msgid "The preferences are saved in a file"
 msgstr "Параметры программы сохранены в файл"
 
@@ -548,6 +758,9 @@ msgstr "Запуск программы MyConnector"
 msgid "The text editor"
 msgstr "Текстовый редактор"
 
+msgid "Theme"
+msgstr "Тема"
+
 msgid "To change the connection parameters"
 msgstr "Изменить параметры подключения"
 
@@ -560,8 +773,17 @@ msgstr "Отображать иконку приложения в области
 msgid "Try"
 msgstr "Попробуйте"
 
+msgid "Turn off automatic reconnection"
+msgstr "Отключить автоматическое переподключение"
+
+msgid "Type (protocol)"
+msgstr "Тип (протокол)"
+
 msgid "URL for webkiosk not specified!"
 msgstr "URL для ВЕБ-КИОСКа не указан!"
+
+msgid "USB storages"
+msgstr "USB накопители"
 
 msgid "Unsupported OS! Need ALT!"
 msgstr "Неподдерживаемая ОС! Необходим Альт!"
@@ -584,14 +806,35 @@ msgstr "Неподдерживаемый протокол"
 msgid "Usage"
 msgstr "Использование"
 
+msgid "Use TLS encryption"
+msgstr "Использовать TLS шифрование"
+
+msgid "Use X2Go printing"
+msgstr "Использовать печать X2Go"
+
+msgid "Use local cursor"
+msgstr "Использовать локальный курсор"
+
+msgid "Use multiple monitors"
+msgstr "Использовать несколько мониторов"
+
+msgid "Use the screen size"
+msgstr "Использовать размер экрана"
+
 msgid "User"
 msgstr "Пользователь"
+
+msgid "User parameters"
+msgstr "Параметры пользователя"
 
 msgid "Username"
 msgstr "Имя пользователя"
 
 msgid "Version"
 msgstr "Версия"
+
+msgid "View only"
+msgstr "Только просмотр"
 
 msgid "VMware - Connecting to a virtual machine VMware"
 msgstr "VMware - Подключение к виртуальной машине VMware"
@@ -608,8 +851,23 @@ msgstr "WEB - Открыть ВЕБ-ресурс"
 msgid "WEB-KIOSK enabled!"
 msgstr "Режим ВЕБ-КИОСКа включен!"
 
+msgid "Wallpapers"
+msgstr "Обои рабочего стола"
+
+msgid "Window drag"
+msgstr "Перетаскивание окна"
+
+msgid "Window size"
+msgstr "Размер окна"
+
 msgid "Windows remote desktop"
 msgstr "Удаленный рабочий стол Windows"
+
+msgid "Windows Resource"
+msgstr "Ресурс Windows"
+
+msgid "Working area"
+msgstr "Рабочая область"
 
 msgid "X2GO - FreeNX technology"
 msgstr "X2GO - Технология FreeNX"
