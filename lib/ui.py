@@ -26,6 +26,7 @@ from gi.repository import ( Gtk,
                             Gio )
 from myconnector.connector import *
 from myconnector.config import *
+from myconnector.config import _
 
 def viewStatus(bar, message):
     """Функция отображения происходящих действий в строке состояния"""
@@ -46,12 +47,12 @@ def connectFile(filename, openFile = False):
                 if parameters.get( "server", "" ):
                     connect.start( parameters )
                 else:
-                    options.msg_error( "Не указан сервер для подключения!", options.log.error )
+                    options.msg_error( _("Server not specified!"), options.log.error )
             else:
-                options.msg_error( "Неподдерживаемый протокол: %s" % protocol, options.log.error )
+                options.msg_error( "%s: %s" % ( _("Unsupported protocol"), protocol ), options.log.error )
     except KeyError:
-        options.msg_error( "Ошибка в файле %s: не указан протокол подключения (параметр protocol)."
-                           % filename.replace( "tmp_", "" ),  options.log.exception )
+        options.msg_error( "%s %s: %s." % ( _("Error in the file"), filename.replace( "tmp_", "" ),
+                           _("protocol not specified") ),  options.log.exception )
 
 def connectFileRdp(filename):
     """Connect to the server with file .rdp"""
@@ -69,7 +70,7 @@ def connectFileRemmina(filename):
 def openFile(filename):
     """Open file connection (.myc, .rdp or .remmina)"""
     ext = Path(filename).suffix.lower()
-    options.log.info ( "Открывается файл %s" % filename )
+    options.log.info( "%s %s" % ( _("The file opens"), filename ) )
     if ext == ".myc":
         tmpname = 'tmp_' + os.path.basename(filename)
         os.system('cp "%s" "%s/%s"' % (filename, WORKFOLDER, tmpname))
@@ -79,8 +80,8 @@ def openFile(filename):
     elif ext == ".rdp": connectFileRdp(filename)
     elif ext == ".remmina": connectFileRemmina(filename)
     elif ext == ".ctor":
-        options.msg_error( "Устаревший формат файла!\nВоспользуйтесь конвертером ctor2myc или импортируйте через меню Файл -> Импорт", options.log.error )
-    else: options.msg_error( "Неподдерживаемый тип файла!", options.log.error )
+        options.msg_error( _("Outdated format file! Use 'ctor2myc' or 'Import' from menu."), options.log.error )
+    else: options.msg_error( _("Unsupported file type!"), options.log.error )
 
 def initSignal(gui):
     """Функция обработки сигналов SIGHUP, SIGINT и SIGTERM
@@ -107,13 +108,14 @@ def startDebug():
     """Start show log files online (uses xterm)"""
     if options.enableLog:
         os.system( 'for i in all myconnector; do xterm -T "MyConnector DEBUG - $i.log" -e "tail -f %s/$i.log" & done' % LOGFOLDER )
-        options.log.info ("The program is running in debug mode.")
+        options.log.info( _("The program is running in debug mode.") )
     else:
-        os.system( "zenity --error --icon-name=myconnector --text='\nВедение логов отключено. Отладка невозможна!' --no-wrap" )
+        os.system( "zenity --error --icon-name=myconnector --text='\n%s' --no-wrap" %
+                   _("Logging is disabled. Debugging is not possible!") )
 
 def quitApp():
     """Quit application"""
-    options.log.info ( "The MyConnector is forcibly closed (from cmdline)." )
+    options.log.info ( _("The MyConnector is forcibly closed (from cmdline).") )
     os.system( "pkill [my]?connector" )
 
 def getSaveConnections( fileFromConnection = "" ):
@@ -154,10 +156,12 @@ def changeProgram( protocol, program = "" ):
     return protocol
 
 def protocol_not_found( name ):
-    options.msg_error( "Конфигурационный файл подключения \"%s\" поврежден - отсутствует протокол!" % name, options.log.exception )
+    options.msg_error( "%s ('%s') - %s!" % ( _("The connection configuration file is corrupted"), name,
+                       _("the protocol is missing") ), options.log.exception )
 
 def server_not_found( name ):
-    options.msg_error( "Конфигурационный файл подключения \"%s\" поврежден - отсутствует адрес сервера!" % name, options.log.exception )
+    options.msg_error( "%s ('%s') - %s!" % ( _("The connection configuration file is corrupted"), name,
+                       _("the server is missing") ), options.log.exception )
 
 class TrayIcon:
     """Класс, описывающий индикатор и меню в трее (пока только для MATE)
@@ -167,7 +171,7 @@ class TrayIcon:
         self.ind = Gtk.StatusIcon()
         self.ind.set_from_icon_name(icon)
         self.ind.connect('popup-menu', self.onTrayMenu)
-        self.ind.set_tooltip_text("Программа MyConnector")
+        self.ind.set_tooltip_text( "%s MyConnector" % _("Program") )
 
     def onTrayMenu(self, icon, button, time):
         self.menu.popup(None, None, Gtk.StatusIcon.position_menu, icon,
@@ -245,7 +249,7 @@ class Gui(Gtk.Application):
             self.menu_kiosk = self.builder.get_object("menu_file_kiosk")
             self.menu_kiosk.set_sensitive( enabled() )
         except ImportError:
-            options.log.warning ("The mode KIOSK unavailable, package is not installed.")
+            options.log.warning( _("The mode KIOSK unavailable, package is not installed.") )
 
     def initGroups( self ):
         g = Gtk.ListStore( str )
@@ -320,7 +324,7 @@ class Gui(Gtk.Application):
             else:
                 self.tray_submenu.append( item )
         if not exist:
-            tray_noexist = Gtk.MenuItem("<нет сохраненных подключений>")
+            tray_noexist = Gtk.MenuItem( "<%s>" % _("no saved connections") )
             tray_noexist.set_sensitive(False)
             self.tray_submenu.append(tray_noexist)
         self.tray_submenu.show_all()
@@ -341,7 +345,7 @@ class Gui(Gtk.Application):
     def onDeleteWindow(self, *args):
         """Закрытие программы"""
         if args[0] == 2:
-            msg = "KeyboardInterrupt: the MyConnector is closed!"
+            msg = "KeyboardInterrupt: MyConnector %s!" % _("is closed")
             options.log.info (msg)
             print ('\n' + msg)
         self.quit()
@@ -350,10 +354,8 @@ class Gui(Gtk.Application):
         """Создает диалоговое окно 'О программе'"""
         about = Gtk.AboutDialog( parent = self.window )
         about.set_program_name( "MyConnector (ex. Connector)" )
-        about.set_comments(
-            "Программа-фронтэнд для удаленного администрирования\n"
-            "компьютеров с различными операционными системами.\n"
-            "Поддерживается большинство распространенных типов подключения." )
+        about.set_comments( _("A frontend program for remote administration "
+              "of computers with various OS. Most common connection types are supported.") )
         about.set_version( "%s (release: %s)" % ( VERSION, RELEASE ) )
         about.set_website( "http://myconnector.ru" )
         about.set_website_label( "http://myconnector.ru" )
@@ -386,19 +388,19 @@ class Gui(Gtk.Application):
 
     def onOpenFile(self, *args):
         """Открытие файла для мгновенного подключения"""
-        dialog = self.createOpenDialog("Открытие файла с конфигурацией подключения")
+        dialog = self.createOpenDialog( _("Opening the connection configuration file") )
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             filename = dialog.get_filename()
             openFile(filename)
-            viewStatus(self.statusbar, "Открыт файл " + filename)
+            viewStatus( self.statusbar, "%s %s " % ( _("Open the file"), filename ) )
         else:
-            viewStatus(self.statusbar, "Файл не был выбран!")
+            viewStatus( self.statusbar, _("The file is not selected!") )
         dialog.destroy()
 
     def onImportFile(self, *args):
         """Открытие файла для изменения и дальнейшего подключения"""
-        dialog = self.createOpenDialog("Импорт файла с конфигурацией подключения")
+        dialog = self.createOpenDialog( _("Importing the connection configuration file") )
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             filename = dialog.get_filename()
@@ -420,34 +422,34 @@ class Gui(Gtk.Application):
                 else:
                     analogEntry = self.AnalogEntry( protocol, parameters )
                     self.onButtonPref( analogEntry, parameters.get( "name", "" ) )
-                msg = "Импортирован файл " + filename
+                msg = "%s %s " % ( _("Imported the file"), filename )
                 options.log.info ( msg )
                 viewStatus( self.statusbar, msg )
         else:
-            viewStatus(self.statusbar, "Файл не был выбран!")
+            viewStatus( self.statusbar, _("The file is not selected!") )
         dialog.destroy()
 
     def addFilters(self, dialog):
         filter_myc = Gtk.FileFilter()
-        filter_myc.set_name( "Файлы подключений MyConnector" )
+        filter_myc.set_name( "MyConnector" )
         filter_myc.add_pattern( "*.myc" )
         dialog.add_filter( filter_myc )
         filter_ctor = Gtk.FileFilter()
-        filter_ctor.set_name( "Файлы подключений Connector" )
+        filter_ctor.set_name( "Connector" )
         filter_ctor.add_pattern( "*.ctor" )
         dialog.add_filter( filter_ctor )
         filter_rdp = Gtk.FileFilter()
-        filter_rdp.set_name("Файлы подключений RDP (Windows)")
+        filter_rdp.set_name( "RDP (Windows)" )
         filter_rdp.add_pattern("*.rdp")
         filter_rdp.add_pattern("*.RDP")
         filter_rdp.add_pattern("*.rdpx")
         dialog.add_filter(filter_rdp)
         filter_remmina = Gtk.FileFilter()
-        filter_remmina.set_name("Файлы подключений Remmina")
+        filter_remmina.set_name( "Remmina" )
         filter_remmina.add_pattern("*.remmina")
         dialog.add_filter(filter_remmina)
         filter_any = Gtk.FileFilter()
-        filter_any.set_name("Все файлы")
+        filter_any.set_name( _("All files") )
         filter_any.add_pattern("*")
         dialog.add_filter(filter_any)
 
@@ -473,10 +475,10 @@ class Gui(Gtk.Application):
                 parameters[ "protocol" ] = protocol
             except: pass
             connect.start(parameters)
-            viewStatus(self.statusbar, "Подключение к серверу " + server + "...")
+            viewStatus( self.statusbar, "%s %s... "% ( _("Connecting to the server"), server ) )
             self.writeServerInDb(entry)
         else:
-            viewStatus(self.statusbar, "Введите адрес сервера")
+            viewStatus( self.statusbar, _("Enter the server address...").replace( "...", "") )
 
     def onCitrixPref(self, *args):
         Citrix.preferences()
@@ -488,7 +490,7 @@ class Gui(Gtk.Application):
         self.prefClick = True #для определения нажатия на кнопку Доп. параметры
         protocol = entry_server.get_name()
         server   = entry_server.get_text()
-        self.pref_window.set_title( "Параметры " + protocol + "-подключения" )
+        self.pref_window.set_title( "%s: %s" % ( protocol, _("connection parameters") ) )
         self.pref_window.set_icon_from_file( "%s/%s.png" % ( ICONFOLDER, protocol ) )
         self.pref_window.set_position(Gtk.WindowPosition.CENTER)
         self.pref_window.set_resizable(False)
@@ -1089,7 +1091,7 @@ class Gui(Gtk.Application):
                     self.liststore[protocol].append([address])
                 except: pass
         except FileNotFoundError:
-            options.log.warning("Список серверов (servers.db) не найден, создан пустой.")
+            options.log.warning( _("The list of servers (servers.db) was not found, an empty one was created.") )
             self.createDb("servers.db")
 
     def setSavesToListstore(self):
@@ -1148,13 +1150,13 @@ class Gui(Gtk.Application):
     def saveFileCtor( self, name, protocol, server ):
         """Connect file (.myc) creation"""
         filename = ( "%s_%s.myc" % ( name.replace( " ", "_" ), protocol ) ).lower()
-        options.log.info( "Добавлено новое %s-подключение '%s' (host: %s)", protocol, name, server )
+        options.log.info( "%s: %s - %s - %s", _("Added a new connection"), protocol, name, server )
         return filename
 
     def resaveFileCtor(self, name, protocol, server):
         """Пересохранение подключения с тем же именем файла .myc"""
         fileName = self.fileCtor
-        options.log.info("Внесены изменения в подключение '%s'", name)
+        options.log.info( "%s (%s)", _("The connection was changed"), name )
         return fileName
 
     def getProgram( self, name ):
@@ -1177,9 +1179,9 @@ class Gui(Gtk.Application):
         group    = self.pref_builder.get_object( "entry_%s_group" % name ).get_text()
         error = ""
         if namesave == "":
-            error = "Укажите имя подключения!"
+            error = _("Specify a name for the connection!")
         elif self.searchName( namesave ):
-            error = "Подключение с именем \"%s\" уже существует!" % namesave
+            error = _("The same connection name is already in use!")
         else:
             parameters[ "name"     ] = namesave
             parameters[ "protocol" ] = protocol
@@ -1204,7 +1206,7 @@ class Gui(Gtk.Application):
             self.prefClick = False
             if group: self.initGroups()
             self.initSubmenuTray()
-            viewStatus( self.statusbar, "Подключение \"%s\" сохранено..." % namesave )
+            viewStatus( self.statusbar, "%s (%s)..." % ( _("The connection is saved"), namesave ) )
             self.fileCtor = ""
         if error:
             viewStatus( self.statusbar, error )
@@ -1218,9 +1220,9 @@ class Gui(Gtk.Application):
         group = self.builder.get_object( "entry_%s_group" % protocol ).get_text()
         error = ""
         if name == "":
-            error = "Укажите имя подключения!"
+            error = _("Specify a name for the connection!")
         elif self.searchName( name ):
-            error = "Подключение с именем \"%s\" уже существует!" % name
+            error = _("The same connection name is already in use!")
         else:
             parameters = { "name"     : name,
                            "protocol" : protocol,
@@ -1238,7 +1240,7 @@ class Gui(Gtk.Application):
             self.setSavesToListstore()
             if group: self.initGroups()
             self.initSubmenuTray()
-            viewStatus(self.statusbar, "Подключение \"" + name + "\" сохранено...")
+            viewStatus( self.statusbar, "%s (%s)..." % ( _("The connection is saved"), name ) )
             self.fileCtor = ""
         if error:
             viewStatus( self.statusbar, error )
@@ -1287,7 +1289,7 @@ class Gui(Gtk.Application):
                 try:
                     parameters[ "passwd" ] = keyring.get_password( server, parameters.get( "username", "" ) )
                 except: pass
-            viewStatus( self.statusbar, "Соединение с \"%s\"..." % nameConnect )
+            viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Connecting to"), nameConnect ) )
             connect = definition( name )
             connect.start( parameters )
 
@@ -1329,7 +1331,7 @@ class Gui(Gtk.Application):
             except KeyError:
                 protocol_not_found( nameConnect )
                 return None
-            nameConnect = "%s (копия)" % nameConnect
+            nameConnect = "%s (%s)" % ( nameConnect, _("copy") )
             if protocol in [ "CITRIX", "WEB" ]:
                 try:
                     self.onWCEdit( nameConnect, parameters[ "server" ], protocol, parameters.get( "group", "" ) )
@@ -1361,7 +1363,7 @@ class Gui(Gtk.Application):
         table, indexRow = treeView.get_selection().get_selected()
         name = table[indexRow][0]
         dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
-            Gtk.ButtonsType.YES_NO, "Удалить данное подключение:")
+            Gtk.ButtonsType.YES_NO, _("Delete this connection:") )
         dialog.format_secondary_text(name)
         response = dialog.run()
         if response == Gtk.ResponseType.YES:
@@ -1372,13 +1374,13 @@ class Gui(Gtk.Application):
             try: os.remove( "%s/%s" % ( WORKFOLDER, fileCtor ) )
             except: pass
             self.setSavesToListstore()
-            options.log.info("Подключение '%s' удалено!", name)
+            options.log.info( "%s (%s)!", _("Connection deleted"), name )
             self.initSubmenuTray()
         dialog.destroy()
 
     def onPopupSave(self, treeView):
         """Creation desktop-file for the connection from popup menu"""
-        dialog = Gtk.FileChooserDialog("Сохранить ярлык подключения в ...", self.window,
+        dialog = Gtk.FileChooserDialog( _("Save a shortcut to this connection"), self.window,
             Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
         current_folder = (HOMEFOLDER + DESKFOLDER.replace('$HOME','')).replace('"','')
@@ -1393,8 +1395,9 @@ class Gui(Gtk.Application):
             name = name.replace(".desktop","")
             filename = name + ".desktop"
             self.createDesktopFile(filename, nameConnect, os.path.basename(name))
-            viewStatus(self.statusbar, 'Сохранено в "' + filename + '"...')
-            options.log.info("Для подключения '%s' сохранен ярлык быстрого запуска: '%s'", nameConnect, filename)
+            viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Saved in"), filename ) )
+            options.log.info( "%s \"%s\" %s: \"%s\"", _("For connection"), nameConnect,
+                              _("saved quick access shortcut"), filename )
         dialog.destroy()
 
     def onPopupText(self, treeView):
@@ -1402,15 +1405,15 @@ class Gui(Gtk.Application):
         table, indexRow = treeView.get_selection().get_selected()
         name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         editor = CONFIG.get( "editor", "pluma" )
-        status = "Подключение \"%s\" открывается в текстовом редакторе..." % name
+        status = "%s \"%s\" %s..." %  ( _("The connection"), name, _("opens in a text editor") )
         options.log.info( status )
         try:
             Popen( [ editor, "%s/%s" % ( WORKFOLDER, fileMyc ) ] )
         except FileNotFoundError:
-            status = "Тектовый редактор \"%s\" не обнаружен!" % editor
+            status = "%s - %s - %s!" % ( _("The text editor"), editor, _("not found") )
             options.log.error( status )
         except PermissionError:
-            status = "Тектовый редактор не указан!"
+            status = "%s %s!" % ( _("The text editor"), _("is not specified") )
             options.log.error( status )
         viewStatus( self.statusbar, status )
 
@@ -1465,7 +1468,7 @@ class Gui(Gtk.Application):
         for key in args.keys():
             CONFIGS[ name ][ key ] = args[ key ]
         config_save()
-        viewStatus( self.statusbar, "Настройки по умолчанию сохранены" )
+        viewStatus( self.statusbar, _("The default settings are saved.") )
 
     def saveKeyring(self, parameters):
         """Сохранение пароля в связу ключей и отметки об этом в файл подключения"""
@@ -1516,8 +1519,8 @@ class Gui(Gtk.Application):
     def importFromConnector( self, connections ):
         """Autoimport connections from Connector"""
         dialog = Gtk.MessageDialog( self.window, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO,
-                                    "Обнаружены файлы подключений старой версии программы (Connector)." )
-        dialog.format_secondary_text( "Выполнить их импорт в данную версию?" )
+                                    "%s (Connector)." % _("Connection files of the old version of the program were detected") )
+        dialog.format_secondary_text( _("Should I import them into this version?") )
         response = dialog.run()
         if response == Gtk.ResponseType.YES:
             for connect in open( connections ):
@@ -1538,10 +1541,10 @@ def connect( name ):
     """Start connection by name"""
     myc_file = Gui.filenameFromName( None, name )
     if myc_file:
-        options.log.info( "Запуск сохраненного подключения: %s" % name )
+        options.log.info( "%s: %s" % ( _("Starting a saved connection"), name ) )
         connectFile( myc_file )
     else:
-        options.msg_error( "\"%s\": подключение с таким именем не найдено!" % name, options.log.error )
+        options.msg_error( "\"%s\": %s!" % ( name, _("no connection with this name was found") ), options.log.error )
         exit( 1 )
 
 def main( name ):
@@ -1550,7 +1553,7 @@ def main( name ):
         if name[0] == "'": name = name.replace( "'", "" ) #for KIOSK (mode=2)
         if os.path.isfile( name ): openFile( name )
         else:
-            options.msg_error( "\"%s\": нет такого файла!" % name, options.log.error )
+            options.msg_error( "\"%s\": %s!" % ( name, _("file not found") ), options.log.error )
             exit( 1 )
     else:
         gui = Gui()

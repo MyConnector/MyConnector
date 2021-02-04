@@ -18,14 +18,28 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+msgid ""
+"A frontend program for remote administration of computers with various OS. "
+"Most common connection types are supported."
+msgstr ""
+"Программа-фронтэнд для удаленного администрирования компьютеров с различными "
+"операционными системами. Поддерживается большинство распространенных типов "
+"подключения."
+
 msgid "Actual"
 msgstr "Актуальная"
+
+msgid "Added a new connection"
+msgstr "Добавлено новое подключение"
 
 msgid "Additional parameters"
 msgstr "Дополнительные параметры"
 
 msgid "Advanced"
 msgstr "Расширенные"
+
+msgid "All files"
+msgstr "Все файлы"
 
 msgid "All your saved connections will be deleted!!!"
 msgstr "Все сохраненные подключения будут удалены!!!"
@@ -87,6 +101,9 @@ msgstr "Подключиться к"
 msgid "Connecting from a file"
 msgstr "Подключение из файла"
 
+msgid "Connecting to"
+msgstr "Подключение к"
+
 msgid "Connecting to a file server"
 msgstr "Подключение к файловому серверу"
 
@@ -102,6 +119,12 @@ msgstr "Подключение к серверу"
 msgid "Connecting to the server Citrix"
 msgstr "Подключение к серверу Citrix"
 
+msgid "Connection deleted"
+msgstr "Подключение удалено"
+
+msgid "Connection files of the old version of the program were detected"
+msgstr "Обнаружены файлы подключений старой версии программы"
+
 msgid ""
 "Converter from .ctor (outdated format Connector) to new .myc (MyConnector)"
 msgstr ""
@@ -109,6 +132,9 @@ msgstr ""
 
 msgid "Copy parameters to a new connection"
 msgstr "Копировать параметры в новое подключение"
+
+msgid "Delete this connection:"
+msgstr "Удалить данное подключение"
 
 msgid "Disable the Ctrl key in the webkiosk"
 msgstr "Отключить клавишу Ctrl в WEB-киоске"
@@ -151,6 +177,9 @@ msgstr "Введите адрес сервера..."
 msgid "Error"
 msgstr "Ошибка"
 
+msgid "Error in the file"
+msgstr "Ошибка в файле"
+
 msgid "Example: MyServer"
 msgstr "Пример: МойСервер"
 
@@ -165,6 +194,9 @@ msgstr "Файл"
 
 msgid "File for connecting..."
 msgstr "Файл для подключения..."
+
+msgid "For connection"
+msgstr "Для подключения"
 
 msgid "FreeNX technology"
 msgstr "Технология FreeNX"
@@ -189,6 +221,12 @@ msgstr "Ошибка импорта"
 
 msgid "Import from file"
 msgstr "Импорт из файла"
+
+msgid "Imported the file"
+msgstr "Импортирован файлы"
+
+msgid "Importing the connection configuration file"
+msgstr "Импорт конфигурационного файла подключения"
 
 msgid "Installed"
 msgstr "Текущая"
@@ -225,6 +263,9 @@ msgstr "Команда запуска"
 
 msgid "Log"
 msgstr "Лог"
+
+msgid "Logging is disabled. Debugging is not possible!"
+msgstr "Ведение журнала отключено. Режим отладки не доступен!"
 
 msgid "Login session on an X server"
 msgstr "Удаленное подключение к X-серверу"
@@ -266,8 +307,14 @@ msgstr "Открыть окно дополнительных параметро�
 msgid "Open the connection file in a text editor"
 msgstr "Открыть файл подключения в текстовом редакторе"
 
+msgid "Open the file"
+msgstr "Открыт файл"
+
 msgid "Opening a web resource"
 msgstr "Открытие ВЕБ-ресурса"
+
+msgid "Opening the connection configuration file"
+msgstr "Открытие конфигурационного файла подключения"
 
 msgid "Opening the program settings"
 msgstr "Открытие параметров программы"
@@ -277,6 +324,9 @@ msgstr "Опции"
 
 msgid "Or select from the list in the advanced options"
 msgstr "Или выберите из списка в дополнительных параметрах"
+
+msgid "Outdated format file! Use 'ctor2myc' or 'Import' from menu."
+msgstr "Устаревший формат файла! Используйте ковертер 'ctor2myc' или Импорт из меню"
 
 msgid "Password"
 msgstr "Пароль"
@@ -329,11 +379,17 @@ msgstr "SSH - Безопасное подключение к командной 
 msgid "Save"
 msgstr "Сохранить"
 
+msgid "Save a shortcut to this connection"
+msgstr "Сохранить ярлык данного подключения"
+
 msgid "Save password"
 msgstr "Хранить пароль в связке ключей"
 
 msgid "Save the shortcut"
 msgstr "Сохранить ярлык"
+
+msgid "Saved in"
+msgstr "Сохранен в"
 
 msgid "Saving a shortcut to run directly from the system"
 msgstr "Сохранение ярлыка для запуска напрямую из системы"
@@ -356,6 +412,9 @@ msgstr "Выбор программ для подключения"
 msgid "Server"
 msgstr "Сервер"
 
+msgid "Server not specified!"
+msgstr "Адрес сервера не указан!"
+
 msgid ""
 "Setting up a KIOSK mode\n"
 "(available if you have root rights, the myconnector-kiosk package\n"
@@ -365,11 +424,20 @@ msgstr ""
 "(доступно при наличии прав root, пакета myconnector-kiosk\n"
 "и одного из DM - LightDM или SDDM - LightDM or SDDM)"
 
+msgid "Should I import them into this version?"
+msgstr "Импортировать их в данную версию?"
+
 msgid "Simple Protocol for Independent Computing Environments"
 msgstr "Простой протокол для независимых вычислительных сред"
 
 msgid "Sorting the list of connections"
 msgstr "Сортировка списка подключений"
+
+msgid "Specify a name for the connection!"
+msgstr "Укажите имя подключения!"
+
+msgid "Starting a saved connection"
+msgstr "Запуск сохраненного подключения"
 
 msgid "Status"
 msgstr "Статус"
@@ -388,19 +456,43 @@ msgid ""
 msgstr ""
 "Конфигурационный файл FS-подключения поврежден - отсутствует тип!"
 
+msgid "The MyConnector is forcibly closed (from cmdline)."
+msgstr "MyConnector закрыт принудительно (из командной строки)."
+
 msgid "The configuration file is corrupted, a new one has been created!"
 msgstr "Конфигурационный файл поврежден, создан новый!"
+
+msgid "The connection"
+msgstr "Подключение"
+
+msgid "The connection configuration file is corrupted"
+msgstr "Конфигурационный файл подключения поврежден"
+
+msgid "The connection is saved"
+msgstr "Подключение сохранено"
 
 msgid ""
 "The connection was canceled by the user or the password was not specified!"
 msgstr ""
 "Подключение отменено пользователем или не был указан пароль!"
 
+msgid "The connection was changed"
+msgstr "Подключение изменено"
+
 msgid "The default protocol"
 msgstr "Протокол по умолчанию"
 
 msgid "The default settings are set."
 msgstr "Установлены настройки по умолчанию."
+
+msgid "The default settings are saved."
+msgstr "Настройки по умолчанию сохранены."
+
+msgid "The file is not selected!"
+msgstr "Файл не выбран!"
+
+msgid "The file opens"
+msgstr "Открывается файл"
 
 msgid ""
 "The following format is required:\n"
@@ -430,6 +522,11 @@ msgstr ""
 "Требуется следующий формат:\n"
 "сервер[:порт]"
 
+msgid ""
+"The list of servers (servers.db) was not found, an empty one was created."
+msgstr ""
+"Список серверов (servers.db) не найден, создан пустой."
+
 msgid "The mode KIOSK unavailable, package is not installed."
 msgstr "Режим КИОСКа не доступен, пакет не установлен."
 
@@ -439,8 +536,17 @@ msgstr "Параметры программы сохранены в файл"
 msgid "The program is reset to the default value."
 msgstr "Параметры программы сброшены к значения по умолчанию."
 
+msgid "The program is running in debug mode."
+msgstr "Программа запущена в режиме отладки."
+
+msgid "The same connection name is already in use!"
+msgstr "Указанное имя подключения уже используется!"
+
 msgid "The standalone mode (run MyConnector)"
 msgstr "Запуск программы MyConnector"
+
+msgid "The text editor"
+msgstr "Текстовый редактор"
 
 msgid "To change the connection parameters"
 msgstr "Изменить параметры подключения"
@@ -468,6 +574,12 @@ msgstr ""
 "Ваша операционная система не поддерживается.\n"
 "Некоторые функции программы могут не работать!\n"
 "Подробнее о поддерживаемых ОС"
+
+msgid "Unsupported file type!"
+msgstr "Неподдерживаемый тип файла!"
+
+msgid "Unsupported protocol"
+msgstr "Неподдерживаемый протокол"
 
 msgid "Usage"
 msgstr "Использование"
@@ -517,8 +629,14 @@ msgstr "редактор, указанный в VISUAL или EDITOR, по ум�
 msgid "connecting via the protocol"
 msgstr "подключение с помощью протокола"
 
+msgid "connection parameters"
+msgstr "параметры подключения"
+
 msgid "contains errors"
 msgstr "содержит ошибки"
+
+msgid "copy"
+msgstr "копия"
 
 msgid "disable the mode"
 msgstr "отключить режим"
@@ -550,6 +668,9 @@ msgstr "превысил допустимый размер (10Мб), упако�
 msgid "failed"
 msgstr "не удался"
 
+msgid "file not found"
+msgstr "файл не найден"
+
 msgid "for more information"
 msgstr "для подробной информации"
 
@@ -565,6 +686,12 @@ msgstr "здесь"
 msgid "invalid command"
 msgstr "неверная команда"
 
+msgid "is closed"
+msgstr "закрыт"
+
+msgid "is not specified"
+msgstr "не указан"
+
 msgid "kiosk (default)"
 msgstr "kiosk (по умолчанию)"
 
@@ -577,17 +704,32 @@ msgstr "имя файла подключения"
 msgid "name of the saved connection"
 msgstr "имя сохраненного подключения"
 
+msgid "no connection with this name was found"
+msgstr "подключение с таким именем не найдено"
+
+msgid "no saved connections"
+msgstr "нет сохраненных подключений"
+
 msgid "not installed"
 msgstr "не установлен"
 
 msgid "not found"
 msgstr "не найден"
 
+msgid "opens in a text editor"
+msgstr "открывается в текстовом редакторе"
+
+msgid "protocol not specified"
+msgstr "протокол не указан"
+
 msgid "quit the application"
 msgstr "закрыть все копии приложения"
 
 msgid "remote desktop client"
 msgstr "клиент удаленного рабочего стола"
+
+msgid "saved quick access shortcut"
+msgstr "сохранен ярлык быстрого доступа"
 
 msgid "show log files online"
 msgstr "отображение журнала работы в режиме реального времени"
@@ -597,6 +739,12 @@ msgstr "показать версию приложения"
 
 msgid "show this help message and exit"
 msgstr "показать эту справку и выйти"
+
+msgid "the protocol is missing"
+msgstr "отсутствует протокол"
+
+msgid "the server is missing"
+msgstr "отсутствует адрес сервера"
 
 msgid "to the server"
 msgstr "к серверу"
