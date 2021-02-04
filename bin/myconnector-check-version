@@ -20,12 +20,23 @@ from subprocess import check_output
 from os import system
 from sys import ( argv,
                   exit )
+import gettext
+import locale
+
+APP         = "myconnector"
+MO_FOLDER   = "/usr/share/locale"
+
+locale.bindtextdomain(  APP, MO_FOLDER )
+gettext.bindtextdomain( APP, MO_FOLDER )
+gettext.textdomain( APP )
+_ = gettext.gettext
 
 def main():
-    currentVersion = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/VERSION 2>/dev/null; exit 0", shell=True, universal_newlines=True ).strip()
+    currentVersion = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/VERSION 2>/dev/null; exit 0",
+                                   shell=True, universal_newlines=True ).strip()
     if currentVersion and currentVersion != argv[1]:
-        system( "zenity --notification --window-icon=connector --text='Программа MyConnector\n"
-               "Ваша версия программы устарела!\nТекущая: %s\nАктуальная: %s'" % ( argv[1], currentVersion ))
+        system( "zenity --notification --window-icon=myconnector --text='%s MyConnector\n%s!\n%s: %s\n%s: %s'" %
+              ( _("Program"), _("Your version is outdated"), _("Installed"), argv[1], _("Actual"), currentVersion ) )
     exit(0)
 
 if __name__ == "__main__":

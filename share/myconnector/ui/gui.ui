@@ -123,7 +123,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="can_focus">False</property>
     <child>
       <object class="GtkImageMenuItem" id="menu_popup_connect">
-        <property name="label" translatable="yes">Подключение</property>
+        <property name="label" translatable="yes">Connect</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="image">image2</property>
@@ -139,10 +139,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </child>
     <child>
       <object class="GtkImageMenuItem" id="menu_popup_save">
-        <property name="label" translatable="yes">Сохранить ярлык</property>
+        <property name="label" translatable="yes">Save the shortcut</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="tooltip_text" translatable="yes">Сохранение ярлыка для запуска напрямую из системы</property>
+        <property name="tooltip_text" translatable="yes">Saving a shortcut to run directly from the system</property>
         <property name="image">image1</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="onPopupSave" object="treeview_connections" swapped="no"/>
@@ -153,7 +153,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <property name="label">gtk-copy</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="tooltip_text" translatable="yes">Копировать параметры в новое подключение</property>
+        <property name="tooltip_text" translatable="yes">Copy parameters to a new connection</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="onPopupCopy" object="treeview_connections" swapped="no"/>
@@ -164,7 +164,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <property name="label">gtk-edit</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="tooltip_text" translatable="yes">Изменить параметры подключения</property>
+        <property name="tooltip_text" translatable="yes">To change the connection parameters</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="onPopupEdit" object="treeview_connections" swapped="no"/>
@@ -175,7 +175,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <property name="label">gtk-remove</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="tooltip_text" translatable="yes">Удалить подключение из списка</property>
+        <property name="tooltip_text" translatable="yes">Remove a connection from the list</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="onPopupRemove" object="treeview_connections" swapped="no"/>
@@ -189,10 +189,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </child>
     <child>
       <object class="GtkImageMenuItem" id="menu_popup_text">
-        <property name="label" translatable="yes">Открыть как текст</property>
+        <property name="label" translatable="yes">Open as Text</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="tooltip_text" translatable="yes">Открыть файл подключения в текстовом редакторе</property>
+        <property name="tooltip_text" translatable="yes">Open the connection file in a text editor</property>
         <property name="image">image_popup_file</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="onPopupText" object="treeview_connections" swapped="no"/>
@@ -412,52 +412,52 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">0</col>
-        <col id="1" translatable="yes">RDP</col>
+        <col id="0">0</col>
+        <col id="1">RDP</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1</col>
-        <col id="1" translatable="yes">NX</col>
+        <col id="0">1</col>
+        <col id="1">NX</col>
       </row>
       <row>
-        <col id="0" translatable="yes">2</col>
-        <col id="1" translatable="yes">VNC</col>
+        <col id="0">2</col>
+        <col id="1">VNC</col>
       </row>
       <row>
-        <col id="0" translatable="yes">3</col>
-        <col id="1" translatable="yes">XDMCP</col>
+        <col id="0">3</col>
+        <col id="1">XDMCP</col>
       </row>
       <row>
-        <col id="0" translatable="yes">4</col>
-        <col id="1" translatable="yes">SPICE</col>
+        <col id="0">4</col>
+        <col id="1">SPICE</col>
       </row>
       <row>
-        <col id="0" translatable="yes">5</col>
-        <col id="1" translatable="yes">VMware</col>
+        <col id="0">5</col>
+        <col id="1">VMware</col>
       </row>
       <row>
-        <col id="0" translatable="yes">6</col>
-        <col id="1" translatable="yes">Citrix</col>
+        <col id="0">6</col>
+        <col id="1">Citrix</col>
       </row>
       <row>
-        <col id="0" translatable="yes">7</col>
-        <col id="1" translatable="yes">SSH</col>
+        <col id="0">7</col>
+        <col id="1">SSH</col>
       </row>
       <row>
-        <col id="0" translatable="yes">8</col>
-        <col id="1" translatable="yes">SFTP</col>
+        <col id="0">8</col>
+        <col id="1">SFTP</col>
       </row>
       <row>
-        <col id="0" translatable="yes">9</col>
-        <col id="1" translatable="yes">WEB</col>
+        <col id="0">9</col>
+        <col id="1">WEB</col>
       </row>
       <row>
-        <col id="0" translatable="yes">10</col>
-        <col id="1" translatable="yes">FS</col>
+        <col id="0">10</col>
+        <col id="1">FS</col>
       </row>
       <row>
-        <col id="0" translatable="yes">11</col>
-        <col id="1" translatable="yes">X2GO</col>
+        <col id="0">11</col>
+        <col id="1">X2GO</col>
       </row>
     </data>
   </object>
@@ -538,7 +538,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <object class="GtkHeaderBar" id="main_header">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="subtitle" translatable="yes">Выберите протокол из выпадающего списка:</property>
+        <property name="subtitle" translatable="yes">Select a protocol from the drop-down list:</property>
         <property name="spacing">10</property>
         <property name="show_close_button">True</property>
         <child>
@@ -561,8 +561,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="label">gtk-open</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Открыть ранее сохраненный файл с параметрами подключения
-и подключиться к нему</property>
+                        <property name="tooltip_text" translatable="yes">Open a saved file with connection parameters and connect to it</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="onOpenFile" swapped="no"/>
@@ -571,11 +570,11 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_import">
-                        <property name="label" translatable="yes">Импорт</property>
+                        <property name="label" translatable="yes">Import</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Открыть ранее сохраненный файл с параметрами подключения
-(для изменения и дальнейшего подключения или сохранения)</property>
+                        <property name="tooltip_text" translatable="yes">Open a saved file with connection parameters
+(for modification and further connection or saving)</property>
                         <property name="image">image3</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="onImportFile" swapped="no"/>
@@ -604,10 +603,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Настройка режима КИОСК
-(доступно при наличии прав root, пакета myconnector-kiosk
-и одного из DM - LightDM или SDDM)</property>
-                        <property name="label" translatable="yes">Режим КИОСК</property>
+                        <property name="tooltip_text" translatable="yes">Setting up a KIOSK mode
+(available if you have root rights, the myconnector-kiosk package
+and one of the DM - LightDM or SDDM)</property>
+                        <property name="label" translatable="yes">KIOSK mode</property>
                         <signal name="activate" handler="onKiosk" swapped="no"/>
                       </object>
                     </child>
@@ -622,7 +621,6 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Закрыть программу</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="onDeleteWindow" swapped="no"/>
@@ -645,7 +643,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_RDP">
-                        <property name="label" translatable="yes">RDP - Удаленный рабочий стол Windows</property>
+                        <property name="label" translatable="yes">RDP - Windows remote desktop</property>
                         <property name="name">RDP</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -656,7 +654,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_NX">
-                        <property name="label" translatable="yes">NX - Технология NX NoMachine</property>
+                        <property name="label" translatable="yes">NX - NoMachine technology</property>
                         <property name="name">NX</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -667,7 +665,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_VNC">
-                        <property name="label" translatable="yes">VNC - Подключение к рабочему столу ПК</property>
+                        <property name="label" translatable="yes">VNC - Virtual Network Computing</property>
                         <property name="name">VNC</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -678,7 +676,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_XDMCP">
-                        <property name="label" translatable="yes">XDMCP - Удаленное подключение к X-серверу</property>
+                        <property name="label" translatable="yes">XDMCP - Login session on an X server </property>
                         <property name="name">XDMCP</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -689,7 +687,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_SPICE">
-                        <property name="label" translatable="yes">SPICE - Простой протокол для независимых вычислительных сред</property>
+                        <property name="label" translatable="yes">SPICE - Simple Protocol for Independent Computing Environments</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="image">SPICE_image</property>
@@ -699,7 +697,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_VMWARE">
-                        <property name="label" translatable="yes">VMware - Подключение к виртуальной машине VMware</property>
+                        <property name="label" translatable="yes">VMware - Connecting to a virtual machine VMware</property>
                         <property name="name">VMWARE</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -710,7 +708,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_CITRIX">
-                        <property name="label" translatable="yes">Citrix - Подключение к серверу Citrix</property>
+                        <property name="label" translatable="yes">Citrix - Connecting to the server Citrix</property>
                         <property name="name">CITRIX</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -721,7 +719,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_X2GO">
-                        <property name="label" translatable="yes">X2GO - Удалённый доступ по протоколу NX</property>
+                        <property name="label" translatable="yes">X2GO - FreeNX technology</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="image">X2GO_image</property>
@@ -737,7 +735,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_SSH">
-                        <property name="label" translatable="yes">SSH - Безопасное подключение к командной строке</property>
+                        <property name="label" translatable="yes">SSH - Secure connection to the command line</property>
                         <property name="name">SSH</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -748,7 +746,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_SFTP">
-                        <property name="label" translatable="yes">SFTP - Защищенная передача файлов</property>
+                        <property name="label" translatable="yes">SFTP - Secure file transfer</property>
                         <property name="name">SFTP</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -765,7 +763,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_WEB">
-                        <property name="label" translatable="yes">WEB - Веб-браузер</property>
+                        <property name="label" translatable="yes">WEB - Connecting to a website</property>
                         <property name="name">WEB</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -776,7 +774,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_connect_FS">
-                        <property name="label" translatable="yes">FS - Подключение к файловому серверу</property>
+                        <property name="label" translatable="yes">FS - Connecting to a file server</property>
                         <property name="name">FS</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -803,7 +801,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkMenuItem" id="help_prog">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Wiki в Интернете</property>
+                        <property name="label" translatable="yes">Documentation</property>
+                        <property name="tooltip_text">https://docs.myconnector.ru</property>
                         <signal name="activate" handler="onWiki" swapped="no"/>
                       </object>
                     </child>
@@ -811,8 +810,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkMenuItem" id="bugs">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Сообщить об ошибке</property>
-                        <property name="use_underline">True</property>
+                        <property name="label" translatable="yes">Report an bug</property>
+                        <property name="tooltip_text">http://bugs.myconnector.ru</property>
                         <signal name="activate" handler="onBugs" swapped="no"/>
                       </object>
                     </child>
@@ -820,8 +819,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkMenuItem" id="developer">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Связь с разработчиком</property>
-                        <property name="use_underline">True</property>
+                        <property name="tooltip_text">mailto:ek@myconnector.ru</property>
+                        <property name="label" translatable="yes">Email us</property>
                         <signal name="activate" handler="onDeveloper" swapped="no"/>
                       </object>
                     </child>
@@ -902,7 +901,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label_RDP">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Удаленный рабочий стол Windows</property>
+                        <property name="label" translatable="yes">Windows remote desktop</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
                         </attributes>
@@ -917,7 +916,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label_default_RDP">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Изменяется в параметрах программы (Ctrl+P)</property>
+                        <property name="tooltip_text" translatable="yes">Changes in the program parameters (Ctrl+P)</property>
                         <attributes>
                           <attribute name="foreground" value="#88878a898585"/>
                         </attributes>
@@ -945,7 +944,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_RDP">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_RDP</property>
@@ -956,11 +955,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">RDP</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/RDP.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_RDP</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -974,14 +972,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_RDP">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_RDP" swapped="no"/>
                       </object>
                       <packing>
@@ -999,12 +996,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_RDP">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image1</property>
                     <property name="always_show_image">True</property>
@@ -1022,7 +1019,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_RDP">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">RDP</property>
+                <property name="label">RDP</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -1043,7 +1040,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_NX">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Технология NX NoMachine</property>
+                    <property name="label" translatable="yes">NoMachine technology</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -1064,7 +1061,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_NX">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_NX</property>
@@ -1075,11 +1072,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">NX</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/NX.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_NX</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1093,14 +1089,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_NX">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_NX" swapped="no"/>
                       </object>
                       <packing>
@@ -1118,12 +1113,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_NX">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image2</property>
                     <property name="always_show_image">True</property>
@@ -1144,7 +1139,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_NX">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">NX</property>
+                <property name="label">NX</property>
                 <property name="ellipsize">start</property>
                 <property name="width_chars">8</property>
                 <attributes>
@@ -1173,7 +1168,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label_VNC">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Подключение к рабочему столу ПК</property>
+                        <property name="label" translatable="yes">Virtual Network Computing</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
                         </attributes>
@@ -1188,7 +1183,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label_default_VNC">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Изменяется в параметрах программы (Ctrl+P)</property>
+                        <property name="tooltip_text" translatable="yes">Changes in the program parameters (Ctrl+P)</property>
                         <attributes>
                           <attribute name="foreground" value="#88878a898585"/>
                         </attributes>
@@ -1216,7 +1211,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_VNC">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_VNC</property>
@@ -1227,14 +1222,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">VNC</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/VNC.png</property>
-                            <property name="primary_icon_tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="primary_icon_tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_VNC</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1248,14 +1241,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_VNC">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_VNC" swapped="no"/>
                       </object>
                       <packing>
@@ -1274,12 +1266,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_VNC">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image</property>
                     <property name="always_show_image">True</property>
@@ -1300,7 +1292,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_VNC">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">VNC</property>
+                <property name="label">VNC</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -1322,7 +1314,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_XDMCP">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Удаленное подключение к X-серверу</property>
+                    <property name="label" translatable="yes">Login session on an X server</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -1343,7 +1335,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_XDMCP">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_XDMCP</property>
@@ -1354,11 +1346,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">XDMCP</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/XDMCP.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_XDMCP</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1372,14 +1363,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_XDMCP">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_XDMCP" swapped="no"/>
                       </object>
                       <packing>
@@ -1397,12 +1387,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_XDMCP">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image3</property>
                     <property name="always_show_image">True</property>
@@ -1423,7 +1413,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_XDMCP">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">XDMCP</property>
+                <property name="label">XDMCP</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -1445,7 +1435,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_SPICE">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Простой протокол для независимых вычислительных сред</property>
+                    <property name="label" translatable="yes">Simple Protocol for Independent Computing Environments</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -1466,7 +1456,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_SPICE">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_SPICE</property>
@@ -1477,11 +1467,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">SPICE</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/SPICE.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_SPICE</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1495,14 +1484,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_SPICE">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_SPICE" swapped="no"/>
                       </object>
                       <packing>
@@ -1520,12 +1508,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_SPICE">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image8</property>
                     <property name="always_show_image">True</property>
@@ -1546,7 +1534,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_SPICE">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">SPICE</property>
+                <property name="label">SPICE</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -1568,7 +1556,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_VMWARE">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Подключение к виртуальной машине VMware</property>
+                    <property name="label" translatable="yes">Connecting to a virtual machine VMware</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -1589,7 +1577,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_VMWARE">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_VMWARE</property>
@@ -1600,11 +1588,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">VMWARE</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/VMWARE.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_VMWARE</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1618,14 +1605,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_VMWARE">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_VMWARE" swapped="no"/>
                       </object>
                       <packing>
@@ -1643,12 +1629,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_VMWARE">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image4</property>
                     <property name="always_show_image">True</property>
@@ -1669,7 +1655,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_VMWARE">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">VMware</property>
+                <property name="label">VMware</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -1693,7 +1679,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_bottom">3</property>
-                    <property name="label" translatable="yes">Подключение к серверу Citrix</property>
+                    <property name="label" translatable="yes">Connecting to the server Citrix</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -1721,11 +1707,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">CITRIX</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - сервер
- - сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/CITRIX.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_CITRIX</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1738,14 +1723,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_CITRIX">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_CITRIX" swapped="no"/>
                       </object>
                       <packing>
@@ -1755,7 +1739,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_CITRIX_save">
-                        <property name="label" translatable="yes">Сохранить</property>
+                        <property name="label" translatable="yes">Save</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
@@ -1772,11 +1756,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkBox" id="box_citrix_group">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">end</property>
                         <child>
                           <object class="GtkLabel" id="label_citrix_group">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Группа: </property>
+                            <property name="margin_right">3</property>
+                            <property name="label" translatable="yes">Group</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1815,11 +1801,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkBox" id="box_citrix_name">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">end</property>
                         <child>
                           <object class="GtkLabel" id="label_citrix_name">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Название: </property>
+                            <property name="margin_right">3</property>
+                            <property name="label" translatable="yes">Name</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1833,8 +1821,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="height_request">34</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Введите имя для сохраняемого подключения</property>
-                            <property name="placeholder_text" translatable="yes">Пример, MyServer</property>
+                            <property name="tooltip_text" translatable="yes">Enter a name for the saved connection</property>
+                            <property name="placeholder_text" translatable="yes">Example: MyServer</property>
                             <signal name="activate" handler="onWCSave" object="entry_serv_CITRIX" swapped="no"/>
                             <signal name="changed" handler="inputName" object="button_CITRIX_save" swapped="no"/>
                           </object>
@@ -1862,14 +1850,15 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_CITRIX">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="margin_top">2</property>
+                    <property name="margin_bottom">5</property>
                     <property name="image">preferences_image5</property>
                     <property name="always_show_image">True</property>
                     <signal name="clicked" handler="onCitrixPref" swapped="no"/>
@@ -1889,7 +1878,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_CITRIX">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Citrix</property>
+                <property name="label">Citrix</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -1911,7 +1900,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_SSH">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Безопасное подключение к командной строке</property>
+                    <property name="label" translatable="yes">Secure connection to the command line</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -1932,7 +1921,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_SSH">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_SSH</property>
@@ -1943,11 +1932,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">SSH</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - [имя@]сервер
- - [имя@]сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+[username@]server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/SSH.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_SSH</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -1961,14 +1949,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_SSH">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_SSH" swapped="no"/>
                       </object>
                       <packing>
@@ -1986,12 +1973,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_SSH">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image6</property>
                     <property name="always_show_image">True</property>
@@ -2012,7 +1999,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_SSH">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">SSH</property>
+                <property name="label">SSH</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -2034,7 +2021,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_SFTP">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Защищенная передача файлов</property>
+                    <property name="label" translatable="yes">Secure file transfer</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -2055,7 +2042,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_SFTP">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_SFTP</property>
@@ -2066,11 +2053,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">SFTP</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - [имя@]сервер
- - [имя@]сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+[username@]server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/SFTP.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_SFTP</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -2084,14 +2070,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_SFTP">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_SFTP" swapped="no"/>
                       </object>
                       <packing>
@@ -2109,12 +2094,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_SFTP">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image7</property>
                     <property name="always_show_image">True</property>
@@ -2135,7 +2120,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_SFTP">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">SFTP</property>
+                <property name="label">SFTP</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -2157,7 +2142,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Веб-браузер</property>
+                    <property name="label" translatable="yes">Connecting to a website</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -2184,10 +2169,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                           <object class="GtkEntry" id="entry_serv_WEB">
                             <property name="name">WEB</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Необходим следующий формат:
-[Протокол://] Адрес [:Порт]</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+[protocol://]address[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/WEB.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_WEB</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -2200,13 +2185,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_WEB">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
-                        <property name="use_underline">True</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_WEB" swapped="no"/>
                       </object>
                       <packing>
@@ -2218,11 +2202,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkBox" id="box_web_group">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">end</property>
                         <child>
                           <object class="GtkLabel" id="label_web_group">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Группа: </property>
+                            <property name="margin_right">3</property>
+                            <property name="label" translatable="yes">Group</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -2259,7 +2245,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_WEB_save">
-                        <property name="label" translatable="yes">Сохранить</property>
+                        <property name="label" translatable="yes">Save</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
@@ -2276,11 +2262,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkBox" id="box_web_name">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">end</property>
                         <child>
                           <object class="GtkLabel" id="label_web_name">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Название: </property>
+                            <property name="margin_right">3</property>
+                            <property name="label" translatable="yes">Name</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -2294,8 +2282,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="height_request">34</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Введите имя для сохраняемого подключения</property>
-                            <property name="placeholder_text" translatable="yes">Пример, MyServer</property>
+                            <property name="tooltip_text" translatable="yes">Enter a name for the saved connection</property>
+                            <property name="placeholder_text" translatable="yes">Example: MyServer</property>
                             <signal name="activate" handler="onWCSave" object="entry_serv_WEB" swapped="no"/>
                             <signal name="changed" handler="inputName" object="button_WEB_save" swapped="no"/>
                           </object>
@@ -2330,7 +2318,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="label_WEB">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">WEB</property>
+                <property name="label">WEB</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -2358,7 +2346,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label_FS">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Подключение к файловому серверу</property>
+                        <property name="label" translatable="yes">Connecting to a file server</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
                         </attributes>
@@ -2373,7 +2361,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label_default_FS">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Изменяется в параметрах программы (Ctrl+P)</property>
+                        <property name="tooltip_text" translatable="yes">Changes in the program parameters (Ctrl+P)</property>
                         <attributes>
                           <attribute name="foreground" value="#88878a898585"/>
                         </attributes>
@@ -2401,7 +2389,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_FS">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_FS</property>
@@ -2412,10 +2400,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">FS</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - протокол://[имя_пользователя@]сервер[:порт]/[папка]</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+protocol://[username@]server[:port]/[folder]</property>
                             <property name="primary_icon_pixbuf">../icons/FS.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_FS</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -2429,14 +2417,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_FS">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_FS" swapped="no"/>
                       </object>
                       <packing>
@@ -2454,12 +2441,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_FS">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_image9</property>
                     <property name="always_show_image">True</property>
@@ -2480,7 +2467,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_FS">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">FS</property>
+                <property name="label">FS</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -2502,7 +2489,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_X2GO">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Удалённый доступ по протоколу NX</property>
+                    <property name="label" translatable="yes">FreeNX technology</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
                     </attributes>
@@ -2523,7 +2510,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="combo_serv_X2GO">
-                        <property name="width_request">250</property>
+                        <property name="width_request">270</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="model">liststore_X2GO</property>
@@ -2534,11 +2521,10 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="name">X2GO</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Поддерживается следующий формат:
- - [имя@]сервер
- - [имя@]сервер:порт</property>
+                            <property name="tooltip_text" translatable="yes">The following format is required:
+[username@]server[:port]</property>
                             <property name="primary_icon_pixbuf">../icons/X2GO.png</property>
-                            <property name="placeholder_text" translatable="yes">Введите адрес сервера...</property>
+                            <property name="placeholder_text" translatable="yes">Enter the server address...</property>
                             <property name="completion">completion_X2GO</property>
                             <signal name="activate" handler="onButtonConnect" swapped="no"/>
                           </object>
@@ -2552,14 +2538,13 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     </child>
                     <child>
                       <object class="GtkButton" id="button_connect_X2GO">
-                        <property name="label" translatable="yes">_Подключение</property>
+                        <property name="label" translatable="yes">Connect</property>
                         <property name="width_request">130</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Быстрое подключение с настройками по умолчанию</property>
+                        <property name="tooltip_text" translatable="yes">Fast connection with default settings</property>
                         <property name="halign">start</property>
-                        <property name="use_underline">True</property>
                         <signal name="clicked" handler="onButtonConnect" object="entry_serv_X2GO" swapped="no"/>
                       </object>
                       <packing>
@@ -2577,12 +2562,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_pref_X2GO">
-                    <property name="label" translatable="yes">Дополнительные параметры</property>
+                    <property name="label" translatable="yes">Additional parameters</property>
                     <property name="width_request">230</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Открыть окно дополнительных параметров подключения</property>
+                    <property name="tooltip_text" translatable="yes">Open the Advanced connection parameters window</property>
                     <property name="halign">center</property>
                     <property name="image">preferences_imageX2GO</property>
                     <property name="always_show_image">True</property>
@@ -2603,7 +2588,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkLabel" id="list_X2GO">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">X2GO</property>
+                <property name="label">X2GO</property>
                 <property name="width_chars">8</property>
                 <attributes>
                   <attribute name="foreground" value="#2e2e34343636"/>
@@ -2648,7 +2633,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <child>
                       <object class="GtkTreeViewColumn" id="column_name">
                         <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Название</property>
+                        <property name="title" translatable="yes">Name</property>
                         <property name="clickable">True</property>
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">0</property>
@@ -2663,7 +2648,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <child>
                       <object class="GtkTreeViewColumn" id="column_group">
                         <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Группа</property>
+                        <property name="title" translatable="yes">Group</property>
                         <property name="clickable">True</property>
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">1</property>
@@ -2690,7 +2675,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <child>
                       <object class="GtkTreeViewColumn" id="column_protocol">
                         <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Протокол</property>
+                        <property name="title" translatable="yes">Protocol</property>
                         <property name="clickable">True</property>
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">2</property>
@@ -2705,7 +2690,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <child>
                       <object class="GtkTreeViewColumn" id="column_host">
                         <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Адрес сервера</property>
+                        <property name="title" translatable="yes">Server</property>
                         <property name="clickable">True</property>
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">3</property>
@@ -2741,7 +2726,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="primary_icon_name">edit-find-symbolic</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="primary_icon_sensitive">False</property>
-                    <property name="placeholder_text" translatable="yes">Введите поисковой запрос...</property>
+                    <property name="placeholder_text" translatable="yes">Enter a search query...</property>
                     <signal name="search-changed" handler="onSearchConnect" swapped="no"/>
                   </object>
                   <packing>
@@ -2752,7 +2737,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_search_reset">
-                    <property name="label" translatable="yes">Сброс фильтра</property>
+                    <property name="label" translatable="yes">Reset the filter</property>
                     <property name="width_request">120</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -2817,7 +2802,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="can_focus">False</property>
     <child>
       <object class="GtkImageMenuItem" id="tray_open">
-        <property name="label" translatable="yes">Главное окно программы</property>
+        <property name="label" translatable="yes">Main window</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="image">tray_image1</property>
@@ -2827,7 +2812,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </child>
     <child>
       <object class="GtkImageMenuItem" id="tray_select">
-        <property name="label" translatable="yes">Подключиться</property>
+        <property name="label" translatable="yes">Connect to</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="image">tray_select_image</property>
@@ -2842,7 +2827,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     </child>
     <child>
       <object class="GtkImageMenuItem" id="tray_param">
-        <property name="label" translatable="yes">Параметры</property>
+        <property name="label" translatable="yes">Preferences</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="image">image_param_tray</property>

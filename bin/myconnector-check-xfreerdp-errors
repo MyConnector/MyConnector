@@ -19,15 +19,29 @@
 from subprocess import check_output
 from os import system
 from sys import exit
+import gettext
+import locale
+
+APP         = "myconnector"
+MO_FOLDER   = "/usr/share/locale"
+
+locale.bindtextdomain(  APP, MO_FOLDER )
+gettext.bindtextdomain( APP, MO_FOLDER )
+gettext.textdomain( APP )
+_ = gettext.gettext
 
 def main():
     LOG  = "~/.myconnector/logs/all.log"
-    help = check_output( "xfreerdp --help | tail -n10 2>/dev/null; exit 0", shell=True, universal_newlines=True ).strip()
-    log  = check_output( "sleep 3; tail -n10 %s 2>/dev/null; exit 0" % LOG, shell=True, universal_newlines=True ).strip()
+    help = check_output( "xfreerdp --help | tail -n10 2>/dev/null; exit 0",
+                         shell=True, universal_newlines=True ).strip()
+    log  = check_output( "sleep 3; tail -n10 %s 2>/dev/null; exit 0" % LOG,
+                         shell=True, universal_newlines=True ).strip()
     if help == log:
-        system( "zenity --notification --window-icon=myconnector --text='Ошибка FreeRDP\nПроверьте правильность команды подключения.\nПодробнее в %s'" % LOG )
+        system( "zenity --notification --window-icon=myconnector --text='%s %s'" %
+              ( _("FreeRDP error.\nCheck that the connection command is correct.\nRead more in"), LOG ) )
     if "AUTHENTICATION_FAILED" in log:
-        system( "zenity --notification --window-icon=myconnector --text='FreeRDP\nНеверное имя пользователя или пароль.'" )
+        system( "zenity --notification --window-icon=myconnector --text='FreeRDP\n%s'" %
+                _("Invalid username or password.") )
     exit(0)
 
 if __name__ == "__main__":

@@ -1,0 +1,1015 @@
+# Russian translations for MyConnector package.
+# Copyright (C) 2021 THE MYCONNECTOR'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the MyConnector package.
+# Evgeniy Korneechev <ek@myconnector.ru>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-14 14:59+0300\n"
+"PO-Revision-Date: 2021-01-14 15:00+0300\n"
+"Last-Translator: Evgeniy Korneechev <ek@myconnector.ru>\n"
+"Language-Team: Evgeniy Korneechev <ek@myconnector.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 16bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid " - quality"
+msgstr " - качество"
+
+msgid "'knock' needed!"
+msgstr "Необходим клиент 'knock'"
+
+msgid "256 colors"
+msgstr "256 цветов"
+
+msgid "256 colors (8 bit)"
+msgstr "256 цветов (8 bit)"
+
+msgid ""
+"A frontend program for remote administration of computers with various OS. "
+"Most common connection types are supported."
+msgstr ""
+"Программа-фронтэнд для удаленного администрирования компьютеров с различными "
+"операционными системами. Поддерживается большинство распространенных типов "
+"подключения."
+
+msgid "Actual"
+msgstr "Актуальная"
+
+msgid "Added a new connection"
+msgstr "Добавлено новое подключение"
+
+msgid "Additional parameters"
+msgstr "Дополнительные параметры"
+
+msgid "Advanced"
+msgstr "Расширенные"
+
+msgid "All files"
+msgstr "Все файлы"
+
+msgid "All your saved connections will be deleted!!!"
+msgstr "Все сохраненные подключения будут удалены!!!"
+
+msgid "Authentication type:"
+msgstr "Тип аутентификации:"
+
+msgid "Authentication..."
+msgstr "Аутентификация..."
+
+msgid "Autofill data is cleared."
+msgstr "Данные автозаполнения очищены."
+
+msgid "Autologin"
+msgstr "Автовход"
+
+msgid "Black and white"
+msgstr "Оттенки серого"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Changes in the program parameters (Ctrl+P)"
+msgstr "Изменяется в параметрах программы (Ctrl+P"
+
+msgid "Charset"
+msgstr "Кодировка"
+
+msgid "Check for new versions at startup"
+msgstr "Проверять при запуске наличие новых версий"
+
+msgid "Choose a folder"
+msgstr "Выберите папку"
+
+msgid "Citrix - Connecting to the server Citrix"
+msgstr "Подключение к серверу Citrix"
+
+msgid "Clear autofill data"
+msgstr "Очистить данные автозаполнения"
+
+msgid "Clear the list of saved connections"
+msgstr "Очистить список сохраненных подключений"
+
+msgid "Client"
+msgstr "Клиентское разрешение"
+
+msgid "Clipboard"
+msgstr "Буфер обмена"
+
+msgid "Color depth"
+msgstr "Глубина цвета"
+
+msgid "Common"
+msgstr "Общие"
+
+msgid "Compression"
+msgstr "Сжатие"
+
+msgid "Compression level"
+msgstr "Уровень сжатия"
+
+msgid "Config contains errors."
+msgstr "Конфигурационный файл содержит ошибки."
+
+msgid "Config does not exists or contains errors"
+msgstr "Конфигурационный файл не существует или содержит ошибки"
+
+msgid "Config error"
+msgstr "Ошибка в конфигурационном файле"
+
+msgid "Confirm clearing the autofill data"
+msgstr "Подтвердите очистку данных автозаполнения"
+
+msgid "Confirm clearing the connection list"
+msgstr "Подтвердите очистку списка подключений"
+
+msgid "Confirm resetting the program parameters to their default values."
+msgstr "Подтвердите сброс параметров программы к значениям по умолчанию"
+
+msgid "Connect"
+msgstr "Подключение"
+
+msgid "Connect to"
+msgstr "Подключиться к"
+
+msgid "Connecting from a file"
+msgstr "Подключение из файла"
+
+msgid "Connecting to"
+msgstr "Подключение к"
+
+msgid "Connecting to a file server"
+msgstr "Подключение к файловому серверу"
+
+msgid "Connecting to a virtual machine VMware"
+msgstr "Подключение к виртуальной машине VMware"
+
+msgid "Connecting to a website"
+msgstr "Открыть ВЕБ-ресурс"
+
+msgid "Connecting to the server"
+msgstr "Подключение к серверу"
+
+msgid "Connecting to the server Citrix"
+msgstr "Подключение к серверу Citrix"
+
+msgid "Connection deleted"
+msgstr "Подключение удалено"
+
+msgid "Connection files of the old version of the program were detected"
+msgstr "Обнаружены файлы подключений старой версии программы"
+
+msgid "Connection name"
+msgstr "Имя подключения"
+
+msgid "Console"
+msgstr "Консоль администрирования"
+
+msgid ""
+"Converter from .ctor (outdated format Connector) to new .myc (MyConnector)"
+msgstr ""
+"Конвертер файлов подключений .ctor (устаревший формат Connector) в новый - .myc (MyConnector)"
+
+msgid "Copy parameters to a new connection"
+msgstr "Копировать параметры в новое подключение"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Delete this connection:"
+msgstr "Удалить данное подключение"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "Desktop composition"
+msgstr "Композиция рабочего стола"
+
+msgid "Disable NLA protocol security"
+msgstr "Отключить проверку на уровне сети (NLA)"
+
+msgid "Disable clipboard"
+msgstr "Отключить буфер обмена"
+
+msgid "Disable encryption"
+msgstr "Отключить шифрование"
+
+msgid "Disable the Ctrl key in the webkiosk"
+msgstr "Отключить клавишу Ctrl в WEB-киоске"
+
+msgid "Disabled"
+msgstr "Отключен"
+
+msgid "Disconnect after first session"
+msgstr "Отключаться после одного сеанса"
+
+msgid "Do not specify parameters for starting the GUI"
+msgstr "Не указывайте опций для запуска графического интерфейса"
+
+msgid "Documentation"
+msgstr "Документация"
+
+msgid "Documents"
+msgstr "Документы"
+
+msgid "Domain"
+msgstr "Домен"
+
+msgid "Done, the changes will take effect after the restart..."
+msgstr "Выполнено, изменения вступят в силу после перезапуска..."
+
+msgid "Downloads"
+msgstr "Загрузки"
+
+msgid "Email us"
+msgstr "Связь с разрабочиком"
+
+msgid "Enable logging (need to restart the program)"
+msgstr "Вести журнал работы программы (требуется перезапуск программы)"
+
+msgid "Enter a name for the saved connection"
+msgstr "Введите имя для сохраняемого подключения"
+
+msgid "Enter a search query..."
+msgstr "Введите поисковой запрос"
+
+msgid "Enter the command to connect file resources (default: from MIME)"
+msgstr ""
+"Введите команду для подключения файловых ресурсов\n"
+"(по умолчанию берется из списка MIME-типов пользователя)"
+
+msgid "Enter the connection protocol"
+msgstr "Введите протокол подключения"
+
+msgid "Enter the server address..."
+msgstr "Введите адрес сервера..."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Error in the file"
+msgstr "Ошибка в файле"
+
+msgid "Example: 7000 8000:udp 9000:tcp"
+msgstr "Пример: 7000 8000:udp 9000:tcp"
+
+msgid "Example: 800x600"
+msgstr "Пример: 800x600"
+
+msgid "Example: MyServer"
+msgstr "Пример: МойСервер"
+
+msgid "FS - Connecting to a file server"
+msgstr "FS - Подключение к файловому серверу"
+
+msgid "Fast connection with default settings"
+msgstr "Быстрое подключение с настройками по умолчанию"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "File for connecting..."
+msgstr "Файл для подключения..."
+
+msgid "Folder"
+msgstr "Папка"
+
+msgid "Folder redirection:"
+msgstr "Перенаправление папок:"
+
+msgid "For connection"
+msgstr "Для подключения"
+
+msgid "FreeNX technology"
+msgstr "Технология FreeNX"
+
+msgid ""
+"FreeRDP error.\n"
+"Check that the connection command is correct.\n"
+"Read more in"
+msgstr ""
+"Ошибка FreeRDP.\n"
+"Проверьте правильность команды подключения.\n"
+"Подробнее в"
+
+msgid "Fullscreen"
+msgstr "Полноэкранный режим"
+
+msgid "Fullscreen (Ctrl+Alt+Enter)"
+msgstr "Полноэкранный режим (Ctrl+Alt+Enter)"
+
+msgid "Glyph cache"
+msgstr "Кэш glyph"
+
+msgid "Good"
+msgstr "Хорошее"
+
+msgid "Group"
+msgstr "Группа"
+
+msgid "Hardware rendering"
+msgstr "Аппаратный видеорендеринг"
+
+msgid "High"
+msgstr "Высокое"
+
+msgid "Identity file"
+msgstr "Файл идентификации"
+
+msgid "Ignore certificate"
+msgstr "Игнорировать сертификат"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Import error"
+msgstr "Ошибка импорта"
+
+msgid "Import from file"
+msgstr "Импорт из файла"
+
+msgid "Imported the file"
+msgstr "Импортирован файлы"
+
+msgid "Importing the connection configuration file"
+msgstr "Импорт конфигурационного файла подключения"
+
+msgid "Installed"
+msgstr "Текущая"
+
+msgid "Invalid username or password."
+msgstr "Неверное имя пользователя или пароль."
+
+msgid "Is this Connector's file"
+msgstr "Это файла формата Connector"
+
+msgid "KIOSK config file"
+msgstr "Конфигурационный файл режима КИОСК"
+
+msgid "KIOSK mode"
+msgstr "Режим КИОСК"
+
+msgid "KIOSK mode control"
+msgstr "Управление режимом КИОСКа"
+
+msgid "KIOSK mode disabled!"
+msgstr "Режим КИОСКа отключен!"
+
+msgid "KIOSK standalone mode enabled!"
+msgstr "Включен запуск программы MyConnector в режим КИОСКа!"
+
+msgid "KIOSK the filemode enabled! File"
+msgstr "Включен запуск подключения из файла в режим КИОСКа! Файл"
+
+msgid "LOGGING WILL BE DISABLED AFTER THE PROGRAM IS RESTARTED!"
+msgstr "ВЕДЕНИЕ ЖУРНАЛА ПОСЛЕ ПЕРЕЗАПУСКА ПРОГРАММЫ БУДЕТ ОТКЛЮЧЕНО!"
+
+msgid "Launch Command"
+msgstr "Команда запуска"
+
+msgid "Local"
+msgstr "Локальный"
+
+msgid "Local folder"
+msgstr "Локальная папка"
+
+msgid "Log"
+msgstr "Лог"
+
+msgid "Logging is disabled. Debugging is not possible!"
+msgstr "Ведение журнала отключено. Режим отладки не доступен!"
+
+msgid "Login session on an X server"
+msgstr "Удаленное подключение к X-серверу"
+
+msgid "Low"
+msgstr "Низкое"
+
+msgid "Main window"
+msgstr "Главное окно программы"
+
+msgid "Manually"
+msgstr "Вручную"
+
+msgid "Medium"
+msgstr "Среднее"
+
+msgid "Menu animations"
+msgstr "Анимация меню"
+
+msgid "MyConnector Preferences"
+msgstr "Настройки MyConnector"
+
+msgid "NX - NoMachine technology"
+msgstr "NX - Технология NX NoMachine"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "No connection file specified!"
+msgstr "Файл для подключения в режиме КИОСКа не указан!"
+
+msgid "NoMachine technology"
+msgstr "Технология NX NoMachine"
+
+msgid ""
+"Open a saved file with connection parameters\n"
+"(for modification and further connection or saving)"
+msgstr ""
+"Открыть ранее сохраненный файл с параметрами подключения\n"
+"(для изменения и дальнейшего подключения или сохранения)"
+
+msgid "Open a saved file with connection parameters and connect to it"
+msgstr "Открыть ранее сохраненный файл с параметрами подключения и подключиться к нему"
+
+msgid "Open as Text"
+msgstr "Открыть как текст"
+
+msgid "Open the Advanced connection parameters window"
+msgstr "Открыть окно дополнительных параметров подключения"
+
+msgid "Open the connection file in a text editor"
+msgstr "Открыть файл подключения в текстовом редакторе"
+
+msgid "Open the file"
+msgstr "Открыт файл"
+
+msgid "Opening a web resource"
+msgstr "Открытие ВЕБ-ресурса"
+
+msgid "Opening the connection configuration file"
+msgstr "Открытие конфигурационного файла подключения"
+
+msgid "Opening the program settings"
+msgstr "Открытие параметров программы"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Or select from the list in the advanced options"
+msgstr "Или выберите из списка в дополнительных параметрах"
+
+msgid "Other"
+msgstr "Прочее"
+
+msgid "Outdated format file! Use 'ctor2myc' or 'Import' from menu."
+msgstr "Устаревший формат файла! Используйте ковертер 'ctor2myc' или Импорт из меню"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Password storage is not available for FreeRDP"
+msgstr "Хранение пароля не доступно для FreeRDP"
+
+msgid "Performance"
+msgstr "Производительность"
+
+msgid "Permission denied!"
+msgstr "Доступ запрещен!"
+
+msgid "Preferences"
+msgstr "Параметры"
+
+msgid "Press F8 for additional parameters"
+msgstr "Нажмите F8 для дополнительных параметров"
+
+msgid "Printers"
+msgstr "Принтеры"
+
+msgid "Program"
+msgstr "Программа"
+
+msgid "Program run"
+msgstr "Запуск программы"
+
+msgid "Protocol"
+msgstr "Протокол"
+
+msgid "Public key"
+msgstr "Публичный ключ"
+
+msgid "Quality"
+msgstr "Качество"
+
+msgid "RDP - Windows remote desktop"
+msgstr "RDP - Удаленный рабочий стол Windows"
+
+msgid "Read more: xfreerdp /help"
+msgstr "Подробнее: xfreerdp /help"
+
+msgid "Redirect local microphone"
+msgstr "Перенаправление микрофона"
+
+msgid "Remote"
+msgstr "Удаленный"
+
+msgid "Remote Desktop Gateway:"
+msgstr "Шлюз удаленных рабочих столов:"
+
+msgid "Remote sound"
+msgstr "Удаленный звук"
+
+msgid "Remove a connection from the list"
+msgstr "Удалить подключение из списка"
+
+msgid "Report an bug"
+msgstr "Сообщить об ошибке"
+
+msgid "Reset"
+msgstr "Сбросить"
+
+msgid "Reset the filter"
+msgstr "Сбросить фильтр"
+
+msgid "Reset the program"
+msgstr "Сброс программы"
+
+msgid "Resize guest to match window size"
+msgstr "Изменение размера под размер окна"
+
+msgid "Resolution"
+msgstr "Разрешение экрана"
+
+msgid "Root is not allowed to use the mode!"
+msgstr "Пользователю 'root' запрещено использовать режим КИОСКа!"
+
+msgid "SFTP - Secure file transfer"
+msgstr "SFTP - Защищенная передача файлов"
+
+msgid "SPICE - Simple Protocol for Independent Computing Environments"
+msgstr "SPICE - Простой протокол для независимых вычислительных сред"
+
+msgid "SSH - Secure connection to the command line"
+msgstr "SSH - Безопасное подключение к командной строке"
+
+msgid "SSH port"
+msgstr "Порт SSH"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save a shortcut to this connection"
+msgstr "Сохранить ярлык данного подключения"
+
+msgid "Save as default settings"
+msgstr "Сохранить как параметры по умолчанию"
+
+msgid "Save password"
+msgstr "Хранить пароль в связке ключей"
+
+msgid "Save the shortcut"
+msgstr "Сохранить ярлык"
+
+msgid "Saved in"
+msgstr "Сохранен в"
+
+msgid "Saving a shortcut to run directly from the system"
+msgstr "Сохранение ярлыка для запуска напрямую из системы"
+
+msgid "Secure connection to the command line"
+msgstr "Безопасное подключение к командной строке"
+
+msgid "Secure file transfer"
+msgstr "Защищенная передача файлов"
+
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Защищенный WebDAV (HTTPS)"
+
+msgid "See also"
+msgstr "См. также"
+
+msgid "Select a protocol from the drop-down list:"
+msgstr "Выберите протокол из выпадающего списка:"
+
+msgid "Select your default applications"
+msgstr "Выбор программ для подключения"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "Server CA certificate"
+msgstr "Сертификат сервера ЦС"
+
+msgid "Server not specified!"
+msgstr "Адрес сервера не указан!"
+
+msgid "Session (or command)"
+msgstr "Сессия (или команда)"
+
+msgid ""
+"Setting up a KIOSK mode\n"
+"(available if you have root rights, the myconnector-kiosk package\n"
+"and one of the DM - LightDM or SDDM)"
+msgstr ""
+"Настройка режима КИОСК\n"
+"(доступно при наличии прав root, пакета myconnector-kiosk\n"
+"и одного из DM - LightDM или SDDM - LightDM or SDDM)"
+
+msgid "Share folder"
+msgstr "Общая папка"
+
+msgid "Shared resources"
+msgstr "Общие ресурсы"
+
+msgid "Should I import them into this version?"
+msgstr "Импортировать их в данную версию?"
+
+msgid "Show cursor"
+msgstr "Показывать курсор"
+
+msgid "Simple Protocol for Independent Computing Environments"
+msgstr "Простой протокол для независимых вычислительных сред"
+
+msgid "Smartcards"
+msgstr "Смарткарты"
+
+msgid "Smooth fonts"
+msgstr "Сглаживание шрифтов"
+
+msgid "Sorting the list of connections"
+msgstr "Сортировка списка подключений"
+
+msgid "Sound"
+msgstr "Звук"
+
+msgid "Span screen over multiple monitors"
+msgstr "Расширить экран на все мониторы"
+
+msgid "Specify a name for the connection!"
+msgstr "Укажите имя подключения!"
+
+msgid "Starting a saved connection"
+msgstr "Запуск сохраненного подключения"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Swap with the CapsLock key"
+msgstr "Ее функцию в сеансе будет выполнять клавиша CapsLock"
+
+msgid "Text editor for connections"
+msgstr "Текстовый редактор для подключений"
+
+msgid "The 'pyhoca-cli' client for X2GO is not installed!"
+msgstr "Клиент 'pyhoca-cli' для X2GO не установлен!"
+
+msgid ""
+"The FS connection configuration file is corrupted - the type is missing!"
+msgstr ""
+"Конфигурационный файл FS-подключения поврежден - отсутствует тип!"
+
+msgid "The MyConnector is forcibly closed (from cmdline)."
+msgstr "MyConnector закрыт принудительно (из командной строки)."
+
+msgid "The configuration file is corrupted, a new one has been created!"
+msgstr "Конфигурационный файл поврежден, создан новый!"
+
+msgid "The connection"
+msgstr "Подключение"
+
+msgid "The connection configuration file is corrupted"
+msgstr "Конфигурационный файл подключения поврежден"
+
+msgid "The connection is saved"
+msgstr "Подключение сохранено"
+
+msgid ""
+"The connection was canceled by the user or the password was not specified!"
+msgstr ""
+"Подключение отменено пользователем или не был указан пароль!"
+
+msgid "The connection was changed"
+msgstr "Подключение изменено"
+
+msgid "The default protocol"
+msgstr "Протокол по умолчанию"
+
+msgid "The default settings are set."
+msgstr "Установлены настройки по умолчанию."
+
+msgid "The default settings are saved."
+msgstr "Настройки по умолчанию сохранены."
+
+msgid "The file is not selected!"
+msgstr "Файл не выбран!"
+
+msgid "The file opens"
+msgstr "Открывается файл"
+
+msgid ""
+"The following format is required:\n"
+"[protocol://]address[:port]"
+msgstr ""
+"Требуется следующий формат:\n"
+"[протокол://]адрес[:порт]"
+
+msgid ""
+"The following format is required:\n"
+"[username@]server[:port]"
+msgstr ""
+"Требуется следующий формат:\n"
+"[имя_пользователя@]сервер[:порт]"
+
+msgid ""
+"The following format is required:\n"
+"protocol://[username@]server[:port]/[folder]"
+msgstr ""
+"Требуется следующий формат:\n"
+"протокол://[имя_пользователя@]сервер[:порт]/[папка]"
+
+msgid ""
+"The following format is required:\n"
+"server[:port]"
+msgstr ""
+"Требуется следующий формат:\n"
+"сервер[:порт]"
+
+msgid ""
+"The list of servers (servers.db) was not found, an empty one was created."
+msgstr ""
+"Список серверов (servers.db) не найден, создан пустой."
+
+msgid "The mode KIOSK unavailable, package is not installed."
+msgstr "Режим КИОСКа не доступен, пакет не установлен."
+
+msgid "The path run"
+msgstr "Путь запуска"
+
+msgid "The preferences are saved in a file"
+msgstr "Параметры программы сохранены в файл"
+
+msgid "The program is reset to the default value."
+msgstr "Параметры программы сброшены к значения по умолчанию."
+
+msgid "The program is running in debug mode."
+msgstr "Программа запущена в режиме отладки."
+
+msgid "The same connection name is already in use!"
+msgstr "Указанное имя подключения уже используется!"
+
+msgid "The standalone mode (run MyConnector)"
+msgstr "Запуск программы MyConnector"
+
+msgid "The text editor"
+msgstr "Текстовый редактор"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "To change the connection parameters"
+msgstr "Изменить параметры подключения"
+
+msgid "To reset the program"
+msgstr "Выполнить сброс параметров программы"
+
+msgid "Tray icon"
+msgstr "Отображать иконку приложения в области уведомлений (трей)"
+
+msgid "Try"
+msgstr "Попробуйте"
+
+msgid "Turn off automatic reconnection"
+msgstr "Отключить автоматическое переподключение"
+
+msgid "Type (protocol)"
+msgstr "Тип (протокол)"
+
+msgid "URL for webkiosk not specified!"
+msgstr "URL для ВЕБ-КИОСКа не указан!"
+
+msgid "USB storages"
+msgstr "USB накопители"
+
+msgid "Unsupported OS! Need ALT!"
+msgstr "Неподдерживаемая ОС! Необходим Альт!"
+
+msgid ""
+"Unsupported OS!\n"
+"Some features of the program may not work!\n"
+"Learn more about supported OS"
+msgstr ""
+"Ваша операционная система не поддерживается.\n"
+"Некоторые функции программы могут не работать!\n"
+"Подробнее о поддерживаемых ОС"
+
+msgid "Unsupported file type!"
+msgstr "Неподдерживаемый тип файла!"
+
+msgid "Unsupported protocol"
+msgstr "Неподдерживаемый протокол"
+
+msgid "Usage"
+msgstr "Использование"
+
+msgid "Use TLS encryption"
+msgstr "Использовать TLS шифрование"
+
+msgid "Use X2Go printing"
+msgstr "Использовать печать X2Go"
+
+msgid "Use local cursor"
+msgstr "Использовать локальный курсор"
+
+msgid "Use multiple monitors"
+msgstr "Использовать несколько мониторов"
+
+msgid "Use the screen size"
+msgstr "Использовать размер экрана"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "User parameters"
+msgstr "Параметры пользователя"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "View only"
+msgstr "Только просмотр"
+
+msgid "VMware - Connecting to a virtual machine VMware"
+msgstr "VMware - Подключение к виртуальной машине VMware"
+
+msgid "VNC - Virtual Network Computing"
+msgstr "VNC - Подключение к рабочему столу ПК"
+
+msgid "Virtual Network Computing"
+msgstr "Подключение к рабочему столу ПК"
+
+msgid "WEB - Connecting to a website"
+msgstr "WEB - Открыть ВЕБ-ресурс"
+
+msgid "WEB-KIOSK enabled!"
+msgstr "Режим ВЕБ-КИОСКа включен!"
+
+msgid "Wallpapers"
+msgstr "Обои рабочего стола"
+
+msgid "Window drag"
+msgstr "Перетаскивание окна"
+
+msgid "Window size"
+msgstr "Размер окна"
+
+msgid "Windows remote desktop"
+msgstr "Удаленный рабочий стол Windows"
+
+msgid "Windows Resource"
+msgstr "Ресурс Windows"
+
+msgid "Working area"
+msgstr "Рабочая область"
+
+msgid "X2GO - FreeNX technology"
+msgstr "X2GO - Технология FreeNX"
+
+msgid "XDMCP - Login session on an X server "
+msgstr "XDMCP - Удаленное подключение к X-серверу"
+
+msgid "You will lose your entire browsing history!!!"
+msgstr "Вы потеряете всю историю посещений!!!"
+
+msgid "Your version is outdated"
+msgstr "Ваша версия устарела"
+
+msgid "any the editor defines by VISUAL or EDITOR, default"
+msgstr "редактор, указанный в VISUAL или EDITOR, по умолчанию"
+
+msgid "connecting via the protocol"
+msgstr "подключение с помощью протокола"
+
+msgid "connection parameters"
+msgstr "параметры подключения"
+
+msgid "contains errors"
+msgstr "содержит ошибки"
+
+msgid "copy"
+msgstr "копия"
+
+msgid "disable the mode"
+msgstr "отключить режим"
+
+msgid "disabled"
+msgstr "отключен"
+
+msgid "display current status of the mode"
+msgstr "показать текущий статус режима"
+
+msgid "does not contain a section"
+msgstr "не содержит секцию"
+
+msgid "does not meet the minimum requirements"
+msgstr "не соответствует минимальным требованиям"
+
+msgid "edit config file for enable/disable the mode (will use"
+msgstr "редактировать конфигурационный файл (будет использоваться"
+
+msgid "enable the standalone mode"
+msgstr "включить простой режим (запуск программы MyConnector)"
+
+msgid "enabled"
+msgstr "включен"
+
+msgid "exceeded the allowed size (10mb), been archived"
+msgstr "превысил допустимый размер (10Мб), упакован в архив"
+
+msgid "failed"
+msgstr "не удался"
+
+msgid "file not found"
+msgstr "файл не найден"
+
+msgid "for more information"
+msgstr "для подробной информации"
+
+msgid "has an invalid format"
+msgstr "имеет неверный формат"
+
+msgid "has been successfully converted to the new format"
+msgstr "был успешно сконвертирован в новый формат"
+
+msgid "here"
+msgstr "здесь"
+
+msgid "invalid command"
+msgstr "неверная команда"
+
+msgid "is closed"
+msgstr "закрыт"
+
+msgid "is not specified"
+msgstr "не указан"
+
+msgid "kiosk (default)"
+msgstr "kiosk (по умолчанию)"
+
+msgid "list of the saved connections"
+msgstr "список сохраненных подключений"
+
+msgid "name of the file"
+msgstr "имя файла подключения"
+
+msgid "name of the saved connection"
+msgstr "имя сохраненного подключения"
+
+msgid "no connection with this name was found"
+msgstr "подключение с таким именем не найдено"
+
+msgid "no saved connections"
+msgstr "нет сохраненных подключений"
+
+msgid "not installed"
+msgstr "не установлен"
+
+msgid "not found"
+msgstr "не найден"
+
+msgid "opens in a text editor"
+msgstr "открывается в текстовом редакторе"
+
+msgid "protocol not specified"
+msgstr "протокол не указан"
+
+msgid "quit the application"
+msgstr "закрыть все копии приложения"
+
+msgid "remote desktop client"
+msgstr "клиент удаленного рабочего стола"
+
+msgid "saved quick access shortcut"
+msgstr "сохранен ярлык быстрого доступа"
+
+msgid "show log files online"
+msgstr "отображение журнала работы в режиме реального времени"
+
+msgid "show the application version"
+msgstr "показать версию приложения"
+
+msgid "show this help message and exit"
+msgstr "показать эту справку и выйти"
+
+msgid "the protocol is missing"
+msgstr "отсутствует протокол"
+
+msgid "the server is missing"
+msgstr "отсутствует адрес сервера"
+
+msgid "to the server"
+msgstr "к серверу"
+
+msgid "user not specified!"
+msgstr "пользователь не указан!"
+
+msgid "was created without password! Set, if need."
+msgstr "был создан без пароля! Установите, если требуется!"
+

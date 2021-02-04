@@ -20,22 +20,25 @@ from os import system
 from argparse import ( ArgumentParser,
                        RawTextHelpFormatter )
 from .config import ( VERSION,
-                      RELEASE )
+                      RELEASE, _ )
 
 def parseArgs():
     """Description of the command line argument parser"""
     about = "MyConnector - %s (%s)" % (VERSION, RELEASE)
+    file_help = "%s (.myc, .remmina, .rdp)" % _("name of the file")
     args = ArgumentParser( prog = "myconnector", formatter_class = RawTextHelpFormatter, usage = "%(prog)s [options]",
-                           description = "MyConnector - remote desktop client.",
-                           epilog = "Do not specify parameters for starting the GUI.\n\nCopyright (C) 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>")
-    args.add_argument( "-c", "--connection", help = "name of the saved connection" )
-    args.add_argument( "-f", "--file", help = "name of the file (.myc, .remmina, .rdp)" )
-    args.add_argument( "-l", "--list", action = "store_true", default = False, help = "list of the saved connections" )
-    args.add_argument( "--kiosk", metavar="<option>", help = "KIOSK mode control ('--kiosk help' for more information)" )
-    args.add_argument( "-v", "--version", action = "version", help = "show the application version", version = about)
-    args.add_argument( "-d", "--debug", action = "store_true", default = False, help = "show log files online")
-    args.add_argument( "-q", "--quit", action = "store_true", default = False, help = "quit the application")
-    args.add_argument( "name", type = str, nargs = "?", metavar="FILE", help = "name of the file (.myc, .remmina, .rdp)" )
+                           description = "MyConnector - %s." % _("remote desktop client"),
+                           epilog = "%s.\n\nCopyright (C) 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>" %
+                           _("Do not specify parameters for starting the GUI") )
+    args.add_argument( "-c", "--connection", help = _("name of the saved connection") )
+    args.add_argument( "-f", "--file", help = file_help )
+    args.add_argument( "-l", "--list", action = "store_true", default = False, help = _("list of the saved connections") )
+    args.add_argument( "--kiosk", metavar="<option>", help = "%s ('--kiosk help' %s)" %
+                     ( _("KIOSK mode control"), _("for more information") ) )
+    args.add_argument( "-v", "--version", action = "version", help = _("show the application version"), version = about )
+    args.add_argument( "-d", "--debug", action = "store_true", default = False, help = _("show log files online") )
+    args.add_argument( "-q", "--quit", action = "store_true", default = False, help = _("quit the application") )
+    args.add_argument( "name", type = str, nargs = "?", metavar="FILE", help = file_help )
     return args.parse_args()
 
 def main():
@@ -49,7 +52,7 @@ def main():
             CLI( args.kiosk )
             exit( 0 )
         except ImportError:
-            print( "The mode KIOSK unavailable, package is not installed." )
+            print( _("The mode KIOSK unavailable, package is not installed.") )
             exit( 127 )
     system( "xdg-mime default myconnector.desktop application/x-myconnector" )
     if args.debug:

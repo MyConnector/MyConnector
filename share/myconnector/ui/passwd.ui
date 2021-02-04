@@ -47,7 +47,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                   <object class="GtkLabel" id="label_pwd">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Пароль: </property>
+                    <property name="margin_right">3</property>
+                    <property name="label" translatable="yes">Password</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -80,7 +81,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             </child>
             <child>
               <object class="GtkCheckButton" id="check_passwd">
-                <property name="label" translatable="yes">Хранить пароль в связке ключей</property>
+                <property name="label" translatable="yes">Save password</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
@@ -98,7 +99,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 <property name="can_focus">False</property>
                 <child>
                   <object class="GtkButton" id="button_ok">
-                    <property name="label" translatable="yes">OK</property>
+                    <property name="label">OK</property>
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -114,7 +115,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                 </child>
                 <child>
                   <object class="GtkButton" id="button_cancel">
-                    <property name="label" translatable="yes">Отмена</property>
+                    <property name="label" translatable="yes">Cancel</property>
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -143,7 +144,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <object class="GtkLabel" id="label_passwd">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">user</property>
+        <property name="label">user</property>
       </object>
     </child>
   </object>

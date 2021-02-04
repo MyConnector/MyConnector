@@ -30,6 +30,8 @@ from subprocess import call
 from shutil import ( copy,
                      chown,
                      SameFileError )
+from myconnector.config import ( UIFOLDER,
+                                 APP, _ )
 
 _kiosk_dir = "/usr/share/myconnector/kiosk"
 _webkiosk = "%s/myconnector-webkiosk" % _kiosk_dir
@@ -166,8 +168,8 @@ def check_user( user ):
         pwd.getpwnam( user )
     except KeyError:
         os.system( "xterm -e 'adduser %s'" % user )
-        os.system( "zenity --info --title='MyConnector Kiosk' --icon-name=myconnector"
-                   " --text='User \"%s\" will been created without password! Set, if need.'" % user )
+        os.system( "zenity --info --title='KIOSK' --icon-name=myconnector --text='%s \"%s\" %s'" %
+                   ( _("User"), user, _("was created without password! Set, if need.") ) )
 
 def myc_save( user, _input ):
     """Save file for mode = 2"""
@@ -188,9 +190,10 @@ class Kiosk(Gtk.Window):
         """Window with settings of the mode KIOSK"""
         os.makedirs (_lightdm_conf_dir, exist_ok = True)
         os.makedirs (_etc_dir, exist_ok = True)
-        Gtk.Window.__init__(self, title = "Параметры режима \"КИОСК\"")
+        Gtk.Window.__init__( self, title = _("KIOSK mode control") )
         builder = Gtk.Builder()
-        builder.add_from_file("/usr/share/myconnector/ui/kiosk.ui")
+        builder.set_translation_domain( APP )
+        builder.add_from_file( "%s/kiosk.ui" % UIFOLDER )
         builder.connect_signals(self)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)
@@ -236,7 +239,8 @@ class Kiosk(Gtk.Window):
         _config['kiosk']['autologin'] = str( self.checkKioskAutologin.get_active() )
         user = self.entryKioskUser.get_text()
         if user == "root":
-            os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='Root is not allowed to use the mode!'" )
+            os.system( "zenity --error --title='KIOSK' --icon-name=myconnector --text='%s'" %
+                       _("Root is not allowed to use the mode!") )
             return 1
         if user == "": user = "kiosk"
         _config['kiosk']['user'] = user
@@ -253,10 +257,11 @@ class Kiosk(Gtk.Window):
                 source = unquote( uri.replace( "file://" , "" ))
                 result = myc_save( user, source )
                 if result:
-                    os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text=\"%s\"" % result )
+                    os.system( "zenity --error --title='KIOSK' --icon-name=myconnector --text=\"%s\"" % result )
                     return 1
             else:
-                os.system( "zenity --error --title='MyConnector Kiosk' --icon-name=myconnector --text='No connection file specified!'" )
+                os.system( "zenity --error --title='KIOSK' --icon-name=myconnector --text='%s'" %
+                            _("No connection file specified!") )
                 return 1
         if self.changeKioskWeb.get_active():
             mode = "3"
@@ -306,7 +311,10 @@ class Kiosk(Gtk.Window):
         self.initParams()
 
 def kiosk_disabled():
-    print( "MyConnector KIOSK mode disabled!" )
+    print( _("KIOSK mode disabled!") )
+
+def kiosk_status():
+    print( "%s 'myconnector --kiosk status' %s." % ( _("Try"), _("for more information") ) )
 
 def check_user_from_cli():
     user = _config[ "kiosk" ].get( "user", "" )
@@ -314,7 +322,7 @@ def check_user_from_cli():
         check_user( user )
         return user
     else:
-        print( "Config error: user not specified!" )
+        print( "%s: %s" % ( _("Config error"), _("user not specified!") ) )
         disable_kiosk()
         kiosk_disabled()
         exit( 1 )
@@ -323,8 +331,8 @@ def enable_from_cli():
     check_user_from_cli()
     enable_kiosk()
     fix_shortcut( "kiosk", "$MYC", "" )
-    print( "MyConnector KIOSK standalone mode enabled!\n"
-           "Try 'myconnector --kiosk status' for more information." )
+    print( _("KIOSK standalone mode enabled!") )
+    kiosk_status()
 
 def enable_from_cli_myc():
     user = check_user_from_cli()
@@ -333,17 +341,17 @@ def enable_from_cli_myc():
     if file:
         result = myc_save( user, file )
         if result:
-            print( "Config error: %s" % result )
+            print( "%s: %s" % ( _("Config error"), result ) )
             error = True
     else:
-        print( "Config error: FILE for KIOSK not specified!" )
+        print( "%s: %s" % ( _("Config error"), _("No connection file specified!") ) )
         error = True
     if error:
         disable_kiosk()
         kiosk_disabled()
         exit( 1 )
-    print( "MyConnector KIOSK the mode 2 enabled! File: %s\n"
-           "Try 'myconnector --kiosk status' for more information." % file )
+    print( "%s: %s" % ( _("KIOSK the filemode enabled! File"), file ) )
+    kiosk_status()
 
 def enable_from_cli_web():
     check_user_from_cli()
@@ -355,17 +363,17 @@ def enable_from_cli_web():
         else:
             enable_ctrl()
     else:
-        print( "Config error: URL for webkiosk not specified!" )
+        print( "%s: %s" % ( _("Config error"), _("URL for webkiosk not specified!") ) )
         disable_kiosk()
         kiosk_disabled()
         exit( 1 )
-    print( "MyConnector WEB-KIOSK enabled!\n"
-           "Try 'myconnector --kiosk status' for more information." )
+    print( _("WEB-KIOSK enabled!") )
+    kiosk_status()
 
 def CLI( option ):
-    """MyConnector KIOSK mode control"""
+    """KIOSK mode control"""
     if not os.path.exists( "/etc/altlinux-release" ):
-        print( "Unsupported OS! Need ALT!" )
+        print( _("Unsupported OS! Need ALT!") )
         exit( 1 )
     if option in ( "disable", "status", "enable", "edit" ):
         if os.getuid() == 0:
@@ -378,15 +386,15 @@ def CLI( option ):
                 try:
                     mode = _config.get( "kiosk", "mode" )
                 except ( NoOptionError, NoSectionError ) as e:
-                    print( "Error: %s." % e )
-                    print( "Config does not exists or contains errors.\nThe default settings are set:" )
+                    print( "%s: %s." % ( _("Error"), e ) )
+                    print( "%s\n%s:" % ( _("The default settings are set."), _("Config does not exists or contains errors") ) )
                     config_init( True )
                     mode = "0"
                 if mode == "0":
-                    print( "Status: disabled\n----------------" )
+                    print( "%s: %s\n----------------" % ( _("Status"), _("disabled") ) )
                 else:
-                    print( "Status: enabled\n---------------" )
-                print( "MyConnector KIOSK config file %s:" % _kiosk_conf )
+                    print( "%s: %s\n---------------" % ( _("Status"), _("enabled") ) )
+                print( "%s %s:" % ( _("KIOSK config file"), _kiosk_conf ) )
                 os.system( "cat %s" % _kiosk_conf )
                 exit( 0 )
             if option == "enable":
@@ -412,7 +420,7 @@ def CLI( option ):
                 try:
                     mode = _config[ "kiosk" ].get( "mode", "0" )
                 except KeyError:
-                    print( "Config contains errors. The default settings are set." )
+                    print( "%s %s" % ( _("Config contains errors."), _("The default settings are set.") ) )
                     config_init( True )
                     kiosk_disabled()
                     exit( 1 )
@@ -429,28 +437,38 @@ def CLI( option ):
                     enable_from_cli_web()
                     exit( 0 )
         else:
-            print( "Permission denied!" )
+            print( _("Permission denied!") )
             exit( 126 )
     if option == "help":
-        print( """myconnector --kiosk - MyConnector KIOSK mode control
+        print( """myconnector --kiosk - %s
 
-Usage: myconnector --kiosk <option>
+%s: myconnector --kiosk <option>
 
-Options:
-  enable        enable the standalone mode;
-  edit          edit config file for enable/disable the mode (will use
-                any the editor defines by VISUAL or EDITOR, default: vi);
-  disable       disable the mode;
-  status        display current status of the mode;
-  help          show this text and exit.
+%s:
+  enable        %s;
+  edit          %s
+                %s: vi);
+  disable       %s;
+  status        %s;
+  help          %s.
 
-See also: man myconnector-kiosk
+%s: man myconnector-kiosk
 
-Copyright (C) 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>""" )
+Copyright (C) 2014-2021 Evgeniy Korneechev <ek@myconnector.ru>""" % (
+        _("KIOSK mode control"),
+        _("Usage"),
+        _("Options"),
+        _("enable the standalone mode"),
+        _("edit config file for enable/disable the mode (will use"),
+        _("any the editor defines by VISUAL or EDITOR, default"),
+        _("disable the mode"),
+        _("display current status of the mode"),
+        _("show this help message and exit"),
+        _("See also"), ) )
         exit( 0 )
     else:
-        print( "myconnector --kiosk: invalid command: %s\n"
-               "Try 'myconnector --kiosk help' for more information." % option )
+        print( "myconnector --kiosk: %s: %s" % ( _("invalid command"), option ) )
+        print( "%s 'myconnector --kiosk help' %s." % ( _("Try"), _("for more information") ) )
         exit( 1 )
 
 if __name__ == '__main__':
