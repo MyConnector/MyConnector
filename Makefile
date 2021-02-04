@@ -85,7 +85,7 @@ uninstall:
 	update-desktop-database
 
 clean:
-	sed -i s#$(PREFIX)#/usr/share#g $(GLOBAL) kiosk/*
+	sed -i s#$(PREFIX)#/usr/share#g $(GLOBAL) kiosk/* bin/*
 	sed -i s#$(PREFIX_BIN)/$(TARGET)#/usr/bin/$(TARGET)#g $(GLOBAL) share/applications/$(TARGET).desktop kiosk/*
 	@if [ -n "$(DATESTAMP)" ]; then sed -i s#.$(DATESTAMP)##g $(GLOBAL); fi
 

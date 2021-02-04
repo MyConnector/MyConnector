@@ -24,7 +24,7 @@ import gettext
 import locale
 
 APP         = "myconnector"
-MO_FOLDER   = "/usr/local/share/locale"
+MO_FOLDER   = "/usr/share/locale"
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
