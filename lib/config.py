@@ -28,7 +28,7 @@ from configparser import ( ConfigParser,
 from pathlib import Path
 
 APP         = "myconnector"
-VERSION     = "2.0.rc1"
+VERSION     = "2.0.rc2"
 HOMEFOLDER  = os.getenv( "HOME" )
 MAINFOLDER  = "/usr/share/myconnector"
 WORKFOLDER  = "%s/.myconnector"    % HOMEFOLDER

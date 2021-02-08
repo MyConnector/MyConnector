@@ -20,6 +20,7 @@ USR=$TARGET/usr
 BIN=$USR/bin
 PYTHON=$USR/lib/python3/dist-packages/$TARGET
 BASHCOMP=$USR/share/bash-completion/completions
+LOCALE=$USR/share/locale/ru/LC_MESSAGES
 
 rm -rf $TARGET
 mkdir -p $USR $PYTHON
@@ -32,6 +33,8 @@ cp ../lib/* $PYTHON/
 mkdir -p $BASHCOMP
 cp ../$TARGET.bashcomp $BASHCOMP/$TARGET
 find $USR -name myconnector-kiosk.1 -delete
+mkdir -p $LOCALE
+msgfmt ../ru.po -o $LOCALE/$TARGET.mo
 INST_SIZE=`du -s myconnector | cut -f 1`
 mkdir -p $TARGET/DEBIAN
 cd $TARGET

@@ -1,3 +1,6 @@
+2.0.rc2:
+- Added i18n
+
 2.0.rc1:
 - Added subpackages: myconnector-autostart & myconnector-docs
 - New emblem and icons
