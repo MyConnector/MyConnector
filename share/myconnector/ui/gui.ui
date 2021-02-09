@@ -149,6 +149,16 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="menu_popup_autostart">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Starting the connection when the user logs in</property>
+        <property name="label" translatable="yes">Autostart</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="onPopupAutostart" object="treeview_connections" swapped="no"/>
+      </object>
+    </child>
+    <child>
       <object class="GtkImageMenuItem" id="menu_popup_copy">
         <property name="label">gtk-copy</property>
         <property name="visible">True</property>

@@ -1418,6 +1418,24 @@ class Gui(Gtk.Application):
             options.log.error( status )
         viewStatus( self.statusbar, status )
 
+    def onPopupAutostart( self, treeView ):
+        """Configure connection autostart"""
+        table, indexRow = treeView.get_selection().get_selected()
+        name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
+        parameters = options.loadFromFile( fileMyc )
+        state = parameters.getboolean( "autostart" )
+        autostart = check_output( "zenity --list --radiolist --hide-header --title=\"MyConnector\" --text=\"%s (%s):\" "
+                                  "--column='' --column='' %s %s %s %s 2>/dev/null" % (  _("Connection autostart"),
+                                  name, state, _("Enabled"), not state, _("Disabled") ), shell=True, universal_newlines=True ).strip()
+        if autostart:
+            new_state = True if autostart in ( "Enabled", "Включен" ) else False
+            parameters[ "autostart" ] = str( new_state )
+            options.saveInFile( fileMyc, parameters )
+            if new_state:
+                self.createDesktopFile( "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name ), name, name )
+            else:
+                os.remove( "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name) )
+
     def listFilter(self, model, iter, data):
         """Функция для фильтра подключений в списке"""
         row = ''

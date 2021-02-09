@@ -68,6 +68,9 @@ msgstr "Данные автозаполнения очищены."
 msgid "Autologin"
 msgstr "Автовход"
 
+msgid "Autostart"
+msgstr "Автозапуск подключения"
+
 msgid "Black and white"
 msgstr "Оттенки серого"
 
@@ -158,6 +161,9 @@ msgstr "Подключение к серверу"
 msgid "Connecting to the server Citrix"
 msgstr "Подключение к серверу Citrix"
 
+msgid "Connection autostart"
+msgstr "Автозапуск подключения"
+
 msgid "Connection deleted"
 msgstr "Подключение удалено"
 
@@ -231,6 +237,9 @@ msgstr "Связь с разрабочиком"
 
 msgid "Enable logging (need to restart the program)"
 msgstr "Вести журнал работы программы (требуется перезапуск программы)"
+
+msgid "Enabled"
+msgstr "Включен"
 
 msgid "Enter a name for the saved connection"
 msgstr "Введите имя для сохраняемого подключения"
@@ -645,6 +654,9 @@ msgstr "Укажите имя подключения!"
 
 msgid "Starting a saved connection"
 msgstr "Запуск сохраненного подключения"
+
+msgid "Starting the connection when the user logs in"
+msgstr "Запуск подключения при входе пользователя"
 
 msgid "Status"
 msgstr "Статус"
