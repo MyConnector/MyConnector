@@ -168,6 +168,7 @@ $ sudo make install
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myconnector -c|--connection &lt;имя_подключения&gt;
 </pre></div>
 </div>
+<p>Пункт "Автозапуск подключения" позволяет настроить запускать ли данное подключение при входе пользователя в сеанс или нет. Если включить - то в папке <code class="docutils literal notranslate"><span class="pre">$HOME/.config/autostart</span></code> создаться ярлык запуска подключения, если выключить - удалится при наличии.</p>
 <p>Список поддерживает сортировку и группировку (группа указывается в <a class="reference internal" href="index.html#rst-conn-settings"><span class="std std-ref">Дополнительные параметры подключений</span></a>).</p>
 </div>
 <span id="document-kiosk"></span><div class="section" id="rst-kiosk">
@@ -294,12 +295,12 @@ NAME
 </div>
 <span id="document-other"></span><div class="section" id="rst-other">
 <span id="id1"></span><h2>Прочие возможности<a class="headerlink" href="#rst-other" title="Ссылка на этот заголовок">¶</a></h2>
-<div class="section" id="id2">
-<h3>Открытие файлов<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id6">
+<h3>Открытие файлов<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
 <p>В программе есть возможность открытия файлов .myc, .rdp и .remmina. Для этого в пункте меню «Файл» выберите «Открыть», либо дважды щелкните на нем в файловом менеджере. После выбора необходимого файла будет произведена попытка соединения - если файл не содержит параметров или содержит ошибки, то отобразится соответствующее сообщение. В другом случае - произойдет успешное подключение к серверу.</p>
 </div>
-<div class="section" id="id3">
-<h3>Импорт файлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id7">
+<h3>Импорт файлов<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Вы также можете импортировать параметры из файлов (.myc, .ctor, .rdp и .remmina) либо для изменения параметров, либо для сохранения в свой список подключений. Для этого в пункте меню «Файл» выберите «Импорт…», после этого откроется диалог открытия файла, а после его выбора откроется окно дополнительных параметров того типа подключения, который записан в данный файл.</p>
 <p>Импорт из старого формата файлов .ctor помимо главного меню доступен через утилиту <code class="docutils literal notranslate"><span class="pre">ctor2myc</span></code>, входящую в состав пакета:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ctor2myc
@@ -308,12 +309,16 @@ usage: ctor2myc [-v] input.ctor [output.myc]
 </div>
 <p>Также при первом запуске MyConnector и при наличие рабочей папки .connector в домашней папке пользователя будет выдан запрос на автоматический импорт всех имеющихся там соединений.</p>
 </div>
-<div class="section" id="id4">
-<h3>Ведение логов<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id8">
+<h3>Ведение логов<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Располагаются в рабочей папке программы: <code class="docutils literal notranslate"><span class="pre">~/.myconnector/logs</span></code>. Файл <code class="docutils literal notranslate"><span class="pre">all.log</span></code> содержит отладочную информацию от запускаемых программ, а <code class="docutils literal notranslate"><span class="pre">myconnector.log</span></code> - информацию по работе самого MyConnector (три уровня сообщений: info, warning и error) и ошибки в его работе. В «Параметрах программы» есть возможность отключения ведения логов.</p>
 </div>
-<div class="section" id="myconnector">
-<h3>Справка по программе MyConnector<a class="headerlink" href="#myconnector" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id9">
+<h3>Текстовый редактор для подключений<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<p>В "Параметрах программы" можно указать редактор, используемый при нажатии кнопки "Открыть как текст" в контекстном меню списка подключений.</p>
+</div>
+<div class="section" id="id10">
+<h3>Справка по программе MyConnector<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Ссылка на данную страницу Wiki всегда доступна из приложения - пункт главного меню «Справка». Там же краткие сведения о программе и об ее разработчике. Также справочную информацию можно просмотреть и на компьютере (данную вики планируется разместить в отдельном пакете <code class="docutils literal notranslate"><span class="pre">myconnector-docs</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ man myconnector
 $ myconnector --help
@@ -331,7 +336,10 @@ $ myconnector --help
 <li><p>возможность группировки в списке сохраненных подключений;</p></li>
 <li><p>импорт подключений RDP, Remmina (и формата .ctor);</p></li>
 <li><p>интерфейс командной строки для настройки <a class="reference internal" href="index.html#rst-kiosk"><span class="std std-ref">Режим КИОСК</span></a>;</p></li>
-<li><p>X2GO-подключение (консольный клиент pyhoca-cli).</p></li>
+<li><p>X2GO-подключение (консольный клиент pyhoca-cli);</p></li>
+<li><p>добавлен англоязычный интерфейс (i18n);</p></li>
+<li><p>возможность настройки автозапуска подключения при входе пользователя;</p></li>
+<li><p>режим прослушивания для vncviewer.</p></li>
 </ul>
 <p>С основными отличиями можете ознакомиться на странице первого кандидата в релиз <a class="reference external" href="https://github.com/MyConnector/MyConnector/projects/3">2.0.rc0</a>.</p>
 </div>

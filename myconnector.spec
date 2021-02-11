@@ -71,7 +71,7 @@ Summary: Documentation for MyConnector
 Group:   Documentation
 
 %description docs
-This package contains MyConnector docs in reStructuredText and HTML formats.
+This package contains MyConnector docs (in Russian) in reStructuredText and HTML formats.
 
 %prep
 %setup
