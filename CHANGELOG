@@ -1,3 +1,7 @@
+2.0.rc3:
+- Added connection autostart
+- vncviewer: added listenning mode
+
 2.0.rc2:
 - Added i18n
 

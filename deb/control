@@ -1,5 +1,5 @@
 Package: myconnector
-Version: 2.0.rc2-1
+Version: 2.0.rc3-1
 Provides: connector
 Conflicts: connector (<<2.0)
 Maintainer: Korneechev E. <ek@myconnector.ru>
