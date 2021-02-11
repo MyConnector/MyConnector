@@ -47,6 +47,8 @@ class VncViewer:
             command = 'vncviewer %s ' % server
             if args.get( "fullscreen", "False" ) == "True": command += "-fullscreen "
             if args.get( "viewonly", "False"   ) == "True": command += "-viewonly "
+            if args.get( "listen", "False"     ) == "True":
+                command = "vncviewer -listen %s" % args.get( "listen_port", "" )
         options.log.info( "VNC: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
         options.log.info( command )
         os.system(command + STD_TO_LOG)

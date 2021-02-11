@@ -539,6 +539,8 @@ class Gui(Gtk.Application):
         if protocol == "VNC1":
             if args.getboolean( "fullscreen" ): self.VNC_viewmode.set_active( True )
             if args.getboolean( "viewonly"   ): self.VNC_viewonly.set_active( True )
+            if args.getboolean( "listen"     ): self.VNC_listen.set_active(   True )
+            self.VNC_port.set_text( args.get( "listen_port", "" ) )
 
         if protocol == "VNC":
             self.VNC_user.set_text(         args.get( "username",   "" ) )
@@ -819,8 +821,11 @@ class Gui(Gtk.Application):
             self.VNC_clipboard  = self.pref_builder.get_object( "check_VNC_clipboard"  )
 
         if protocol == "VNC1": #vncviewer
+            self.VNC_server   = self.pref_builder.get_object( "entry_VNC1_serv"       )
             self.VNC_viewmode = self.pref_builder.get_object( "check_VNC1_fullscreen" )
             self.VNC_viewonly = self.pref_builder.get_object( "check_VNC1_viewonly"   )
+            self.VNC_listen   = self.pref_builder.get_object( "check_VNC1_listen"     )
+            self.VNC_port     = self.pref_builder.get_object( "entry_VNC1_port"       )
 
         if protocol == "XDMCP":
             self.XDMCP_color         = self.pref_builder.get_object( "entry_XDMCP_color"         )
@@ -992,8 +997,10 @@ class Gui(Gtk.Application):
 
         if protocol == "VNC1":
             args = dict(
-                fullscreen = str( self.VNC_viewmode.get_active() ),
-                viewonly   = str( self.VNC_viewonly.get_active() ) )
+                fullscreen  = str( self.VNC_viewmode.get_active() ),
+                viewonly    = str( self.VNC_viewonly.get_active() ),
+                listen      = str( self.VNC_listen.get_active()   ),
+                listen_port = self.VNC_port.get_text()              )
 
         if protocol == "XDMCP":
             args = dict(
@@ -1136,6 +1143,16 @@ class Gui(Gtk.Application):
         """Настройка видимости установки качества кодека JPEG"""
         if widget.get_opacity(): widget.set_opacity(0)
         else: widget.set_opacity(1)
+
+    def onListenVNC(self, widget):
+        """Actions if VNC listening mode is enabled"""
+        if widget.get_opacity():
+            widget.set_opacity(0)
+            self.VNC_server.set_sensitive( True )
+        else:
+            widget.set_opacity(1)
+            self.VNC_server.set_text( "localhost" )
+            self.VNC_server.set_sensitive( False )
 
     def onSpanOn(self, widget):
         """Настройка зависимости чувствительности ключа /span от /multimon"""

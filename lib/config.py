@@ -140,6 +140,8 @@ DEF_PROTO = {}
 #vncviewer
 DEF_PROTO[ "VNC1" ] = {  "fullscreen"        : "False",
                          "viewonly"          : "False",
+                         "listen"            : "False",
+                         "listen_port"       : "",
                          "program"           : "vncviewer" }
 #FreeRDP:
 DEF_PROTO[ "RDP1" ] = {  "username"          : "",

@@ -18,6 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+
+msgid " - port"
+msgstr " - порт"
+
 msgid " - quality"
 msgstr " - качество"
 
@@ -380,6 +384,9 @@ msgstr "ВЕДЕНИЕ ЖУРНАЛА ПОСЛЕ ПЕРЕЗАПУСКА ПРОГ
 
 msgid "Launch Command"
 msgstr "Команда запуска"
+
+msgid "Listenning mode"
+msgstr "Режим прослушивания"
 
 msgid "Local"
 msgstr "Локальный"
