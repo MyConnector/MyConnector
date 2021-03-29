@@ -1449,6 +1449,7 @@ class Gui(Gtk.Application):
             parameters[ "autostart" ] = str( new_state )
             options.saveInFile( fileMyc, parameters )
             if new_state:
+                os.makedirs( "%s/.config/autostart" % HOMEFOLDER, exist_ok = True )
                 self.createDesktopFile( "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name ), name, name )
             else:
                 os.remove( "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name) )
