@@ -1460,7 +1460,7 @@ class Gui(Gtk.Application):
         if self.currentFilter == '':
             return True
         else:
-            for i in range(3):
+            for i in range(4):
                 row += model[iter][i] #объединяем поля в одну строку для поиска в ней символов
             if row.upper().find(self.currentFilter.upper()) != -1:
                 return True
