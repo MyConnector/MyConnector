@@ -1574,6 +1574,10 @@ class Gui(Gtk.Application):
             self.setSavesToListstore()
         dialog.destroy()
 
+    def onFind( self, widget ):
+        """Set focus to search entry"""
+        widget.grab_focus()
+
 def connect( name ):
     """Start connection by name"""
     myc_file = Gui.filenameFromName( None, name )

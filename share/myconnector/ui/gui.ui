@@ -609,6 +609,17 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       </object>
                     </child>
                     <child>
+                      <object class="GtkImageMenuItem" id="menu_edit_find">
+                        <property name="label">gtk-find</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="onFind" object="entry_search" swapped="no"/>
+                        <accelerator key="f" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkMenuItem" id="menu_file_kiosk">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
@@ -811,8 +822,8 @@ and one of the DM - LightDM or SDDM)</property>
                       <object class="GtkMenuItem" id="help_prog">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Documentation</property>
                         <property name="tooltip_text">https://docs.myconnector.ru</property>
+                        <property name="label" translatable="yes">Documentation</property>
                         <signal name="activate" handler="onWiki" swapped="no"/>
                       </object>
                     </child>
@@ -820,8 +831,8 @@ and one of the DM - LightDM or SDDM)</property>
                       <object class="GtkMenuItem" id="bugs">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Report an bug</property>
                         <property name="tooltip_text">http://bugs.myconnector.ru</property>
+                        <property name="label" translatable="yes">Report an bug</property>
                         <signal name="activate" handler="onBugs" swapped="no"/>
                       </object>
                     </child>
