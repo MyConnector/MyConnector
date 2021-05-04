@@ -42,6 +42,9 @@ def main():
     if "AUTHENTICATION_FAILED" in log:
         system( "zenity --notification --window-icon=myconnector --text='FreeRDP\n%s'" %
                 _("Invalid username or password.") )
+    if "PASSWORD_CERTAINLY_EXPIRED" in log:
+        system( "zenity --notification --window-icon=myconnector --text='FreeRDP\n%s'" %
+                _("Password expired. For change disable NLA or enable TLS or RDP protocol security!") )
     exit(0)
 
 if __name__ == "__main__":
