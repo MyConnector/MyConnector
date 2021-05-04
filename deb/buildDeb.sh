@@ -27,7 +27,6 @@ mkdir -p $USR $PYTHON
 cp -r ../bin/ $USR/
 cp -r ../share/ $USR/
 chmod 755 $BIN/*
-ln -s $TARGET $BIN/connector
 mv $BIN/$TARGET-check-* $USR/share/$TARGET
 cp ../lib/* $PYTHON/
 mkdir -p $BASHCOMP
