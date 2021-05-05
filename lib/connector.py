@@ -109,6 +109,9 @@ class XFreeRdp:
                 if args.get( "userparams" , ""                ): command += " %s" % args[ "userparams" ]
                 disable_nla = args.get( "disable_nla", "True" )
                 if disable_nla == "True"                       : command += " -sec-nla"
+                security = args.get( "security", "False" )
+                if security != "False":
+                    command += " /sec:%s" % security
                 password = args.get( "passwd" , "" )
                 options.log.info( "FreeRDP: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
                 options.log.info( command )

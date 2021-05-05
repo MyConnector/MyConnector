@@ -185,6 +185,7 @@ DEF_PROTO[ "RDP1" ] = {  "username"          : "",
                          "passwdsave"        : "False",
                          "glyph"             : "False",
                          "userparams"        : "",
+                         "security"          : "False",
                          "program"           : "freerdp" }
 #Remmina
 DEF_PROTO[ "RDP" ] = {   "username"          : "",

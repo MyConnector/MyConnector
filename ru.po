@@ -93,6 +93,9 @@ msgstr "Кодировка"
 msgid "Check for new versions at startup"
 msgstr "Проверять при запуске наличие новых версий"
 
+msgid "Check protocol security settings!"
+msgstr "Проверьте параметры безопасности протокола!"
+
 msgid "Choose a folder"
 msgstr "Выберите папку"
 
@@ -289,6 +292,9 @@ msgstr "Пример: 800x600"
 msgid "Example: MyServer"
 msgstr "Пример: МойСервер"
 
+msgid "Extended NLA"
+msgstr "Расширенный NLA"
+
 msgid "FS - Connecting to a file server"
 msgstr "FS - Подключение к файловому серверу"
 
@@ -313,14 +319,8 @@ msgstr "Для подключения"
 msgid "FreeNX technology"
 msgstr "Технология FreeNX"
 
-msgid ""
-"FreeRDP error.\n"
-"Check that the connection command is correct.\n"
-"Read more in"
-msgstr ""
-"Ошибка FreeRDP.\n"
-"Проверьте правильность команды подключения.\n"
-"Подробнее в"
+msgid "Check that the connection command is correct. Read more in"
+msgstr "Проверьте правильность команды подключения. Подробнее в"
 
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
@@ -438,6 +438,9 @@ msgstr "NX - Технология NX NoMachine"
 
 msgid "Name"
 msgstr "Название"
+
+msgid "Negotiation"
+msgstr "Согласование"
 
 msgid "No connection file specified!"
 msgstr "Файл для подключения в режиме КИОСКа не указан!"
@@ -607,6 +610,9 @@ msgstr "Безопасное подключение к командной стр
 
 msgid "Secure file transfer"
 msgstr "Защищенная передача файлов"
+
+msgid "Security"
+msgstr "Безопасность"
 
 msgid "Secure WebDAV (HTTPS)"
 msgstr "Защищенный WebDAV (HTTPS)"

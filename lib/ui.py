@@ -691,6 +691,7 @@ class Gui(Gtk.Application):
             if args.getboolean( "passwdsave" ) or password: self.RDP_pwdsave.set_active( True )
             if not password: password = args.get( "passwd", "" )
             self.RDP_pwd.set_text( password )
+            self.RDP_security.set_active_id( args.get( "security", "False" ) )
 
         if protocol == "SPICE":
             if args.getboolean( "usetls"           ): self.SPICE_tls.set_active(        True )
@@ -794,6 +795,7 @@ class Gui(Gtk.Application):
             self.RDP_pwdsave       = self.pref_builder.get_object( "check_RDP1_pwd"           )
             self.RDP_glyph         = self.pref_builder.get_object( "check_RDP1_glyph"         )
             self.RDP_userparams    = self.pref_builder.get_object( "entry_RDP1_userparams"    )
+            self.RDP_security      = self.pref_builder.get_object( "entry_RDP1_security"      )
             self.RDP_resolution.set_sensitive( False )
             self.RDP_name_folder.set_current_folder( HOMEFOLDER )
 
@@ -928,6 +930,7 @@ class Gui(Gtk.Application):
                 gpasswd     = self.RDP_gpasswd.get_text(),
                 userparams  = self.RDP_userparams.get_text(),
                 passwd      = self.RDP_pwd.get_text(),
+                security    = self.RDP_security.get_active_id(),
                 folder      = self.RDP_name_folder.get_filename() if self.RDP_share_folder.get_active() else "",
                 fullscreen  = "True"  if self.RDP_fullscreen.get_active() else "False",
                 clipboard   = "True"  if self.RDP_clipboard.get_active()  else "False",
@@ -1577,6 +1580,15 @@ class Gui(Gtk.Application):
     def onFind( self, widget ):
         """Set focus to search entry"""
         widget.grab_focus()
+
+    def onChangeSecutiry( self, sec_list ):
+        """Disable/enable checkbox 'disable_nla' in relation to security"""
+        sec = sec_list.get_active_id()
+        if sec in ( "nla", "ext" ):
+            self.RDP_nla.set_active( False )
+            self.RDP_nla.set_sensitive( False )
+        else:
+            self.RDP_nla.set_sensitive( True )
 
 def connect( name ):
     """Start connection by name"""
