@@ -264,5 +264,28 @@ class Properties(Gtk.Window):
         self.initParameters()
         self.updateTray()
 
+    def onDeleteAllPasswords( self, *args ):
+        """Delete all save passwords from keyring"""
+        dialog = Gtk.MessageDialog( self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK_CANCEL, _("Delete passwords") )
+        dialog.format_secondary_text( _("Confirm deleting all saved passwords from the keyring.") )
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            import keyring
+            for mycfile in os.listdir( WORKFOLDER ):
+                connection = "%s/%s" % ( WORKFOLDER, mycfile )
+                if Path( mycfile ).suffix.lower() == ".myc":
+                    conf = ConfigParser( interpolation = None )
+                    try:
+                        conf.read( connection )
+                        if conf[ "myconnector" ].getboolean( "passwdsave" ):
+                            keyring.delete_password( conf[ "myconnector" ].get( "server", "" ),
+                                                     conf[ "myconnector" ].get( "username", "" ) )
+                            conf[ "myconnector" ][ "passwdsave" ] = "False"
+                            with open( connection, "w" ) as f:
+                                conf.write( f )
+                    except: pass
+            log.info( _("All saved passwords have been deleted from the keyring.") )
+        dialog.destroy()
+
 if __name__ == '__main__':
     pass
