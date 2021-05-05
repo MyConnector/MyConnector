@@ -463,6 +463,9 @@ class Gui(Gtk.Application):
             if self.prefClick: #если нажата кнопка Доп. Параметры
                 parameters = self.applyPreferences( name )
                 parameters[ "server" ] = server
+                namesave = self.pref_builder.get_object( "entry_%s_name" % protocol ).get_text()
+                if namesave:
+                    parameters[ "name" ] = namesave
                 if name == "RDP1" or name == "VMWARE" or name == "X2GO":
                     self.saveKeyring ( parameters.copy() )
             else:
