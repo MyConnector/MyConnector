@@ -1232,6 +1232,11 @@ class Gui(Gtk.Application):
             self.initSubmenuTray()
             viewStatus( self.statusbar, "%s (%s)..." % ( _("The connection is saved"), namesave ) )
             self.fileCtor = ""
+            self.currentFilter = namesave
+            self.filterConnections.refilter()
+            self.treeview.set_cursor( 0 )
+            self.currentFilter = ""
+            self.filterConnections.refilter()
         if error:
             viewStatus( self.statusbar, error )
             os.system( "zenity --error --text='\n%s!' --no-wrap --icon-name=myconnector" % error )
