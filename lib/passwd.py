@@ -25,7 +25,7 @@ from myconnector.config import ( UIFOLDER,
 
 class PasswdDialog( Gtk.Window ):
     """Window for authentication (as zenity)"""
-    def __init__( self, username ):
+    def __init__( self, username, domain = None ):
         Gtk.Window.__init__( self, title = _("Authentication...") )
         builder = Gtk.Builder()
         self.set_resizable( False )
@@ -33,15 +33,21 @@ class PasswdDialog( Gtk.Window ):
         builder.set_translation_domain( APP )
         builder.add_from_file( "%s/passwd.ui" % UIFOLDER )
         builder.connect_signals(self)
-        frame_passwd       = builder.get_object( "frame_passwd" )
-        label_passwd       = builder.get_object( "label_passwd" )
-        self.entry_passwd  = builder.get_object( "entry_passwd" )
-        self.check_passwd  = builder.get_object( "check_passwd" )
-        label_passwd.set_text( "%s: %s" % ( _("Username"), username ) )
-        self.add( frame_passwd )
+        main_box = builder.get_object( "main_box" )
+        self.entry_passwd   = builder.get_object( "entry_passwd"   )
+        self.check_passwd   = builder.get_object( "check_passwd"   )
+        self.entry_username = builder.get_object( "entry_username" )
+        self.add( main_box )
+        if domain: username = "%s\%s" % ( domain, username )
+        self.entry_username.set_text( username )
+        if username:
+            self.entry_passwd.grab_focus()
+        else:
+            self.entry_username.grab_focus()
         self.connect( "delete-event", self.onCancel )
-        self.passwd = False
-        self.save   = False
+        self.username = ""
+        self.passwd   = False
+        self.save     = False
         self.show_all()
 
     def onCancel( self, *args ):
@@ -50,13 +56,14 @@ class PasswdDialog( Gtk.Window ):
         self.quit()
 
     def onStart( self, *args ):
-        self.passwd = self.entry_passwd.get_text()
-        self.save   = self.check_passwd.get_active()
+        self.passwd   = self.entry_passwd.get_text()
+        self.save     = self.check_passwd.get_active()
+        self.username = self.entry_username.get_text()
         self.quit()
 
     def run( self ):
         Gtk.main()
-        return( self.passwd, self.save )
+        return( self.username, self.passwd, self.save )
 
     def quit( self ):
         self.destroy()

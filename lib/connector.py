@@ -61,11 +61,12 @@ class XFreeRdp:
             if freerdpVersion > "1.2":
                 for key in CONFIGS[ "RDP1" ]:
                     if not key in args: args[ key ] = CONFIGS[ "RDP1" ][ key ]
-                server = args [ "server" ]
+                server   = args [ "server" ]
                 username = args.get( "username" , "" )
-                command = "xfreerdp /v:%s /t:'%s'" % ( server, args.get( "name", server ) )
-                if username                                    : command += " /u:%s" % username
-                if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
+                domain   = args.get( "domain" , "" )
+                command  = "xfreerdp /v:%s /t:'%s'" % ( server, args.get( "name", server ) )
+                if username: command += " /u:%s" % escape( username )
+                if domain  : command += " /d:%s" % domain
                 if args.get( "fullscreen", "True"   ) == "True":
                     if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off"
                     else: command += " /f"
@@ -118,7 +119,13 @@ class XFreeRdp:
                 if not password:
                     password = keyring.get_password( server, username )
                 if not password and disable_nla != "True":
-                    password = passwd( server, username )
+                    new_username, password = passwd( server, username, domain )
+                    if new_username == username or not new_username:
+                        pass
+                    else:
+                        command = command.replace( "/u:%s" % username, "/u:%s" % escape( new_username ) )
+                        if new_username.find( "\\" ) != -1 or new_username.find( "@" ) != -1:
+                            command = command.replace( "/d:%s" % domain, "" )
                 if password:
                     command += " /p:%s" % escape( password )
                 if password == "":
@@ -450,7 +457,11 @@ class X2goClient:
                 if password:
                     password = escape( password )
                 else:
-                    password = passwd( server, username )
+                    new_username, password = passwd( server, username )
+                    if new_username == username or not new_username:
+                        pass
+                    else:
+                        command = command.replace( "--user %s" % username, "--user %s" % new_username )
                 command += " --password %s" % password
             if password != False: #if there is not password
                 os.system( command + STD_TO_LOG )
@@ -517,17 +528,17 @@ def freerdpCheckFloatbar():
     check = not bool(check)
     return check
 
-def passwd(server, username):
-    """Ввод пароля и запрос о его сохранении в связке ключей"""
+def passwd( server, username, domain = None ):
+    """Authentication window"""
     from myconnector.passwd import PasswdDialog
-    dialog = PasswdDialog( username )
-    password, save = dialog.run()
+    dialog = PasswdDialog( username, domain )
+    username, password, save = dialog.run()
     if password == False:
         options.log.info( _("The connection was canceled by the user!") )
     else:
         if save and password:
             keyring.set_password( str( server ), str( username ), str( password ) )
-    return password
+    return( username, password )
 
 if __name__ == "__main__":
     pass
