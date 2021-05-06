@@ -121,6 +121,8 @@ class XFreeRdp:
                     password = passwd( server, username )
                 if password:
                     command += " /p:%s" % escape( password )
+                if password == "":
+                    command += " /p:" #support empty password
                 if password != False: #if there is password
                     os.system(command + STD_TO_LOG)
                     if enableLog:
@@ -521,7 +523,7 @@ def passwd(server, username):
     dialog = PasswdDialog( username )
     password, save = dialog.run()
     if password == False:
-        options.log.info( _("The connection was canceled by the user or the password was not specified!") )
+        options.log.info( _("The connection was canceled by the user!") )
     else:
         if save and password:
             keyring.set_password( str( server ), str( username ), str( password ) )

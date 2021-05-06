@@ -718,10 +718,8 @@ msgstr "Конфигурационный файл подключения пов�
 msgid "The connection is saved"
 msgstr "Подключение сохранено"
 
-msgid ""
-"The connection was canceled by the user or the password was not specified!"
-msgstr ""
-"Подключение отменено пользователем или не был указан пароль!"
+msgid "The connection was canceled by the user!"
+msgstr "Подключение отменено пользователем!"
 
 msgid "The connection was changed"
 msgstr "Подключение изменено"
@@ -776,6 +774,9 @@ msgstr ""
 
 msgid "The mode KIOSK unavailable, package is not installed."
 msgstr "Режим КИОСКа не доступен, пакет не установлен."
+
+msgid "The password was not specified."
+msgstr "Пароль не был указан."
 
 msgid "The path run"
 msgstr "Путь запуска"

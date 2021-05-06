@@ -56,8 +56,6 @@ class PasswdDialog( Gtk.Window ):
 
     def run( self ):
         Gtk.main()
-        if not self.passwd:
-            self.passwd = False
         return( self.passwd, self.save )
 
     def quit( self ):

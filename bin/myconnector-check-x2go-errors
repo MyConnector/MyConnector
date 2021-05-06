@@ -24,19 +24,22 @@ import locale
 
 APP         = "myconnector"
 MO_FOLDER   = "/usr/share/locale"
+MSG         = "zenity --notification --window-icon=myconnector --text='X2GO"
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
 gettext.textdomain( APP )
+_ = gettext.gettext
 
 def main():
     LOG = "~/.myconnector/logs/all.log"
     log = check_output( "sleep 7; tail -n1 %s 2>/dev/null; exit 0" % LOG,
                         shell=True, universal_newlines=True ).strip()
     if "interactive login" in log or "EOFError" in log:
-        system( "zenity --notification --window-icon=myconnector --text='X2GO\n%s'" %
-                gettext.gettext( "Invalid username or password." ) )
+        system( "%s\n%s'" % ( MSG, _( "Invalid username or password." ) ) )
         system( "pkill pyhoca-cli" )
+    if "IndexError" in log:
+        system( "%s\n%s'" % ( MSG, _( "The password was not specified." ) ) )
     exit( 0 )
 
 if __name__ == "__main__":
