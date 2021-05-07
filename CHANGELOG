@@ -1,15 +1,50 @@
-2.0.rc3:
+2.1
+===
+
+New Features:
+- Added Menu -> Find (Ctrl+F): set focus to search entry
+- Added focus on saved connection
+- Updated authentication window: added username and icon
+- [FreeRDP] Added a protocol security selection
+- bin/myconnector-check-xfreerdp-errors:
+-- added expired password verification
+-- added security protocol verification
+- [FreeRDP/X2GO] Added support empty password
+- Preferences: added deleting all saved passwords
+
+Bug Fixes:
+- Added autorun folder creation
+- Fixed search by server address
+- [FreeRDP] Fixed the title when connecting from the advanced settings window
+- [DEB] The confilict with the 'connector' package was removed
+
+Known Issues:
+- Problems with bash-completion if there are spaces in the file or connection name
+
+2.0.rc3
+=======
+
+New Features:
 - Added connection autostart
 - vncviewer: added listenning mode
 
-2.0.rc2:
+2.0.rc2
+=======
+
+New Features:
 - Added i18n
 
-2.0.rc1:
+2.0.rc1
+=======
+
+New Features:
 - Added subpackages: myconnector-autostart & myconnector-docs
 - New emblem and icons
 - Added russian manual pages
 
-2.0.rc0 includes:
-- https://github.com/ekorneechev/connector, release: 1.9.6
+2.0.rc0
+=======
+
 - https://github.com/MyConnector/MyConnector/projects/3 - column "Done"
+- https://github.com/ekorneechev/connector, release: 1.9.6
+  (ChangeLog: https://github.com/ekorneechev/Connector/blob/master/CHANGELOG)
