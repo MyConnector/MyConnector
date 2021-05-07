@@ -31,6 +31,7 @@ class PasswdDialog( Gtk.Window ):
         self.set_resizable( False )
         self.set_modal( True )
         builder.set_translation_domain( APP )
+        self.set_default_icon_name( APP )
         builder.add_from_file( "%s/passwd.ui" % UIFOLDER )
         builder.connect_signals(self)
         main_box = builder.get_object( "main_box" )
