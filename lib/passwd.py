@@ -25,7 +25,7 @@ from myconnector.config import ( UIFOLDER,
 
 class PasswdDialog( Gtk.Window ):
     """Window for authentication (as zenity)"""
-    def __init__( self, username, domain = None ):
+    def __init__( self, username ):
         Gtk.Window.__init__( self, title = _("Authentication...") )
         builder = Gtk.Builder()
         self.set_resizable( False )
@@ -39,7 +39,6 @@ class PasswdDialog( Gtk.Window ):
         self.check_passwd   = builder.get_object( "check_passwd"   )
         self.entry_username = builder.get_object( "entry_username" )
         self.add( main_box )
-        if domain: username = "%s\%s" % ( domain, username )
         self.entry_username.set_text( username )
         if username:
             self.entry_passwd.grab_focus()

@@ -61,12 +61,11 @@ class XFreeRdp:
             if freerdpVersion > "1.2":
                 for key in CONFIGS[ "RDP1" ]:
                     if not key in args: args[ key ] = CONFIGS[ "RDP1" ][ key ]
-                server   = args [ "server" ]
+                server   = args[ "server" ]
                 username = args.get( "username" , "" )
-                domain   = args.get( "domain" , "" )
                 command  = "xfreerdp /v:%s /t:'%s'" % ( server, args.get( "name", server ) )
-                if username: command += " /u:%s" % escape( username )
-                if domain  : command += " /d:%s" % domain
+                if username                                    : command += " /u:%s" % escape( username )
+                if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
                 if args.get( "fullscreen", "True"   ) == "True":
                     if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off"
                     else: command += " /f"
@@ -119,13 +118,11 @@ class XFreeRdp:
                 if not password:
                     password = keyring.get_password( server, username )
                 if not password and disable_nla != "True":
-                    new_username, password = passwd( server, username, domain )
+                    new_username, password = passwd( server, username )
                     if new_username == username or not new_username:
                         pass
                     else:
-                        command = command.replace( "/u:%s" % username, "/u:%s" % escape( new_username ) )
-                        if new_username.find( "\\" ) != -1 or new_username.find( "@" ) != -1:
-                            command = command.replace( "/d:%s" % domain, "" )
+                        command = command.replace( "/u:%s" % escape( username ), "/u:%s" % escape( new_username ) )
                 if password:
                     command += " /p:%s" % escape( password )
                 if password == "":
@@ -528,10 +525,10 @@ def freerdpCheckFloatbar():
     check = not bool(check)
     return check
 
-def passwd( server, username, domain = None ):
+def passwd( server, username ):
     """Authentication window"""
     from myconnector.passwd import PasswdDialog
-    dialog = PasswdDialog( username, domain )
+    dialog = PasswdDialog( username )
     username, password, save = dialog.run()
     if password == False:
         options.log.info( _("The connection was canceled by the user!") )
