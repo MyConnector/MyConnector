@@ -1,3 +1,11 @@
+2.1.1
+=====
+Bug Fixes:
+- Fixed saving the password from auth window
+
+Known Issues:
+- Problems with bash-completion if there are spaces in the file or connection name
+
 2.1
 ===
 
