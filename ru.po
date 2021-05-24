@@ -620,6 +620,9 @@ msgstr "Защищенный WebDAV (HTTPS)"
 msgid "See also"
 msgstr "См. также"
 
+msgid "Select a connection from the list!"
+msgstr "Выберите подключение из списка!"
+
 msgid "Select a protocol from the drop-down list:"
 msgstr "Выберите протокол из выпадающего списка:"
 
