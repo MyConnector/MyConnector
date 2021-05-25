@@ -1487,11 +1487,13 @@ class Gui(Gtk.Application):
             new_state = True if autostart in ( "Enabled", "Включен" ) else False
             parameters[ "autostart" ] = str( new_state )
             options.saveInFile( fileMyc, parameters )
+            shortcut = "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name )
             if new_state:
                 os.makedirs( "%s/.config/autostart" % HOMEFOLDER, exist_ok = True )
-                self.createDesktopFile( "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name ), name, name )
+                self.createDesktopFile( shortcut, name, name )
             else:
-                os.remove( "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name) )
+                if os.path.isfile( shortcut ):
+                    os.remove( shortcut )
 
     def listFilter(self, model, iter, data):
         """Функция для фильтра подключений в списке"""
