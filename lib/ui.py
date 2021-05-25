@@ -1412,12 +1412,16 @@ class Gui(Gtk.Application):
         dialog.format_secondary_text(name)
         response = dialog.run()
         if response == Gtk.ResponseType.YES:
-            fileCtor = table[indexRow][4]
-            parameters = options.loadFromFile(fileCtor)
+            fileMyc = table[ indexRow ][ 4 ]
+            parameters = options.loadFromFile( fileMyc )
             try: keyring.delete_password( parameters.get( "server", "" ), parameters.get( "username", "" ) )
             except: pass
-            try: os.remove( "%s/%s" % ( WORKFOLDER, fileCtor ) )
-            except: pass
+            mycfile = "%s/%s" % ( WORKFOLDER, fileMyc )
+            if os.path.isfile( mycfile ):
+                os.remove( mycfile )
+            autostart_shortcut = "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name )
+            if os.path.isfile( autostart_shortcut ):
+                os.remove( autostart_shortcut )
             self.setSavesToListstore()
             options.log.info( "%s (%s)!", _("Connection deleted"), name )
             self.initSubmenuTray()
