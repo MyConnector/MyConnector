@@ -371,7 +371,7 @@ class Citrix:
             addr = args [ "server" ]
         if citrixCheck():
             options.log.info( "Citrix: %s %s", _("Connecting to the server"), addr )
-            os.system('/opt/Citrix/ICAClient/util/storebrowse --addstore ' + addr + STD_TO_LOG)
+            os.system( "/opt/Citrix/ICAClient/util/storebrowse --addstore " + addr + STD_TO_LOG.replace( "&", "" ) )
             os.system('/opt/Citrix/ICAClient/selfservice --icaroot /opt/Citrix/ICAClient' + STD_TO_LOG)
         else: _missCitrix()
 
