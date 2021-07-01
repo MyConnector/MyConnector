@@ -474,7 +474,7 @@ def definition( name ):
                   "VNC1"   : VncViewer(),
                   "RDP"    : RdpRemmina(),
                   "RDP1"   : XFreeRdp(),
-                  "NX"     : VncViewer(),
+                  "NX"     : NxRemmina(),
                   "XDMCP"  : XdmcpRemmina(),
                   "SSH"    : SshRemmina(),
                   "SFTP"   : SftpRemmina(),

@@ -459,6 +459,7 @@ class Gui(Gtk.Application):
         protocol = entry.get_name()
         if server:
             name = changeProgram( protocol )
+            print(name)
             connect = definition( name )
             if self.prefClick: #если нажата кнопка Доп. Параметры
                 parameters = self.applyPreferences( name )
