@@ -46,7 +46,6 @@ help:
 
 install:
 	apt-get remove myconnector -y || /bin/true
-	apt-get remove connector -y || /bin/true
 	sed -i s#/usr/share#$(PREFIX)#g $(GLOBAL) kiosk/* bin/*
 	sed -i s#/usr/bin/$(TARGET)#$(PREFIX_BIN)/$(TARGET)#g $(GLOBAL) share/applications/$(TARGET).desktop kiosk/*
 	sed -i s#$(PREFIX)/applications#/usr/share/applications#g $(GLOBAL)
