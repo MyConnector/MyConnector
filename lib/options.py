@@ -157,6 +157,7 @@ class Properties(Gtk.Window):
         self.checkTray = builder.get_object("check_TRAY")
         self.checkVersion = builder.get_object("check_VERSION")
         self.checkLog = builder.get_object("check_LOG")
+        self.checkPasswd = builder.get_object( "check_PASSWD" )
         self.combo_sort = builder.get_object("combo_sort")
         self.editor = builder.get_object( "entry_editor" )
         self.initParameters()
@@ -185,6 +186,8 @@ class Properties(Gtk.Window):
         except KeyError: self.combo_tabs.set_active_id( '0' )
         try: self.editor.set_text( CONFIG[ "editor" ] )
         except KeyError: self.entryFS.set_text( DEFAULT[ "editor" ] )
+        try: self.checkPasswd.set_active( CONFIG.getboolean( "passwd_off" ) )
+        except KeyError: self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
 
     def onCancel (self, button, window):
         window.destroy()
@@ -217,6 +220,7 @@ class Properties(Gtk.Window):
         CONFIG[ 'log' ] = str( self.checkLog.get_active() )
         CONFIG[ 'sort' ] = self.combo_sort.get_active_id()
         CONFIG[ 'editor' ] = self.editor.get_text()
+        CONFIG[ 'passwd_off' ] = str( self.checkPasswd.get_active() )
         config_save()
         msg_save = "%s myconnector.conf..." % _("The preferences are saved in a file")
         myconnector.ui.viewStatus( self.statusbar, msg_save )

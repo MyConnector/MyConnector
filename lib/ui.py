@@ -559,11 +559,14 @@ class Gui(Gtk.Application):
         if protocol == "VMWARE":
             self.VMWARE_user.set_text( args.get( "username", "" ) )
             self.VMWARE_domain.set_text( args.get( "domain", "" ) )
-            password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
-            if args.getboolean( "passwdsave" ) or password: self.VMWARE_pwdsave.set_active( True )
-            if not password: password = args.get( "passwd", "" )
-            self.VMWARE_password.set_text( password )
             if args.getboolean( "fullscreen" ): self.VMWARE_fullscreen.set_active( True )
+            if not self.optionEnabled( "passwd_off" ):
+                password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
+                if args.getboolean( "passwdsave" ) or password: self.VMWARE_pwdsave.set_active( True )
+                if not password: password = args.get( "passwd", "" )
+                self.VMWARE_password.set_text( password )
+            else:
+                self.VMWARE_pwdsave.set_sensitive( False )
 
         if protocol == "XDMCP":
             self.XDMCP_color.set_active_id( args.get( "colordepth", "" ) )
@@ -690,10 +693,13 @@ class Gui(Gtk.Application):
             if args.getboolean( "reconnect"  ): self.RDP_reconnect.set_active(    False )
             if args.getboolean( "certignore" ): self.RDP_certignore.set_active(    True )
             if args.getboolean( "glyph"      ): self.RDP_glyph.set_active(         True )
-            password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
-            if args.getboolean( "passwdsave" ) or password: self.RDP_pwdsave.set_active( True )
-            if not password: password = args.get( "passwd", "" )
-            self.RDP_pwd.set_text( password )
+            if not self.optionEnabled( "passwd_off" ):
+                password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
+                if args.getboolean( "passwdsave" ) or password: self.RDP_pwdsave.set_active( True )
+                if not password: password = args.get( "passwd", "" )
+                self.RDP_pwd.set_text( password )
+            else:
+                self.RDP_pwdsave.set_sensitive( False )
             self.RDP_security.set_active_id( args.get( "security", "False" ) )
 
         if protocol == "SPICE":
@@ -728,10 +734,13 @@ class Gui(Gtk.Application):
                 self.X2GO_geometry_hand = self.pref_builder.get_object( "radio_X2GO_geometry"   )
                 self.X2GO_geometry_hand.set_active( True )
                 self.X2GO_geometry.set_text( geometry )
-            password = keyring.get_password( args.get( "server", "" ), username )
-            if args.getboolean( "passwdsave" ) or password: self.X2GO_pwdsave.set_active( True )
-            if not password: password = args.get( "passwd", "" )
-            self.X2GO_pwd.set_text( password )
+            if not self.optionEnabled( "passwd_off" ):
+                password = keyring.get_password( args.get( "server", "" ), username )
+                if args.getboolean( "passwdsave" ) or password: self.X2GO_pwdsave.set_active( True )
+                if not password: password = args.get( "passwd", "" )
+                self.X2GO_pwd.set_text( password )
+            else:
+                self.X2GO_pwdsave.set_sensitive( False )
             if args.getboolean( "printers"   ): self.X2GO_print.set_active(      True )
             if args.getboolean( "sound"      ): self.X2GO_sound.set_active(      True )
 
@@ -796,6 +805,7 @@ class Gui(Gtk.Application):
             self.RDP_certignore    = self.pref_builder.get_object( "check_RDP1_certignore"    )
             self.RDP_pwd           = self.pref_builder.get_object( "entry_RDP1_pwd"           )
             self.RDP_pwdsave       = self.pref_builder.get_object( "check_RDP1_pwd"           )
+            if self.optionEnabled( "passwd_off" ): self.RDP_pwdsave.set_sensitive( False      )
             self.RDP_glyph         = self.pref_builder.get_object( "check_RDP1_glyph"         )
             self.RDP_userparams    = self.pref_builder.get_object( "entry_RDP1_userparams"    )
             self.RDP_security      = self.pref_builder.get_object( "entry_RDP1_security"      )
@@ -866,6 +876,7 @@ class Gui(Gtk.Application):
             self.VMWARE_domain     = self.pref_builder.get_object( "entry_VMWARE_dom"        )
             self.VMWARE_password   = self.pref_builder.get_object( "entry_VMWARE_pwd"        )
             self.VMWARE_pwdsave    = self.pref_builder.get_object( "check_VMWARE_pwd"        )
+            if self.optionEnabled( "passwd_off" ): self.VMWARE_pwdsave.set_sensitive( False  )
             self.VMWARE_fullscreen = self.pref_builder.get_object( "check_VMWARE_fullscreen" )
 
         if protocol == "SPICE":
@@ -889,6 +900,7 @@ class Gui(Gtk.Application):
             self.X2GO_user       = self.pref_builder.get_object( "entry_X2GO_user"       )
             self.X2GO_pwd        = self.pref_builder.get_object( "entry_X2GO_pwd"        )
             self.X2GO_pwdsave    = self.pref_builder.get_object( "check_X2GO_pwd"        )
+            if self.optionEnabled( "passwd_off" ): self.X2GO_pwdsave.set_sensitive(False )
             self.X2GO_session    = self.pref_builder.get_object( "entry_X2GO_session"    )
             self.X2GO_port       = self.pref_builder.get_object( "entry_X2GO_port"       )
             self.X2GO_fullscreen = self.pref_builder.get_object( "radio_X2GO_fullscreen" )

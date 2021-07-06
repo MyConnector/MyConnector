@@ -224,6 +224,9 @@ msgstr "Отключить буфер обмена"
 msgid "Disable encryption"
 msgstr "Отключить шифрование"
 
+msgid "Disable password storage"
+msgstr "Отключить возможность сохранения пароля"
+
 msgid "Disable the Ctrl key in the webkiosk"
 msgstr "Отключить клавишу Ctrl в WEB-киоске"
 

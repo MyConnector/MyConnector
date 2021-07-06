@@ -54,6 +54,7 @@ DEFAULT    = { "rdp"            : "freerdp",
                "fs"             : "xdg-open",
                "editor"         : "pluma", #default in MATE
                "tray"           : "False",
+               "passwd_off"     : "False",
                "check_version"  : "True",
                "sort"           : "0" }
 
