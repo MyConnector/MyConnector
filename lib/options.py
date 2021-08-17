@@ -168,26 +168,26 @@ class Properties(Gtk.Window):
 
     def initParameters(self):
         """Initializing parameters from a file myconnector.conf"""
-        if CONFIG[ "rdp" ] == "freerdp":
+        if CONFIG.get( "rdp", "freerdp" ) == "freerdp":
             self.changeRdpFree.set_active( True )
-        if CONFIG[ "vnc" ] == "vncviewer":
+        if CONFIG.get( "vnc", "vncviewer" ) == "vncviewer":
             self.changeVncView.set_active( True )
         try: self.combo_tabs.set_active_id( CONFIG[ 'tab' ] )
         except KeyError: self.combo_tabs.set_active_id( '0' )
         try: self.entryFS.set_text( CONFIG[ 'fs' ] )
         except KeyError: self.entryFS.set_text( DEFAULT[ 'fs' ] )
         try: self.checkTray.set_active( CONFIG.getboolean( 'tray' ) )
-        except KeyError: self.checkTray.set_active( DEFAULT[ 'tray' ] )
+        except ( KeyError, TypeError ): self.checkTray.set_active( DEFAULT[ 'tray' ] )
         try: self.checkVersion.set_active( CONFIG.getboolean( 'check_version' ) )
-        except KeyError: self.checkVersion.set_active( DEFAULT[ 'check_version' ] )
+        except ( KeyError, TypeError ): self.checkVersion.set_active( DEFAULT[ 'check_version' ] )
         try: self.checkLog.set_active( CONFIG.getboolean( 'log' ) )
-        except KeyError: self.checkLog.set_active( DEFAULT[ 'log' ] )
+        except ( KeyError, TypeError ): self.checkLog.set_active( DEFAULT[ 'log' ] )
         try: self.combo_sort.set_active_id( CONFIG[ 'sort' ] )
         except KeyError: self.combo_tabs.set_active_id( '0' )
         try: self.editor.set_text( CONFIG[ "editor" ] )
-        except KeyError: self.entryFS.set_text( DEFAULT[ "editor" ] )
+        except KeyError: self.editor.set_text( DEFAULT[ "editor" ] )
         try: self.checkPasswd.set_active( CONFIG.getboolean( "passwd_off" ) )
-        except KeyError: self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
+        except ( KeyError, TypeError ): self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
 
     def onCancel (self, button, window):
         window.destroy()

@@ -50,12 +50,12 @@ os.system( "mkdir -p %s" % LOGFOLDER )
 DEFAULT    = { "rdp"            : "freerdp",
                "vnc"            : "vncviewer",
                "tab"            : "0",
-               "log"            : "True",
+               "log"            : True,
                "fs"             : "xdg-open",
                "editor"         : "pluma", #default in MATE
-               "tray"           : "False",
-               "passwd_off"     : "False",
-               "check_version"  : "True",
+               "tray"           : False,
+               "passwd_off"     : False,
+               "check_version"  : True,
                "sort"           : "0" }
 
 #Исходные данные для ярлыка подключения
