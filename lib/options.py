@@ -136,6 +136,7 @@ class Properties(Gtk.Window):
         self.labelRDP = mainWindow.labelRDP
         self.labelVNC = mainWindow.labelVNC
         self.conn_note = mainWindow.conn_note
+        self.main_window.window.set_sensitive( False )
         self.combo_protocols = mainWindow.combo_protocols
         self.labelFS = mainWindow.labelFS
         self.set_position(Gtk.WindowPosition.CENTER)
@@ -189,13 +190,15 @@ class Properties(Gtk.Window):
         try: self.checkPasswd.set_active( CONFIG.getboolean( "passwd_off" ) )
         except ( KeyError, TypeError ): self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
 
-    def onCancel (self, button, window):
-        window.destroy()
-        if not CONFIG.getboolean( 'tray' ):
-            self.main_window.onShowWindow()
+    def onCancel( self, button, win ):
+        self.closeWin( win )
 
-    def onClose (self, window, *args):
+    def onClose( self, win, *args ):
+        self.closeWin( win )
+
+    def closeWin( self, window ):
         window.destroy()
+        self.main_window.window.set_sensitive( True )
         if not CONFIG.getboolean( 'tray' ):
             self.main_window.onShowWindow()
 

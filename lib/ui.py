@@ -489,6 +489,7 @@ class Gui(Gtk.Application):
     def onButtonPref(self, entry_server, nameConnect = ''):
         """Дополнительные параметры подключения к серверу.
         Доступно как с кнопки, так и из пункта меню 'Подключение'"""
+        self.window.set_sensitive( False )
         self.pref_window = Gtk.Window()
         self.prefClick = True #для определения нажатия на кнопку Доп. параметры
         protocol = entry_server.get_name()
@@ -1087,15 +1088,15 @@ class Gui(Gtk.Application):
 
         return args
 
-    def onCancel (self, button, window):
-        """Нажатие кнопки Отмена в окне доп. параметров"""
-        window.destroy()
-        self.prefClick = False
-        if hasattr( self, "fileCtor" ): self.fileCtor = ""
+    def onCancel( self, button, win ):
+        self.closeWin( win )
 
-    def onClose (self, window, *args):
-        """Закрытие окна доп. параметров"""
+    def onClose( self, win, *args ):
+        self.closeWin( win )
+
+    def closeWin( self, window ):
         window.destroy()
+        self.window.set_sensitive( True )
         self.prefClick = False
         if hasattr( self, "fileCtor" ): self.fileCtor = ""
 
@@ -1249,6 +1250,7 @@ class Gui(Gtk.Application):
             self.treeview.set_cursor( 0 )
             self.currentFilter = ""
             self.filterConnections.refilter()
+            self.window.set_sensitive( True )
         if error:
             viewStatus( self.statusbar, error )
             os.system( "zenity --error --text='\n%s!' --no-wrap --icon-name=myconnector" % error )
