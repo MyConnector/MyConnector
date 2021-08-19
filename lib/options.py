@@ -191,10 +191,13 @@ class Properties(Gtk.Window):
 
     def onCancel (self, button, window):
         window.destroy()
+        if not CONFIG.getboolean( 'tray' ):
+            self.main_window.onShowWindow()
 
     def onClose (self, window, *args):
         window.destroy()
-        self.main_window.onShowWindow()
+        if not CONFIG.getboolean( 'tray' ):
+            self.main_window.onShowWindow()
 
     def updateTray( self ):
         if CONFIG.getboolean( 'tray' ):
