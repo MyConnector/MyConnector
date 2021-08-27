@@ -1312,11 +1312,11 @@ class Gui(Gtk.Application):
         """Connect to save connection from main window or tray"""
         if type( args[ 0 ] ) == Gtk.TreeView: #from list_connect
             table, indexRow = args[0].get_selection().get_selected()
-            try:
-                nameConnect, fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
-            except TypeError:
+            if indexRow == None:
                 viewStatus( self.statusbar, _("Select a connection from the list!") )
                 return None
+            else:
+                nameConnect, fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         else: #from tray
             nameConnect = args[ 1 ]
             fileCtor = self.filenameFromName( nameConnect )
@@ -1349,11 +1349,11 @@ class Gui(Gtk.Application):
     def onPopupEdit(self, treeView):
         """Изменение выбранного подключения"""
         table, indexRow = treeView.get_selection().get_selected()
-        try:
-            nameConnect, self.fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
-        except TypeError:
+        if indexRow == None:
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
+        else:
+            nameConnect, self.fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         parameters = options.loadFromFile(self.fileCtor, self.window)
         if parameters is not None: #если файл .myc имеет верный формат
             try:
@@ -1374,11 +1374,11 @@ class Gui(Gtk.Application):
     def onPopupCopy(self, treeView):
         """Копирование выбранного подключения"""
         table, indexRow = treeView.get_selection().get_selected()
-        try:
-            nameConnect, fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
-        except TypeError:
+        if indexRow == None:
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
+        else:
+            nameConnect, fileCtor = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         parameters = options.loadFromFile( fileCtor, self.window )
         if parameters is not None: #если файл .myc имеет верный формат
             try:
@@ -1416,11 +1416,11 @@ class Gui(Gtk.Application):
     def onPopupRemove(self, treeView):
         """Удаление выбранного подключения из списка, БД и файла с его настройками"""
         table, indexRow = treeView.get_selection().get_selected()
-        try:
-            name = table[ indexRow ][ 0 ]
-        except TypeError:
+        if indexRow == None:
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
+        else:
+            name = table[ indexRow ][ 0 ]
         dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
             Gtk.ButtonsType.YES_NO, _("Delete this connection:") )
         dialog.format_secondary_text(name)
@@ -1449,11 +1449,11 @@ class Gui(Gtk.Application):
         current_folder = (HOMEFOLDER + DESKFOLDER.replace('$HOME','')).replace('"','')
         dialog.set_current_folder(current_folder)
         table, indexRow = treeView.get_selection().get_selected()
-        try:
-            nameConnect = table[ indexRow ][ 0 ]
-        except TypeError:
+        if indexRow == None:
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
+        else:
+            nameConnect = table[ indexRow ][ 0 ]
         dialog.set_current_name(nameConnect + '.desktop')
         dialog.set_do_overwrite_confirmation(True) #запрос на перезапись одноименного файла
         response = dialog.run()
@@ -1470,11 +1470,11 @@ class Gui(Gtk.Application):
     def onPopupText(self, treeView):
         """Open with Text Editor"""
         table, indexRow = treeView.get_selection().get_selected()
-        try:
-            name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
-        except TypeError:
+        if indexRow == None:
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
+        else:
+            name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         editor = CONFIG.get( "editor", "pluma" )
         status = "%s \"%s\" %s..." %  ( _("The connection"), name, _("opens in a text editor") )
         options.log.info( status )
@@ -1491,11 +1491,11 @@ class Gui(Gtk.Application):
     def onPopupAutostart( self, treeView ):
         """Configure connection autostart"""
         table, indexRow = treeView.get_selection().get_selected()
-        try:
-            name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
-        except TypeError:
+        if indexRow == None:
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
+        else:
+            name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         parameters = options.loadFromFile( fileMyc )
         state = parameters.getboolean( "autostart" )
         autostart = check_output( "zenity --list --radiolist --hide-header --title=\"MyConnector\" --text=\"%s (%s):\" "
