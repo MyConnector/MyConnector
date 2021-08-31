@@ -527,8 +527,8 @@ def freerdpCheckFloatbar():
 
 def passwd( server, username ):
     """Authentication window"""
-    from myconnector.passwd import PasswdDialog
-    dialog = PasswdDialog( username )
+    from myconnector.dialogs import Password
+    dialog = Password( username )
     username, password, save = dialog.run()
     if password == False:
         options.log.info( _("The connection was canceled by the user!") )

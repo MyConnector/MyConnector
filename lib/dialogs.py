@@ -23,7 +23,7 @@ from gi.repository import Gtk
 from myconnector.config import ( UIFOLDER,
                                  APP, _ )
 
-class PasswdDialog( Gtk.Window ):
+class Password( Gtk.Window ):
     """Window for authentication (as zenity)"""
     def __init__( self, username ):
         Gtk.Window.__init__( self, title = _("Authentication...") )
@@ -66,6 +66,35 @@ class PasswdDialog( Gtk.Window ):
         return( self.username, self.passwd, self.save )
 
     def quit( self ):
+        self.destroy()
+        Gtk.main_quit()
+
+class Error( Gtk.Window ):
+    """Error dialog"""
+    def __init__( self, text ):
+        Gtk.Window.__init__( self, title = _("Error") )
+        self.set_resizable( False )
+        self.set_modal( True )
+        self.set_default_size( 500, 100 )
+        self.set_default_icon_name( APP )
+        box = Gtk.Box( orientation = Gtk.Orientation.VERTICAL )
+        label = Gtk.Label( label = text )
+        label.set_valign( Gtk.Align.END )
+        box.pack_start( label, True, True, 0 )
+        button = Gtk.Button( label = "OK" )
+        button.set_halign( Gtk.Align.CENTER )
+        button.set_valign( Gtk.Align.CENTER )
+        button.set_size_request( 100, -1 )
+        button.connect( "clicked", self.quit )
+        box.pack_start( button, True, True, 0 )
+        self.add( box )
+        self.connect( "destroy", Gtk.main_quit )
+
+    def run( self ):
+        self.show_all()
+        Gtk.main()
+
+    def quit( self, button ):
         self.destroy()
         Gtk.main_quit()
 

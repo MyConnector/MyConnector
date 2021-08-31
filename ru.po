@@ -197,6 +197,9 @@ msgstr ""
 msgid "Copy parameters to a new connection"
 msgstr "Копировать параметры в новое подключение"
 
+msgid "Current status"
+msgstr "Текущее состояние"
+
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -819,6 +822,12 @@ msgstr "Отображать иконку приложения в области
 
 msgid "Try"
 msgstr "Попробуйте"
+
+msgid "Turn it off?"
+msgstr "Выключить?"
+
+msgid "Turn it on?"
+msgstr "Включить?"
 
 msgid "Turn off automatic reconnection"
 msgstr "Отключить автоматическое переподключение"

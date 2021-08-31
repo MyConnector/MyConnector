@@ -110,8 +110,7 @@ def startDebug():
         os.system( 'for i in all myconnector; do xterm -T "MyConnector DEBUG - $i.log" -e "tail -f %s/$i.log" & done' % LOGFOLDER )
         options.log.info( _("The program is running in debug mode.") )
     else:
-        os.system( "zenity --error --icon-name=myconnector --text='\n%s' --no-wrap" %
-                   _("Logging is disabled. Debugging is not possible!") )
+        print ( _("Logging is disabled. Debugging is not possible!") )
 
 def quitApp():
     """Quit application"""
@@ -1253,7 +1252,7 @@ class Gui(Gtk.Application):
             self.window.set_sensitive( True )
         if error:
             viewStatus( self.statusbar, error )
-            os.system( "zenity --error --text='\n%s!' --no-wrap --icon-name=myconnector" % error )
+            self.errorDialog( error )
 
     def onWCSave(self, entry):
         """Сохранение подключения к Citrix или WEB"""
@@ -1264,6 +1263,8 @@ class Gui(Gtk.Application):
         error = ""
         if name == "":
             error = _("Specify a name for the connection!")
+        elif server == "":
+            error = _("Server not specified!")
         elif self.searchName( name ):
             error = _("The same connection name is already in use!")
         else:
@@ -1287,7 +1288,7 @@ class Gui(Gtk.Application):
             self.fileCtor = ""
         if error:
             viewStatus( self.statusbar, error )
-            os.system( "zenity --error --text='\n%s' --no-wrap --icon-name=myconnector" % error )
+            self.errorDialog( error )
 
     def onWCEdit(self, name, server, protocol, group ):
         """Функция изменения Citrix или WEB-подключения """
@@ -1498,11 +1499,14 @@ class Gui(Gtk.Application):
             name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
         parameters = options.loadFromFile( fileMyc )
         state = parameters.getboolean( "autostart" )
-        autostart = check_output( "zenity --list --radiolist --hide-header --title=\"MyConnector\" --text=\"%s (%s):\" "
-                                  "--column='' --column='' %s %s %s %s 2>/dev/null" % (  _("Connection autostart"),
-                                  name, state, _("Enabled"), not state, _("Disabled") ), shell=True, universal_newlines=True ).strip()
-        if autostart:
-            new_state = True if autostart in ( "Enabled", "Включен" ) else False
+        dialog = Gtk.MessageDialog( self.window, 0, Gtk.MessageType.QUESTION,
+                                    Gtk.ButtonsType.YES_NO, "%s - \"%s\"" % ( _("Connection autostart"), name ) )
+        status = _("enabled") if state else _("disabled")
+        question = _("Turn it off?") if state else _("Turn it on?")
+        dialog.format_secondary_text( "%s: %s. %s" % ( _("Current status"), status, question ) )
+        response = dialog.run()
+        if response == Gtk.ResponseType.YES:
+            new_state = not state
             parameters[ "autostart" ] = str( new_state )
             options.saveInFile( fileMyc, parameters )
             shortcut = "%s/.config/autostart/%s.desktop" % ( HOMEFOLDER, name )
@@ -1512,6 +1516,7 @@ class Gui(Gtk.Application):
             else:
                 if os.path.isfile( shortcut ):
                     os.remove( shortcut )
+        dialog.destroy()
 
     def listFilter(self, model, iter, data):
         """Функция для фильтра подключений в списке"""
@@ -1652,6 +1657,11 @@ class Gui(Gtk.Application):
             self.RDP_nla.set_sensitive( False )
         else:
             self.RDP_nla.set_sensitive( True )
+
+    def errorDialog( self, text ):
+        from myconnector.dialogs import Error
+        err = Error( text )
+        err.run()
 
 def connect( name ):
     """Start connection by name"""
