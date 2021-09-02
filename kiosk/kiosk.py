@@ -236,7 +236,6 @@ class Kiosk(Gtk.Window):
         mode = "0"
         file = ''
         url = ''
-        disable_kiosk()
         _config['kiosk']['autologin'] = str( self.checkKioskAutologin.get_active() )
         user = self.entryKioskUser.get_text()
         if user == "root":
@@ -247,6 +246,7 @@ class Kiosk(Gtk.Window):
         _config['kiosk']['user'] = user
         if not self.changeKioskOff.get_active():
             check_user( user )
+            disable_kiosk()
         if self.changeKioskAll.get_active():
             mode = "1"
             enable_kiosk()
