@@ -401,8 +401,10 @@ class FileServer:
         _exec = CONFIG[ 'fs' ] + ' "'
         if type(args) == str:
             if  not args.find("://") != -1:
-                os.system( "zenity --warning --text='%s!\n%s.' --no-wrap --icon-name=myconnector" %
-                         ( _("Enter the connection protocol"), _("Or select from the list in the advanced options") ) )
+                from myconnector.dialogs import Error
+                err = Error( "%s!\n%s." % ( _("Enter the connection protocol"),
+                          _("Or select from the list in the advanced options") ) )
+                err.run()
                 return 1
             else:
                 command = _exec + args + '"'

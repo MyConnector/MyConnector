@@ -124,9 +124,11 @@ def checkLogFile(filePath):
             os.system( 'echo "--- INFO       %s  %s" >> %s' % ( str( dt ), msg, LOGFILE ))
 
 def msg_error( msg, func ):
-    """Message for logging and show in UI (zenity)"""
+    """Message for logging and show in UI"""
     func ( msg )
-    os.system( "zenity --error --icon-name=myconnector --text='\n%s' --no-wrap" % msg )
+    from myconnector.dialogs import Error
+    err = Error( msg )
+    err.run()
 
 class Properties(Gtk.Window):
     def __init__(self, mainWindow):

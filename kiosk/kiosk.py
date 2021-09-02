@@ -32,6 +32,7 @@ from shutil import ( copy,
                      SameFileError )
 from myconnector.config import ( UIFOLDER,
                                  APP, _ )
+from myconnector.dialogs import Error
 
 _kiosk_dir = "/usr/share/myconnector/kiosk"
 _webkiosk = "%s/myconnector-webkiosk" % _kiosk_dir
@@ -168,8 +169,8 @@ def check_user( user ):
         pwd.getpwnam( user )
     except KeyError:
         os.system( "xterm -e 'adduser %s'" % user )
-        os.system( "zenity --info --title='KIOSK' --icon-name=myconnector --text='%s \"%s\" %s'" %
-                   ( _("User"), user, _("was created without password! Set, if need.") ) )
+        info = Error( "%s \"%s\" %s" % ( _("User"), user, _("was created without password! Set, if need.") ), True )
+        info.run()
 
 def myc_save( user, _input ):
     """Save file for mode = 2"""
@@ -239,8 +240,8 @@ class Kiosk(Gtk.Window):
         _config['kiosk']['autologin'] = str( self.checkKioskAutologin.get_active() )
         user = self.entryKioskUser.get_text()
         if user == "root":
-            os.system( "zenity --error --title='KIOSK' --icon-name=myconnector --text='%s'" %
-                       _("Root is not allowed to use the mode!") )
+            err = Error( _("Root is not allowed to use the mode!") )
+            err.run()
             return 1
         if user == "": user = "kiosk"
         _config['kiosk']['user'] = user
@@ -257,11 +258,12 @@ class Kiosk(Gtk.Window):
                 source = unquote( uri.replace( "file://" , "" ))
                 result = myc_save( user, source )
                 if result:
-                    os.system( "zenity --error --title='KIOSK' --icon-name=myconnector --text=\"%s\"" % result )
+                    err = Error( result )
+                    err.run()
                     return 1
             else:
-                os.system( "zenity --error --title='KIOSK' --icon-name=myconnector --text='%s'" %
-                            _("No connection file specified!") )
+                err = Error( _("No connection file specified!") )
+                err.run()
                 return 1
         if self.changeKioskWeb.get_active():
             mode = "3"

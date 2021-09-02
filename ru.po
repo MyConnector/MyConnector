@@ -370,6 +370,9 @@ msgstr "Импортирован файлы"
 msgid "Importing the connection configuration file"
 msgstr "Импорт конфигурационного файла подключения"
 
+msgid "Information"
+msgstr "Информация"
+
 msgid "Installed"
 msgstr "Текущая"
 

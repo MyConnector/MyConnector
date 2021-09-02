@@ -20,19 +20,19 @@ from gi import require_version
 require_version('Gtk', '3.0')
 
 from gi.repository import Gtk
-from myconnector.config import ( UIFOLDER,
-                                 APP, _ )
+import myconnector.config as CONF
+
 
 class Password( Gtk.Window ):
     """Window for authentication (as zenity)"""
     def __init__( self, username ):
-        Gtk.Window.__init__( self, title = _("Authentication...") )
+        Gtk.Window.__init__( self, title = CONF._("Authentication...") )
         builder = Gtk.Builder()
         self.set_resizable( False )
         self.set_modal( True )
-        builder.set_translation_domain( APP )
-        self.set_default_icon_name( APP )
-        builder.add_from_file( "%s/passwd.ui" % UIFOLDER )
+        builder.set_translation_domain( CONF.APP )
+        self.set_default_icon_name( CONF.APP )
+        builder.add_from_file( "%s/passwd.ui" % CONF.UIFOLDER )
         builder.connect_signals(self)
         main_box = builder.get_object( "main_box" )
         self.entry_passwd   = builder.get_object( "entry_passwd"   )
@@ -71,12 +71,12 @@ class Password( Gtk.Window ):
 
 class Error( Gtk.Window ):
     """Error dialog"""
-    def __init__( self, text ):
-        Gtk.Window.__init__( self, title = _("Error") )
+    def __init__( self, text, info = False ):
+        Gtk.Window.__init__( self, title = CONF._("Error") if not info else CONF._("Information") )
         self.set_resizable( False )
         self.set_modal( True )
         self.set_default_size( 500, 100 )
-        self.set_default_icon_name( APP )
+        self.set_default_icon_name( CONF.APP )
         box = Gtk.Box( orientation = Gtk.Orientation.VERTICAL )
         label = Gtk.Label( label = text )
         label.set_valign( Gtk.Align.END )

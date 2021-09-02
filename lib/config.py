@@ -26,6 +26,7 @@ from subprocess import ( check_output,
 from configparser import ( ConfigParser,
                            ParsingError )
 from pathlib import Path
+from myconnector.dialogs import Error
 
 APP         = "myconnector"
 VERSION     = "2.1.3"
@@ -133,8 +134,9 @@ elif OS == "linuxmint" or OS == "ubuntu":
 
 else:
     VERSION = RELEASE = USBPATH = CITRIX_CHECK = SCARD = ""
-    os.system( "zenity --error --no-wrap --icon-name=myconnector --text='%s <a href=\"https://docs.myconnector.ru\">%s</a>.'" %
-             ( _("Unsupported OS!\nSome features of the program may not work!\nLearn more about supported OS"), _("here") ) )
+    err = Error( "%s: https://docs.myconnector.ru/." % _("Unsupported OS!\n"
+                 "Some features of the program may not work!\nLearn more about supported OS") )
+    err.run()
 
 #Protocols' default options
 DEF_PROTO = {}
@@ -290,8 +292,8 @@ try:
     CONFIG, CONFIGS = config_init()
 except KeyError:
     if os.path.exists( _config_file ):
-        os.system( "zenity --error --no-wrap --icon-name=myconnector --text='%s'" %
-                   _("The configuration file is corrupted, a new one has been created!") )
+        err = Error( _("The configuration file is corrupted, a new one has been created!") )
+        err.run()
         os.rename( _config_file, "%s.bak" % _config_file )
     config_save( default = True )
     CONFIG, CONFIGS = config_init()
