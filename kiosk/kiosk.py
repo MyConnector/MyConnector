@@ -187,10 +187,12 @@ def myc_save( user, _input ):
     return result
 
 class Kiosk(Gtk.Window):
-    def __init__(self):
+    def __init__( self, window ):
         """Window with settings of the mode KIOSK"""
         os.makedirs (_lightdm_conf_dir, exist_ok = True)
         os.makedirs (_etc_dir, exist_ok = True)
+        self.main_window = window
+        self.main_window.set_sensitive( False )
         Gtk.Window.__init__( self, title = _("KIOSK mode control") )
         builder = Gtk.Builder()
         builder.set_translation_domain( APP )
@@ -220,6 +222,7 @@ class Kiosk(Gtk.Window):
     def onClose (self, window, *args):
         """Close window"""
         window.destroy()
+        self.main_window.set_sensitive( True )
 
     def entryOn(self, widget):
         """Enable widget sensitivity"""

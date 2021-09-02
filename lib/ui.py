@@ -1339,7 +1339,7 @@ class Gui(Gtk.Application):
                 except: pass
             viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Connecting to"), nameConnect ) )
             connect = definition( name )
-            connect.start( parameters )
+            connect.start( parameters, self.window )
 
     def onPopupMenu(self, widget, event):
         """Контекстное меню списка сохраненных подключений"""
@@ -1601,7 +1601,7 @@ class Gui(Gtk.Application):
     def onKiosk(self, *args):
         """Button 'Mode KIOSK'"""
         from myconnector.kiosk import Kiosk
-        window = Kiosk()
+        window = Kiosk( self.window )
 
     def filenameFromName( self, name ):
         """Определение имени конфигурационного файла подключения по имени подключения"""

@@ -55,7 +55,7 @@ class VncViewer:
 
 class XFreeRdp:
     """Класс для настройки RDP-соединения через xfreerdp"""
-    def start(self, args):
+    def start( self, args, window = False ):
         if freerdpCheck():
             freerdpVersion = freerdpCheckVersion()
             if freerdpVersion > "1.2":
@@ -118,7 +118,7 @@ class XFreeRdp:
                 if not password:
                     password = keyring.get_password( server, username )
                 if not password and disable_nla != "True":
-                    new_username, password = passwd( server, username )
+                    new_username, password = passwd( server, username, window )
                     if new_username == username or not new_username:
                         pass
                     else:
@@ -431,7 +431,7 @@ class FileServer:
 
 class X2goClient:
     """Class for connect to X2GO server"""
-    def start(self, args):
+    def start( self, args, window = False ):
         if x2goCheck():
             if type(args) == str:
                 command = "pyhoca-cli -N --add-to-known-hosts --server %s" % args
@@ -456,7 +456,7 @@ class X2goClient:
                 if password:
                     password = escape( password )
                 else:
-                    new_username, password = passwd( server, username )
+                    new_username, password = passwd( server, username, window )
                     if new_username == username or not new_username:
                         pass
                     else:
@@ -527,10 +527,10 @@ def freerdpCheckFloatbar():
     check = not bool(check)
     return check
 
-def passwd( server, username ):
+def passwd( server, username, window = False):
     """Authentication window"""
     from myconnector.dialogs import Password
-    dialog = Password( username )
+    dialog = Password( username, window )
     username, password, save = dialog.run()
     if password == False:
         options.log.info( _("The connection was canceled by the user!") )

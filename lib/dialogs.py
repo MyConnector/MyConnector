@@ -25,8 +25,11 @@ import myconnector.config as CONF
 
 class Password( Gtk.Window ):
     """Window for authentication (as zenity)"""
-    def __init__( self, username ):
+    def __init__( self, username, window ):
         Gtk.Window.__init__( self, title = CONF._("Authentication...") )
+        if window:
+            self.main_window = window
+            self.main_window.set_sensitive( False )
         builder = Gtk.Builder()
         self.set_resizable( False )
         self.set_modal( True )
@@ -68,6 +71,8 @@ class Password( Gtk.Window ):
     def quit( self ):
         self.destroy()
         Gtk.main_quit()
+        if hasattr( self, "main_window" ):
+            self.main_window.set_sensitive( True )
 
 class Error( Gtk.Window ):
     """Error dialog"""
