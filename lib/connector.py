@@ -35,7 +35,7 @@ else: STD_TO_LOG = ' &'
 
 class VncViewer:
     """Класс для настройки VNC-соединения через VncViewer"""
-    def start(self, args):
+    def start( self, args, window = False ):
         if type(args) == str:
             options.log.info( "VNC: %s %s", _("Connecting to the server"), args )
             command = 'vncviewer ' + args
@@ -159,7 +159,7 @@ class Remmina:
             print( key, self.cfg[ key ], sep = "=", file = f )
         f.close()
 
-    def start( self, parameters ):
+    def start( self, parameters, window = False ):
         """Run connection via Remmina"""
         self.create_cfg_file( parameters )
         options.log.info( "Remmina: %s %s %s: %s", _("connecting via the protocol"), self.cfg[ "protocol" ],
@@ -340,7 +340,7 @@ class SpiceRemmina( Remmina ):
 
 class Vmware:
     """Класс для настройки соединения к VMWare серверу"""
-    def start(self, args):
+    def start( self, args, window = False ):
         if vmwareCheck():
             if type(args) == str:
                 command = 'vmware-view -q -s ' + args
@@ -364,7 +364,7 @@ def _missCitrix():
 
 class Citrix:
     """Класс для настройки ICA-соединения к Citrix-серверу"""
-    def start(self, args):
+    def start( self, args, window = False ):
         if type(args) == str:
             addr = args
         else:
@@ -383,7 +383,7 @@ class Citrix:
 
 class Web:
     """Класс для настройки подключения к WEB-ресурсу"""
-    def start(self, args):
+    def start(self, args, window = False ):
         if type(args) == str:
             addr = args
         else:
@@ -397,7 +397,7 @@ class Web:
 
 class FileServer:
     """Класс для настройки подключения к файловому серверу"""
-    def start(self, args):
+    def start( self, args, window = False ):
         _exec = CONFIG[ 'fs' ] + ' "'
         if type(args) == str:
             if  not args.find("://") != -1:
