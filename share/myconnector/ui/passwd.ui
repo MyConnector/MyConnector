@@ -49,6 +49,9 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             <property name="width_request">300</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="tooltip_text" translatable="yes">The following format is possible:
+[DOMAIN\]username
+username[@domain]</property>
             <property name="caps_lock_warning">False</property>
             <signal name="activate" handler="onStart" swapped="no"/>
           </object>

@@ -1324,6 +1324,7 @@ class Gui(Gtk.Application):
         parameters = options.loadFromFile(fileCtor, self.window)
         if parameters is not None: #если файл .myc имеет верный формат
             parameters[ "name" ] = nameConnect
+            parameters[ "file" ] = fileCtor
             try:
                 name = changeProgram( parameters[ "protocol" ], parameters.get( "program", "" ) )
             except KeyError:

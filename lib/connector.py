@@ -118,7 +118,7 @@ class XFreeRdp:
                 if not password:
                     password = keyring.get_password( server, username )
                 if not password and disable_nla != "True":
-                    new_username, password = passwd( server, username, window )
+                    new_username, password = passwd( server, username, args.get( "file", "" ), window )
                     if new_username == username or not new_username:
                         pass
                     else:
@@ -458,7 +458,7 @@ class X2goClient:
                 if password:
                     password = escape( password )
                 else:
-                    new_username, password = passwd( server, username, window )
+                    new_username, password = passwd( server, username, args.get( "file", "" ), window )
                     if new_username == username or not new_username:
                         pass
                     else:
@@ -529,7 +529,7 @@ def freerdpCheckFloatbar():
     check = not bool(check)
     return check
 
-def passwd( server, username, window = False):
+def passwd( server, username, filename, window = False):
     """Authentication window"""
     from myconnector.dialogs import Password
     dialog = Password( username, window )
@@ -539,7 +539,21 @@ def passwd( server, username, window = False):
     else:
         if save and password:
             keyring.set_password( str( server ), str( username ), str( password ) )
+            resaveFromAuth( filename, username )
     return( username, password )
+
+def resaveFromAuth( filename, username ):
+    """Resave connection from Authentication Window"""
+    try:
+        connection = "%s/%s" % ( WORKFOLDER, filename )
+        conf = ConfigParser( interpolation = None )
+        conf.read( connection )
+        conf[ "myconnector" ][ "domain" ] = ""
+        conf[ "myconnector" ][ "username" ] = username
+        with open( connection, "w" ) as fileMyc:
+            conf.write( fileMyc )
+    except:
+        pass
 
 if __name__ == "__main__":
     pass
