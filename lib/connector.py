@@ -123,6 +123,8 @@ class XFreeRdp:
                         pass
                     else:
                         command = command.replace( "/u:%s" % escape( username ), "/u:%s" % escape( new_username ) )
+                        if "@" in new_username or "\\" in new_username:
+                             command = command.replace( "/d:%s" % args[ "domain" ], "" )
                 if password:
                     command += " /p:%s" % escape( password )
                 if password == "":
