@@ -26,7 +26,7 @@ except Exception as error:
         def set_password(self, *args): pass
         def get_password(self, *args): return ""
     keyring = Keyring()
-    options.log.warning("Python 3: %s. %s." % ( error, _("Password storage is not available for FreeRDP") ) )
+    options.log.warning("Python 3: %s. %s." % ( error, _("Password storage is not available for MyConnector") ) )
 
 try: enableLog = CONFIG.getboolean( 'log' )
 except KeyError: enableLog = DEFAULT[ 'log' ]
@@ -546,7 +546,10 @@ def passwd( server, username, filename, window = False):
         options.log.info( _("The connection was canceled by the user!") )
     else:
         if save and password:
-            keyring.set_password( str( server ), str( username ), str( password ) )
+            try:
+                keyring.set_password( str( server ), str( username ), str( password ) )
+            except Exception as e:
+                options.log.error( e )
             resaveFromAuth( filename, username )
     return( username, password )
 
@@ -560,8 +563,8 @@ def resaveFromAuth( filename, username ):
         conf[ "myconnector" ][ "username" ] = username
         with open( connection, "w" ) as fileMyc:
             conf.write( fileMyc )
-    except:
-        pass
+    except Exception as e:
+        options.log.error( e )
 
 if __name__ == "__main__":
     pass

@@ -142,7 +142,8 @@ def getSaveConnections( fileFromConnection = "" ):
                              GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol ) ) ]
                     saves.append( save )
                     if group: groups.append( group )
-                except: pass
+                except Exception as e:
+                    options.log.error( e )
     return saves, list( set( groups ) ) #unique groups
 
 def changeProgram( protocol, program = "" ):
@@ -478,7 +479,8 @@ class Gui(Gtk.Application):
             try:
                 parameters[ "server"   ] = server
                 parameters[ "protocol" ] = protocol
-            except: pass
+            except Exception as e:
+                options.log.error( e )
             connect.start(parameters)
             viewStatus( self.statusbar, "%s %s... "% ( _("Connecting to the server"), server ) )
             self.writeServerInDb(entry)
@@ -531,7 +533,8 @@ class Gui(Gtk.Application):
         self.pref_window.connect( "delete-event", self.onClose )
         entryGroup = self.pref_builder.get_object( "entry_%s_group" % name )
         try: entryGroup.set_text( parameters.get( "group", "" ) )
-        except: pass
+        except Exception as e:
+            options.log.error( e )
         combo_groups = self.pref_builder.get_object( "combo_%s_group" % name )
         combo_groups.set_model( self.initGroups() )
         self.initPreferences( name )
@@ -1130,7 +1133,8 @@ class Gui(Gtk.Application):
                 try: #попытка прочитать протокол/сервер
                     protocol, address = server.strip().split(':::')
                     self.liststore[protocol].append([address])
-                except: pass
+                except Exception as e:
+                    options.log.error( e )
         except FileNotFoundError:
             options.log.warning( _("The list of servers (servers.db) was not found, an empty one was created.") )
             self.createDb("servers.db")
@@ -1447,8 +1451,10 @@ class Gui(Gtk.Application):
         if response == Gtk.ResponseType.YES:
             fileMyc = table[ indexRow ][ 4 ]
             parameters = options.loadFromFile( fileMyc )
-            try: keyring.delete_password( parameters.get( "server", "" ), parameters.get( "username", "" ) )
-            except: pass
+            try:
+                keyring.delete_password( parameters.get( "server", "" ), parameters.get( "username", "" ) )
+            except Exception as e:
+                options.log.error( e )
             mycfile = "%s/%s" % ( WORKFOLDER, fileMyc )
             if os.path.isfile( mycfile ):
                 os.remove( mycfile )
@@ -1599,10 +1605,16 @@ class Gui(Gtk.Application):
     def saveKeyring(self, parameters):
         """Сохранение пароля в связу ключей и отметки об этом в файл подключения"""
         if parameters.get( "passwdsave", "False" ) == "True":
-            keyring.set_password( parameters [ "server" ], parameters [ "username" ], parameters [ "passwd" ] )
+            try:
+                keyring.set_password( parameters [ "server" ], parameters [ "username" ], parameters [ "passwd" ] )
+            except Exception as e:
+                options.log.error( e )
+
         else:
-            try: keyring.delete_password( parameters [ "server" ],  parameters [ "username" ] )
-            except: pass
+            try:
+                keyring.delete_password( parameters [ "server" ],  parameters [ "username" ] )
+            except Exception as e:
+                options.log.error( e )
 
     def onDeveloper(self, *args):
         """Кнопка 'Связь с разработчиком'"""
@@ -1659,7 +1671,8 @@ class Gui(Gtk.Application):
                     if code == 0:
                         with open( mycfile, "a" ) as f:
                             print( "name = %s" % name, file = f )
-                except: pass
+                except Exception as e:
+                    options.log.error( e )
             self.setSavesToListstore()
         dialog.destroy()
 

@@ -506,8 +506,8 @@ msgstr "Пароль"
 msgid "Password expired. For change disable NLA or enable TLS or RDP protocol security!"
 msgstr "Срок действия пароля истек. Для смены отключите NLA или включите TLS/RDP в настройках безопасности!"
 
-msgid "Password storage is not available for FreeRDP"
-msgstr "Хранение пароля не доступно для FreeRDP"
+msgid "Password storage is not available for MyConnector"
+msgstr "Хранение пароля не доступно для MyConnector"
 
 msgid "Performance"
 msgstr "Производительность"
