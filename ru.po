@@ -1,14 +1,14 @@
 # Russian translations for MyConnector package.
-# Copyright (C) 2021 THE MYCONNECTOR'S COPYRIGHT HOLDER
+# Copyright (C) 2022 THE MYCONNECTOR'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the MyConnector package.
-# Evgeniy Korneechev <ek@myconnector.ru>, 2021.
+# Evgeniy Korneechev <ek@myconnector.ru>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.1\n"
+"Project-Id-Version: 2.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-14 14:59+0300\n"
-"PO-Revision-Date: 2021-05-06 15:00+0300\n"
+"PO-Revision-Date: 2021-12-28 15:00+0300\n"
 "Last-Translator: Evgeniy Korneechev <ek@myconnector.ru>\n"
 "Language-Team: Evgeniy Korneechev <ek@myconnector.ru>\n"
 "Language: ru\n"
