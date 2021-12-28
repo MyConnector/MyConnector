@@ -231,7 +231,8 @@ class Gui(Gtk.Application):
         if FIRSTRUN:
             connections = "%s/.connector/connections.db" % HOMEFOLDER
             if os.path.exists( connections ):
-                self.importFromConnector( connections )
+                if os.path.getsize( connections ):
+                    self.importFromConnector( connections )
         self.getServersFromDb()
         try: default_tab = CONFIG[ 'tab' ]
         except KeyError: default_tab = '0'
