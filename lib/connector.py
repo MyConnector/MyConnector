@@ -116,7 +116,11 @@ class XFreeRdp:
                 options.log.info( "FreeRDP: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
                 options.log.info( command )
                 if not password:
-                    password = keyring.get_password( server, username )
+                    try:
+                        password = keyring.get_password( server, username )
+                    except Exception as e:
+                        options.log.error( e )
+                        password = ""
                 if not password and disable_nla != "True":
                     new_username, password = passwd( server, username, args.get( "file", "" ), window )
                     if new_username == username or not new_username:
@@ -454,7 +458,11 @@ class X2goClient:
                 options.log.info( command )
                 password = args.get( "passwd", "" )
                 if not password:
-                    password = keyring.get_password( server, username )
+                    try:
+                        password = keyring.get_password( server, username )
+                    except Exception as e:
+                        options.log.error( e )
+                        password = ""
                 if password:
                     password = escape( password )
                 else:

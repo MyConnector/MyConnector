@@ -40,8 +40,11 @@ def connectFile(filename, openFile = False):
             protocol = parameters[ "protocol" ]
             program  = parameters.get( "program", "" )
             if program == "freerdp":
-                try: parameters[ "passwd" ] = keyring.get_password( parameters[ "server" ] ,parameters[ "username" ] )
-                except: pass
+                try:
+                    parameters[ "passwd" ] = keyring.get_password( parameters[ "server" ] ,parameters[ "username" ] )
+                except Exception as e:
+                    options.log.error( e )
+                    password = ""
             connect = definition( changeProgram( protocol, program ) )
             if connect:
                 if parameters.get( "server", "" ):
@@ -561,7 +564,11 @@ class Gui(Gtk.Application):
             self.VMWARE_domain.set_text( args.get( "domain", "" ) )
             if args.getboolean( "fullscreen" ): self.VMWARE_fullscreen.set_active( True )
             if not self.optionEnabled( "passwd_off" ):
-                password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
+                try:
+                    password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
+                except Exception as e:
+                    options.log.error( e )
+                    password = ""
                 if args.getboolean( "passwdsave" ) or password: self.VMWARE_pwdsave.set_active( True )
                 if not password: password = args.get( "passwd", "" )
                 self.VMWARE_password.set_text( password )
@@ -694,7 +701,11 @@ class Gui(Gtk.Application):
             if args.getboolean( "certignore" ): self.RDP_certignore.set_active(    True )
             if args.getboolean( "glyph"      ): self.RDP_glyph.set_active(         True )
             if not self.optionEnabled( "passwd_off" ):
-                password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
+                try:
+                    password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
+                except Exception as e:
+                    options.log.error( e )
+                    password = ""
                 if args.getboolean( "passwdsave" ) or password: self.RDP_pwdsave.set_active( True )
                 if not password: password = args.get( "passwd", "" )
                 self.RDP_pwd.set_text( password )
@@ -735,7 +746,11 @@ class Gui(Gtk.Application):
                 self.X2GO_geometry_hand.set_active( True )
                 self.X2GO_geometry.set_text( geometry )
             if not self.optionEnabled( "passwd_off" ):
-                password = keyring.get_password( args.get( "server", "" ), username )
+                try:
+                    password = keyring.get_password( args.get( "server", "" ), username )
+                except Exception as e:
+                    options.log.error( e )
+                    password = ""
                 if args.getboolean( "passwdsave" ) or password: self.X2GO_pwdsave.set_active( True )
                 if not password: password = args.get( "passwd", "" )
                 self.X2GO_pwd.set_text( password )
@@ -1337,7 +1352,9 @@ class Gui(Gtk.Application):
             if ( name == "RDP1" or name == "VMWARE" or name == "X2GO" ) and parameters.getboolean( "passwdsave" ):
                 try:
                     parameters[ "passwd" ] = keyring.get_password( server, parameters.get( "username", "" ) )
-                except: pass
+                except Exception as e:
+                    options.log.error( e )
+                    password = ""
             viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Connecting to"), nameConnect ) )
             connect = definition( name )
             connect.start( parameters, self.window )
