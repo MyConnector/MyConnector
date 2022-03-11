@@ -244,6 +244,8 @@ class Gui(Gtk.Application):
         self.initLabels(self.labelRDP, self.labelVNC, self.labelFS)
         self.trayDisplayed = False
         self.tray_submenu = self.builder.get_object("tray_submenu")
+        self.recent_menu  = self.builder.get_object("menu_file_recent_conn_list")
+        self.initRecentMenu()
         if self.optionEnabled( 'tray' ): self.trayDisplayed = self.initTray()
         if self.optionEnabled( 'check_version' ):
             signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
@@ -1362,6 +1364,7 @@ class Gui(Gtk.Application):
                     password = ""
             viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Connecting to"), nameConnect ) )
             connect = definition( name )
+            self.writeConnectionInRecent( nameConnect )
             connect.start( parameters, self.window )
 
     def onPopupMenu(self, widget, event):
@@ -1703,6 +1706,37 @@ class Gui(Gtk.Application):
     def onRecentConnection( self, item ):
         """Opening a recent connection from menu"""
         pass
+
+    def writeConnectionInRecent( self, name ):
+        """Write the connection name to the recent connections file"""
+        if os.path.exists( RECENTFILE ):
+            with open( RECENTFILE ) as recent_file:
+                recent_connections = recent_file.readlines()
+            fname = "%s\n" % name
+            try:
+                recent_connections.remove( fname )
+            except:
+                pass
+            recent_connections.insert( 0, fname )
+        else:
+            recent_connections = [ name ]
+        with open( RECENTFILE, "w" ) as recent_file:
+            recent_file.writelines( recent_connections[ 0:5 ] )
+        self.initRecentMenu()
+
+    def initRecentMenu( self ):
+        """Initial menu of the recent connections"""
+        exist = False
+        if os.path.exists( RECENTFILE ):
+            with open( RECENTFILE ) as recent_file:
+                recent_connections = recent_file.readlines()
+        for item in self.recent_menu.get_children(): item.destroy()
+        menus = {}
+        for connection in recent_connections:
+            connection_item = Gtk.MenuItem( connection.strip() )
+            connection_item.connect( "activate", self.onSaveConnect, connection.strip() )
+            self.recent_menu.append( connection_item )
+        self.recent_menu.show_all()
 
 def connect( name ):
     """Start connection by name"""

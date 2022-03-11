@@ -624,6 +624,12 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Recent connections</property>
                         <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu_file_recent_conn_list">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>

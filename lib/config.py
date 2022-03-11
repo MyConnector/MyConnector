@@ -38,6 +38,7 @@ UIFOLDER    = "%s/ui"              % MAINFOLDER
 LOGFOLDER   = "%s/logs"            % WORKFOLDER
 LOGFILE     = "%s/myconnector.log" % LOGFOLDER
 STDLOGFILE  = "%s/all.log"         % LOGFOLDER
+RECENTFILE  = "%s/recent.db"       % WORKFOLDER
 FIRSTRUN    = False if os.path.exists( WORKFOLDER ) else True
 MO_FOLDER   = "/usr/share/locale"
 
