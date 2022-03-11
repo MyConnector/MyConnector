@@ -613,6 +613,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                             <property name="can_focus">False</property>
                             <property name="filter">recentfilter1</property>
                             <property name="limit">5</property>
+                            <property name="sort_type">mru</property>
                             <signal name="item-activated" handler="onRecentFile" swapped="no"/>
                           </object>
                         </child>
