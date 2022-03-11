@@ -1695,6 +1695,15 @@ class Gui(Gtk.Application):
         err = Error( text )
         err.run()
 
+    def onRecentFile( self, item ):
+        """Opening a recent file (for connect) from menu"""
+        filename = item.get_current_uri().replace( "file://", "" )
+        Popen( [ APP, filename ] )
+
+    def onRecentConnection( self, item ):
+        """Opening a recent connection from menu"""
+        pass
+
 def connect( name ):
     """Start connection by name"""
     myc_file = Gui.filenameFromName( None, name )

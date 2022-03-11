@@ -537,6 +537,17 @@ along with this program. If not, see http://www.gnu.org/licenses/.
     <property name="stock">gtk-preferences</property>
     <property name="icon_size">1</property>
   </object>
+  <object class="GtkRecentFilter" id="recentfilter1">
+    <mime-types>
+      <mime-type>application/x-myconnector</mime-type>
+      <mime-type>application/x-remmina</mime-type>
+      <mime-type>application/x-connector</mime-type>
+    </mime-types>
+    <patterns>
+      <pattern>*.rdp</pattern>
+      <pattern>*.RDP</pattern>
+    </patterns>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="width_request">550</property>
     <property name="visible">True</property>
@@ -589,6 +600,30 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="onImportFile" swapped="no"/>
                         <accelerator key="i" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_file_recent_files">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Recent files</property>
+                        <child type="submenu">
+                          <object class="GtkRecentChooserMenu" id="menu_file_recent_files_list">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="filter">recentfilter1</property>
+                            <property name="limit">5</property>
+                            <signal name="item-activated" handler="onRecentFile" swapped="no"/>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_file_recent_conn">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Recent connections</property>
+                        <property name="use_underline">True</property>
                       </object>
                     </child>
                     <child>

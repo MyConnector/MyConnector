@@ -545,6 +545,12 @@ msgstr "RDP - Удаленный рабочий стол Windows"
 msgid "Read more: xfreerdp /help"
 msgstr "Подробнее: xfreerdp /help"
 
+msgid "Recent files"
+msgstr "Недавние файлы"
+
+msgid "Recent connections"
+msgstr "Недавние подключения"
+
 msgid "Redirect local microphone"
 msgstr "Перенаправление микрофона"
 
