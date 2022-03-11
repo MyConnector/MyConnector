@@ -93,6 +93,9 @@ msgstr "Кодировка"
 msgid "Check for new versions at startup"
 msgstr "Проверять при запуске наличие новых версий"
 
+msgid "Check network or connection address!"
+msgstr "Проверьте сетевое соединение или адрес подключения!"
+
 msgid "Check protocol security settings!"
 msgstr "Проверьте параметры безопасности протокола!"
 
@@ -238,6 +241,9 @@ msgstr "Отключен"
 
 msgid "Disconnect after first session"
 msgstr "Отключаться после одного сеанса"
+
+msgid "DNS name not found!"
+msgstr "Адрес сервера не найден"
 
 msgid "Do not specify parameters for starting the GUI"
 msgstr "Не указывайте опций для запуска графического интерфейса"
