@@ -572,6 +572,12 @@ msgstr "Удаленный звук"
 msgid "Remove a connection from the list"
 msgstr "Удалить подключение из списка"
 
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Rename connection"
+msgstr "Переименовать подключение"
+
 msgid "Report an bug"
 msgstr "Сообщить об ошибке"
 

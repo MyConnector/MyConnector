@@ -1748,6 +1748,25 @@ class Gui(Gtk.Application):
                 pass
         self.recent_menu.show_all()
 
+    def onPopupRename( self, treeView ):
+        """Rename connection in main window"""
+        table, index = treeView.get_selection().get_selected()
+        if index == None:
+            viewStatus( self.statusbar, _("Select a connection from the list!") )
+            return None
+        else:
+            old_name = table[ index ][ 0 ]
+        base_model_iter = table.convert_iter_to_child_iter( index ) #for change after save
+        from myconnector.dialogs import Rename
+        rename = Rename( old_name )
+        self.window.set_sensitive( False )
+        new_name = rename.run()
+        self.window.set_sensitive( True )
+        if new_name and ( new_name != old_name ):
+            fileMyc = "%s/%s" % ( WORKFOLDER, table[ index ][ 4 ] )
+            Popen( ["sed", "-i", "s/^name.*/name = %s/g" % new_name, fileMyc ] )
+            self.filterConnections.set_value( base_model_iter, 0, new_name )
+
 def connect( name ):
     """Start connection by name"""
     myc_file = Gui.filenameFromName( None, name )

@@ -103,5 +103,50 @@ class Error( Gtk.Window ):
         self.destroy()
         Gtk.main_quit()
 
+class Rename( Gtk.Window ):
+    """Rename dialog"""
+    def __init__( self, old_name ):
+        Gtk.Window.__init__( self, title = CONF._("Rename connection") )
+        self.set_resizable( False )
+        self.set_modal( True )
+        self.set_default_size( 400, 100 )
+        self.set_default_icon_name( CONF.APP )
+        box = Gtk.Box( orientation = Gtk.Orientation.VERTICAL )
+        self.entry = Gtk.Entry( text = old_name )
+        self.entry.set_valign( Gtk.Align.END )
+        box.pack_start( self.entry, True, True, 0 )
+        box0 = Gtk.Box( orientation = Gtk.Orientation.HORIZONTAL )
+        button_ok = Gtk.Button( label = "OK" )
+        button_ok.set_halign( Gtk.Align.CENTER )
+        button_ok.set_valign( Gtk.Align.CENTER )
+        button_ok.set_size_request( 100, -1 )
+        button_ok.connect( "clicked", self.onOk )
+        box0.pack_start( button_ok, True, True, 0 )
+        button_cancel = Gtk.Button( label = CONF._("Cancel") )
+        button_cancel.set_halign( Gtk.Align.CENTER )
+        button_cancel.set_valign( Gtk.Align.CENTER )
+        button_cancel.set_size_request( 100, -1 )
+        button_cancel.connect( "clicked", self.quit )
+        box0.pack_start( button_cancel, True, True, 0 )
+        box.pack_start( box0, True, True, 0 )
+        self.add( box )
+        self.connect( "destroy", Gtk.main_quit )
+
+    def onOk( self, button ):
+        self.new_name = self.entry.get_text()
+        self.quit()
+
+    def run( self ):
+        self.show_all()
+        Gtk.main()
+        try:
+            return( self.new_name )
+        except AttributeError:
+            return( False )
+
+    def quit( self, *args ):
+        self.destroy()
+        Gtk.main_quit()
+
 if __name__ == "__main__":
     pass
