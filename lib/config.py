@@ -29,7 +29,7 @@ from pathlib import Path
 from myconnector.dialogs import Error
 
 APP         = "myconnector"
-VERSION     = "2.1.3"
+VERSION     = "2.2"
 HOMEFOLDER  = os.getenv( "HOME" )
 MAINFOLDER  = "/usr/share/myconnector"
 WORKFOLDER  = "%s/.myconnector"    % HOMEFOLDER
