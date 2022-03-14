@@ -26,7 +26,16 @@ from subprocess import ( check_output,
 from configparser import ( ConfigParser,
                            ParsingError )
 from pathlib import Path
-from myconnector.dialogs import Error
+
+from sys import version_info
+if version_info.minor >= 7:
+    from myconnector.dialogs import Error
+else:
+    class Error:
+        def __init__(self, text):
+            self.text = text
+        def run( self ):
+            os.system( "zenity --error --icon-name=myconnector --text=\"%s\"" % self.text )
 
 APP         = "myconnector"
 VERSION     = "2.2"
