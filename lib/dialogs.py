@@ -114,6 +114,7 @@ class Rename( Gtk.Window ):
         box = Gtk.Box( orientation = Gtk.Orientation.VERTICAL )
         self.entry = Gtk.Entry( text = old_name )
         self.entry.set_valign( Gtk.Align.END )
+        self.entry.connect( "activate", self.onOk )
         box.pack_start( self.entry, True, True, 0 )
         box0 = Gtk.Box( orientation = Gtk.Orientation.HORIZONTAL )
         button_ok = Gtk.Button( label = "OK" )
