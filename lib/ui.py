@@ -256,6 +256,8 @@ class Gui(Gtk.Application):
             self.menu_kiosk.set_sensitive( enabled() )
         except ImportError:
             options.log.warning( _("The mode KIOSK unavailable, package is not installed.") )
+        self.local_docs = self.builder.get_object( "help_prog_offline" )
+        if not os.path.exists( LOCALDOCS ): self.local_docs.set_sensitive( False )
 
     def initGroups( self ):
         g = Gtk.ListStore( str )
@@ -1777,6 +1779,10 @@ class Gui(Gtk.Application):
             viewStatus( self.statusbar, error )
             self.errorDialog( error )
         self.window.set_sensitive( True )
+
+    def onWikiOffline(self, *args):
+        """Open local documentation"""
+        Popen( [ "xdg-open", LOCALDOCS ] )
 
 def connect( name ):
     """Start connection by name"""

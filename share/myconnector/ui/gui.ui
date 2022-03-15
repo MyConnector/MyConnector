@@ -885,6 +885,16 @@ and one of the DM - LightDM or SDDM)</property>
                       </object>
                     </child>
                     <child>
+                      <object class="GtkMenuItem" id="help_prog_offline">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Documentation on this computer (package myconnector-docs)</property>
+                        <property name="label" translatable="yes">Documentation (offline)</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="onWikiOffline" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkMenuItem" id="bugs">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>

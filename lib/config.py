@@ -50,6 +50,7 @@ STDLOGFILE  = "%s/all.log"         % LOGFOLDER
 RECENTFILE  = "%s/recent.db"       % WORKFOLDER
 FIRSTRUN    = False if os.path.exists( WORKFOLDER ) else True
 MO_FOLDER   = "/usr/share/locale"
+LOCALDOCS   = "/usr/share/doc/myconnector-docs-%s/index.html" % VERSION
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )

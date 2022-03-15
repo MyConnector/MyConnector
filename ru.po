@@ -251,6 +251,12 @@ msgstr "Не указывайте опций для запуска графич�
 msgid "Documentation"
 msgstr "Документация"
 
+msgid "Documentation (offline)"
+msgstr "Документация (offline)"
+
+msgid "Documentation on this computer (package myconnector-docs)"
+msgstr "Документация на этом компьютере (пакет myconnector-docs)"
+
 msgid "Documents"
 msgstr "Документы"
 
