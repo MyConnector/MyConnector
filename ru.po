@@ -754,6 +754,9 @@ msgstr "Подключение отменено пользователем!"
 msgid "The connection was changed"
 msgstr "Подключение изменено"
 
+msgid "The connection was renamed"
+msgstr "Подключение переименовано"
+
 msgid "The default protocol"
 msgstr "Протокол по умолчанию"
 

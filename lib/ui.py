@@ -1770,6 +1770,9 @@ class Gui(Gtk.Application):
             fileMyc = "%s/%s" % ( WORKFOLDER, table[ index ][ 4 ] )
             Popen( ["sed", "-i", "s/^name.*/name = %s/g" % new_name, fileMyc ] )
             self.filterConnections.set_value( base_model_iter, 0, new_name )
+            info = _("The connection was renamed")
+            options.log.info( "%s (%s -> %s)", info , old_name, new_name )
+            viewStatus( self.statusbar, "%s." % info )
         if error:
             viewStatus( self.statusbar, error )
             self.errorDialog( error )
