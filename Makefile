@@ -34,8 +34,9 @@ KIOSK_DIR := $(BASE)/kiosk
 DATESTAMP := $(shell git log --pretty="%cd" --date=short -1 | sed s/-//g 2>/dev/null)
 GLOBAL := lib/config.py
 LOCALE := $(PREFIX)/locale/ru/LC_MESSAGES
+DOCS := $(PREFIX)/doc/$(TARGET)-docs-$(shell cat VERSION 2>/dev/null)
 
-.PHONY: help install uninstall clean remove
+.PHONY: help install uninstall clean remove installdocs
 
 help:
 	@echo "Запустите make с одной из необходимых ролей:"
@@ -80,6 +81,7 @@ uninstall:
 	find $(PREFIX)/icons/hicolor -name $(TARGET).png -delete
 	rm -f $(BASHCOMP)/$(TARGET)
 	rm -f $(LOCALE)/$(TARGET).mo
+	rm -rf $(DOCS)
 	update-mime-database $(MIME)
 	update-desktop-database
 
@@ -90,3 +92,7 @@ clean:
 
 remove:
 	make uninstall
+
+installdocs:
+	mkdir -p $(DOCS)
+	cp -r docs/* $(DOCS)
