@@ -1761,11 +1761,19 @@ class Gui(Gtk.Application):
         rename = Rename( old_name )
         self.window.set_sensitive( False )
         new_name = rename.run()
-        self.window.set_sensitive( True )
-        if new_name and ( new_name != old_name ):
+        error = ""
+        if new_name == "":
+            error = _("Specify a name for the connection!")
+        elif self.searchName( new_name ) and ( new_name != old_name ):
+            error = _("The same connection name is already in use!")
+        elif new_name and ( new_name != old_name ):
             fileMyc = "%s/%s" % ( WORKFOLDER, table[ index ][ 4 ] )
             Popen( ["sed", "-i", "s/^name.*/name = %s/g" % new_name, fileMyc ] )
             self.filterConnections.set_value( base_model_iter, 0, new_name )
+        if error:
+            viewStatus( self.statusbar, error )
+            self.errorDialog( error )
+        self.window.set_sensitive( True )
 
 def connect( name ):
     """Start connection by name"""
