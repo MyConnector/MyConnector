@@ -44,3 +44,19 @@ sed -i "s\Installed-Size:\Installed-Size: $INST_SIZE\g" $TARGET/DEBIAN/control
 fakeroot dpkg-deb --build $TARGET
 mv $TARGET.deb ${TARGET}_`grep Version $TARGET/DEBIAN/control | sed s/Version:\ //g`_all.deb
 rm -r $TARGET/
+
+#myconnector-docs
+TARGET=$TARGET-docs
+DOCS=$TARGET/usr/share/doc/$TARGET-$(cat ../VERSION 2>/dev/null)
+mkdir -p $DOCS
+cp -r ../docs/* $DOCS
+INST_SIZE=`du -s myconnector-docs | cut -f 1`
+mkdir -p $TARGET/DEBIAN
+cd $TARGET
+md5deep -rl usr > DEBIAN/md5sums
+cd ..
+cp control.docs $TARGET/DEBIAN/control
+sed -i "s\Installed-Size:\Installed-Size: $INST_SIZE\g" $TARGET/DEBIAN/control
+fakeroot dpkg-deb --build $TARGET
+mv $TARGET.deb ${TARGET}_`grep Version $TARGET/DEBIAN/control | sed s/Version:\ //g`_all.deb
+rm -r $TARGET/
