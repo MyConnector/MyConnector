@@ -38,7 +38,7 @@ else:
             os.system( "zenity --error --icon-name=myconnector --text=\"%s\"" % self.text )
 
 APP         = "myconnector"
-VERSION     = "2.2"
+VERSION     = "2.2.1"
 HOMEFOLDER  = os.getenv( "HOME" )
 MAINFOLDER  = "/usr/share/myconnector"
 WORKFOLDER  = "%s/.myconnector"    % HOMEFOLDER

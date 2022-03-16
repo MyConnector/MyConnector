@@ -1,3 +1,15 @@
+2.2.1
+=====
+Bug Fixes:
+- Fixed connection renaming errors
+
+Minor changes:
+- Added offline documentation button
+- [DEB] Added package 'myconnector-docs'
+
+Known Issues:
+- Problems with bash-completion if there are spaces in the file or connection name
+
 2.2
 ===
 New Features:
