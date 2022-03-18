@@ -541,7 +541,12 @@ class Gui(Gtk.Application):
         except Exception as e:
             options.log.error( e )
         combo_groups = self.pref_builder.get_object( "combo_%s_group" % name )
-        combo_groups.set_model( self.initGroups() )
+        model_groups = self.initGroups()
+        combo_groups.set_model( model_groups )
+        completion_groups = Gtk.EntryCompletion()
+        completion_groups.set_model( model_groups )
+        completion_groups.set_text_column( 0 )
+        entryGroup.set_completion( completion_groups )
         self.initPreferences( name )
         self.setPreferences( name, parameters )
         self.pref_window.add(box)
