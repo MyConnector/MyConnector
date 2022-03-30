@@ -65,7 +65,7 @@ install:
 	install -m644 kiosk/*.ui $(BASE)/ui
 	msgfmt ru.po -o $(LOCALE)/$(TARGET).mo
 	@if [ ! -f $(ETC)/$(KIOSK) ]; then install -m600 kiosk/$(KIOSK) $(ETC); fi
-	@if [ ! -f $(CONF) ]; then install -m600 $(TARGET).conf $(CONF); fi
+	@if [ ! -f $(CONF) ]; then install -m644 $(TARGET).conf $(CONF); fi
 	mkdir -p $(BASHCOMP)
 	install -m644 $(TARGET).bashcomp $(BASHCOMP)/$(TARGET)
 	update-mime-database $(MIME)

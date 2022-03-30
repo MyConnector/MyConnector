@@ -91,7 +91,7 @@ install -pm755 kiosk/myconnector-*kiosk %buildroot%basedir/kiosk
 install -pm755 kiosk/myconnector-kiosk-check %buildroot%basedir/kiosk
 install -pm755 kiosk/*.desktop %buildroot%basedir/kiosk
 install -pDm600 kiosk/kiosk.conf %buildroot%_sysconfdir/%name/kiosk.conf
-install -pDm600 myconnector.conf %buildroot%_sysconfdir/%name/%name.conf
+install -pDm644 myconnector.conf %buildroot%_sysconfdir/%name/%name.conf
 install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%name
 mkdir -p %buildroot%xdgdir
 cat > %buildroot%xdgdir/myconnector.desktop << EOF
