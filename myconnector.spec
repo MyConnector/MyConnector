@@ -91,6 +91,7 @@ install -pm755 kiosk/myconnector-*kiosk %buildroot%basedir/kiosk
 install -pm755 kiosk/myconnector-kiosk-check %buildroot%basedir/kiosk
 install -pm755 kiosk/*.desktop %buildroot%basedir/kiosk
 install -pDm600 kiosk/kiosk.conf %buildroot%_sysconfdir/%name/kiosk.conf
+install -pDm600 myconnector.conf %buildroot%_sysconfdir/%name/%name.conf
 install -pDm644 %name.bashcomp %buildroot%_datadir/bash-completion/completions/%name
 mkdir -p %buildroot%xdgdir
 cat > %buildroot%xdgdir/myconnector.desktop << EOF
@@ -119,6 +120,7 @@ msgfmt ru.po -o %buildroot%_datadir/locale/ru/LC_MESSAGES/%name.mo
 %_datadir/mime/packages/%name.xml
 %_iconsdir/hicolor/*/apps/%name.png
 %_datadir/bash-completion/completions/%name
+%config(noreplace) %_sysconfdir/%name/%name.conf
 
 %files kiosk -f %name-kiosk.lang
 %basedir/kiosk

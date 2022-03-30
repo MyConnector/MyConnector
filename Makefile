@@ -35,6 +35,7 @@ DATESTAMP := $(shell git log --pretty="%cd" --date=short -1 | sed s/-//g 2>/dev/
 GLOBAL := lib/config.py
 LOCALE := $(PREFIX)/locale/ru/LC_MESSAGES
 DOCS := $(PREFIX)/doc/$(TARGET)-docs-$(shell cat VERSION 2>/dev/null)
+CONF := $(ETC)/$(TARGET).conf
 
 .PHONY: help install uninstall clean remove installdocs
 
@@ -64,6 +65,7 @@ install:
 	install -m644 kiosk/*.ui $(BASE)/ui
 	msgfmt ru.po -o $(LOCALE)/$(TARGET).mo
 	@if [ ! -f $(ETC)/$(KIOSK) ]; then install -m600 kiosk/$(KIOSK) $(ETC); fi
+	@if [ ! -f $(CONF) ]; then install -m600 $(TARGET).conf $(CONF); fi
 	mkdir -p $(BASHCOMP)
 	install -m644 $(TARGET).bashcomp $(BASHCOMP)/$(TARGET)
 	update-mime-database $(MIME)
@@ -78,6 +80,7 @@ uninstall:
 	rm -f $(APS)/$(TARGET).desktop
 	rm -f $(MIME)/packages/$(TARGET).xml
 	@if [ -f $(ETC)/$(KIOSK) ]; then mv -f $(ETC)/$(KIOSK) $(ETC)/$(KIOSK).makesave; fi
+	@if [ -f $(CONF) ]; then mv -f $(CONF) $(CONF).makesave; fi
 	find $(PREFIX)/icons/hicolor -name $(TARGET).png -delete
 	rm -f $(BASHCOMP)/$(TARGET)
 	rm -f $(LOCALE)/$(TARGET).mo

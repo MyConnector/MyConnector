@@ -18,6 +18,7 @@
 TARGET=myconnector
 USR=$TARGET/usr
 BIN=$USR/bin
+ETC=$TARGET/etc/$TARGET
 PYTHON=$USR/lib/python3/dist-packages/$TARGET
 BASHCOMP=$USR/share/bash-completion/completions
 LOCALE=$USR/share/locale/ru/LC_MESSAGES
@@ -31,6 +32,8 @@ mv $BIN/$TARGET-check-* $USR/share/$TARGET
 cp ../lib/* $PYTHON/
 mkdir -p $BASHCOMP
 cp ../$TARGET.bashcomp $BASHCOMP/$TARGET
+mkdir -p $ETC
+cp ../$TARGET.conf $ETC
 find $USR -name myconnector-kiosk.1 -delete
 mkdir -p $LOCALE
 msgfmt ../ru.po -o $LOCALE/$TARGET.mo
