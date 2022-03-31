@@ -40,17 +40,18 @@ else:
 APP         = "myconnector"
 VERSION     = "2.2.1"
 HOMEFOLDER  = os.getenv( "HOME" )
-MAINFOLDER  = "/usr/share/myconnector"
-WORKFOLDER  = "%s/.myconnector"    % HOMEFOLDER
-ICONFOLDER  = "%s/icons"           % MAINFOLDER
-UIFOLDER    = "%s/ui"              % MAINFOLDER
-LOGFOLDER   = "%s/logs"            % WORKFOLDER
-LOGFILE     = "%s/myconnector.log" % LOGFOLDER
-STDLOGFILE  = "%s/all.log"         % LOGFOLDER
-RECENTFILE  = "%s/recent.db"       % WORKFOLDER
+MAINFOLDER  = "/usr/share/%s"   % APP
+WORKFOLDER  = "%s/.%s"          % ( HOMEFOLDER, APP )
+ICONFOLDER  = "%s/icons"        % MAINFOLDER
+UIFOLDER    = "%s/ui"           % MAINFOLDER
+LOGFOLDER   = "%s/logs"         % WORKFOLDER
+LOGFILE     = "%s/%s.log"       % ( LOGFOLDER, APP )
+STDLOGFILE  = "%s/all.log"      % LOGFOLDER
+RECENTFILE  = "%s/recent.db"    % WORKFOLDER
+GLOBAL      = "/etc/%s/%s.conf" % ( APP, APP )
 FIRSTRUN    = False if os.path.exists( WORKFOLDER ) else True
 MO_FOLDER   = "/usr/share/locale"
-LOCALDOCS   = "/usr/share/doc/myconnector-docs-%s/index.html" % VERSION
+LOCALDOCS   = "/usr/share/doc/%s-docs-%s/index.html" % ( APP, VERSION )
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )

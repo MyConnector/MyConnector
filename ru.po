@@ -51,11 +51,21 @@ msgstr "Добавлено новое подключение"
 msgid "Additional parameters"
 msgstr "Дополнительные параметры"
 
+msgid "Admin"
+msgstr "Администрирование"
+
 msgid "Advanced"
 msgstr "Расширенные"
 
 msgid "All files"
 msgstr "Все файлы"
+
+msgid
+"All users have the same settings specified in\n"
+"/etc/myconnector/myconnector.conf"
+msgstr
+"У всех пользователей единые настройки, указанные в\n"
+"/etc/myconnector/myconnector.conf"
 
 msgid "All saved passwords have been deleted from the keyring."
 msgstr "Все сохраненные пароли были удалены из связки ключей."
@@ -906,6 +916,9 @@ msgstr "Использовать TLS шифрование"
 
 msgid "Use X2Go printing"
 msgstr "Использовать печать X2Go"
+
+msgid "Use global settings"
+msgstr "Использовать глобальные настройки"
 
 msgid "Use local cursor"
 msgstr "Использовать локальный курсор"

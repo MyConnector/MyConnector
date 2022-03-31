@@ -131,6 +131,9 @@ along with this program. If not, see http://www.gnu.org/licenses/.
       <object class="GtkNotebook" id="box_0">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
+        <property name="margin_left">10</property>
+        <property name="margin_right">10</property>
+        <property name="margin_top">10</property>
         <child>
           <object class="GtkBox" id="box_1">
             <property name="visible">True</property>
@@ -518,6 +521,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
             <property name="can_focus">False</property>
             <property name="margin_left">10</property>
             <property name="margin_right">10</property>
+            <property name="margin_top">5</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkCheckButton" id="check_TRAY">
@@ -844,6 +848,52 @@ along with this program. If not, see http://www.gnu.org/licenses/.
           </object>
           <packing>
             <property name="position">1</property>
+            <property name="tab_fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="box_admin">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="margin_top">5</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkCheckButton" id="check_GLOBAL">
+                <property name="label" translatable="yes">Use global settings</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">All users have the same settings specified in
+/etc/myconnector/myconnector.conf</property>
+                <property name="halign">start</property>
+                <property name="active">True</property>
+                <property name="draw_indicator">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="tab3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Admin</property>
+            <attributes>
+              <attribute name="foreground" value="#2e2e34343636"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="position">2</property>
             <property name="tab_fill">False</property>
           </packing>
         </child>
