@@ -31,7 +31,7 @@ from shutil import ( copy,
                      chown,
                      SameFileError )
 from myconnector.config import ( UIFOLDER,
-                                 APP, _ )
+                                 APP, _, ROOT )
 from myconnector.dialogs import Error
 
 _kiosk_dir = "/usr/share/myconnector/kiosk"
@@ -57,7 +57,7 @@ _DM = check_dm()
 
 def enabled():
     """Checking 'is-root', OS and DM for access to settings"""
-    return os.getuid() == 0 and os.path.exists( "/etc/altlinux-release" ) and _DM
+    return ROOT and os.path.exists( "/etc/altlinux-release" ) and _DM
 
 def dm_clear_autologin():
     """Disable existing records for autologin-user"""
@@ -381,7 +381,7 @@ def CLI( option ):
         print( _("Unsupported OS! Need ALT!") )
         exit( 1 )
     if option in ( "disable", "status", "enable", "edit" ):
-        if os.getuid() == 0:
+        if ROOT:
             if option == "disable":
                 disable_kiosk()
                 kiosk_disabled()
