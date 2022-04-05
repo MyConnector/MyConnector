@@ -204,7 +204,7 @@ class Properties(Gtk.Window):
         except KeyError: self.editor.set_text( DEFAULT[ "editor" ] )
         try: self.checkPasswd.set_active( CONFIG.getboolean( "passwd_off" ) )
         except ( KeyError, TypeError ): self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
-        self.checkGlobal.set_active( GLOBAL )
+        self.checkGlobal.set_active( check_global() )
 
     def onCancel( self, button, win ):
         self.closeWin( win )
@@ -243,7 +243,8 @@ class Properties(Gtk.Window):
         CONFIG[ 'sort' ] = self.combo_sort.get_active_id()
         CONFIG[ 'editor' ] = self.editor.get_text()
         CONFIG[ 'passwd_off' ] = str( self.checkPasswd.get_active() )
-        config_save()
+        global_enable = self.checkGlobal.get_active()
+        config_init( global_enable )
         msg_save = "%s myconnector.conf..." % _("The preferences are saved in a file")
         myconnector.ui.viewStatus( self.statusbar, msg_save )
         log.info( msg_save )

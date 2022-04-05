@@ -265,25 +265,42 @@ DEF_PROTO[ "X2GO" ] = {  "username"          : "",
                          "printers"          : "False",
                          "sound"             : "False" }
 
-_global_conf = ConfigParser( interpolation = None )
+_config = ConfigParser( interpolation = None )
+_config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
 _global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
-_global_conf.read( _global_conf_file )
-try:
-    GLOBAL = _global_conf[ "global" ].getboolean( "global" )
-except:
-    GLOBAL = False
+GLOBAL = False
 
-if GLOBAL:
-    _config = _global_conf
-    _config_file = _global_conf_file
-else:
-    _config = ConfigParser( interpolation = None )
-    _config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
+def check_global():
+    """Checking global settings"""
+    _config.read( _global_conf_file )
+    try:
+        return _config[ "system" ].getboolean( "global" )
+    except:
+        return False
+
+def config_init( global_enable = None ):
+    """Initializing config"""
+    global _config
+    global _config_file
+    global GLOBAL, CONFIG, CONFIGS
+
+    global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
+    if global_enable == None:
+        GLOBAL = check_global()
+    else:
+        GLOBAL = True if global_enable else False
+        if GLOBAL or ROOT:
+            _config_file = _global_conf_file
+            _config[ "system" ] = { "global" : str( GLOBAL ) }
+        config_save()
+    if GLOBAL or ROOT:
+        _config_file = _global_conf_file
+    CONFIG, CONFIGS = config_read()
 
 def config_save( default = False ):
     """Default config for MyConnector"""
     if default:
-        _config[ "myconnector" ] = DEFAULT
+        _config[ APP ] = DEFAULT
         _config[ "vncviewer"   ] = DEF_PROTO[ "VNC1"  ].copy()
         _config[ "remmina_vnc" ] = DEF_PROTO[ "VNC"   ].copy()
         _config[ "ssh"         ] = DEF_PROTO[ "SSH"   ].copy()
@@ -297,10 +314,10 @@ def config_save( default = False ):
     with open( _config_file, 'w' ) as configfile:
         _config.write( configfile )
 
-def config_init():
+def config_read():
     """Parsing config file"""
     _config.read( _config_file )
-    main = _config[ "myconnector" ]
+    main = _config[ APP ]
     protocols = { "VNC1"   : _config[ "vncviewer"   ],
                   "VNC"    : _config[ "remmina_vnc" ],
                   "RDP"    : _config[ "remmina_rdp" ],
@@ -314,7 +331,7 @@ def config_init():
     return main, protocols
 
 try:
-    CONFIG, CONFIGS = config_init()
+    config_init()
 except KeyError:
     if os.path.exists( _config_file ):
         err = Error( _("The configuration file is corrupted, a new one will be created!") )
@@ -326,5 +343,5 @@ except KeyError:
             err.run()
             exit (1)
     config_save( default = True )
-    CONFIG, CONFIGS = config_init()
+    CONFIG, CONFIGS = config_read()
 
