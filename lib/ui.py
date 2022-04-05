@@ -552,6 +552,10 @@ class Gui(Gtk.Application):
         completion_groups.set_model( model_groups )
         completion_groups.set_text_column( 0 )
         entryGroup.set_completion( completion_groups )
+        button_default = self.pref_builder.get_object( "button_%s_default" % name )
+        if GLOBAL and not ROOT:
+            button_default.set_sensitive( False )
+            button_default.set_tooltip_text( _("Unavailable! Global settings are used!") )
         self.initPreferences( name )
         self.setPreferences( name, parameters )
         self.pref_window.add(box)

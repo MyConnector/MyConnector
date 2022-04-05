@@ -161,10 +161,21 @@ class Properties(Gtk.Window):
         self.checkVersion = builder.get_object("check_VERSION")
         self.checkLog = builder.get_object("check_LOG")
         self.checkPasswd = builder.get_object( "check_PASSWD" )
+        self.checkGlobal = builder.get_object( "check_GLOBAL" )
         self.combo_sort = builder.get_object("combo_sort")
         self.editor = builder.get_object( "entry_editor" )
-        admin = builder.get_object( "box_admin" )
-        admin.set_sensitive( True ) if ROOT else False
+        box_admin = builder.get_object( "box_admin" )
+        box_user1 = builder.get_object( "box_1" )
+        box_user2 = builder.get_object( "box_2" )
+        button_save = builder.get_object( "button_save" )
+        if GLOBAL and not ROOT:
+            box_user1.set_sensitive( False )
+            box_user1.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            box_user2.set_sensitive( False )
+            box_user2.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            button_save.set_sensitive( False )
+            button_save.set_tooltip_text( _("Unavailable! Global settings are used!") )
+        box_admin.set_sensitive( True ) if ROOT else False
         self.initParameters()
         self.add(box)
         self.connect("delete-event", self.onClose)
@@ -193,6 +204,7 @@ class Properties(Gtk.Window):
         except KeyError: self.editor.set_text( DEFAULT[ "editor" ] )
         try: self.checkPasswd.set_active( CONFIG.getboolean( "passwd_off" ) )
         except ( KeyError, TypeError ): self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
+        self.checkGlobal.set_active( GLOBAL )
 
     def onCancel( self, button, win ):
         self.closeWin( win )

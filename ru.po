@@ -356,6 +356,9 @@ msgstr "Полноэкранный режим"
 msgid "Fullscreen (Ctrl+Alt+Enter)"
 msgstr "Полноэкранный режим (Ctrl+Alt+Enter)"
 
+msgid "Unavailable! Global settings are used!"
+msgstr "Недоступно! Используются глобальные настройки!"
+
 msgid "Glyph cache"
 msgstr "Кэш glyph"
 
