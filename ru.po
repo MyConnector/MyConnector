@@ -470,6 +470,9 @@ msgstr "NX - Технология NX NoMachine"
 msgid "Name"
 msgstr "Название"
 
+msgid "Need root privileges!"
+msgstr "Нужны права суперпользователя!"
+
 msgid "Negotiation"
 msgstr "Согласование"
 
@@ -752,8 +755,8 @@ msgstr ""
 msgid "The MyConnector is forcibly closed (from cmdline)."
 msgstr "MyConnector закрыт принудительно (из командной строки)."
 
-msgid "The configuration file is corrupted, a new one has been created!"
-msgstr "Конфигурационный файл поврежден, создан новый!"
+msgid "The configuration file is corrupted, a new one will be created!"
+msgstr "Конфигурационный файл поврежден, будет создан новый!"
 
 msgid "The connection"
 msgstr "Подключение"

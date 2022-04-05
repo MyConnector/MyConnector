@@ -48,10 +48,10 @@ LOGFOLDER   = "%s/logs"         % WORKFOLDER
 LOGFILE     = "%s/%s.log"       % ( LOGFOLDER, APP )
 STDLOGFILE  = "%s/all.log"      % LOGFOLDER
 RECENTFILE  = "%s/recent.db"    % WORKFOLDER
-GLOBAL      = "/etc/%s/%s.conf" % ( APP, APP )
 FIRSTRUN    = False if os.path.exists( WORKFOLDER ) else True
 MO_FOLDER   = "/usr/share/locale"
 LOCALDOCS   = "/usr/share/doc/%s-docs-%s/index.html" % ( APP, VERSION )
+ROOT = True if os.getuid() == 0 else False
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
@@ -264,8 +264,21 @@ DEF_PROTO[ "X2GO" ] = {  "username"          : "",
                          "passwdsave"        : "False",
                          "printers"          : "False",
                          "sound"             : "False" }
-_config = ConfigParser( interpolation = None )
-_config_file = "%s/myconnector.conf" % WORKFOLDER
+
+_global_conf = ConfigParser( interpolation = None )
+_global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
+_global_conf.read( _global_conf_file )
+try:
+    GLOBAL = _global_conf[ "global" ].getboolean( "global" )
+except:
+    GLOBAL = False
+
+if GLOBAL:
+    _config = _global_conf
+    _config_file = _global_conf_file
+else:
+    _config = ConfigParser( interpolation = None )
+    _config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
 
 def config_save( default = False ):
     """Default config for MyConnector"""
@@ -304,9 +317,14 @@ try:
     CONFIG, CONFIGS = config_init()
 except KeyError:
     if os.path.exists( _config_file ):
-        err = Error( _("The configuration file is corrupted, a new one has been created!") )
+        err = Error( _("The configuration file is corrupted, a new one will be created!") )
         err.run()
-        os.rename( _config_file, "%s.bak" % _config_file )
+        try:
+            os.rename( _config_file, "%s.bak" % _config_file )
+        except PermissionError:
+            err = Error( _("Need root privileges!") )
+            err.run()
+            exit (1)
     config_save( default = True )
     CONFIG, CONFIGS = config_init()
 

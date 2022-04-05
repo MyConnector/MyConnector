@@ -164,7 +164,7 @@ class Properties(Gtk.Window):
         self.combo_sort = builder.get_object("combo_sort")
         self.editor = builder.get_object( "entry_editor" )
         admin = builder.get_object( "box_admin" )
-        admin.set_sensitive( True ) if os.getuid() == 0 else False
+        admin.set_sensitive( True ) if ROOT else False
         self.initParameters()
         self.add(box)
         self.connect("delete-event", self.onClose)
