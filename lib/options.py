@@ -165,17 +165,10 @@ class Properties(Gtk.Window):
         self.combo_sort = builder.get_object("combo_sort")
         self.editor = builder.get_object( "entry_editor" )
         box_admin = builder.get_object( "box_admin" )
-        box_user1 = builder.get_object( "box_1" )
-        box_user2 = builder.get_object( "box_2" )
-        button_save = builder.get_object( "button_save" )
-        if GLOBAL and not ROOT:
-            box_user1.set_sensitive( False )
-            box_user1.set_tooltip_text( _("Unavailable! Global settings are used!") )
-            box_user2.set_sensitive( False )
-            box_user2.set_tooltip_text( _("Unavailable! Global settings are used!") )
-            button_save.set_sensitive( False )
-            button_save.set_tooltip_text( _("Unavailable! Global settings are used!") )
         box_admin.set_sensitive( True ) if ROOT else False
+        self.box_user1 = builder.get_object( "box_1" )
+        self.box_user2 = builder.get_object( "box_2" )
+        self.button_save = builder.get_object( "button_save" )
         self.initParameters()
         self.add(box)
         self.connect("delete-event", self.onClose)
@@ -184,6 +177,14 @@ class Properties(Gtk.Window):
 
     def initParameters(self):
         """Initializing parameters from a file myconnector.conf"""
+        config_init()
+        if check_global() and not ROOT:
+            self.box_user1.set_sensitive( False )
+            self.box_user1.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            self.box_user2.set_sensitive( False )
+            self.box_user2.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            self.button_save.set_sensitive( False )
+            self.button_save.set_tooltip_text( _("Unavailable! Global settings are used!") )
         if CONFIG.get( "rdp", "freerdp" ) == "freerdp":
             self.changeRdpFree.set_active( True )
         if CONFIG.get( "vnc", "vncviewer" ) == "vncviewer":

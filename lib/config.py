@@ -272,9 +272,10 @@ GLOBAL = False
 
 def check_global():
     """Checking global settings"""
-    _config.read( _global_conf_file )
+    conf = ConfigParser( interpolation = None )
+    conf.read( _global_conf_file )
     try:
-        return _config[ "system" ].getboolean( "global" )
+        return conf[ "system" ].getboolean( "global" )
     except:
         return False
 
@@ -295,6 +296,8 @@ def config_init( global_enable = None ):
         config_save()
     if GLOBAL or ROOT:
         _config_file = _global_conf_file
+    else:
+        _config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
     CONFIG, CONFIGS = config_read()
 
 def config_save( default = False ):
