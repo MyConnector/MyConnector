@@ -49,7 +49,7 @@ else:
 MAINFOLDER = "/usr/share/%s"   % APP
 ICONFOLDER = "%s/icons"        % MAINFOLDER
 UIFOLDER   = "%s/ui"           % MAINFOLDER
-LOGFOLDER  = "%s/logs"         % WORKFOLDER
+LOGFOLDER  = "%s/.%s/logs"     % ( HOMEFOLDER, APP )
 LOGFILE    = "%s/%s.log"       % ( LOGFOLDER, APP )
 STDLOGFILE = "%s/all.log"      % LOGFOLDER
 RECENTFILE = "%s/recent.db"    % WORKFOLDER
@@ -279,7 +279,7 @@ def check_global():
     conf = ConfigParser( interpolation = None )
     conf.read( _global_conf_file )
     try:
-        return conf[ "system" ].getboolean( "global" )
+        return conf[ APP ].getboolean( "global" )
     except:
         return False
 
@@ -296,7 +296,7 @@ def config_init( global_enable = None ):
         GLOBAL = True if global_enable else False
         if GLOBAL or ROOT:
             _config_file = _global_conf_file
-            _config[ "system" ] = { "global" : str( GLOBAL ) }
+            _config[ APP ][ "global" ] = str( GLOBAL )
         config_save()
     if GLOBAL or ROOT:
         _config_file = _global_conf_file
