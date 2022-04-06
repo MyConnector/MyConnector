@@ -39,19 +39,23 @@ else:
 
 APP         = "myconnector"
 VERSION     = "2.2.1"
-HOMEFOLDER  = os.getenv( "HOME" )
-MAINFOLDER  = "/usr/share/%s"   % APP
-WORKFOLDER  = "%s/.%s"          % ( HOMEFOLDER, APP )
-ICONFOLDER  = "%s/icons"        % MAINFOLDER
-UIFOLDER    = "%s/ui"           % MAINFOLDER
-LOGFOLDER   = "%s/logs"         % WORKFOLDER
-LOGFILE     = "%s/%s.log"       % ( LOGFOLDER, APP )
-STDLOGFILE  = "%s/all.log"      % LOGFOLDER
-RECENTFILE  = "%s/recent.db"    % WORKFOLDER
-FIRSTRUN    = False if os.path.exists( WORKFOLDER ) else True
-MO_FOLDER   = "/usr/share/locale"
-LOCALDOCS   = "/usr/share/doc/%s-docs-%s/index.html" % ( APP, VERSION )
+
 ROOT = True if os.getuid() == 0 else False
+HOMEFOLDER = os.getenv( "HOME" )
+if ROOT:
+    WORKFOLDER = "/etc/%s"     % APP
+else:
+    WORKFOLDER = "%s/.%s"      % ( HOMEFOLDER, APP )
+MAINFOLDER = "/usr/share/%s"   % APP
+ICONFOLDER = "%s/icons"        % MAINFOLDER
+UIFOLDER   = "%s/ui"           % MAINFOLDER
+LOGFOLDER  = "%s/logs"         % WORKFOLDER
+LOGFILE    = "%s/%s.log"       % ( LOGFOLDER, APP )
+STDLOGFILE = "%s/all.log"      % LOGFOLDER
+RECENTFILE = "%s/recent.db"    % WORKFOLDER
+FIRSTRUN   = False if os.path.exists( WORKFOLDER ) else True
+MO_FOLDER  = "/usr/share/locale"
+LOCALDOCS  = "/usr/share/doc/%s-docs-%s/index.html" % ( APP, VERSION )
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
