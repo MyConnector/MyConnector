@@ -60,6 +60,9 @@ msgstr "Расширенные"
 msgid "All files"
 msgstr "Все файлы"
 
+msgid "All saved passwords have been deleted from the keyring."
+msgstr "Все сохраненные пароли были удалены из связки ключей."
+
 msgid
 "All users have the same settings specified in\n"
 "/etc/myconnector/myconnector.conf"
@@ -67,8 +70,8 @@ msgstr
 "У всех пользователей единые настройки, указанные в\n"
 "/etc/myconnector/myconnector.conf"
 
-msgid "All saved passwords have been deleted from the keyring."
-msgstr "Все сохраненные пароли были удалены из связки ключей."
+msgid"All users use connections from the /etc/myconnector folder."
+msgstr "Все пользователи используют подключения из папки /etc/myconnector"
 
 msgid "All your saved connections will be deleted!!!"
 msgstr "Все сохраненные подключения будут удалены!!!"
@@ -356,8 +359,8 @@ msgstr "Полноэкранный режим"
 msgid "Fullscreen (Ctrl+Alt+Enter)"
 msgstr "Полноэкранный режим (Ctrl+Alt+Enter)"
 
-msgid "Unavailable! Global settings are used!"
-msgstr "Недоступно! Используются глобальные настройки!"
+msgid "Unavailable! System settings are used!"
+msgstr "Недоступно! Используются системные настройки!"
 
 msgid "Glyph cache"
 msgstr "Кэш glyph"
@@ -923,8 +926,11 @@ msgstr "Использовать TLS шифрование"
 msgid "Use X2Go printing"
 msgstr "Использовать печать X2Go"
 
-msgid "Use global settings"
-msgstr "Использовать глобальные настройки"
+msgid "Use system connections"
+msgstr "Использовать системные подключения"
+
+msgid "Use system settings"
+msgstr "Использовать системные настройки"
 
 msgid "Use local cursor"
 msgstr "Использовать локальный курсор"

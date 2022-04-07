@@ -40,9 +40,20 @@ else:
 APP         = "myconnector"
 VERSION     = "2.2.1"
 
+_global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
+
+def check_global( attr ):
+    """Checking global settings"""
+    conf = ConfigParser( interpolation = None )
+    conf.read( _global_conf_file )
+    try:
+        return conf[ APP ].getboolean( attr )
+    except:
+        return False
+
 ROOT = True if os.getuid() == 0 else False
 HOMEFOLDER = os.getenv( "HOME" )
-if ROOT:
+if ROOT or check_global( "system_folder" ):
     WORKFOLDER = "/etc/%s"     % APP
 else:
     WORKFOLDER = "%s/.%s"      % ( HOMEFOLDER, APP )
@@ -56,6 +67,10 @@ RECENTFILE = "%s/recent.db"    % WORKFOLDER
 FIRSTRUN   = False if os.path.exists( WORKFOLDER ) else True
 MO_FOLDER  = "/usr/share/locale"
 LOCALDOCS  = "/usr/share/doc/%s-docs-%s/index.html" % ( APP, VERSION )
+GLOBAL     = False
+
+_config = ConfigParser( interpolation = None )
+_config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
@@ -73,7 +88,9 @@ DEFAULT    = { "rdp"            : "freerdp",
                "tray"           : False,
                "passwd_off"     : False,
                "check_version"  : True,
-               "sort"           : "0" }
+               "sort"           : "0",
+               "system_config"  : False,
+               "system_folder"  : False }
 
 #Исходные данные для ярлыка подключения
 DESKTOP_INFO = """#!/usr/bin/env xdg-open
@@ -269,20 +286,6 @@ DEF_PROTO[ "X2GO" ] = {  "username"          : "",
                          "printers"          : "False",
                          "sound"             : "False" }
 
-_config = ConfigParser( interpolation = None )
-_config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
-_global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
-GLOBAL = False
-
-def check_global():
-    """Checking global settings"""
-    conf = ConfigParser( interpolation = None )
-    conf.read( _global_conf_file )
-    try:
-        return conf[ APP ].getboolean( "global" )
-    except:
-        return False
-
 def config_init( global_enable = None ):
     """Initializing config"""
     global _config
@@ -291,12 +294,12 @@ def config_init( global_enable = None ):
 
     global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
     if global_enable == None:
-        GLOBAL = check_global()
+        GLOBAL = check_global( "system_config" )
     else:
         GLOBAL = True if global_enable else False
         if GLOBAL or ROOT:
             _config_file = _global_conf_file
-            _config[ APP ][ "global" ] = str( GLOBAL )
+            _config[ APP ][ "system_config" ] = str( GLOBAL )
         config_save()
     if GLOBAL or ROOT:
         _config_file = _global_conf_file

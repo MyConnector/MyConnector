@@ -489,7 +489,8 @@ class Gui(Gtk.Application):
                 options.log.error( e )
             connect.start(parameters)
             viewStatus( self.statusbar, "%s %s... "% ( _("Connecting to the server"), server ) )
-            self.writeServerInDb(entry)
+            if not self.optionEnabled( "system_folder" ):
+                self.writeServerInDb(entry)
         else:
             viewStatus( self.statusbar, _("Enter the server address...").replace( "...", "") )
 
@@ -554,9 +555,9 @@ class Gui(Gtk.Application):
         completion_groups.set_text_column( 0 )
         entryGroup.set_completion( completion_groups )
         button_default = self.pref_builder.get_object( "button_%s_default" % name )
-        if check_global() and not ROOT:
+        if check_global( "system_config" ) and not ROOT:
             button_default.set_sensitive( False )
-            button_default.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            button_default.set_tooltip_text( _("Unavailable! System settings are used!") )
         self.initPreferences( name )
         self.setPreferences( name, parameters )
         self.pref_window.add(box)
@@ -1381,13 +1382,19 @@ class Gui(Gtk.Application):
                     password = ""
             viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Connecting to"), nameConnect ) )
             connect = definition( name )
-            self.writeConnectionInRecent( nameConnect, parameters[ "protocol" ] )
+            if not self.optionEnabled( "system_folder" ):
+                self.writeConnectionInRecent( nameConnect, parameters[ "protocol" ] )
             connect.start( parameters, self.window )
 
     def onPopupMenu(self, widget, event):
         """Контекстное меню списка сохраненных подключений"""
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             menu = self.builder.get_object("menu_popup")
+            if self.optionEnabled( "system_folder" ):
+                self.builder.get_object( "menu_popup_edit"   ).set_sensitive( False )
+                self.builder.get_object( "menu_popup_rename" ).set_sensitive( False )
+                self.builder.get_object( "menu_popup_copy"   ).set_sensitive( False )
+                self.builder.get_object( "menu_popup_del"    ).set_sensitive( False )
             menu.popup(None, None, None, None, event.button, event.time)
 
     def onPopupEdit(self, treeView):
@@ -1595,7 +1602,8 @@ class Gui(Gtk.Application):
 
     def inputName(self, button):
         """Функция, активирующая кнопку Сохранить после ввода имени соединения"""
-        button.set_sensitive(True)
+        if not self.optionEnabled( "system_folder" ):
+            button.set_sensitive( True )
 
     def onWiki(self, *args):
         """Открытие wiki в Интернете"""

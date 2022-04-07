@@ -162,6 +162,7 @@ class Properties(Gtk.Window):
         self.checkLog = builder.get_object("check_LOG")
         self.checkPasswd = builder.get_object( "check_PASSWD" )
         self.checkGlobal = builder.get_object( "check_GLOBAL" )
+        self.checkGlobalDir = builder.get_object( "check_GLOBALDIR" )
         self.combo_sort = builder.get_object("combo_sort")
         self.editor = builder.get_object( "entry_editor" )
         box_admin = builder.get_object( "box_admin" )
@@ -178,13 +179,14 @@ class Properties(Gtk.Window):
     def initParameters(self):
         """Initializing parameters from a file myconnector.conf"""
         config_init()
-        if check_global() and not ROOT:
+        if check_global( "system_config" ) and not ROOT:
+            text = _("Unavailable! System settings are used!")
             self.box_user1.set_sensitive( False )
-            self.box_user1.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            self.box_user1.set_tooltip_text( text )
             self.box_user2.set_sensitive( False )
-            self.box_user2.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            self.box_user2.set_tooltip_text( text )
             self.button_save.set_sensitive( False )
-            self.button_save.set_tooltip_text( _("Unavailable! Global settings are used!") )
+            self.button_save.set_tooltip_text( text )
         if CONFIG.get( "rdp", "freerdp" ) == "freerdp":
             self.changeRdpFree.set_active( True )
         if CONFIG.get( "vnc", "vncviewer" ) == "vncviewer":
@@ -205,7 +207,8 @@ class Properties(Gtk.Window):
         except KeyError: self.editor.set_text( DEFAULT[ "editor" ] )
         try: self.checkPasswd.set_active( CONFIG.getboolean( "passwd_off" ) )
         except ( KeyError, TypeError ): self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
-        self.checkGlobal.set_active( check_global() )
+        self.checkGlobal.set_active(    CONFIG.getboolean( "system_config" ) )
+        self.checkGlobalDir.set_active( CONFIG.getboolean( "system_folder" ) )
 
     def onCancel( self, button, win ):
         self.closeWin( win )
@@ -245,6 +248,7 @@ class Properties(Gtk.Window):
         CONFIG[ 'editor' ] = self.editor.get_text()
         CONFIG[ 'passwd_off' ] = str( self.checkPasswd.get_active() )
         global_enable = self.checkGlobal.get_active()
+        CONFIG[ 'system_folder' ] = str( self.checkGlobalDir.get_active() )
         config_init( global_enable )
         msg_save = "%s myconnector.conf..." % _("The preferences are saved in a file")
         myconnector.ui.viewStatus( self.statusbar, msg_save )
