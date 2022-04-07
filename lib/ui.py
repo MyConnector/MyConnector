@@ -489,7 +489,7 @@ class Gui(Gtk.Application):
                 options.log.error( e )
             connect.start(parameters)
             viewStatus( self.statusbar, "%s %s... "% ( _("Connecting to the server"), server ) )
-            if not self.optionEnabled( "system_folder" ):
+            if not check_global( "system_folder" ):
                 self.writeServerInDb(entry)
         else:
             viewStatus( self.statusbar, _("Enter the server address...").replace( "...", "") )
@@ -1382,7 +1382,7 @@ class Gui(Gtk.Application):
                     password = ""
             viewStatus( self.statusbar, "%s \"%s\"..." % ( _("Connecting to"), nameConnect ) )
             connect = definition( name )
-            if not self.optionEnabled( "system_folder" ):
+            if not check_global( "system_folder" ):
                 self.writeConnectionInRecent( nameConnect, parameters[ "protocol" ] )
             connect.start( parameters, self.window )
 
@@ -1390,7 +1390,7 @@ class Gui(Gtk.Application):
         """Контекстное меню списка сохраненных подключений"""
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             menu = self.builder.get_object("menu_popup")
-            if self.optionEnabled( "system_folder" ):
+            if check_global( "system_folder" ):
                 self.builder.get_object( "menu_popup_edit"   ).set_sensitive( False )
                 self.builder.get_object( "menu_popup_rename" ).set_sensitive( False )
                 self.builder.get_object( "menu_popup_copy"   ).set_sensitive( False )
@@ -1602,7 +1602,7 @@ class Gui(Gtk.Application):
 
     def inputName(self, button):
         """Функция, активирующая кнопку Сохранить после ввода имени соединения"""
-        if not self.optionEnabled( "system_folder" ):
+        if not check_global( "system_folder" ):
             button.set_sensitive( True )
 
     def onWiki(self, *args):

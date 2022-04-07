@@ -53,10 +53,20 @@ def check_global( attr ):
 
 ROOT = True if os.getuid() == 0 else False
 HOMEFOLDER = os.getenv( "HOME" )
+USERFOLDER = "%s/.%s" % ( HOMEFOLDER, APP )
+
 if ROOT or check_global( "system_folder" ):
-    WORKFOLDER = "/etc/%s"     % APP
+    WORKFOLDER = "/etc/%s" % APP
 else:
-    WORKFOLDER = "%s/.%s"      % ( HOMEFOLDER, APP )
+    WORKFOLDER = USERFOLDER
+
+_config = ConfigParser( interpolation = None )
+
+if ROOT or check_global( "system_config" ):
+    _config_file = _global_conf_file
+else:
+    _config_file = "%s/%s.conf" % ( USERFOLDER, APP )
+
 MAINFOLDER = "/usr/share/%s"   % APP
 ICONFOLDER = "%s/icons"        % MAINFOLDER
 UIFOLDER   = "%s/ui"           % MAINFOLDER
@@ -70,7 +80,6 @@ LOCALDOCS  = "/usr/share/doc/%s-docs-%s/index.html" % ( APP, VERSION )
 GLOBAL     = False
 
 _config = ConfigParser( interpolation = None )
-_config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
@@ -304,7 +313,7 @@ def config_init( global_enable = None ):
     if GLOBAL or ROOT:
         _config_file = _global_conf_file
     else:
-        _config_file = "%s/%s.conf" % ( WORKFOLDER, APP )
+        _config_file = "%s/%s.conf" % ( USERFOLDER, APP )
     CONFIG, CONFIGS = config_read()
 
 def config_save( default = False ):
