@@ -1385,11 +1385,13 @@ class Gui(Gtk.Application):
         """Контекстное меню списка сохраненных подключений"""
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             menu = self.builder.get_object("menu_popup")
-            if check_global( "system_folder" ):
+            if check_global( "system_folder" ) and not ROOT:
                 self.builder.get_object( "menu_popup_edit"   ).set_sensitive( False )
                 self.builder.get_object( "menu_popup_rename" ).set_sensitive( False )
                 self.builder.get_object( "menu_popup_copy"   ).set_sensitive( False )
                 self.builder.get_object( "menu_popup_del"    ).set_sensitive( False )
+            if check_global( "stealth_mode" ) and not ROOT:
+                self.builder.get_object( "menu_popup_text"   ).set_sensitive( False )
             menu.popup(None, None, None, None, event.button, event.time)
 
     def onPopupEdit(self, treeView):
@@ -1597,7 +1599,7 @@ class Gui(Gtk.Application):
 
     def inputName(self, button):
         """Функция, активирующая кнопку Сохранить после ввода имени соединения"""
-        if not check_global( "system_folder" ):
+        if not check_global( "system_folder" ) or ROOT:
             button.set_sensitive( True )
 
     def onWiki(self, *args):
