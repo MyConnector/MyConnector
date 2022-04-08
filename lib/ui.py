@@ -1728,10 +1728,6 @@ class Gui(Gtk.Application):
         filename = item.get_current_uri().replace( "file://", "" )
         Popen( [ APP, filename ] )
 
-    def onRecentConnection( self, item ):
-        """Opening a recent connection from menu"""
-        pass
-
     def writeConnectionInRecent( self, name, protocol ):
         """Write the connection name to the recent connections file"""
         fname = "%s:::%s\n" % ( protocol, name )
