@@ -255,6 +255,9 @@ msgstr "Отключен"
 msgid "Disconnect after first session"
 msgstr "Отключаться после одного сеанса"
 
+msgid "Details in the documentation."
+msgstr "Подробности в документации."
+
 msgid "DNS name not found!"
 msgstr "Адрес сервера не найден"
 
@@ -743,6 +746,9 @@ msgstr "Запуск подключения при входе пользоват
 
 msgid "Status"
 msgstr "Статус"
+
+msgid "Stealth mode"
+msgstr "Режим \"Stealth\""
 
 msgid "Swap with the CapsLock key"
 msgstr "Ее функцию в сеансе будет выполнять клавиша CapsLock"

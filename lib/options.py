@@ -163,6 +163,7 @@ class Properties(Gtk.Window):
         self.checkPasswd = builder.get_object( "check_PASSWD" )
         self.checkGlobal = builder.get_object( "check_GLOBAL" )
         self.checkGlobalDir = builder.get_object( "check_GLOBALDIR" )
+        self.checkStealth = builder.get_object( "check_STEALTH" )
         self.combo_sort = builder.get_object("combo_sort")
         self.editor = builder.get_object( "entry_editor" )
         box_admin = builder.get_object( "box_admin" )
@@ -209,6 +210,10 @@ class Properties(Gtk.Window):
         except ( KeyError, TypeError ): self.checkPasswd.set_active( DEFAULT[ "passwd_off" ] )
         self.checkGlobal.set_active(    CONFIG.getboolean( "system_config" ) )
         self.checkGlobalDir.set_active( CONFIG.getboolean( "system_folder" ) )
+        self.checkStealth.set_active(   CONFIG.getboolean( "stealth_mode"  ) )
+        if self.checkStealth.get_active():
+            self.checkGlobal.set_sensitive( False )
+            self.checkGlobalDir.set_sensitive( False )
 
     def onCancel( self, button, win ):
         self.closeWin( win )
@@ -249,6 +254,7 @@ class Properties(Gtk.Window):
         CONFIG[ 'passwd_off' ] = str( self.checkPasswd.get_active() )
         global_enable = self.checkGlobal.get_active()
         CONFIG[ 'system_folder' ] = str( self.checkGlobalDir.get_active() )
+        CONFIG[ 'stealth_mode'  ] = str( self.checkStealth.get_active()   )
         config_init( global_enable )
         msg_save = "%s myconnector.conf..." % _("The preferences are saved in a file")
         myconnector.ui.viewStatus( self.statusbar, msg_save )
@@ -318,6 +324,16 @@ class Properties(Gtk.Window):
                     except: pass
             log.info( _("All saved passwords have been deleted from the keyring.") )
         dialog.destroy()
+
+    def onStealth( self, widget ):
+        if widget.get_active():
+            self.checkGlobal.set_active( True )
+            self.checkGlobal.set_sensitive( False )
+            self.checkGlobalDir.set_active( True )
+            self.checkGlobalDir.set_sensitive( False )
+        else:
+            self.checkGlobal.set_sensitive( True )
+            self.checkGlobalDir.set_sensitive( True )
 
 if __name__ == '__main__':
     pass

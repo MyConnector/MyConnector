@@ -107,7 +107,8 @@ DEFAULT    = { "rdp"            : "freerdp",
                "check_version"  : True,
                "sort"           : "0",
                "system_config"  : False,
-               "system_folder"  : False }
+               "system_folder"  : False,
+               "stealth_mode"   : False }
 
 #Исходные данные для ярлыка подключения
 DESKTOP_INFO = """#!/usr/bin/env xdg-open
