@@ -41,6 +41,8 @@ class Password( Gtk.Window ):
         self.entry_passwd   = builder.get_object( "entry_passwd"   )
         self.check_passwd   = builder.get_object( "check_passwd"   )
         self.entry_username = builder.get_object( "entry_username" )
+        if CONF.check_option( "passwd_off" ):
+            self.check_passwd.set_sensitive( False )
         self.add( main_box )
         self.entry_username.set_text( username )
         if username:
