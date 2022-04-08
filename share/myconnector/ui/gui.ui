@@ -179,6 +179,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
         <property name="label" translatable="yes">Rename</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Rename connection</property>
         <property name="image">image_popup_rename</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="onPopupRename" object="treeview_connections" swapped="no"/>
