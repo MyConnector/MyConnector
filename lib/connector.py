@@ -129,7 +129,7 @@ class XFreeRdp:
                         command = command.replace( "/u:%s" % escape( username ), "/u:%s" % escape( new_username ) )
                         if "@" in new_username or "\\" in new_username:
                              command = command.replace( "/d:%s" % args[ "domain" ], "" )
-                if password:
+                if password and not check_option( "passwd_off" ):
                     command += " /p:%s" % escape( password )
                 if password == "":
                     command += " /p:" #support empty password
