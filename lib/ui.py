@@ -243,8 +243,11 @@ class Gui(Gtk.Application):
         self.labelFS = self.builder.get_object("label_default_FS")
         self.initLabels(self.labelRDP, self.labelVNC, self.labelFS)
         self.trayDisplayed = False
-        self.tray_submenu = self.builder.get_object("tray_submenu")
-        self.recent_menu  = self.builder.get_object("menu_file_recent_conn_list")
+        self.tray_submenu = self.builder.get_object( "tray_submenu"                )
+        self.recent_menu  = self.builder.get_object( "menu_file_recent_conn_list"  )
+        recent_files      = self.builder.get_object( "menu_file_recent_files_list" )
+        if check_global( "system_folder" ):
+            recent_files.set_sensitive( False )
         self.initRecentMenu()
         if self.optionEnabled( 'tray' ): self.trayDisplayed = self.initTray()
         if self.optionEnabled( 'check_version' ):
