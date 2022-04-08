@@ -249,8 +249,8 @@ class Gui(Gtk.Application):
         if check_global( "system_folder" ):
             recent_files.set_sensitive( False )
         self.initRecentMenu()
-        if self.optionEnabled( 'tray' ): self.trayDisplayed = self.initTray()
-        if self.optionEnabled( 'check_version' ):
+        if check_option( 'tray' ): self.trayDisplayed = self.initTray()
+        if check_option( 'check_version' ):
             signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
             Popen( [ "%s/myconnector-check-version" % MAINFOLDER, VERSION ] )
         try:
@@ -339,14 +339,6 @@ class Gui(Gtk.Application):
             tray_noexist.set_sensitive(False)
             self.tray_submenu.append(tray_noexist)
         self.tray_submenu.show_all()
-
-    def optionEnabled(self, option):
-        try:
-            config_init()
-            check = CONFIG.getboolean( option )
-        except KeyError:
-            check = DEFAULT[ option ]
-        return check
 
     def initLabels(self, rdp, vnc, fs):
         """Display on the main window the program name for RDP, VNC and FS"""
@@ -590,7 +582,7 @@ class Gui(Gtk.Application):
             self.VMWARE_user.set_text( args.get( "username", "" ) )
             self.VMWARE_domain.set_text( args.get( "domain", "" ) )
             if args.getboolean( "fullscreen" ): self.VMWARE_fullscreen.set_active( True )
-            if not self.optionEnabled( "passwd_off" ):
+            if not check_option( "passwd_off" ):
                 try:
                     password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
                 except Exception as e:
@@ -727,7 +719,7 @@ class Gui(Gtk.Application):
             if args.getboolean( "reconnect"  ): self.RDP_reconnect.set_active(    False )
             if args.getboolean( "certignore" ): self.RDP_certignore.set_active(    True )
             if args.getboolean( "glyph"      ): self.RDP_glyph.set_active(         True )
-            if not self.optionEnabled( "passwd_off" ):
+            if not check_option( "passwd_off" ):
                 try:
                     password = keyring.get_password( args.get( "server", "" ), args.get( "username", "" ) )
                 except Exception as e:
@@ -772,7 +764,7 @@ class Gui(Gtk.Application):
                 self.X2GO_geometry_hand = self.pref_builder.get_object( "radio_X2GO_geometry"   )
                 self.X2GO_geometry_hand.set_active( True )
                 self.X2GO_geometry.set_text( geometry )
-            if not self.optionEnabled( "passwd_off" ):
+            if not check_option( "passwd_off" ):
                 try:
                     password = keyring.get_password( args.get( "server", "" ), username )
                 except Exception as e:
@@ -847,7 +839,7 @@ class Gui(Gtk.Application):
             self.RDP_certignore    = self.pref_builder.get_object( "check_RDP1_certignore"    )
             self.RDP_pwd           = self.pref_builder.get_object( "entry_RDP1_pwd"           )
             self.RDP_pwdsave       = self.pref_builder.get_object( "check_RDP1_pwd"           )
-            if self.optionEnabled( "passwd_off" ): self.RDP_pwdsave.set_sensitive( False      )
+            if check_option( "passwd_off" ): self.RDP_pwdsave.set_sensitive( False      )
             self.RDP_glyph         = self.pref_builder.get_object( "check_RDP1_glyph"         )
             self.RDP_userparams    = self.pref_builder.get_object( "entry_RDP1_userparams"    )
             self.RDP_security      = self.pref_builder.get_object( "entry_RDP1_security"      )
@@ -918,7 +910,7 @@ class Gui(Gtk.Application):
             self.VMWARE_domain     = self.pref_builder.get_object( "entry_VMWARE_dom"        )
             self.VMWARE_password   = self.pref_builder.get_object( "entry_VMWARE_pwd"        )
             self.VMWARE_pwdsave    = self.pref_builder.get_object( "check_VMWARE_pwd"        )
-            if self.optionEnabled( "passwd_off" ): self.VMWARE_pwdsave.set_sensitive( False  )
+            if check_option( "passwd_off" ): self.VMWARE_pwdsave.set_sensitive( False  )
             self.VMWARE_fullscreen = self.pref_builder.get_object( "check_VMWARE_fullscreen" )
 
         if protocol == "SPICE":
@@ -942,7 +934,7 @@ class Gui(Gtk.Application):
             self.X2GO_user       = self.pref_builder.get_object( "entry_X2GO_user"       )
             self.X2GO_pwd        = self.pref_builder.get_object( "entry_X2GO_pwd"        )
             self.X2GO_pwdsave    = self.pref_builder.get_object( "check_X2GO_pwd"        )
-            if self.optionEnabled( "passwd_off" ): self.X2GO_pwdsave.set_sensitive(False )
+            if check_option( "passwd_off" ): self.X2GO_pwdsave.set_sensitive(False )
             self.X2GO_session    = self.pref_builder.get_object( "entry_X2GO_session"    )
             self.X2GO_port       = self.pref_builder.get_object( "entry_X2GO_port"       )
             self.X2GO_fullscreen = self.pref_builder.get_object( "radio_X2GO_fullscreen" )
@@ -1618,7 +1610,7 @@ class Gui(Gtk.Application):
         else: self.showWin()
 
     def onHideWindow(self, *args):
-        if self.optionEnabled( 'tray' ):
+        if check_option( 'tray' ):
             self.window.hide()
             if not self.trayDisplayed: self.trayDisplayed = self.initTray()
             return True

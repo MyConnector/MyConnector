@@ -51,6 +51,14 @@ def check_global( attr ):
     except:
         return False
 
+def check_option( attr ):
+    try:
+        config_init()
+        check = CONFIG.getboolean( attr )
+    except KeyError:
+        check = DEFAULT[ attr ]
+    return check
+
 ROOT = True if os.getuid() == 0 else False
 HOMEFOLDER = os.getenv( "HOME" )
 USERFOLDER = "%s/.%s" % ( HOMEFOLDER, APP )
