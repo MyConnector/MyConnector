@@ -124,6 +124,8 @@ def getSaveConnections( fileFromConnection = "" ):
     """List of save connections from files in WORKFOLDER"""
     saves  = []
     groups = []
+    image = Gtk.Image()
+    image.new_from_icon_name( APP, 1 )
     for mycfile in os.listdir( WORKFOLDER ):
         if mycfile != fileFromConnection: # pass editing file
             if Path( mycfile ).suffix.lower() == ".myc":
@@ -133,13 +135,14 @@ def getSaveConnections( fileFromConnection = "" ):
                     name     = conf[ "myconnector" ].get( "name",  "" )
                     group    = conf[ "myconnector" ].get( "group", "" )
                     protocol = conf[ "myconnector" ][ "protocol" ].upper()
+                    if check_global( "stealth_mode") and not ROOT:
+                        server = protocol = group = ""
+                        icon = image.get_pixbuf()
+                    else:
+                        server = conf[ "myconnector" ][ "server" ]
+                        icon = GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol ) )
                     if not name: name = mycfile
-                    save = [ name,
-                             group,
-                             protocol,
-                             conf[ "myconnector" ][ "server" ],
-                             mycfile,
-                             GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol ) ) ]
+                    save = [ name, group, protocol, server, mycfile, icon ]
                     saves.append( save )
                     if group: groups.append( group )
                 except Exception as e:
@@ -261,6 +264,8 @@ class Gui(Gtk.Application):
             options.log.warning( _("The mode KIOSK unavailable, package is not installed.") )
         self.local_docs = self.builder.get_object( "help_prog_offline" )
         if not os.path.exists( LOCALDOCS ): self.local_docs.set_sensitive( False )
+        if check_global( "stealth_mode" ) and not ROOT:
+            self.treeview.set_headers_visible( False )
 
     def initGroups( self ):
         g = Gtk.ListStore( str )
@@ -327,7 +332,10 @@ class Gui(Gtk.Application):
             name, group, protocol = record[0], record[1], record[2]
             item = Gtk.ImageMenuItem(name)
             image = Gtk.Image()
-            image.set_from_pixbuf( GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol )))
+            if check_global( "stealth_mode" ) and not ROOT:
+                image.new_from_icon_name( APP, 1 )
+            else:
+                image.set_from_pixbuf( GdkPixbuf.Pixbuf.new_from_file( "%s/%s.png" % ( ICONFOLDER, protocol )))
             item.set_image(image)
             item.connect( "activate", self.onSaveConnect, name )
             if group:
