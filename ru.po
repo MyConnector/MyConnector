@@ -356,6 +356,12 @@ msgstr "Технология FreeNX"
 msgid "Check that the connection command is correct. Read more in"
 msgstr "Проверьте правильность команды подключения. Подробнее в"
 
+msgid "Config file has been changed"
+msgstr "Конфигурационный файл был изменен"
+
+msgid "Config file has not been changed."
+msgstr "Конфигурационный файл не был изменен."
+
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
@@ -1057,6 +1063,9 @@ msgstr "файл не найден"
 
 msgid "for more information"
 msgstr "для подробной информации"
+
+msgid "from CLI"
+msgstr "из командной строки"
 
 msgid "has an invalid format"
 msgstr "имеет неверный формат"

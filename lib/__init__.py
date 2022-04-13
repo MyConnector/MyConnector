@@ -33,6 +33,9 @@ def parseArgs():
     args.add_argument( "-c", "--connection", help = _("name of the saved connection") )
     args.add_argument( "-f", "--file", help = file_help )
     args.add_argument( "-l", "--list", action = "store_true", default = False, help = _("list of the saved connections") )
+    args.add_argument( "-e", "--edit", action = "store_true", default = False, help = "%s\n%s vi)" % (
+                     _("edit config file for enable/disable the mode (will use"),
+                     _("any the editor defines by VISUAL or EDITOR, default") ) )
     args.add_argument( "--kiosk", metavar="<option>", help = "%s ('--kiosk help' %s)" %
                      ( _("KIOSK mode control"), _("for more information") ) )
     args.add_argument( "-v", "--version", action = "version", help = _("show the application version"), version = about )
@@ -58,6 +61,10 @@ def main():
     if args.debug:
         from .ui import startDebug as debug
         debug()
+    if args.edit:
+        from .ui import editConfig as edit
+        res = edit()
+        exit( res )
     if args.list:
         from .ui import getSaveConnections as list_connections
         _list, _group = list_connections()

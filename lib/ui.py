@@ -169,6 +169,31 @@ def server_not_found( name ):
     options.msg_error( "%s ('%s') - %s!" % ( _("The connection configuration file is corrupted"), name,
                        _("the server is missing") ), options.log.exception )
 
+def editConfig():
+    "Editing program settings from CLI"
+    if check_global( "system_config" ) and not ROOT:
+        print( _("Access denied!") )
+        return 126
+    if ROOT:
+        config = "/etc/%s/%s.conf" % ( APP, APP )
+    else:
+        config = "%s/%s.conf" % ( USERFOLDER, APP )
+    with open( config ) as f:
+        current = f.read()
+    editor = os.getenv( "EDITOR" )
+    if not editor: editor = os.getenv( "VISUAL" )
+    if not editor: editor = "vi"
+    res = os.system( "%s %s" % ( editor, config ) )
+    with open( config ) as f:
+        result = f.read()
+    if current == result:
+        print( _("Config file has not been changed.") )
+    else:
+        text = _("Config file has been changed")
+        print( "%s." % text )
+        options.log.info( "%s %s." % ( text, _("from CLI") ) )
+    return res
+
 class TrayIcon:
     """Класс, описывающий индикатор и меню в трее (пока только для MATE)
        Thanks: https://eax.me/python-gtk/"""
