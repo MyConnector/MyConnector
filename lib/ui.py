@@ -109,7 +109,7 @@ def initSignal(gui):
 
 def startDebug():
     """Start show log files online (uses xterm)"""
-    if options.enableLog:
+    if options.enableLog and not check_global( "stealth_mode" ):
         os.system( 'for i in all myconnector; do xterm -T "MyConnector DEBUG - $i.log" -e "tail -f %s/$i.log" & done' % LOGFOLDER )
         options.log.info( _("The program is running in debug mode.") )
     else:

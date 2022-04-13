@@ -30,8 +30,10 @@ except Exception as error:
 
 try: enableLog = CONFIG.getboolean( 'log' )
 except KeyError: enableLog = DEFAULT[ 'log' ]
-if enableLog: STD_TO_LOG = ' >> ' + STDLOGFILE + " 2>&1 &"
-else: STD_TO_LOG = ' &'
+if enableLog and not check_global( "stealth_mode" ):
+    STD_TO_LOG = ' >> ' + STDLOGFILE + " 2>&1 &"
+else:
+    STD_TO_LOG = ' &'
 
 class VncViewer:
     """Класс для настройки VNC-соединения через VncViewer"""
@@ -135,7 +137,7 @@ class XFreeRdp:
                     command += " /p:" #support empty password
                 if password != False: #if there is password
                     os.system(command + STD_TO_LOG)
-                    if enableLog:
+                    if enableLog and not check_global( "stealth_mode" ):
                         signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
                         Popen( [ MAINFOLDER + "/myconnector-check-xfreerdp-errors" ] )
             else:
@@ -474,7 +476,7 @@ class X2goClient:
                 command += " --password %s" % password
             if password != False: #if there is not password
                 os.system( command + STD_TO_LOG )
-                if enableLog:
+                if enableLog and not check_global( "stealth_mode" ):
                     signal.signal( signal.SIGCHLD, signal.SIG_IGN ) # without zombie
                     Popen( [ MAINFOLDER + "/myconnector-check-x2go-errors" ] )
         else:

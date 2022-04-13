@@ -84,7 +84,7 @@ def loadFromFile( filename, window = None, _import = False ):
 
 try: enableLog = CONFIG.getboolean( 'log' )
 except KeyError: enableLog = DEFAULT[ 'log' ]
-if enableLog:
+if enableLog and not check_global( "stealth_mode" ):
     log = getLogger( "myconnector" )
     basicConfig (
         filename = LOGFILE,
