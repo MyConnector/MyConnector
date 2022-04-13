@@ -396,7 +396,7 @@ msgid "Import from file"
 msgstr "Импорт из файла"
 
 msgid "Imported the file"
-msgstr "Импортирован файлы"
+msgstr "Импортирован файл"
 
 msgid "Importing the connection configuration file"
 msgstr "Импорт конфигурационного файла подключения"
