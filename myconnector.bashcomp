@@ -27,7 +27,10 @@ _myconnector()
     subcmd_1="${COMP_WORDS[1]}"
     case "$subcmd_1" in
     --connection)
+        saveIFS=$IFS
+        IFS=$'\n'
         COMPREPLY=( $(compgen -W "`myconnector --list`" -- $cur))
+        IFS=$saveIFS
         return 0
         ;;
     --file)
