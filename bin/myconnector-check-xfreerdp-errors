@@ -17,22 +17,27 @@
 # along with this program. If not, see http://www.gnu.org/licenses/.
 
 from subprocess import check_output
-from os import system
+from os import system, getenv
 from sys import exit
 import gettext
 import locale
 
 APP         = "myconnector"
 MO_FOLDER   = "/usr/share/locale"
-MSG         = "zenity --notification --window-icon=myconnector --text='FreeRDP"
+MSG         = "zenity --notification --window-icon=%s --text='FreeRDP" % APP
 
 locale.bindtextdomain(  APP, MO_FOLDER )
 gettext.bindtextdomain( APP, MO_FOLDER )
 gettext.textdomain( APP )
 _ = gettext.gettext
 
+LOG  = "%s/.myconnector/logs/all.log" % getenv( "HOME" )
+
+def indent():
+    with open( LOG, "a" ) as f:
+        print( "-\n-\n-\n-\n-\n-\n-\n-\n-", file = f )
+
 def main():
-    LOG  = "~/.myconnector/logs/all.log"
     help = check_output( "xfreerdp --help | tail -n15 2>/dev/null; exit 0",
                          shell=True, universal_newlines=True ).strip()
     log  = check_output( "sleep 7; tail -n15 %s 2>/dev/null; exit 0" % LOG,
@@ -41,15 +46,19 @@ def main():
         system( "%s\n%s %s'" %  ( MSG, _("Check that the connection command is correct. Read more in"), LOG ) )
     if ( "AUTHENTICATION_FAILED" in log ) or ( "ERRCONNECT_LOGON_FAILURE" in log ):
         system( "%s\n%s'" % ( MSG, _("Invalid username or password.") ) )
+        indent()
     if "PASSWORD_CERTAINLY_EXPIRED" in log:
         system( "%s\n%s'" % ( MSG, _("Password expired. For change disable NLA or enable TLS or RDP protocol security!") ) )
+        indent()
     if "SECURITY_NEGO_CONNECT_FAILED" in log:
         system( "%s\n%s'" % ( MSG, _("Check protocol security settings!") ) )
+        indent()
     if "ERRCONNECT_DNS_NAME_NOT_FOUND" in log:
         system( "%s\n%s'" % ( MSG, _("DNS name not found!") ) )
-    if "ERRCONNECT_CONNECT_FAILED" in log:
+        indent()
+    if "ERRCONNECT_CONNECT" in log:
         system( "%s\n%s'" % ( MSG, _("Check network or connection address!") ) )
-
+        indent()
 
     exit(0)
 
