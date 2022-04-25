@@ -344,24 +344,21 @@ def config_save( default = False ):
 
 def config_read():
     """Parsing config file"""
-    _config.read( _config_file )
-    main = _config[ APP ]
-    protocols = { "VNC1"   : _config[ "vncviewer"   ],
-                  "VNC"    : _config[ "remmina_vnc" ],
-                  "RDP"    : _config[ "remmina_rdp" ],
-                  "RDP1"   : _config[ "freerdp"     ],
-                  "NX"     : _config[ "nx"          ],
-                  "XDMCP"  : _config[ "xdmcp"       ],
-                  "SPICE"  : _config[ "spice"       ],
-                  "SSH"    : _config[ "ssh"         ],
-                  "SFTP"   : _config[ "sftp"        ],
-                  "X2GO"   : _config[ "x2go"        ] }
-    return main, protocols
-
-try:
-    config_init()
-except KeyError:
-    if os.path.exists( _config_file ):
+    try:
+        _config.read( _config_file )
+        main = _config[ APP ]
+        protocols = { "VNC1"   : _config[ "vncviewer"   ],
+                      "VNC"    : _config[ "remmina_vnc" ],
+                      "RDP"    : _config[ "remmina_rdp" ],
+                      "RDP1"   : _config[ "freerdp"     ],
+                      "NX"     : _config[ "nx"          ],
+                      "XDMCP"  : _config[ "xdmcp"       ],
+                      "SPICE"  : _config[ "spice"       ],
+                      "SSH"    : _config[ "ssh"         ],
+                      "SFTP"   : _config[ "sftp"        ],
+                      "X2GO"   : _config[ "x2go"        ] }
+        return main, protocols
+    except:
         err = Error( _("The configuration file is corrupted, a new one will be created!") )
         err.run()
         try:
@@ -370,6 +367,11 @@ except KeyError:
             err = Error( _("Need root privileges!") )
             err.run()
             exit (1)
-    config_save( default = True )
-    CONFIG, CONFIGS = config_read()
+        config_save( default = True )
+        _config.read( _config_file )
+        return config_read()
 
+if not os.path.exists( _config_file ):
+    config_save( default = True )
+
+config_init()
