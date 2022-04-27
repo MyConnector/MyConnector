@@ -183,15 +183,26 @@ def editConfig():
     editor = os.getenv( "EDITOR" )
     if not editor: editor = os.getenv( "VISUAL" )
     if not editor: editor = "vi"
-    res = os.system( "%s %s" % ( editor, config ) )
-    with open( config ) as f:
-        result = f.read()
-    if current == result:
-        print( _("Config file has not been changed.") )
-    else:
-        text = _("Config file has been changed")
-        print( "%s." % text )
-        options.log.info( "%s %s." % ( text, _("from CLI") ) )
+    OK = False
+    while not OK:
+        res = os.system( "%s %s" % ( editor, config ) )
+        with open( config ) as f:
+            result = f.read()
+        if current == result:
+            print( _("Config file has not been changed.") )
+            OK = True
+        else:
+            _config = ConfigParser( interpolation = None )
+            try:
+                text = _("Config file has been changed")
+                _config.read( config )
+                tmp = _config[ APP ]
+                OK = True
+                print( "%s." % text )
+                options.log.info( "%s %s." % ( text, _("from CLI") ) )
+            except:
+                text = "%s, %s" % ( text, _("but contains errors! Press any key to fix it...") )
+                os.system( "read -s -n 1 -p \"%s\"; echo" % text )
     return res
 
 class TrayIcon:

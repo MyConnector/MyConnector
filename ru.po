@@ -1016,6 +1016,9 @@ msgstr "Ваша версия устарела"
 msgid "any the editor defines by VISUAL or EDITOR, default"
 msgstr "редактор, указанный в VISUAL или EDITOR, по умолчанию"
 
+msgid "but contains errors! Press any key to fix it..."
+msgstr "но содержит ошибки! Нажмите любую клавишу для исправления..."
+
 msgid "connecting via the protocol"
 msgstr "подключение с помощью протокола"
 
