@@ -27,62 +27,110 @@
     $ myconnector --help
     usage: myconnector [options]
 
-    MyConnector - remote desktop client.
+    MyConnector - клиент удаленного рабочего стола.
 
     positional arguments:
-      FILE                  name of the file (.myc, .remmina, .rdp)
+      FILE                  имя файла подключения (.myc, .remmina, .rdp)
 
     optional arguments:
-      -h, --help            show this help message and exit
+      -h, --help            показать эту справку и выйти
       -c CONNECTION, --connection CONNECTION
-                        name of the saved connection
-      -f FILE, --file FILE  name of the file (.myc, .remmina, .rdp)
-      -l, --list            list of the saved connections
-      --kiosk <option>      KIOSK mode control ('--kiosk help' for more information)
-      -v, --version         show the application version
-      -d, --debug           show log files online
-      -q, --quit            quit the application
+                            имя сохраненного подключения
+      -f FILE, --file FILE  имя файла подключения (.myc, .remmina, .rdp)
+      -l, --list            список сохраненных подключений
+      -e, --edit            редактировать конфигурационный файл (будет использоваться
+                            редактор, указанный в VISUAL или EDITOR, по умолчанию vi)
+      --kiosk <option>      Управление режимом КИОСКа ('--kiosk help' для подробной информации)
+      -v, --version         показать версию приложения
+      -d, --debug           отображение журнала работы в режиме реального времени
+      -q, --quit            закрыть все копии приложения
 
-    Do not specify parameters for starting the GUI.
+    Не указывайте опций для запуска графического интерфейса.
+
+    Copyright (C) 2014-2022 Evgeniy Korneechev <ek@myconnector.ru>
+
+    $ man myconnector
+    НАИМЕНОВАНИЕ
+           MyConnector - remote desktop client.
+
+    СИНТАКСИС
+           myconnector [options]
+
+    ОПИСАНИЕ
+           Программа-фронтэнд  для  удаленного  администрирования  компьютеров с различными операционными системами. Поддерживается большинство распространенных типов подключения (RDP, VNC,
+           X2GO, Citrix, VMware, etc).
+
+    ОПЦИИ
+           <без опций>
+              Запустить программу в режиме графического интерфейса.
+
+           -c CONNECTION, --connection CONNECTION
+              Подключиться к сохраненному подключению по его имени.
+
+           FILE, -f FILE, --file FILE
+              Подключиться с помощью файла подключения (.myc, .remmina, .rdp).
+
+           -l, --list
+              Вывести список сохраненных подключений.
+
+           -e, --edit
+              Редактировать конфигурационный файл.
+
+           --kiosk <option>
+              Управление режимом КИОСК (подробнее: '--kiosk help').
+
+           -v, --version
+              Вывести информацию о версии программы и завершить работу.
+
+           -d, --debug
+              Запуск программы в режиме отображения журналов работы в реальном времени.
+
+           -h, --help
+              Вывести краткую справку и завершить работу.
+
+           -q, --quit
+              Закрыть все существующие копии программы.
 
     $ myconnector --kiosk help
-    myconnector --kiosk - MyConnector KIOSK mode control
+    myconnector --kiosk - Управление режимом КИОСКа
 
-    Usage: myconnector --kiosk <option>
+    Использование: myconnector --kiosk <option>
 
-    Options:
-      enable        enable the standalone mode;
-      edit          edit config file for enable/disable the mode (will use
-                    any the editor defines by VISUAL or EDITOR, default: vi);
-      disable       disable the mode;
-      status        display current status of the mode;
-      help          show this text and exit.
+    Опции:
+      enable        включить простой режим (запуск программы MyConnector);
+      edit          редактировать конфигурационный файл (будет использоваться
+                    редактор, указанный в VISUAL или EDITOR, по умолчанию: vi);
+      disable       отключить режим;
+      status        показать текущий статус режима;
+      help          показать эту справку и выйти.
 
-    See also: man myconnector-kiosk
+    См. также: man myconnector-kiosk
+
+    Copyright (C) 2014-2022 Evgeniy Korneechev <ek@myconnector.ru>
 
     $ man myconnector-kiosk
-    NAME
+    НАИМЕНОВАНИЕ
            myconnector-kiosk - Mode KIOSK for 'MyConnector'
 
-    DESCRIPTION
-           Configuration file for MyConnector mode KIOSK - /etc/myconnector/kiosk.conf
+    ОПИСАНИЕ
+           Конфигурационный файл режима КИОСК программы MyConnector - /etc/myconnector/kiosk.conf
 
-           mode - one of the following operating modes:
-              "0" - disable
-              "1" - enable the standalone mode (run MyConnector)
-              "2" - enable the file mode (run saved connection, from 'file')
-              "3" - enable the WEB-kiosk (open 'url')
+           mode - один из следующих режимов работы:
+              "0" - КИОСК отключен
+              "1" - запуск программы MyConnector в режиме КИОСК
+              "2" - соединение с сохраненным подключением
+              "3" - ВЕБ-киоск
 
-           file - file for mode=2
+           file - файл подключения для mode=2
 
-           url - url for WEB-kiosk
+           url - URL для ВЕБ-киоска
 
-           user - user for the mode KIOSK
+           user - имя пользователя для режима КИОСК
 
-           autologin - enable/disable user autologin
-              True,Yes - enable
-              False,No - disable
+           autologin - управление автовходом пользователя
+              True,Yes - включен
+              False,No - отключен
 
-           ctrl_disabled - disable key 'Ctrl' in the webkiosk
-              True,Yes - disable
-              False,No - enable
+           ctrl_disabled - отключение "Ctrl" в ВЕБ-киоске
+              True,Yes - отключен
+              False,No - включен
