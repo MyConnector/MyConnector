@@ -32,6 +32,7 @@ http://myconnector.ru/
    conn_settings
    list
    kiosk
+   admin
    fs
    tray
    cli
