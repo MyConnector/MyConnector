@@ -18,7 +18,7 @@
 
 В руководстве описаны функциональные характеристики программы и описание ее возможностей. MyConnector является новой версией (2.x) программы `Connector <https://github.com/ekorneechev/connector>`_ - :ref:`rst-diff`.
 
-.. figure:: _img/main.png
+.. figure:: _images/main.png
 
 http://myconnector.ru/
 

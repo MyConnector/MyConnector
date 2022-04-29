@@ -15,9 +15,9 @@
 
 .. |date| date:: %d.%m.%Y
 
-.. |connector|   image:: _img/connector.png
-.. |right|       image:: _img/right.png
-.. |myconnector| image:: _img/myconnector.png
+.. |connector|   image:: _images/connector.png
+.. |right|       image:: _images/right.png
+.. |myconnector| image:: _images/myconnector.png
 
 .. _rst-diff:
 
