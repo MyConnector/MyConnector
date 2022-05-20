@@ -1,3 +1,18 @@
+2.3
+===
+New Features:
+- Added global settings and a global list of connections
+- Stealth mode
+- [CLI] Added editing of the configuration file (with check after editing)
+
+Bug Fixes:
+- Fixed bash-completion if there are spaces in the file or connection name
+- Fixed connect when there is a password save, but saving is disabled
+
+Minor changes:
+- Added autofilling in lists of servers and groups in the additional parameters window
+- Updated documentation and manual pages
+
 2.2.1
 =====
 Bug Fixes:
