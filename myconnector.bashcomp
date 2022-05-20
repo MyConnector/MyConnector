@@ -26,16 +26,16 @@ _myconnector()
 
     subcmd_1="${COMP_WORDS[1]}"
     case "$subcmd_1" in
-    --connection)
+    --connection|-c)
         saveIFS=$IFS
         IFS=$'\n'
         COMPREPLY=( $(compgen -W "`myconnector --list`" -- $cur))
         IFS=$saveIFS
         return 0
         ;;
-    --file)
-        COMPREPLY=( $(compgen -f -- $cur) )
-        return 0
+    --file|-f)
+        _filedir
+        return
         ;;
     --kiosk)
         COMPREPLY=( $(compgen -W "$kioskcommands" -- $cur) )
