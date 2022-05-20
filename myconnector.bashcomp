@@ -29,6 +29,7 @@ _myconnector()
     --connection|-c)
         saveIFS=$IFS
         IFS=$'\n'
+        compopt -o filenames 2>/dev/null
         COMPREPLY=( $(compgen -W "`myconnector --list`" -- $cur))
         IFS=$saveIFS
         return 0
