@@ -709,7 +709,7 @@ msgid ""
 msgstr ""
 "Настройка режима КИОСК\n"
 "(доступно при наличии прав root, пакета myconnector-kiosk\n"
-"и одного из DM - LightDM или SDDM - LightDM or SDDM)"
+"и одного из DM - LightDM или SDDM)"
 
 msgid "Share folder"
 msgstr "Общая папка"
