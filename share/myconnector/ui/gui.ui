@@ -2490,6 +2490,7 @@ server[:port]</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">The following format is required:
+/local/folder
 protocol://[username@]server[:port]/[folder]</property>
                             <property name="primary_icon_pixbuf">../icons/FS.png</property>
                             <property name="placeholder_text" translatable="yes">Enter the server address...</property>

@@ -408,15 +408,8 @@ class FileServer:
     def start( self, args, window = False ):
         _exec = CONFIG[ 'fs' ] + ' "'
         if type(args) == str:
-            if  not args.find("://") != -1:
-                from myconnector.dialogs import Error
-                err = Error( "%s!\n%s." % ( _("Enter the connection protocol"),
-                          _("Or select from the list in the advanced options") ) )
-                err.run()
-                return 1
-            else:
-                command = _exec + args + '"'
-                server = args
+            command = _exec + args + '"'
+            server = args
         else:
             try:
                 protocol, server = args[ "server" ].split("://")
@@ -433,6 +426,8 @@ class FileServer:
             command += server
             if args.get( "folder" , "" ): command += "/%s" % args[ "folder" ]
             command += '"'
+            if protocol == "file":
+                command = '%s%s"' % ( _exec, args.get( "folder" , "" ))
         options.log.info( "%s %s. %s:", _("Connecting to a file server"), server, _("Launch Command") )
         options.log.info( command )
         os.system (command + STD_TO_LOG)

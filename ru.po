@@ -314,9 +314,6 @@ msgstr ""
 "Введите команду для подключения файловых ресурсов\n"
 "(по умолчанию берется из списка MIME-типов пользователя)"
 
-msgid "Enter the connection protocol"
-msgstr "Введите протокол подключения"
-
 msgid "Enter the server address..."
 msgstr "Введите адрес сервера..."
 
@@ -539,9 +536,6 @@ msgstr "Открытие параметров программы"
 
 msgid "Options"
 msgstr "Опции"
-
-msgid "Or select from the list in the advanced options"
-msgstr "Или выберите из списка в дополнительных параметрах"
 
 msgid "Other"
 msgstr "Прочее"
@@ -846,9 +840,11 @@ msgstr ""
 
 msgid ""
 "The following format is required:\n"
+"/local/folder\n"
 "protocol://[username@]server[:port]/[folder]"
 msgstr ""
 "Требуется следующий формат:\n"
+"/локальная/папка\n"
 "протокол://[имя_пользователя@]сервер[:порт]/[папка]"
 
 msgid ""

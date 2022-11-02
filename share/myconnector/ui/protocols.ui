@@ -2291,7 +2291,7 @@ server[:port]</property>
         </child>
         <child>
           <object class="GtkComboBox" id="combo_FS">
-            <property name="width_request">260</property>
+            <property name="width_request">300</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
@@ -2339,7 +2339,7 @@ server[:port]</property>
         </child>
         <child>
           <object class="GtkComboBox" id="entry_FS_type">
-            <property name="width_request">262</property>
+            <property name="width_request">302</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
@@ -2387,7 +2387,7 @@ server[:port]</property>
         </child>
         <child>
           <object class="GtkEntry" id="entry_FS_dom">
-            <property name="width_request">260</property>
+            <property name="width_request">300</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <signal name="activate" handler="onButtonConnect" object="entry_FS_serv" swapped="no"/>
@@ -2425,7 +2425,7 @@ server[:port]</property>
         </child>
         <child>
           <object class="GtkEntry" id="entry_FS_user">
-            <property name="width_request">260</property>
+            <property name="width_request">300</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <signal name="activate" handler="onButtonConnect" object="entry_FS_serv" swapped="no"/>
@@ -2463,7 +2463,7 @@ server[:port]</property>
         </child>
         <child>
           <object class="GtkEntry" id="entry_FS_folder">
-            <property name="width_request">260</property>
+            <property name="width_request">300</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
           </object>
