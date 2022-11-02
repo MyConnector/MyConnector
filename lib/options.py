@@ -280,6 +280,11 @@ class Properties(Gtk.Window):
                 f.close()
                 myconnector.ui.viewStatus( self.statusbar, _("Done, the changes will take effect after the restart...") )
                 log.info( _("Autofill data is cleared.") )
+            if target == "recent":
+                f = open( "%s/%s" % ( WORKFOLDER, "recent.db" ), "w" )
+                f.close()
+                myconnector.ui.viewStatus( self.statusbar, _("Done, the changes will take effect after the restart...") )
+                log.info( _("Recent connections list is cleared.") )
             if target == "connections":
                 os.system( "rm -f %s/*.myc" % WORKFOLDER )
                 myconnector.ui.Gui.setSavesToListstore( self.main_window )
@@ -292,6 +297,10 @@ class Properties(Gtk.Window):
     def onClearConnects( self, *args ):
         self.clearFile( "connections", _("Confirm clearing the connection list"),
                         _("All your saved connections will be deleted!!!") )
+
+    def onClearRecent( self, *args ):
+        self.clearFile( "recent", _("Confirm clearing the recent connections list"),
+                        _("All your recent connections will be deleted!!!") )
 
     def onButtonReset(self,*args):
         """Сброс параметров программы"""

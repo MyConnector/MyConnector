@@ -73,6 +73,9 @@ msgstr
 msgid"All users use connections from the /etc/myconnector folder."
 msgstr "Все пользователи используют подключения из папки /etc/myconnector"
 
+msgid "All your recent connections will be deleted!!!"
+msgstr "Все недавние подключения будут удалены!!!"
+
 msgid "All your saved connections will be deleted!!!"
 msgstr "Все сохраненные подключения будут удалены!!!"
 
@@ -121,6 +124,9 @@ msgstr "Подключение к серверу Citrix"
 msgid "Clear autofill data"
 msgstr "Очистить данные автозаполнения"
 
+msgid "Clear the list of recent connections"
+msgstr "Очистить список недавних подключений"
+
 msgid "Clear the list of saved connections"
 msgstr "Очистить список сохраненных подключений"
 
@@ -156,6 +162,9 @@ msgstr "Подтвердите очистку данных автозаполн�
 
 msgid "Confirm clearing the connection list"
 msgstr "Подтвердите очистку списка подключений"
+
+msgid "Confirm clearing the recent connections list"
+msgstr "Подтвердите очистку списка недавних подключений"
 
 msgid "Confirm deleting all saved passwords from the keyring."
 msgstr "Подтвердите удаление всех сохраненных паролей из связки ключей."
@@ -590,6 +599,9 @@ msgstr "Недавние файлы"
 
 msgid "Recent connections"
 msgstr "Недавние подключения"
+
+msgid "Recent connections list is cleared."
+msgstr "Список недавних подключений очищен."
 
 msgid "Redirect local microphone"
 msgstr "Перенаправление микрофона"
