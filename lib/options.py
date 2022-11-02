@@ -276,7 +276,7 @@ class Properties(Gtk.Window):
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             if target == "servers":
-                f = open( "%s/%s" % ( WORKFOLDER, filename ), "w" )
+                f = open( "%s/%s" % ( WORKFOLDER, "servers.db" ), "w" )
                 f.close()
                 myconnector.ui.viewStatus( self.statusbar, _("Done, the changes will take effect after the restart...") )
                 log.info( _("Autofill data is cleared.") )
