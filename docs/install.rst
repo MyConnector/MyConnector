@@ -64,7 +64,7 @@ git & make
 
 После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в `spec-файле <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16>`_ в секциях requires) выполните (пакет ``git`` тоже должен быть установлен)::
 
-    $ git clone https://github.com/ekorneechev/MyConnector
+    $ git clone https://github.com/MyConnector/MyConnector
     $ cd MyConnector
     $ git checkout <release> # по умолчанию 'master', список релизов: `git tag -l`
     $ sudo make install
