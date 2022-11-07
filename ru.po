@@ -79,6 +79,9 @@ msgstr "Все недавние подключения будут удалены
 msgid "All your saved connections will be deleted!!!"
 msgstr "Все сохраненные подключения будут удалены!!!"
 
+msgid "Attention!"
+msgstr "Внимание!"
+
 msgid "Authentication type:"
 msgstr "Тип аутентификации:"
 
@@ -684,6 +687,9 @@ msgstr "Безопасность"
 msgid "Secure WebDAV (HTTPS)"
 msgstr "Защищенный WebDAV (HTTPS)"
 
+msgid "See"
+msgstr "См."
+
 msgid "See also"
 msgstr "См. также"
 
@@ -888,6 +894,9 @@ msgstr "Текстовый редактор"
 
 msgid "Theme"
 msgstr "Тема"
+
+msgid "There may be problems with the work of"
+msgstr "Возможны проблемы с работой"
 
 msgid "To change the connection parameters"
 msgstr "Изменить параметры подключения"

@@ -1589,7 +1589,17 @@ class Gui(Gtk.Application):
             viewStatus( self.statusbar, _("Select a connection from the list!") )
             return None
         else:
-            name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
+            name, fileMyc, protocol = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ], table[ indexRow ][ 2 ]
+            ##### for http://bugs.myconnector.ru/22 #############################
+            if protocol == "FS" and ( CONFIG.get( "fs", "" ) == "caja" or
+            check_output( "xdg-mime query default 'inode/directory'", shell=True,
+            universal_newlines=True ).strip() == "caja-folder-handler.desktop" ):
+                warning = Gtk.MessageDialog( self.window, 0, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s " % _("Attention!") )
+                warning.format_secondary_text("%s Caja.\n%s http://bugs.myconnector.ru/22" %
+                                             ( _("There may be problems with the work of"), _("See") ) )
+                warning.run()
+                warning.destroy()
+            #####################################################################
         parameters = options.loadFromFile( fileMyc )
         state = parameters.getboolean( "autostart" )
         dialog = Gtk.MessageDialog( self.window, 0, Gtk.MessageType.QUESTION,
