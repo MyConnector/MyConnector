@@ -116,7 +116,7 @@ _editor_desktop = check_output( "xdg-mime query default 'text/plain'",
 _editor_desktop_path = "/usr/share/applications/%s" % _editor_desktop
 if not os.path.isfile( _editor_desktop_path ):
     _editor_desktop_path = "%s/.local/share/applications/%s" % ( HOMEFOLDER, _editor_desktop )
-_editor = check_output( "grep Exec %s 2>&-|sed s/Exec=//g|sed s/\ .*//g; exit 0" % _editor_desktop_path,
+_editor = check_output( "grep ^Exec %s 2>&-|sed s/Exec=//g|sed s/\ .*//g; exit 0" % _editor_desktop_path,
                                     shell=True, universal_newlines=True ).strip()
 if _editor:
     DEFAULT[ "editor" ] = _editor
