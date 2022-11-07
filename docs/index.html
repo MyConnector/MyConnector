@@ -134,13 +134,13 @@ $ sudo make install
 </section>
 <span id="document-prog_settings"></span><section id="rst-prog-settings">
 <span id="id1"></span><h2>Параметры программы<a class="headerlink" href="#rst-prog-settings" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для выбора программ, используемых по умолчанию для подключения по протоколам RDP и VNC, необходимо открыть главное меню программы и выбрать «Параметры» (или через <a class="reference internal" href="index.html#rst-tray"><span class="std std-ref">Значок в области уведомлений</span></a>), либо нажать комбинацию клавиш <span class="guilabel"><span class="accelerator">C</span>trl</span> + <span class="guilabel"><span class="accelerator">P</span></span>. После этого откроется окно настройки параметров приложения:</p>
+<p>Для выбора программ, используемых по умолчанию для подключения по протоколам RDP, VNC и SPICE, необходимо открыть главное меню программы и выбрать «Параметры» (или через <a class="reference internal" href="index.html#rst-tray"><span class="std std-ref">Значок в области уведомлений</span></a>), либо нажать комбинацию клавиш <span class="guilabel"><span class="accelerator">C</span>trl</span> + <span class="guilabel"><span class="accelerator">P</span></span>. После этого откроется окно настройки параметров приложения:</p>
 <figure class="align-default">
 <img alt="_images/params1.png" src="_images/params1.png" />
 </figure>
-<p>Есть возможность сменить программу для RDP-соединения - Remmina или FreeRDP. Для подключения по VNC тоже есть два варианта - Remmina и vncviewer (любая программа, предоставляющая данный функционал). По умолчанию подключение по RDP настроено через FreeRDP, VNC - через vncviewer.</p>
+<p>Есть возможность сменить программу для RDP-соединения - Remmina или FreeRDP, для подключения по VNC - Remmina и vncviewer (любая программа, предоставляющая данный функционал) и для подключения по SPICE - Remmina и Virt Viewer. По умолчанию подключение по RDP настроено через FreeRDP, VNC - через vncviewer, а SPICE - через Remmina.</p>
 <p>Также Вы можете настроить отображение определенного протокола на главном окне приложения по умолчанию и сортировку для <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a>.</p>
-<p>На вкладке «Расширенные» настраивается отображение значка в трее, проверка обновлений программы, ведение логов, редактор для файлов подключений и сохранение паролей. Есть возможность очистить базу адресов серверов, к которым было совершено подключение (выпадающий список при вводе адреса на главном окне или в доп. параметрах), <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a> и сохраненные пароли. Или произвести сброс всех параметров программы.</p>
+<p>На вкладке «Расширенные» настраивается отображение значка в трее, проверка обновлений программы, ведение логов, редактор для файлов подключений и сохранение паролей. Есть возможность очистить базу адресов серверов, к которым было совершено подключение (выпадающий список при вводе адреса на главном окне или в доп. параметрах), <a class="reference internal" href="index.html#rst-list"><span class="std std-ref">Список сохраненных подключений</span></a>, сохраненные пароли и список недавних подключений. Или произвести сброс всех параметров программы.</p>
 <figure class="align-default">
 <img alt="_images/params2.png" src="_images/params2.png" />
 </figure>
@@ -236,7 +236,7 @@ $ sudo myconnector
 </section>
 <span id="document-admin"></span><section id="rst-admin">
 <span id="id1"></span><h2>Параметры администратора<a class="headerlink" href="#rst-admin" title="Ссылка на этот заголовок">¶</a></h2>
-<p>С версии приложения MyConnector 2.3 добавилась новая вкладка в <span class="xref std std-ref">rst-prog-setings</span> - «Администрирование»:</p>
+<p>С версии приложения MyConnector 2.3 добавилась новая вкладка в <a href="#document-prog_settings">параметрах программы</a> - «Администрирование»:</p>
 <figure class="align-default">
 <img alt="_images/params3.png" src="_images/params3.png" />
 </figure>
