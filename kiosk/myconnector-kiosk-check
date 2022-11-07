@@ -2,7 +2,7 @@
 
 # Checking avaiable chromium
 KIOSK_COMMAND=""
-for i in chromium chromium-gost firefox; do
+for i in chromium chromium-gost yandex-browser-stable firefox; do
     which $i > /dev/null 2>&1
     if [ "$?" -eq 0 ]; then
         if [ "$i" == "firefox" ]; then
