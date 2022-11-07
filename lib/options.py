@@ -137,6 +137,7 @@ class Properties(Gtk.Window):
         self.main_window = mainWindow
         self.labelRDP = mainWindow.labelRDP
         self.labelVNC = mainWindow.labelVNC
+        self.labelSPICE = mainWindow.labelSPICE
         self.conn_note = mainWindow.conn_note
         self.main_window.window.set_sensitive( False )
         self.combo_protocols = mainWindow.combo_protocols
@@ -156,6 +157,8 @@ class Properties(Gtk.Window):
         self.combo_tabs = builder.get_object("combo_tabs")
         self.changeRdpFree = builder.get_object("radio_RDP_freeRDP")
         self.changeVncView = builder.get_object("radio_VNC_viewer")
+        self.changeSpiceRemmina = builder.get_object("radio_SPICE_remmina")
+        self.changeSpiceViewer = builder.get_object("radio_SPICE_virtviewer")
         self.entryFS = builder.get_object("entry_FS")
         self.checkTray = builder.get_object("check_TRAY")
         self.checkVersion = builder.get_object("check_VERSION")
@@ -192,6 +195,8 @@ class Properties(Gtk.Window):
             self.changeRdpFree.set_active( True )
         if CONFIG.get( "vnc", "vncviewer" ) == "vncviewer":
             self.changeVncView.set_active( True )
+        if CONFIG.get( "spice", "remmina" ) == "virtviewer":
+            self.changeSpiceViewer.set_active( True )
         try: self.combo_tabs.set_active_id( CONFIG[ 'tab' ] )
         except KeyError: self.combo_tabs.set_active_id( '0' )
         try: self.entryFS.set_text( CONFIG[ 'fs' ] )
@@ -247,6 +252,9 @@ class Properties(Gtk.Window):
         if self.changeVncRem.get_active():
             CONFIG[ "vnc" ] = "remmina"
         else: CONFIG[ "vnc" ] = "vncviewer"
+        if self.changeSpiceRemmina.get_active():
+            CONFIG[ "spice" ] = "remmina"
+        else: CONFIG[ "spice" ] = "virtviewer"
         CONFIG[ 'tab' ] = self.combo_tabs.get_active_id()
         CONFIG[ 'fs' ] = self.entryFS.get_text()
         CONFIG[ 'tray' ] = str( self.checkTray.get_active() )
@@ -264,7 +272,7 @@ class Properties(Gtk.Window):
         log.info( msg_save )
         if not self.checkLog.get_active():
             log.warning( _("LOGGING WILL BE DISABLED AFTER THE PROGRAM IS RESTARTED!") )
-        myconnector.ui.Gui.initLabels(True, self.labelRDP, self.labelVNC, self.labelFS)
+        myconnector.ui.Gui.initLabels( True, self.labelRDP, self.labelVNC, self.labelFS, self.labelSPICE )
         self.conn_note.set_current_page( int( CONFIG[ 'tab' ] ) )
         self.combo_protocols.set_active_id( CONFIG[ 'tab' ] )
         self.updateTray()

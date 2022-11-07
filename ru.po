@@ -777,6 +777,9 @@ msgstr "Текстовый редактор для подключений"
 msgid "The 'pyhoca-cli' client for X2GO is not installed!"
 msgstr "Клиент 'pyhoca-cli' для X2GO не установлен!"
 
+msgid "The 'remote-viewer' client for SPICE is not installed!"
+msgstr "Клиент 'remote-viewer' для SPICE не установлен!"
+
 msgid ""
 "The FS connection configuration file is corrupted - the type is missing!"
 msgstr ""

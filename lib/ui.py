@@ -150,10 +150,10 @@ def getSaveConnections( fileFromConnection = "" ):
     return saves, list( set( groups ) ) #unique groups
 
 def changeProgram( protocol, program = "" ):
-    """Return {RDP,VNC}1 if program not remmina"""
+    """Return {RDP,VNC,SPICE}1 if program not remmina"""
     protocol = protocol.upper()
     if program:
-        if program in [ "freerdp", "vncviewer" ]:
+        if program in [ "freerdp", "vncviewer", "virtviewer" ]:
             return "%s1" % protocol
         else: return protocol
     try:
@@ -278,9 +278,11 @@ class Gui(Gtk.Application):
         self.combo_protocols = self.builder.get_object( "combo_protocols" )
         self.combo_protocols.set_active_id( default_tab )
         self.conn_note.set_current_page(int(default_tab))
-        self.labelRDP, self.labelVNC = self.builder.get_object("label_default_RDP"), self.builder.get_object("label_default_VNC")
-        self.labelFS = self.builder.get_object("label_default_FS")
-        self.initLabels(self.labelRDP, self.labelVNC, self.labelFS)
+        self.labelRDP   = self.builder.get_object( "label_default_RDP"   )
+        self.labelVNC   = self.builder.get_object( "label_default_VNC"   )
+        self.labelSPICE = self.builder.get_object( "label_default_SPICE" )
+        self.labelFS    = self.builder.get_object( "label_default_FS"    )
+        self.initLabels( self.labelRDP, self.labelVNC, self.labelFS, self.labelSPICE )
         self.trayDisplayed = False
         self.tray_submenu = self.builder.get_object( "tray_submenu"                )
         self.recent_menu  = self.builder.get_object( "menu_file_recent_conn_list"  )
@@ -384,11 +386,12 @@ class Gui(Gtk.Application):
             self.tray_submenu.append(tray_noexist)
         self.tray_submenu.show_all()
 
-    def initLabels(self, rdp, vnc, fs):
-        """Display on the main window the program name for RDP, VNC and FS"""
-        rdp.set_text( "(%s)" % CONFIG.get( "rdp" ) )
-        vnc.set_text( "(%s)" % CONFIG.get( "vnc" ) )
-        fs.set_text ( "(%s)" % CONFIG.get( "fs"  ) )
+    def initLabels(self, rdp, vnc, fs, spice):
+        """Display on the main window the program name for RDP, VNC, SPICE and FS"""
+        rdp.set_text  ( "(%s)" % CONFIG.get( "rdp"   ) )
+        vnc.set_text  ( "(%s)" % CONFIG.get( "vnc"   ) )
+        fs.set_text   ( "(%s)" % CONFIG.get( "fs"    ) )
+        spice.set_text( "(%s)" % CONFIG.get( "spice" ) )
 
     def onDeleteWindow(self, *args):
         """Закрытие программы"""
@@ -822,6 +825,9 @@ class Gui(Gtk.Application):
             if args.getboolean( "printers"   ): self.X2GO_print.set_active(      True )
             if args.getboolean( "sound"      ): self.X2GO_sound.set_active(      True )
 
+        if protocol == "SPICE1":
+            if args.getboolean( "fullscreen" ): self.SPICE_fullscreen.set_active( True )
+
     def initPreferences( self, protocol ):
         """В этой функции определяются различные для протоколов параметры"""
         if protocol == "RDP": #remmina
@@ -986,6 +992,9 @@ class Gui(Gtk.Application):
             self.X2GO_print      = self.pref_builder.get_object( "check_X2GO_print"      )
             self.X2GO_sound      = self.pref_builder.get_object( "check_X2GO_sound"      )
             self.X2GO_geometry.set_sensitive( False )
+
+        if protocol == "SPICE1":
+            self.SPICE_fullscreen = self.pref_builder.get_object( "check_SPICE1_fullscreen" )
 
     def applyPreferences( self, protocol ):
         """В этой функции параметры для подключения собираются из окна Доп. параметры в список"""
@@ -1163,6 +1172,10 @@ class Gui(Gtk.Application):
                 sound      = "True" if self.X2GO_sound.get_active()      else "False",
                 geometry   = "fullscreen" if self.X2GO_fullscreen.get_active() else self.X2GO_geometry.get_text() )
 
+        if protocol == "SPICE1":
+            args = dict(
+                fullscreen = "True" if self.SPICE_fullscreen.get_active() else "False" )
+
         return args
 
     def onCancel( self, button, win ):
@@ -1279,7 +1292,9 @@ class Gui(Gtk.Application):
             return "freerdp"
         if name == "VNC1":
             return "vncviewer"
-        if name in [ "RDP", "VNC" ]:
+        if name == "SPICE1":
+            return "virtviewer"
+        if name in [ "RDP", "VNC", "SPICE" ]:
             return "remmina"
         else:
             return None

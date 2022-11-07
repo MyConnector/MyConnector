@@ -98,6 +98,7 @@ os.system( "mkdir -p %s" % LOGFOLDER )
 
 DEFAULT    = { "rdp"            : "freerdp",
                "vnc"            : "vncviewer",
+               "spice"          : "remmina",
                "tab"            : "0",
                "log"            : True,
                "fs"             : "xdg-open",
@@ -294,7 +295,8 @@ DEF_PROTO[ "SPICE" ] = { "usetls"            : "0",
                          "disableclipboard"  : "0",
                          "sharesmartcard"    : "0",
                          "enableaudio"       : "0",
-                         "cacert"            : "" }
+                         "cacert"            : "" ,
+                         "program"           : "remmina" }
 DEF_PROTO[ "SSH" ] = {   "username"          : "",
                          "ssh_auth"          : "0",
                          "ssh_privatekey"    : "",
@@ -307,6 +309,7 @@ DEF_PROTO[ "SFTP" ] = {  "username"          : "",
                          "ssh_charset"       : "UTF-8",
                          "knocking"          : "",
                          "execpath"          : "/" }
+#pyhoca-cli
 DEF_PROTO[ "X2GO" ] = {  "username"          : "",
                          "session"           : "",
                          "port"              : "",
@@ -314,6 +317,9 @@ DEF_PROTO[ "X2GO" ] = {  "username"          : "",
                          "passwdsave"        : "False",
                          "printers"          : "False",
                          "sound"             : "False" }
+#virtviewer
+DEF_PROTO[ "SPICE1" ] = { "fullscreen"       : "False",
+                          "program"          : "virtviewer" }
 
 def config_init( global_enable = None ):
     """Initializing config"""
@@ -340,16 +346,17 @@ def config_save( default = False ):
     """Default config for MyConnector"""
     if default:
         _config[ APP ] = DEFAULT
-        _config[ "vncviewer"   ] = DEF_PROTO[ "VNC1"  ].copy()
-        _config[ "remmina_vnc" ] = DEF_PROTO[ "VNC"   ].copy()
-        _config[ "ssh"         ] = DEF_PROTO[ "SSH"   ].copy()
-        _config[ "sftp"        ] = DEF_PROTO[ "SFTP"  ].copy()
-        _config[ "remmina_rdp" ] = DEF_PROTO[ "RDP"   ].copy()
-        _config[ "nx"          ] = DEF_PROTO[ "NX"    ].copy()
-        _config[ "xdmcp"       ] = DEF_PROTO[ "XDMCP" ].copy()
-        _config[ "spice"       ] = DEF_PROTO[ "SPICE" ].copy()
-        _config[ "freerdp"     ] = DEF_PROTO[ "RDP1"  ].copy()
-        _config[ "x2go"        ] = DEF_PROTO[ "X2GO"  ].copy()
+        _config[ "vncviewer"     ] = DEF_PROTO[ "VNC1"   ].copy()
+        _config[ "remmina_vnc"   ] = DEF_PROTO[ "VNC"    ].copy()
+        _config[ "ssh"           ] = DEF_PROTO[ "SSH"    ].copy()
+        _config[ "sftp"          ] = DEF_PROTO[ "SFTP"   ].copy()
+        _config[ "remmina_rdp"   ] = DEF_PROTO[ "RDP"    ].copy()
+        _config[ "nx"            ] = DEF_PROTO[ "NX"     ].copy()
+        _config[ "xdmcp"         ] = DEF_PROTO[ "XDMCP"  ].copy()
+        _config[ "remmina_spice" ] = DEF_PROTO[ "SPICE"  ].copy()
+        _config[ "virtviewer"    ] = DEF_PROTO[ "SPICE1" ].copy()
+        _config[ "freerdp"       ] = DEF_PROTO[ "RDP1"   ].copy()
+        _config[ "x2go"          ] = DEF_PROTO[ "X2GO"   ].copy()
     with open( _config_file, 'w' ) as configfile:
         _config.write( configfile )
 
@@ -358,16 +365,17 @@ def config_read():
     try:
         _config.read( _config_file )
         main = _config[ APP ]
-        protocols = { "VNC1"   : _config[ "vncviewer"   ],
-                      "VNC"    : _config[ "remmina_vnc" ],
-                      "RDP"    : _config[ "remmina_rdp" ],
-                      "RDP1"   : _config[ "freerdp"     ],
-                      "NX"     : _config[ "nx"          ],
-                      "XDMCP"  : _config[ "xdmcp"       ],
-                      "SPICE"  : _config[ "spice"       ],
-                      "SSH"    : _config[ "ssh"         ],
-                      "SFTP"   : _config[ "sftp"        ],
-                      "X2GO"   : _config[ "x2go"        ] }
+        protocols = { "VNC1"   : _config[ "vncviewer"     ],
+                      "VNC"    : _config[ "remmina_vnc"   ],
+                      "RDP"    : _config[ "remmina_rdp"   ],
+                      "RDP1"   : _config[ "freerdp"       ],
+                      "NX"     : _config[ "nx"            ],
+                      "XDMCP"  : _config[ "xdmcp"         ],
+                      "SPICE"  : _config[ "remmina_spice" ],
+                      "SPICE1" : _config[ "virtviewer"    ],
+                      "SSH"    : _config[ "ssh"           ],
+                      "SFTP"   : _config[ "sftp"          ],
+                      "X2GO"   : _config[ "x2go"          ] }
         return main, protocols
     except:
         err = Error( _("The configuration file is corrupted, a new one will be created!") )

@@ -477,6 +477,25 @@ class X2goClient:
         else:
             options.msg_error ( _("The 'pyhoca-cli' client for X2GO is not installed!"), options.log.warning )
 
+class VirtViewer:
+    """Class for connect to SPICE server"""
+    def start( self, args, window = False ):
+        if virtvCheck():
+            if type(args) == str:
+                command = "remote-viewer -v spice://%s" % args
+                options.log.info( "SPICE: %s %s", _("Connecting to the server"), args )
+                options.log.info( command )
+            else:
+                server = args[ "server" ]
+                command = "remote-viewer -v spice://%s --title %s" %  ( server, args.get( "name", server ) )
+                if args.get( "fullscreen", "False" ) == "True": command += " --full-screen"
+                options.log.info( "SPICE:  %s %s", _("Connecting to the server"), server )
+                options.log.info( command )
+            os.system(command + STD_TO_LOG)
+        else:
+            options.msg_error ( _("The 'remote-viewer' client for SPICE is not installed!"), options.log.warning )
+
+
 def definition( name ):
     """Функция определения протокола"""
     protocols = { "VNC"    : VncRemmina(),
@@ -491,6 +510,7 @@ def definition( name ):
                   "CITRIX" : Citrix(),
                   "WEB"    : Web(),
                   "SPICE"  : SpiceRemmina(),
+                  "SPICE1" : VirtViewer(),
                   "FS"     : FileServer(),
                   "X2GO"   : X2goClient() }
     if name in protocols:
@@ -513,6 +533,12 @@ def vmwareCheck():
 def x2goCheck():
     """Checking exist pyhoca-cli"""
     check = int( check_output( "which pyhoca-cli > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
+    check = not bool(check)
+    return check
+
+def virtvCheck():
+    """Checking exist remote-viewer"""
+    check = int( check_output( "which remote-viewer > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
     check = not bool(check)
     return check
 
