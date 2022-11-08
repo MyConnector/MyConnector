@@ -1,3 +1,20 @@
+2.4
+===
+New Features:
+- [webkiosk] Added Chromium Gost and Yandex Browser support
+- [SPICE] Added Virt Viewer support
+- Added cleaning of recent connections
+
+Bug Fixes:
+- Fixed clear autofill data
+- [FS] Added message for autostart (see Known Issues)
+
+Minor changes:
+- Tiny typo docs and l10n
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+
 2.3
 ===
 New Features:
