@@ -1584,15 +1584,16 @@ class Gui(Gtk.Application):
             return None
         else:
             name, fileMyc = table[ indexRow ][ 0 ], table[ indexRow ][ 4 ]
-        editor = CONFIG.get( "editor", "pluma" )
-        status = "%s \"%s\" %s..." %  ( _("The connection"), name, _("opens in a text editor") )
-        options.log.info( status )
-        try:
-            Popen( [ editor, "%s/%s" % ( WORKFOLDER, fileMyc ) ] )
-        except FileNotFoundError:
-            status = "%s - %s - %s!" % ( _("The text editor"), editor, _("not found") )
-            options.log.error( status )
-        except PermissionError:
+        editor = CONFIG.get( "editor", "" )
+        if editor:
+            status = "%s \"%s\" %s..." %  ( _("The connection"), name, _("opens in a text editor") )
+            options.log.info( status )
+            try:
+                Popen( [ editor, "%s/%s" % ( WORKFOLDER, fileMyc ) ] )
+            except FileNotFoundError:
+                status = "%s - %s - %s!" % ( _("The text editor"), editor, _("not found") )
+                options.log.error( status )
+        else:
             status = "%s %s!" % ( _("The text editor"), _("is not specified") )
             options.log.error( status )
         viewStatus( self.statusbar, status )
