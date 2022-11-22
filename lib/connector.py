@@ -406,7 +406,9 @@ class Web:
 class FileServer:
     """Класс для настройки подключения к файловому серверу"""
     def start( self, args, window = False ):
-        _exec = CONFIG[ 'fs' ] + ' "'
+        _exec = CONFIG.get( "fs", "xdg-open" )
+        if not _exec: _exec = "xdg-open"
+        _exec += ' "'
         if type(args) == str:
             command = _exec + args + '"'
             server = args
