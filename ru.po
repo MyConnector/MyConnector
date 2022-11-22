@@ -104,7 +104,7 @@ msgid "Cancel"
 msgstr "Отмена"
 
 msgid "Changes in the program parameters (Ctrl+P)"
-msgstr "Изменяется в параметрах программы (Ctrl+P"
+msgstr "Изменяется в параметрах программы (Ctrl+P)"
 
 msgid "Charset"
 msgstr "Кодировка"
