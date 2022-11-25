@@ -1,3 +1,14 @@
+2.4.1
+=====
+Bug Fixes:
+- [FS] Fixed if no program is specified
+- Updated myconnector.conf
+- [RPM] Fixed unowned /etc/myconnector
+
+Minor changes:
+- The default text editor is not specified now
+- xterm replaced with xvt
+
 2.4
 ===
 New Features:
