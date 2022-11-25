@@ -168,7 +168,7 @@ def check_user( user ):
     try:
         pwd.getpwnam( user )
     except KeyError:
-        os.system( "xterm -e 'adduser %s'" % user )
+        os.system( "xvt -e 'adduser %s'" % user )
         info = Error( "%s \"%s\" %s" % ( _("User"), user, _("was created without password! Set, if need.") ), True )
         info.run()
 

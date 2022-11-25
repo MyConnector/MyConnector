@@ -28,6 +28,7 @@ Requires: tigervnc
 Requires: xdg-utils
 Requires: xfreerdp
 Requires: zenity
+Requires: /usr/bin/xvt
 
 Provides:  connector = %EVR
 Obsoletes: connector
@@ -45,7 +46,6 @@ Group:   Networking/Remote access
 
 Requires: myconnector = %EVR
 Requires: xinitrc
-Requires: xterm
 
 Provides:  connector-kiosk = %EVR
 Obsoletes: connector-kiosk

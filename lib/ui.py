@@ -108,9 +108,9 @@ def initSignal(gui):
         GLib.idle_add(install_glib_handler, sig, priority=GLib.PRIORITY_HIGH)
 
 def startDebug():
-    """Start show log files online (uses xterm)"""
+    """Start show log files online (uses xvt)"""
     if options.enableLog and not check_global( "stealth_mode" ):
-        os.system( 'for i in all myconnector; do xterm -T "MyConnector DEBUG - $i.log" -e "tail -f %s/$i.log" & done' % LOGFOLDER )
+        os.system( 'for i in all myconnector; do xvt -t "MyConnector DEBUG - $i.log" -e "tail -f %s/$i.log" & done' % LOGFOLDER )
         options.log.info( _("The program is running in debug mode.") )
     else:
         print ( _("Logging is disabled. Debugging is not possible!") )
