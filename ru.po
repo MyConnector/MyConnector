@@ -788,8 +788,8 @@ msgstr ""
 msgid "The MyConnector is forcibly closed (from cmdline)."
 msgstr "MyConnector закрыт принудительно (из командной строки)."
 
-msgid "The configuration file is corrupted, a new one will be created!"
-msgstr "Конфигурационный файл поврежден, будет создан новый!"
+msgid "The configuration file is corrupted or requires updating, a new one will be created!"
+msgstr "Конфигурационный файл поврежден или требует обновления, будет создан новый!"
 
 msgid "The connection"
 msgstr "Подключение"

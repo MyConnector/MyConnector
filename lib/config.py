@@ -367,7 +367,7 @@ def config_read():
                       "X2GO"   : _config[ "x2go"          ] }
         return main, protocols
     except:
-        err = Error( _("The configuration file is corrupted, a new one will be created!") )
+        err = Error( _("The configuration file is corrupted or requires updating, a new one will be created!") )
         err.run()
         try:
             os.rename( _config_file, "%s.bak" % _config_file )
