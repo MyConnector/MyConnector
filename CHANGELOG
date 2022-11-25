@@ -9,6 +9,9 @@ Minor changes:
 - The default text editor is not specified now
 - xterm replaced with xvt
 
+Known Issues:
+- http://bugs.myconnector.ru/22
+
 2.4
 ===
 New Features:
