@@ -24,6 +24,7 @@
 .. _`Workspace App`: https://www.citrix.com/downloads/workspace-app/linux/
 .. _`VMware Horizon Client`: https://my.vmware.com/web/vmware/downloads/details?downloadGroup=CART21FQ3_LIN64_550&productId=863
 .. _pyhoca-cli: https://wiki.x2go.org/doku.php/doc:usage:pyhoca-cli
+.. _`Virt Viewer`: https://virt-manager.org/
 
 Описание
 ========
@@ -49,6 +50,7 @@
 * Remmina_;
 * Citrix Receiver_/`Workspace App`_ (ICA Client);
 * `VMware Horizon Client`_;
-* pyhoca-cli_ (консольный клиент X2G0).
+* pyhoca-cli_ (консольный клиент X2G0);
+* `Virt Viewer`_.
 
 Copyright |copy| 2014-2022 Evgeniy Korneechev <ek@myconnector.ru>

@@ -22,6 +22,13 @@
 
 http://myconnector.ru/
 
+Актуальную версию программы можете скачать со следующих ресурсов:
+
+* http://get.myconnector.ru/
+* https://github.com/MyConnector/MyConnector/releases
+* https://sourceforge.net/projects/myconnector/
+
+
 .. toctree::
    :maxdepth: 1
 
