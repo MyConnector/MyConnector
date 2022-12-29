@@ -1,7 +1,7 @@
 # Russian translations for MyConnector package.
-# Copyright (C) 2022 THE MYCONNECTOR'S COPYRIGHT HOLDER
+# Copyright (C) 2023 THE MYCONNECTOR'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the MyConnector package.
-# Evgeniy Korneechev <ek@myconnector.ru>, 2022.
+# Evgeniy Korneechev <ek@myconnector.ru>, 2023.
 #
 msgid ""
 msgstr ""
