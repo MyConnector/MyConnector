@@ -1069,8 +1069,8 @@ msgstr "не соответствует минимальным требован�
 msgid "edit config file for enable/disable the mode (will use"
 msgstr "редактировать конфигурационный файл (будет использоваться"
 
-msgid "enable the standalone mode"
-msgstr "включить простой режим (запуск программы MyConnector)"
+msgid "enable the standalone mode (login: kiosk, autologin enabled)"
+msgstr "включить простой режим (имя пользователя kiosk, автовход включен)"
 
 msgid "enabled"
 msgstr "включен"

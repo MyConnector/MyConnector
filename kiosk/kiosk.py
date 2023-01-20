@@ -321,10 +321,14 @@ def kiosk_disabled():
 def kiosk_status():
     print( "%s 'myconnector --kiosk status' %s." % ( _("Try"), _("for more information") ) )
 
-def check_user_from_cli():
-    user = _config[ "kiosk" ].get( "user", "" )
+def check_user_from_cli( user ):
+    """User existence check"""
     if user:
-        check_user( user )
+        try:
+            pwd.getpwnam( user )
+        except KeyError:
+            os.system( "adduser -m %s" %  user )
+            print( "%s \"%s\" %s" % ( _("User"), user, _("was created without password! Set, if need.") ) )
         return user
     else:
         print( "%s: %s" % ( _("Config error"), _("user not specified!") ) )
@@ -333,8 +337,18 @@ def check_user_from_cli():
         exit( 1 )
 
 def enable_from_cli():
-    check_user_from_cli()
-    enable_kiosk()
+    """Exec MyConnector in the mode KIOSK with default parameters:
+       login: kiosk
+       autologin: enabled"""
+    username = "kiosk"
+    check_user_from_cli( username )
+    autologin_enable( username )
+    _config[ "kiosk" ][ "mode" ] = "1"
+    _config[ "kiosk" ][ "user" ] = username
+    _config[ "kiosk" ][ "autologin" ] = "True"
+    shortcut = "myconnector-kiosk.desktop"
+    os.system ("install -m644 %s/%s %s/" % (_kiosk_dir, shortcut, _etc_dir))
+    create_kiosk_exec( username, shortcut )
     fix_shortcut( "kiosk", "$MYC", "" )
     print( _("KIOSK standalone mode enabled!") )
     kiosk_status()
@@ -404,17 +418,11 @@ def CLI( option ):
                 exit( 0 )
             if option == "enable":
                 disable_kiosk( False )
-                _config.read( _kiosk_conf )
-                try:
-                    mode = _config.get( "kiosk", "mode" )
-                except NoSectionError:
-                    config_init( True )
-                finally:
-                    _config[ "kiosk" ][ "mode" ] = "1"
-                    enable_from_cli()
-                    with open( _kiosk_conf, 'w' ) as configfile:
-                        _config.write( configfile )
-                    exit( 0 )
+                config_init( False )
+                enable_from_cli()
+                with open( _kiosk_conf, 'w' ) as configfile:
+                    _config.write( configfile )
+                exit( 0 )
             if option == "edit":
                 editor = os.getenv( "EDITOR" )
                 if not editor: editor = os.getenv( "VISUAL" )
@@ -463,7 +471,7 @@ Copyright (C) 2014-2023 Evgeniy Korneechev <ek@myconnector.ru>""" % (
         _("KIOSK mode control"),
         _("Usage"),
         _("Options"),
-        _("enable the standalone mode"),
+        _("enable the standalone mode (login: kiosk, autologin enabled)"),
         _("edit config file for enable/disable the mode (will use"),
         _("any the editor defines by VISUAL or EDITOR, default"),
         _("disable the mode"),
