@@ -168,7 +168,7 @@ def check_user( user ):
     try:
         pwd.getpwnam( user )
     except KeyError:
-        os.system( "xvt -e 'adduser %s'" % user )
+        os.system( "xterm -e 'adduser %s'" % user )
         info = Error( "%s \"%s\" %s" % ( _("User"), user, _("was created without password! Set, if need.") ), True )
         info.run()
 
@@ -215,7 +215,8 @@ class Kiosk(Gtk.Window):
         self.add(box)
         self.connect("delete-event", self.onClose)
         self.show_all()
-        result = _config.read( _kiosk_conf )
+        self.config = ConfigParser( interpolation = None )
+        result = self.config.read( _kiosk_conf )
         if not result: config_init( True )
         self.initParams()
 
@@ -239,20 +240,20 @@ class Kiosk(Gtk.Window):
         mode = "0"
         file = ''
         url = ''
-        _config['kiosk']['autologin'] = str( self.checkKioskAutologin.get_active() )
+        self.config['kiosk']['autologin'] = str( self.checkKioskAutologin.get_active() )
         user = self.entryKioskUser.get_text()
         if user == "root":
             err = Error( _("Root is not allowed to use the mode!") )
             err.run()
             return 1
         if user == "": user = "kiosk"
-        _config['kiosk']['user'] = user
+        self.config['kiosk']['user'] = user
+        disable_kiosk()
         if not self.changeKioskOff.get_active():
             check_user( user )
-            disable_kiosk()
         if self.changeKioskAll.get_active():
             mode = "1"
-            enable_kiosk()
+            self.enable_kiosk()
             fix_shortcut( "kiosk", "$MYC", "" )
         if self.changeKioskCtor.get_active():
             mode = "2"
@@ -271,49 +272,59 @@ class Kiosk(Gtk.Window):
         if self.changeKioskWeb.get_active():
             mode = "3"
             url = self.entryKioskWeb.get_text()
-            enable_kiosk_web(url)
+            self.enable_kiosk( "webkiosk" )
+            fix_shortcut( "webkiosk", "$URL", url )
         ctrl = self.checkKioskCtrl.get_active()
         if ctrl:
             disable_ctrl()
         else:
             enable_ctrl()
-        _config['kiosk']['mode'] = mode
-        _config['kiosk']['file'] = file
-        _config['kiosk']['url'] = url
-        _config['kiosk']['ctrl_disabled'] = str( ctrl )
+        self.config['kiosk']['mode'] = mode
+        self.config['kiosk']['file'] = file
+        self.config['kiosk']['url'] = url
+        self.config['kiosk']['ctrl_disabled'] = str( ctrl )
         with open( _kiosk_conf, 'w' ) as configfile:
-            _config.write( configfile )
-        #else need disable tray...
+            self.config.write( configfile )
         self.onClose(self)
 
     def initParams (self):
         """Initialisation state of the UI elements"""
-        mode = _config.get( "kiosk", "mode" )
+        mode = self.config.get( "kiosk", "mode" )
         if mode == "1": self.changeKioskAll.set_active(True)
         elif mode == "2":
             self.changeKioskCtor.set_active(True)
-            self.entryKioskCtor.set_uri( "file://%s" % _config.get( "kiosk", "file" ) )
+            self.entryKioskCtor.set_uri( "file://%s" % self.config.get( "kiosk", "file" ) )
         elif mode == "3":
             self.changeKioskWeb.set_active(True)
-            self.entryKioskWeb.set_text( _config.get( "kiosk", "url" ) )
+            self.entryKioskWeb.set_text( self.config.get( "kiosk", "url" ) )
         else:
             self.changeKioskOff.set_active(True)
-        ctrl = _config.get( "kiosk", "ctrl_disabled" )
+        ctrl = self.config.get( "kiosk", "ctrl_disabled" )
         if ctrl in _true:
             self.checkKioskCtrl.set_active( True )
-        autologin = _config.get( "kiosk", "autologin" )
+        autologin = self.config.get( "kiosk", "autologin" )
         if autologin in _true:
             self.checkKioskAutologin.set_active( True )
-        user = _config.get( "kiosk", "user" )
+        user = self.config.get( "kiosk", "user" )
         self.entryKioskCtor.set_current_folder( "/home/%s" % user )
         if user == "kiosk": user = ""
         self.entryKioskUser.set_text( user )
 
-    def onReset (self, *args):
+    def onReset( self, *args ):
         """Action for button 'Reset'"""
         self.entryKioskCtor.set_uri('')
         self.entryKioskWeb.set_text('')
         self.initParams()
+
+    def enable_kiosk( self, mode = "kiosk" ):
+        username = self.config[ "kiosk" ].get( "user", "kiosk" )
+        if self.config[ "kiosk" ].get( "autologin", "True" ) in _true:
+            autologin_enable( username )
+        else:
+            dm_clear_autologin()
+        shortcut = "myconnector-%s.desktop" % mode
+        os.system ("install -m644 %s/%s %s/" % (_kiosk_dir, shortcut, _etc_dir))
+        create_kiosk_exec(username, shortcut)
 
 def kiosk_disabled():
     print( _("KIOSK mode disabled!") )
