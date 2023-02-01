@@ -354,7 +354,7 @@ def enable_from_cli():
     kiosk_status()
 
 def enable_from_cli_myc():
-    user = check_user_from_cli()
+    user  = _config[ "kiosk" ].get( "user",  "kiosk" )
     file  = _config[ "kiosk" ].get( "file",  "" )
     error = False
     if file:
@@ -373,7 +373,6 @@ def enable_from_cli_myc():
     kiosk_status()
 
 def enable_from_cli_web():
-    check_user_from_cli()
     url  = _config[ "kiosk" ].get( "url",  "" )
     if url:
         enable_kiosk_web( url )
@@ -443,6 +442,7 @@ def CLI( option ):
                 if mode == "1":
                     enable_from_cli()
                     exit( 0 )
+                check_user_from_cli( _config[ "kiosk" ].get( "user", "kiosk" ) )
                 if mode == "2":
                     enable_from_cli_myc()
                     exit( 0 )
