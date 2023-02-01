@@ -115,9 +115,8 @@ def fix_shortcut(mode, _input, output):
 
 def enable_kiosk_myc( _file ):
     """Exec MyConnector (with myc-file) in the mode KIOSK"""
-    mode = "kiosk"
-    enable_kiosk(mode)
-    fix_shortcut( mode, "$MYC", "'%s'" % _file )
+    enable_kiosk()
+    fix_shortcut( "kiosk", "$MYC", "'%s'" % _file )
 
 def enable_kiosk_web(url):
     """Exec chromium in the mode KIOSK"""
@@ -172,9 +171,8 @@ def check_user( user ):
         info = Error( "%s \"%s\" %s" % ( _("User"), user, _("was created without password! Set, if need.") ), True )
         info.run()
 
-def myc_save( user, _input ):
+def myc_save( user, _input, output ):
     """Save file for mode = 2"""
-    output = "/home/%s/%s" % ( user, os.path.basename( _input ) )
     result = ""
     try:
         copy( _input, output )
@@ -183,7 +181,6 @@ def myc_save( user, _input ):
         return result
     except SameFileError:
         pass
-    enable_kiosk_myc( output )
     return result
 
 class Kiosk(Gtk.Window):
@@ -259,8 +256,11 @@ class Kiosk(Gtk.Window):
             mode = "2"
             uri = self.entryKioskCtor.get_uri()
             if uri:
-                source = unquote( uri.replace( "file://" , "" ))
-                result = myc_save( user, source )
+                file = unquote( uri.replace( "file://" , "" ))
+                output = "/home/%s/%s" % ( user, os.path.basename( file ) )
+                result = myc_save( user, file, output )
+                self.enable_kiosk()
+                fix_shortcut( "kiosk", "$MYC", output )
                 if result:
                     err = Error( result )
                     err.run()
@@ -369,7 +369,9 @@ def enable_from_cli_myc():
     file  = _config[ "kiosk" ].get( "file",  "" )
     error = False
     if file:
-        result = myc_save( user, file )
+        output = "/home/%s/%s" % ( user, os.path.basename( file ) )
+        result = myc_save( user, file, output )
+        enable_kiosk_myc( output )
         if result:
             print( "%s: %s" % ( _("Config error"), result ) )
             error = True
