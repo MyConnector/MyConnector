@@ -18,7 +18,7 @@ LOCAL := /usr/local
 PREFIX := $(LOCAL)/share
 BASE := $(PREFIX)/$(TARGET)
 PREFIX_BIN := $(LOCAL)/bin
-ALT := $(shell cat /etc/altlinux-release 2>/dev/null)
+ALT := $(shell cat /etc/altlinux-release 2>&-)
 ifdef ALT
 	PYTHON := /usr/lib/python3/site-packages/$(TARGET)
 else
@@ -31,10 +31,10 @@ BASHCOMP := $(PREFIX)/bash-completion/completions
 ETC := /etc/$(TARGET)
 KIOSK := kiosk.conf
 KIOSK_DIR := $(BASE)/kiosk
-DATESTAMP := $(shell git log --pretty="%cd" --date=short -1 | sed s/-//g 2>/dev/null)
+DATESTAMP := $(shell git log --pretty="%cd" --date=short -1 2>&- | sed s/-//g)
 GLOBAL := lib/config.py
 LOCALE := $(PREFIX)/locale/ru/LC_MESSAGES
-DOCS := $(PREFIX)/doc/$(TARGET)-docs-$(shell cat VERSION 2>/dev/null)
+DOCS := $(PREFIX)/doc/$(TARGET)-docs-$(shell cat VERSION 2>&-)
 CONF := $(ETC)/$(TARGET).conf
 
 .PHONY: help install uninstall clean remove installdocs
@@ -63,7 +63,7 @@ install:
 	install -m755 kiosk/$(TARGET)-kiosk-check $(KIOSK_DIR)
 	install -m644 kiosk/kiosk.py $(PYTHON)
 	install -m644 kiosk/*.ui $(BASE)/ui
-	msgfmt ru.po -o $(LOCALE)/$(TARGET).mo
+	msgfmt ru.po -o $(LOCALE)/$(TARGET).mo || echo "Localization is not available, install gettext and try again."
 	@if [ ! -f $(ETC)/$(KIOSK) ]; then install -m600 kiosk/$(KIOSK) $(ETC); fi
 	@if [ ! -f $(CONF) ]; then install -m644 $(TARGET).conf $(CONF); fi
 	mkdir -p $(BASHCOMP)
