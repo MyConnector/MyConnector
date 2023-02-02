@@ -304,6 +304,8 @@ class Gui(Gtk.Application):
         if not os.path.exists( LOCALDOCS ): self.local_docs.set_sensitive( False )
         if check_global( "stealth_mode" ) and not ROOT:
             self.treeview.set_headers_visible( False )
+        self.oldserver   = ""
+        self.oldusername = ""
 
     def initGroups( self ):
         g = Gtk.ListStore( str )
@@ -560,6 +562,8 @@ class Gui(Gtk.Application):
         if 'loadParameters' in dir(entry_server): #если изменяется или копируется соединение, то загружаем параметры (фэйковый класс Entry)
             parameters = entry_server.loadParameters()
             name = changeProgram( protocol, parameters.get( "program", "" ) )
+            self.oldserver = server
+            self.oldusername = entry_server.username
         else: #иначе (новое подключение), пытаемся загрузить дефолтные настройки
             name = changeProgram( protocol )
             try: parameters = CONFIGS[ name ]
@@ -1318,6 +1322,10 @@ class Gui(Gtk.Application):
             parameters[ "server"   ] = server
             parameters[ "group"    ] = group
             if ( name == "RDP1" or name == "VMWARE" or name == "X2GO" ) and parameters.get ( "username", "" ):
+                try:
+                    keyring.delete_password( self.oldserver, self.oldusername )
+                except:
+                    pass
                 self.saveKeyring ( parameters.copy() )
                 parameters [ "passwd" ] = ""
             program = self.getProgram( name )
@@ -1510,13 +1518,12 @@ class Gui(Gtk.Application):
         def __init__(self, name, parameters):
             self.name = name
             self.parameters = parameters
+            self.server = self.parameters.get( "server", "" )
+            self.username = self.parameters.get( "username", "" )
         def get_name( self ):
             return self.name
         def get_text( self ):
-            try:
-                return self.parameters[ "server" ]
-            except KeyError:
-                return ""
+            return self.server
         def loadParameters( self ):
             return self.parameters
 
@@ -1705,7 +1712,6 @@ class Gui(Gtk.Application):
                 keyring.set_password( parameters [ "server" ], parameters [ "username" ], parameters [ "passwd" ] )
             except Exception as e:
                 options.log.error( e )
-
         else:
             try:
                 keyring.delete_password( parameters [ "server" ],  parameters [ "username" ] )
