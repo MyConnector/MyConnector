@@ -1653,10 +1653,10 @@ class Gui(Gtk.Application):
             for i in range(4):
                 row += model[iter][i] #объединяем поля в одну строку для поиска в ней символов
             #https://ru.stackoverflow.com/questions/812170
-            en2ru = dict( zip( map( ord, "qwertyuiop[]asdfghjkl;'zxcvbnm,./`" 'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~' ),
-                                          "йцукенгшщзхъфывапролджэячсмитьбю.ё" "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё" ) )
-            ru2en = dict( zip( map( ord, "йцукенгшщзхъфывапролджэячсмитьбю.ё" "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё" ),
-                                          "qwertyuiop[]asdfghjkl;'zxcvbnm,./`" 'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~')  )
+            en2ru = dict( zip( map( ord, "qwertyuiop[]asdfghjkl;'zxcvbnm,/`" 'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<?~' ),
+                                          "йцукенгшщзхъфывапролджэячсмитьбюё" "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ" ) )
+            ru2en = dict( zip( map( ord, "йцукенгшщзхъфывапролджэячсмитьбюё" "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ" ),
+                                          "qwertyuiop[]asdfghjkl;'zxcvbnm,/`" 'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<?~')  )
             if row.upper().find( self.currentFilter.translate( en2ru ).upper()) != -1:
                 return True
             elif row.upper().find( self.currentFilter.translate( ru2en ).upper()) != -1:
