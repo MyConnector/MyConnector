@@ -1,3 +1,18 @@
+2.4.2
+=====
+Bug Fixes:
+- [kiosk] Fixed altbugs (#44386, #44815, #44818)
+- Added password removing from keyring if server or username been change
+- Fixed search/filter by IP address
+
+Minor changes:
+- Updated Makefile
+- xterm return for myconnector-kiosk
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.4.1
 =====
 Bug Fixes:
