@@ -47,7 +47,7 @@ help:
 	@echo "... clean (сброс изменений в исходниках)"
 
 install:
-	apt-get remove myconnector -y || /bin/true
+	@apt-get remove myconnector -y || /bin/true
 	sed -i s#/usr/share#$(PREFIX)#g $(GLOBAL) kiosk/* bin/*
 	sed -i s#/usr/bin/$(TARGET)#$(PREFIX_BIN)/$(TARGET)#g $(GLOBAL) share/applications/$(TARGET).desktop kiosk/*
 	sed -i s#$(PREFIX)/applications#/usr/share/applications#g $(GLOBAL)
@@ -63,7 +63,7 @@ install:
 	install -m755 kiosk/$(TARGET)-kiosk-check $(KIOSK_DIR)
 	install -m644 kiosk/kiosk.py $(PYTHON)
 	install -m644 kiosk/*.ui $(BASE)/ui
-	msgfmt ru.po -o $(LOCALE)/$(TARGET).mo || echo "Localization is not available, install gettext and try again."
+	@msgfmt ru.po -o $(LOCALE)/$(TARGET).mo || echo "Localization is not available, install gettext and try again."
 	@if [ ! -f $(ETC)/$(KIOSK) ]; then install -m600 kiosk/$(KIOSK) $(ETC); fi
 	@if [ ! -f $(CONF) ]; then install -m644 $(TARGET).conf $(CONF); fi
 	mkdir -p $(BASHCOMP)
