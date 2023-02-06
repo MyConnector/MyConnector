@@ -324,6 +324,22 @@ class SshRemmina( Remmina ):
                      "exec"                   : "" }
         self.f_name = ".tmp_SSH.remmina"
 
+    def start( self, args, window = False ):
+        query = args.get( "server" )
+        try:
+            server, port = query.strip().split(':')
+        except ValueError:
+            port = ''
+            server = query
+        if port:
+            command = 'xvt -e "ssh %s -p%s"' % ( server, port )
+        else:
+            command = 'xvt -e "ssh %s"' % server
+        options.log.info( "SSH: %s %s. %s:", _("Connecting to the server"), server, _("Launch Command") )
+        options.log.info( command )
+        os.system(command + STD_TO_LOG)
+
+
 class SpiceRemmina( Remmina ):
     """Remmina SPICE connection"""
     def __init__( self ):
