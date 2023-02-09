@@ -38,7 +38,7 @@ else:
             os.system( "zenity --error --icon-name=myconnector --text=\"%s\"" % self.text )
 
 APP         = "myconnector"
-VERSION     = "2.4.2"
+VERSION     = "2.4.3"
 
 _global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
 

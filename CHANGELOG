@@ -1,3 +1,15 @@
+2.4.3
+=====
+Bug Fixes:
+- [FreeRDP] Fixed the use of the entered password when password storage is disabled
+
+Minor changes:
+- [FreeRDP] Floatbar in fullscreen show always
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.4.2
 =====
 Bug Fixes:
