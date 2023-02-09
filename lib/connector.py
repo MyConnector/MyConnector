@@ -69,7 +69,7 @@ class XFreeRdp:
                 if username                                    : command += " /u:%s" % escape( username )
                 if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
                 if args.get( "fullscreen", "True"   ) == "True":
-                    if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off"
+                    if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off,show:always"
                     else: command += " /f"
                 if args.get( "clipboard" , "True"   ) == "True": command += " +clipboard"
                 if args.get( "resolution" , ""                ): command += " /size:%s" % args[ "resolution" ]
