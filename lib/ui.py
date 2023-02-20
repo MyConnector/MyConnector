@@ -306,6 +306,7 @@ class Gui(Gtk.Application):
             self.treeview.set_headers_visible( False )
         self.oldserver   = ""
         self.oldusername = ""
+        self.copyconnect = False
 
     def initGroups( self ):
         g = Gtk.ListStore( str )
@@ -1192,6 +1193,7 @@ class Gui(Gtk.Application):
         window.destroy()
         self.window.set_sensitive( True )
         self.prefClick = False
+        self.copyconnect = False
         if hasattr( self, "fileCtor" ): self.fileCtor = ""
 
     def onFolderChoose(self, widget, *args):
@@ -1321,11 +1323,13 @@ class Gui(Gtk.Application):
             parameters[ "protocol" ] = protocol
             parameters[ "server"   ] = server
             parameters[ "group"    ] = group
-            if ( name == "RDP1" or name == "VMWARE" or name == "X2GO" ) and parameters.get ( "username", "" ):
+            if not self.copyconnect:
                 try:
                     keyring.delete_password( self.oldserver, self.oldusername )
                 except:
                     pass
+            self.copyconnect = False
+            if ( name == "RDP1" or name == "VMWARE" or name == "X2GO" ) and parameters.get ( "username", "" ):
                 self.saveKeyring ( parameters.copy() )
                 parameters [ "passwd" ] = ""
             program = self.getProgram( name )
@@ -1502,6 +1506,7 @@ class Gui(Gtk.Application):
                 protocol_not_found( nameConnect )
                 return None
             nameConnect = "%s (%s)" % ( nameConnect, _("copy") )
+            self.copyconnect = True
             if protocol in [ "CITRIX", "WEB" ]:
                 try:
                     self.onWCEdit( nameConnect, parameters[ "server" ], protocol, parameters.get( "group", "" ) )
