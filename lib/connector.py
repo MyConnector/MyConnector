@@ -19,7 +19,8 @@
 import myconnector.options as options
 from myconnector.config import *
 from myconnector.config import _
-from re import ( escape, sub )
+from re import sub
+from shlex import quote
 try: import keyring
 except Exception as error:
     class Keyring:
@@ -66,7 +67,7 @@ class XFreeRdp:
                 server   = args[ "server" ]
                 username = args.get( "username" , "" )
                 command  = "xfreerdp /v:%s /t:'%s'" % ( server, args.get( "name", server ) )
-                if username                                    : command += " /u:%s" % escape( username )
+                if username                                    : command += " /u:%s" % quote( username )
                 if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
                 if args.get( "fullscreen", "True"   ) == "True":
                     if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off,show:always"
@@ -128,11 +129,11 @@ class XFreeRdp:
                     if new_username == username or not new_username:
                         pass
                     else:
-                        command = command.replace( "/u:%s" % escape( username ), "/u:%s" % escape( new_username ) )
+                        command = command.replace( "/u:%s" % quote( username ), "/u:%s" % quote( new_username ) )
                         if "@" in new_username or "\\" in new_username:
                              command = command.replace( "/d:%s" % args[ "domain" ], "" )
                 if password:
-                    command += " /p:%s" % escape( password )
+                    command += " /p:%s" % quote( password )
                 if password == "":
                     command += " /p:" #support empty password
                 if password != False: #if there is password
@@ -361,7 +362,7 @@ class Vmware:
                 if args.get( "fullscreen", "False" ) == "True": command += " --fullscreen"
                 options.log.info( "VMware:  %s %s", _("Connecting to the server"), args[ "server" ] )
                 options.log.info( command )
-                if args.get( "passwd",   "" ): command += " -p %s" % escape( args[ "passwd" ] )
+                if args.get( "passwd",   "" ): command += " -p %s" % quote( args[ "passwd" ] )
             os.system(command + STD_TO_LOG)
         else:
             options.msg_error( "VMware Horizon Client %s!" % _("not installed"), options.log.warning )
@@ -463,7 +464,7 @@ class X2goClient:
                         options.log.error( e )
                         password = ""
                 if password:
-                    password = escape( password )
+                    password = quote( password )
                 else:
                     new_username, password = passwd( server, username, args.get( "file", "" ), window )
                     if new_username == username or not new_username:
