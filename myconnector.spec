@@ -45,7 +45,6 @@ Group:   Networking/Remote access
 
 Requires: myconnector = %EVR
 Requires: xinitrc
-Requires: xterm
 
 Provides:  connector-kiosk = %EVR
 Obsoletes: connector-kiosk

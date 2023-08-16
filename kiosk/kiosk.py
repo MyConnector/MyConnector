@@ -26,7 +26,7 @@ from configparser import ( ConfigParser,
                            NoSectionError )
 from urllib.parse import unquote
 import pwd
-from subprocess import call
+from subprocess import ( call, Popen )
 from shutil import ( copy,
                      chown,
                      SameFileError )
@@ -167,7 +167,7 @@ def check_user( user ):
     try:
         pwd.getpwnam( user )
     except KeyError:
-        os.system( "xterm -e 'adduser %s'" % user )
+        Popen( ["adduser", user ] )
         info = Error( "%s \"%s\" %s" % ( _("User"), user, _("was created without password! Set, if need.") ), True )
         info.run()
 
