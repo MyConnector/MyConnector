@@ -1,3 +1,17 @@
+2.4.4
+=====
+Bug Fixes:
+- Fixed using password with special symbols
+- Fixed password removing when copying connection
+
+Minor changes:
+- Replaced xvt by x-terminal-emulator (xterm dropped)
+- [kiosk] Dropped xterm from deps
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.4.3
 =====
 Bug Fixes:
