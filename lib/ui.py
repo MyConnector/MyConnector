@@ -205,6 +205,39 @@ def editConfig():
                 os.system( "read -s -n 1 -p \"%s\"; echo" % text )
     return res
 
+def updateSelf(): #добавить вывод сообщений о текущей операции (возможно с sleep)
+    "Updating MyConnector"
+    if not ROOT:
+        print( _("Access denied!") )
+        return 126
+    currentVersion = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/VERSION 2>/dev/null; exit 0",
+                                   shell=True, universal_newlines=True ).strip()
+    if VERSION == currentVersion:
+        print( "%s: %s" % ( _("Your version is actual"), VERSION ) )
+        return 0
+    else:
+        print( "%s: %s" % ( _("Program update available"), currentVersion ) )
+    if RELEASE.find( "git" ) == 0:
+        tgz = "/tmp/myconnector_new.tgz"
+        ret = call( "curl https://github.com/MyConnector/MyConnector/archive/refs/tags/%s.tar.gz -Lo %s" % ( currentVersion, tgz ), shell=True )
+        if ret == 0:
+            ret = call( "tar xzvf %s -C /tmp" % tgz, shell=True )
+            if ret == 0:
+                ret = call( "make -C /tmp/MyConnector-%s install" % currentVersion, shell=True )
+        return ret
+    if RELEASE.find( "alt" ) == 0: #добавить проверку kiosk, docs, autostart
+        ret = call( "curl\
+                     https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-{0}-{1}.noarch.rpm\
+                     -Lo /tmp/myconnector_new.rpm".format( currentVersion, RELEASE ), shell=True )
+        if ret == 0:
+            ret = call( "apt-get install -f /tmp/myconnector*_new.rpm", shell=True )
+        return ret
+    #if DEB installed:#добавить проверку docs
+    ret = call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector_{0}-{1}_all.deb\
+                 -Lo /tmp/myconnector_new.deb".format( currentVersion, RELEASE ), shell=True )
+    if ret == 0:
+        ret = call( "dpkg -i /tmp/myconnector*_new.deb", shell=True )
+
 class TrayIcon:
     """Класс, описывающий индикатор и меню в трее (пока только для MATE)
        Thanks: https://eax.me/python-gtk/"""
