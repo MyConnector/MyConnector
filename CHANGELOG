@@ -5,8 +5,7 @@ Bug Fixes:
 - Fixed password removing when copying connection
 
 Minor changes:
-- Replaced xvt by x-terminal-emulator (xterm dropped)
-- [kiosk] Dropped xterm from deps
+- Replaced xvt by x-terminal-emulator
 
 Known Issues:
 - http://bugs.myconnector.ru/22
