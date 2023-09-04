@@ -17,7 +17,7 @@ _myconnector()
 {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    subcommands="--help --connection --file --list --edit --kiosk --version --debug --quit"
+    subcommands="--help --connection --file --list --edit --kiosk --update --version --debug --quit"
     kioskcommands="enable edit disable status help"
     if [[ $COMP_CWORD == 1 ]] ; then
         COMPREPLY=( $(compgen -W "$subcommands" -- $cur) )
