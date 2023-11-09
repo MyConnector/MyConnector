@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # MyConnector
-# Copyright (C) 2014-2023 Evgeniy Korneechev <ek@myconnector.ru>
+# Copyright (C) 2014-2024 Evgeniy Korneechev <ek@myconnector.ru>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the version 2 of the GNU General
@@ -28,7 +28,7 @@ def parseArgs():
     file_help = "%s (.myc, .remmina, .rdp)" % _("name of the file")
     args = ArgumentParser( prog = "myconnector", formatter_class = RawTextHelpFormatter, usage = "%(prog)s [options]",
                            description = "MyConnector - %s." % _("remote desktop client"),
-                           epilog = "%s.\n\nCopyright (C) 2014-2023 Evgeniy Korneechev <ek@myconnector.ru>" %
+                           epilog = "%s.\n\nCopyright (C) 2014-2024 Evgeniy Korneechev <ek@myconnector.ru>" %
                            _("Do not specify parameters for starting the GUI") )
     args.add_argument( "-c", "--connection", help = _("name of the saved connection") )
     args.add_argument( "-f", "--file", help = file_help )
