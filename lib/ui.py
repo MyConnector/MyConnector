@@ -228,16 +228,32 @@ def updateSelf(): #добавить вывод сообщений о текущ�
             if ret == 0:
                 ret = call( "make -C /tmp/MyConnector-%s install" % currentVersion, shell=True )
         return ret
-    if RELEASE.find( "alt" ) == 0: #добавить проверку kiosk, docs, autostart
-        ret = call( "curl\
-                     https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-{0}-{1}.noarch.rpm\
-                     -Lo /tmp/myconnector_new.rpm".format( currentVersion, RELEASE ), shell=True )
-        if ret == 0:
-            ret = call( "apt-get install -f /tmp/myconnector*_new.rpm", shell=True )
+    if RELEASE.find( "alt" ) == 0:
+        call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-{0}-{1}.noarch.rpm\
+               -Lo /tmp/myconnector_new.rpm".format( currentVersion, currentRelease ), shell=True )
+        kiosk = int( check_output( "rpm -q myconnector-kiosk >/dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
+        if not bool( kiosk ):
+            call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-kiosk-{0}-{1}.noarch.rpm\
+                   -Lo /tmp/myconnector-kiosk_new.rpm".format( currentVersion, currentRelease ), shell=True )
+        docs = int( check_output( "rpm -q myconnector-docs >/dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
+        if not bool( docs ):
+            call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-docs-{0}-{1}.noarch.rpm\
+                   -Lo /tmp/myconnector-docs_new.rpm".format( currentVersion, currentRelease ), shell=True )
+        autostart =  int( check_output( "rpm -q myconnector-autostart >/dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
+        if not bool( autostart ):
+            call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-autostart-{0}-{1}.noarch.rpm\
+                   -Lo /tmp/myconnector-autostart_new.rpm".format( currentVersion, currentRelease ), shell=True )
+        ret = call( "apt-get install -f /tmp/myconnector*_new.rpm", shell=True )
         return ret
-    #if DEB installed:#добавить проверку docs
-    ret = call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector_{0}-{1}_all.deb\
-                 -Lo /tmp/myconnector_new.deb".format( currentVersion, RELEASE ), shell=True )
+    #if DEB:
+    call( "curl https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector_{0}-{1}_all.deb\
+           -Lo /tmp/myconnector_new.deb".format( currentVersion, currentRelease ), shell=True )
+    docs = int( check_output( "dpkg -s myconnector-docs >/dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
+    if not bool( docs ):
+        call( "curl\
+               https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-docs_{0}-{1}_all.deb\
+               -Lo /tmp/myconnector-docs_new.rpm".format( currentVersion, currentRelease ), shell=True )
+
     if ret == 0:
         ret = call( "dpkg -i /tmp/myconnector*_new.deb", shell=True )
 
