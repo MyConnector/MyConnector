@@ -219,8 +219,12 @@ def updateSelf():
         install_type = "git"
     elif RELEASE.find( "alt" ) == 0:
         install_type = "rpm"
+        currentRpmRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/RPMRELEASE 2>/dev/null; exit 0",
+                                shell=True, universal_newlines=True ).strip()
     else:
         install_type = "deb"
+        currentDebRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/DEBRELEASE 2>/dev/null; exit 0",
+                                shell=True, universal_newlines=True ).strip()
     if VERSION == currentVersion:
         if install_type == "git":
             print( actual )
@@ -228,16 +232,12 @@ def updateSelf():
             if not user_input.lower() in [ "yes", "y" ]:
                 return 130
         elif install_type == "rpm":
-            currentRpmRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/RPMRELEASE 2>/dev/null; exit 0",
-                                shell=True, universal_newlines=True ).strip()
             if RELEASE == currentRpmRelease:
                 print( actual )
                 return 0
             else:
                 need_update = True
         else: #install_type = "deb"
-            currentDebRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/DEBRELEASE 2>/dev/null; exit 0",
-                                shell=True, universal_newlines=True ).strip()
             if RELEASE == currentDebRelease:
                 print( actual )
                 return 0
