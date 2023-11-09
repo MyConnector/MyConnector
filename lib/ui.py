@@ -215,15 +215,19 @@ def updateSelf():
                                    shell=True, universal_newlines=True ).strip()
     need_update = False
     actual = "%s: %s" % ( _("Your version is actual"), VERSION )
+    if RELEASE.find( "git" ) == 0:
+        install_type = "git"
+    elif RELEASE.find( "alt" ) == 0:
+        install_type = "rpm"
+    else:
+        install_type = "deb"
     if VERSION == currentVersion:
-        if RELEASE.find( "git" ) == 0:
-            install_type = "git"
+        if install_type == "git":
             print( actual )
             user_input = input( _("But you can try to upgrade from the source code. OK (need unzip)? " ) )
             if not user_input.lower() in [ "yes", "y" ]:
                 return 130
-        elif RELEASE.find( "alt" ) == 0:
-            install_type = "rpm"
+        elif install_type == "rpm":
             currentRpmRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/RPMRELEASE 2>/dev/null; exit 0",
                                 shell=True, universal_newlines=True ).strip()
             if RELEASE == currentRpmRelease:
@@ -231,8 +235,7 @@ def updateSelf():
                 return 0
             else:
                 need_update = True
-        else:
-            install_type = "deb"
+        else: #install_type = "deb"
             currentDebRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/DEBRELEASE 2>/dev/null; exit 0",
                                 shell=True, universal_newlines=True ).strip()
             if RELEASE == currentDebRelease:
@@ -240,6 +243,8 @@ def updateSelf():
                 return 0
             else:
                 need_update = True
+    else:
+        need_update = True
 
     if need_update:
         print( "%s: %s" % ( _("Program update available"), currentVersion ) )
