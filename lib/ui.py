@@ -217,6 +217,9 @@ def updateSelf(): #добавить вывод сообщений о текущ�
         return 0
     else:
         print( "%s: %s" % ( _("Program update available"), currentVersion ) )
+        user_input = input( _("Try update? ") )
+        if not user_input.lower() in [ "yes", "y" ]:
+            return 130
     if RELEASE.find( "git" ) == 0:
         tgz = "/tmp/myconnector_new.tgz"
         ret = call( "curl https://github.com/MyConnector/MyConnector/archive/refs/tags/%s.tar.gz -Lo %s" % ( currentVersion, tgz ), shell=True )

@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.4.4\n"
+"Project-Id-Version: 2.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-14 14:59+0300\n"
-"PO-Revision-Date: 2023-08-31 12:00+0300\n"
+"PO-Revision-Date: 2023-11-09 12:00+0300\n"
 "Last-Translator: Evgeniy Korneechev <ek@myconnector.ru>\n"
 "Language-Team: Evgeniy Korneechev <ek@myconnector.ru>\n"
 "Language: ru\n"
@@ -41,6 +41,9 @@ msgstr ""
 "Программа-фронтэнд для удаленного администрирования компьютеров с различными "
 "операционными системами. Поддерживается большинство распространенных типов "
 "подключения."
+
+msgid "Access denied!"
+msgstr "Доступ запрещен!"
 
 msgid "Actual"
 msgstr "Актуальная"
@@ -924,6 +927,9 @@ msgstr "Включить?"
 
 msgid "Turn off automatic reconnection"
 msgstr "Отключить автоматическое переподключение"
+
+msgid "Try update? "
+msgstr "Пробуем обновить? "
 
 msgid "Type (protocol)"
 msgstr "Тип (протокол)"
