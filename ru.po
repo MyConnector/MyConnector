@@ -103,6 +103,9 @@ msgstr "Автозапуск подключения"
 msgid "Black and white"
 msgstr "Оттенки серого"
 
+msgid "But you can try to upgrade from the source code. OK (need unzip)? "
+msgstr "Но можно попробовать обновить из исходного кода. ОК (нужен unzip)? "
+
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -121,6 +124,9 @@ msgstr "Проверьте сетевое соединение или адрес
 msgid "Check protocol security settings!"
 msgstr "Проверьте параметры безопасности протокола!"
 
+msgid "Checking version..."
+msgstr "Проверка версии..."
+
 msgid "Choose a folder"
 msgstr "Выберите папку"
 
@@ -135,6 +141,9 @@ msgstr "Очистить список недавних подключений"
 
 msgid "Clear the list of saved connections"
 msgstr "Очистить список сохраненных подключений"
+
+msgid "Clearing..."
+msgstr "Очистка..."
 
 msgid "Client"
 msgstr "Клиентское разрешение"
@@ -300,6 +309,15 @@ msgstr "Выполнено, изменения вступят в силу пос
 msgid "Downloads"
 msgstr "Загрузки"
 
+msgid "Downloading DEB-packages..."
+msgstr "Загрузка DEB-пакетов..."
+
+msgid "Downloading RPM-packages..."
+msgstr "Загрузка RPM-пакетов..."
+
+msgid "Downloading ZIP-archive..."
+msgstr "Загрузка ZIP-архива..."
+
 msgid "Email us"
 msgstr "Связь с разрабочиком"
 
@@ -424,6 +442,9 @@ msgstr "Информация"
 
 msgid "Installed"
 msgstr "Текущая"
+
+msgid "Installing..."
+msgstr "Установка..."
 
 msgid "Invalid username or password."
 msgstr "Неверное имя пользователя или пароль."
@@ -939,6 +960,9 @@ msgstr "URL для ВЕБ-КИОСКа не указан!"
 
 msgid "USB storages"
 msgstr "USB накопители"
+
+msgid "Uncompessing ZIP-archive..."
+msgstr "Распаковка ZIP-архива..."
 
 msgid "Unsupported OS! Need ALT!"
 msgstr "Неподдерживаемая ОС! Необходим Альт!"
