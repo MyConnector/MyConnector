@@ -296,7 +296,7 @@ def updateSelf():
         if not bool( docs ):
             call( "curl\
                    https://github.com/MyConnector/MyConnector/releases/download/{0}/myconnector-docs_{0}-{1}_all.deb\
-                   -Lo /tmp/myconnector-docs_new.rpm".format( currentVersion, currentDebRelease ), shell=True )
+                   -Lo /tmp/myconnector-docs_new.deb".format( currentVersion, currentDebRelease ), shell=True )
         print( "--> %s" % _("Installing...") )
         ret = call( "dpkg -i /tmp/myconnector*_new.deb", shell=True )
         print( "--> %s" % _("Clearing...") )
