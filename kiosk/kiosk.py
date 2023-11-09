@@ -85,6 +85,7 @@ def autologin_enable(username):
         with open (_autologin_conf, "w") as f:
             print("[Seat:*]\nautologin-user=%s" % username, file = f)
     if _DM == "sddm":
+        os.system ( "sed -i s/^Session.*/Session=plasma/ %s" % _sddm_conf )
         os.system ( "sed -i s/^User.*/User=%s/ %s" % ( username, _sddm_conf ) )
 
 def create_kiosk_exec(username, shortcut):
