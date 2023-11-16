@@ -1,3 +1,19 @@
+2.5
+===
+New Features:
+- [CLI] Added an update of the program via the Internet
+- [SSH] Added Terminal
+
+Bug Fixes:
+- [kiosk] Fixed altbug (#44386)
+
+Minor changes:
+- Tiny typo docs and l10n
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.4.4
 =====
 Bug Fixes:

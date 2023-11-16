@@ -1,11 +1,11 @@
 # Russian translations for MyConnector package.
-# Copyright (C) 2023 THE MYCONNECTOR'S COPYRIGHT HOLDER
+# Copyright (C) 2014-2024 THE MYCONNECTOR'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the MyConnector package.
 # Evgeniy Korneechev <ek@myconnector.ru>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.4.5\n"
+"Project-Id-Version: 2.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-14 14:59+0300\n"
 "PO-Revision-Date: 2023-11-09 12:00+0300\n"
@@ -123,6 +123,9 @@ msgstr "Проверьте сетевое соединение или адрес
 
 msgid "Check protocol security settings!"
 msgstr "Проверьте параметры безопасности протокола!"
+
+msgid "Check your Internet connection!"
+msgstr "Проверьте подключение к Интернету!"
 
 msgid "Checking version..."
 msgstr "Проверка версии..."
@@ -337,6 +340,9 @@ msgid "Enter the command to connect file resources (default: from MIME)"
 msgstr ""
 "Введите команду для подключения файловых ресурсов\n"
 "(по умолчанию берется из списка MIME-типов пользователя)"
+
+msgid "Enter the command to connect to SSH-server (default: x-terminal-emulator)"
+msgstr "Введите команду для подключения к SSH-серверу (по умолчанию: x-terminal-emulator)"
 
 msgid "Enter the server address..."
 msgstr "Введите адрес сервера..."
