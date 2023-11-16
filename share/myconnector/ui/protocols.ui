@@ -1745,6 +1745,330 @@ server[:port]</property>
       </packing>
     </child>
   </object>
+  <object class="GtkBox" id="box_SSH1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_left">10</property>
+    <property name="margin_right">10</property>
+    <property name="margin_top">10</property>
+    <property name="margin_bottom">10</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox" id="box_terminal">
+        <property name="width_request">350</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="box116">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImage" id="image14">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../icons/SSH.png</property>
+                <property name="icon_size">1</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label95">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Server</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="combo_SSH1">
+                <property name="width_request">235</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="has_entry">True</property>
+                <property name="entry_text_column">0</property>
+                <child internal-child="entry">
+                  <object class="GtkEntry" id="entry_SSH1_serv">
+                    <property name="name">SSH1</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">The following format is required:
+[username@]server[:port]</property>
+                    <signal name="activate" handler="onButtonConnect" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="box117">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="label96">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Username</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_SSH1_user">
+                <property name="width_request">235</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <signal name="activate" handler="onButtonConnect" object="entry_SSH1_serv" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFrame" id="frame_SSH1_knock">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">'knock' needed!</property>
+            <property name="margin_bottom">10</property>
+            <property name="label_xalign">0</property>
+            <child>
+              <object class="GtkAlignment" id="align_SSH1_knock">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="bottom_padding">10</property>
+                <property name="left_padding">10</property>
+                <property name="right_padding">10</property>
+                <child>
+                  <object class="GtkEntry" id="entry_SSH1_knock">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="placeholder_text" translatable="yes">Example: 7000 8000:udp 9000:tcp</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="label_SSH1_knock">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label">Port knocking</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_SSH1_default">
+            <property name="label" translatable="yes">Save as default settings</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_bottom">3</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">11</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="box121">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="label100">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Connection name</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_SSH1_name">
+                <property name="width_request">235</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="placeholder_text" translatable="yes">Example: MyServer</property>
+                <signal name="activate" handler="onButtonSave" object="entry_SSH1_serv" swapped="no"/>
+                <signal name="changed" handler="inputName" object="button_SSH1_save" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">12</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="box122">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="label101">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Group</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="combo_SSH1_group">
+                <property name="width_request">235</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="has_entry">True</property>
+                <property name="entry_text_column">0</property>
+                <child internal-child="entry">
+                  <object class="GtkEntry" id="entry_SSH1_group">
+                    <property name="can_focus">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">13</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator42">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">14</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="box123">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkButton" id="button_SSH1_save">
+                <property name="label" translatable="yes">Save</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="onButtonSave" object="entry_SSH1_serv" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_SSH1_cancel">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_SSH1_connect">
+                <property name="label" translatable="yes">Connect</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="onButtonConnect" object="entry_SSH1_serv" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">15</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkBox" id="box_VMWARE">
     <property name="width_request">350</property>
     <property name="visible">True</property>

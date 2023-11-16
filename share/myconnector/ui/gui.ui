@@ -2014,13 +2014,41 @@ server[:port]</property>
                 <property name="valign">center</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="label_SSH">
+                  <object class="GtkBox" id="box_labels_SSH">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Secure connection to the command line</property>
-                    <attributes>
-                      <attribute name="underline" value="True"/>
-                    </attributes>
+                    <property name="halign">center</property>
+                    <child>
+                      <object class="GtkLabel" id="label_SSH">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Secure connection to the command line</property>
+                        <attributes>
+                          <attribute name="underline" value="True"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_default_SSH">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Changes in the program parameters (Ctrl+P)</property>
+                        <property name="margin_left">5</property>
+                        <attributes>
+                          <attribute name="foreground" value="#88878a898585"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>

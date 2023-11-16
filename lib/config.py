@@ -99,6 +99,8 @@ os.system( "mkdir -p %s" % LOGFOLDER )
 DEFAULT    = { "rdp"            : "freerdp",
                "vnc"            : "vncviewer",
                "spice"          : "remmina",
+               "ssh"            : "remmina",
+               "ssh_terminal"   : "x-terminal-emulator",
                "tab"            : "0",
                "log"            : True,
                "fs"             : "xdg-open",
@@ -310,6 +312,10 @@ DEF_PROTO[ "X2GO" ] = {  "username"          : "",
 DEF_PROTO[ "SPICE1" ] = { "fullscreen"       : "False",
                           "program"          : "virtviewer" }
 
+#terminal
+DEF_PROTO[ "SSH1" ] =  { "username"          : "",
+                         "knocking"          : ""}
+
 def config_init( global_enable = None ):
     """Initializing config"""
     global _config
@@ -337,7 +343,8 @@ def config_save( default = False ):
         _config[ APP ] = DEFAULT
         _config[ "vncviewer"     ] = DEF_PROTO[ "VNC1"   ].copy()
         _config[ "remmina_vnc"   ] = DEF_PROTO[ "VNC"    ].copy()
-        _config[ "ssh"           ] = DEF_PROTO[ "SSH"    ].copy()
+        _config[ "remmina_ssh"   ] = DEF_PROTO[ "SSH"    ].copy()
+        _config[ "ssh"           ] = DEF_PROTO[ "SSH1"    ].copy()
         _config[ "sftp"          ] = DEF_PROTO[ "SFTP"   ].copy()
         _config[ "remmina_rdp"   ] = DEF_PROTO[ "RDP"    ].copy()
         _config[ "nx"            ] = DEF_PROTO[ "NX"     ].copy()
@@ -362,7 +369,8 @@ def config_read():
                       "XDMCP"  : _config[ "xdmcp"         ],
                       "SPICE"  : _config[ "remmina_spice" ],
                       "SPICE1" : _config[ "virtviewer"    ],
-                      "SSH"    : _config[ "ssh"           ],
+                      "SSH"    : _config[ "remmina_ssh"   ],
+                      "SSH1"   : _config[ "ssh"           ],
                       "SFTP"   : _config[ "sftp"          ],
                       "X2GO"   : _config[ "x2go"          ] }
         return main, protocols

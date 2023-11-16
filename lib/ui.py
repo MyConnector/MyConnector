@@ -153,7 +153,7 @@ def changeProgram( protocol, program = "" ):
     """Return {RDP,VNC,SPICE}1 if program not remmina"""
     protocol = protocol.upper()
     if program:
-        if program in [ "freerdp", "vncviewer", "virtviewer" ]:
+        if program in [ "freerdp", "vncviewer", "virtviewer", "terminal" ]:
             return "%s1" % protocol
         else: return protocol
     try:
@@ -213,6 +213,9 @@ def updateSelf():
     print( "--> %s" % _("Checking version...") )
     currentVersion = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/VERSION 2>/dev/null; exit 0",
                                    shell=True, universal_newlines=True ).strip()
+    if not currentVersion:
+        print( _("Check your Internet connection!") )
+        return 6
     need_update = False
     actual = "%s: %s" % ( _("Your version is actual"), VERSION )
     if RELEASE.find( "git" ) == 0:
@@ -380,7 +383,8 @@ class Gui(Gtk.Application):
         self.labelVNC   = self.builder.get_object( "label_default_VNC"   )
         self.labelSPICE = self.builder.get_object( "label_default_SPICE" )
         self.labelFS    = self.builder.get_object( "label_default_FS"    )
-        self.initLabels( self.labelRDP, self.labelVNC, self.labelFS, self.labelSPICE )
+        self.labelSSH   = self.builder.get_object( "label_default_SSH"   )
+        self.initLabels( self.labelRDP, self.labelVNC, self.labelFS, self.labelSPICE, self.labelSSH )
         self.trayDisplayed = False
         self.tray_submenu = self.builder.get_object( "tray_submenu"                )
         self.recent_menu  = self.builder.get_object( "menu_file_recent_conn_list"  )
@@ -487,12 +491,15 @@ class Gui(Gtk.Application):
             self.tray_submenu.append(tray_noexist)
         self.tray_submenu.show_all()
 
-    def initLabels(self, rdp, vnc, fs, spice):
+    def initLabels(self, rdp, vnc, fs, spice, ssh):
         """Display on the main window the program name for RDP, VNC, SPICE and FS"""
         rdp.set_text  ( "(%s)" % CONFIG.get( "rdp"   ) )
         vnc.set_text  ( "(%s)" % CONFIG.get( "vnc"   ) )
         fs.set_text   ( "(%s)" % CONFIG.get( "fs"    ) )
         spice.set_text( "(%s)" % CONFIG.get( "spice" ) )
+        if CONFIG.get( "ssh" ) == "terminal":
+            ssh.set_text  ( "(%s)" % CONFIG.get( "ssh_terminal" ) )
+        else: ssh.set_text ( "(remmina)" )
 
     def onDeleteWindow(self, *args):
         """Закрытие программы"""
@@ -1099,6 +1106,10 @@ class Gui(Gtk.Application):
         if protocol == "SPICE1":
             self.SPICE_fullscreen = self.pref_builder.get_object( "check_SPICE1_fullscreen" )
 
+        if protocol == "SSH1":
+            self.SSH_user         = self.pref_builder.get_object( "entry_SSH1_user"  )
+            self.SSH_knock        = self.pref_builder.get_object( "entry_SSH1_knock" )
+
     def applyPreferences( self, protocol ):
         """В этой функции параметры для подключения собираются из окна Доп. параметры в список"""
 
@@ -1279,6 +1290,11 @@ class Gui(Gtk.Application):
             args = dict(
                 fullscreen = "True" if self.SPICE_fullscreen.get_active() else "False" )
 
+        if protocol == "SSH1":
+            args = dict(
+                username   = self.SSH_user.get_text(),
+                knocking   = self.SSH_knock.get_text() )
+
         return args
 
     def onCancel( self, button, win ):
@@ -1398,7 +1414,9 @@ class Gui(Gtk.Application):
             return "vncviewer"
         if name == "SPICE1":
             return "virtviewer"
-        if name in [ "RDP", "VNC", "SPICE" ]:
+        if name == "SSH1":
+            return "terminal"
+        if name in [ "RDP", "VNC", "SPICE", "SSH" ]:
             return "remmina"
         else:
             return None

@@ -498,6 +498,28 @@ class VirtViewer:
         else:
             options.msg_error ( _("The 'remote-viewer' client for SPICE is not installed!"), options.log.warning )
 
+class Terminal:
+    """Class for connect to SSH server"""
+    def start( self, args, window = False ):
+        _exec = CONFIG.get( "ssh_terminal", "x-emulator-terminal" )
+        server, login = options.searchSshUser( args[ "server" ] )
+        try:
+            server, port = server.split(":")
+        except:
+            port = ""
+        command = "%s -t \"%s\" -e \"ssh %s" %  ( _exec, args.get( "name", server ), server )
+        user = args.get( "user" , ""   ) if not login else login
+        if user: command += " -l%s" % user
+        if port: command += " -p%s" % port
+        knock = args.get( "knocking", "" )
+        if knock:
+            cmd = "knock %s %s" % ( sub( ":.*", "", server ), knock )
+            options.log.info( cmd )
+            os.system( "%s%s" % ( cmd, STD_TO_LOG ) )
+        command += "\""
+        options.log.info( "SSH:  %s %s", _("Connecting to the server"), server )
+        options.log.info( command )
+        os.system(command + STD_TO_LOG)
 
 def definition( name ):
     """Функция определения протокола"""
@@ -508,6 +530,7 @@ def definition( name ):
                   "NX"     : NxRemmina(),
                   "XDMCP"  : XdmcpRemmina(),
                   "SSH"    : SshRemmina(),
+                  "SSH1"   : Terminal(),
                   "SFTP"   : SftpRemmina(),
                   "VMWARE" : Vmware(),
                   "CITRIX" : Citrix(),

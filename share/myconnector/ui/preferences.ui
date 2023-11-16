@@ -181,6 +181,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               <object class="GtkBox" id="rdpvncbox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkBox" id="box1">
                     <property name="visible">True</property>
@@ -201,9 +202,9 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">10</property>
                         <property name="label">RDP</property>
+                        <property name="width_chars">7</property>
+                        <property name="max_width_chars">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -298,9 +299,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">10</property>
                         <property name="label">VNC</property>
+                        <property name="width_chars">7</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -394,9 +394,9 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                       <object class="GtkLabel" id="label11">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">10</property>
                         <property name="label">SPICE</property>
+                        <property name="width_chars">7</property>
+                        <property name="single_line_mode">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -464,11 +464,133 @@ along with this program. If not, see http://www.gnu.org/licenses/.
               </packing>
             </child>
             <child>
+              <object class="GtkSeparator" id="separator10">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="box13">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkImage" id="image_SSH">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">../icons/SSH.png</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label12">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label">SSH</property>
+                    <property name="width_chars">7</property>
+                    <property name="single_line_mode">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="box14">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkRadioButton" id="radio_SSH_remmina">
+                        <property name="label">Remmina</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">start</property>
+                        <property name="active">True</property>
+                        <property name="draw_indicator">True</property>
+                        <signal name="toggled" handler="offSshTerminalSet" object="entry_SSH" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radio_SSH_terminal">
+                        <property name="label">Terminal:</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">start</property>
+                        <property name="resize_mode">immediate</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radio_SSH_remmina</property>
+                        <signal name="toggled" handler="onSshTerminalSet" object="entry_SSH" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_SSH">
+                    <property name="width_request">185</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Enter the command to connect to SSH-server (default: x-terminal-emulator)</property>
+                    <property name="valign">end</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator" id="separator11">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">5</property>
+                <property name="orientation">vertical</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkBox" id="box_fs">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_top">5</property>
-                <property name="spacing">15</property>
                 <child>
                   <object class="GtkImage" id="image_FS">
                     <property name="visible">True</property>
@@ -486,6 +608,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label">FS</property>
+                    <property name="width_chars">7</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>

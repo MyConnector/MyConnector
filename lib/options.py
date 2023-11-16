@@ -138,6 +138,7 @@ class Properties(Gtk.Window):
         self.labelRDP = mainWindow.labelRDP
         self.labelVNC = mainWindow.labelVNC
         self.labelSPICE = mainWindow.labelSPICE
+        self.labelSSH = mainWindow.labelSSH
         self.conn_note = mainWindow.conn_note
         self.main_window.window.set_sensitive( False )
         self.combo_protocols = mainWindow.combo_protocols
@@ -159,6 +160,9 @@ class Properties(Gtk.Window):
         self.changeVncView = builder.get_object("radio_VNC_viewer")
         self.changeSpiceRemmina = builder.get_object("radio_SPICE_remmina")
         self.changeSpiceViewer = builder.get_object("radio_SPICE_virtviewer")
+        self.changeSshRemmina = builder.get_object("radio_SSH_remmina")
+        self.changeSshTerminal = builder.get_object("radio_SSH_terminal")
+        self.entrySSH = builder.get_object("entry_SSH")
         self.entryFS = builder.get_object("entry_FS")
         self.checkTray = builder.get_object("check_TRAY")
         self.checkVersion = builder.get_object("check_VERSION")
@@ -197,6 +201,13 @@ class Properties(Gtk.Window):
             self.changeVncView.set_active( True )
         if CONFIG.get( "spice", "remmina" ) == "virtviewer":
             self.changeSpiceViewer.set_active( True )
+        if CONFIG.get( "ssh", "remmina" ) == "terminal":
+            self.changeSshTerminal.set_active( True )
+            self.entrySSH.set_sensitive( True )
+        else:
+            self.entrySSH.set_sensitive( False )
+        try: self.entrySSH.set_text( CONFIG[ 'ssh_terminal' ] )
+        except KeyError: self.entrySSH.set_text( DEFAULT[ 'ssh_terminal' ] )
         try: self.combo_tabs.set_active_id( CONFIG[ 'tab' ] )
         except KeyError: self.combo_tabs.set_active_id( '0' )
         try: self.entryFS.set_text( CONFIG[ 'fs' ] )
@@ -255,6 +266,11 @@ class Properties(Gtk.Window):
         if self.changeSpiceRemmina.get_active():
             CONFIG[ "spice" ] = "remmina"
         else: CONFIG[ "spice" ] = "virtviewer"
+        if self.changeSshRemmina.get_active():
+            CONFIG[ "ssh" ] = "remmina"
+        else:
+            CONFIG[ "ssh" ] = "terminal"
+            CONFIG[ "ssh_terminal" ] = self.entrySSH.get_text()
         CONFIG[ 'tab' ] = self.combo_tabs.get_active_id()
         CONFIG[ 'fs' ] = self.entryFS.get_text()
         CONFIG[ 'tray' ] = str( self.checkTray.get_active() )
@@ -272,7 +288,7 @@ class Properties(Gtk.Window):
         log.info( msg_save )
         if not self.checkLog.get_active():
             log.warning( _("LOGGING WILL BE DISABLED AFTER THE PROGRAM IS RESTARTED!") )
-        myconnector.ui.Gui.initLabels( True, self.labelRDP, self.labelVNC, self.labelFS, self.labelSPICE )
+        myconnector.ui.Gui.initLabels( True, self.labelRDP, self.labelVNC, self.labelFS, self.labelSPICE, self.labelSSH )
         self.conn_note.set_current_page( int( CONFIG[ 'tab' ] ) )
         self.combo_protocols.set_active_id( CONFIG[ 'tab' ] )
         self.updateTray()
@@ -354,6 +370,14 @@ class Properties(Gtk.Window):
         else:
             self.checkGlobal.set_sensitive( True )
             self.checkGlobalDir.set_sensitive( True )
+
+    def onSshTerminalSet(self, widget):
+        try: widget.set_button_sensitivity(Gtk.SensitivityType.ON)
+        except: widget.set_sensitive(True)
+
+    def offSshTerminalSet(self, widget):
+        try: widget.set_button_sensitivity(Gtk.SensitivityType.OFF)
+        except: widget.set_sensitive(False)
 
 if __name__ == '__main__':
     pass
