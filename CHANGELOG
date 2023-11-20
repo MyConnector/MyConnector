@@ -1,3 +1,12 @@
+2.5.1
+=====
+Bug Fixes:
+- [FreeRDP] Fixed connecting with NLA if username is not set
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.5
 ===
 New Features:
