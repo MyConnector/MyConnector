@@ -66,8 +66,7 @@ class XFreeRdp:
                     if not key in args: args[ key ] = CONFIGS[ "RDP1" ][ key ]
                 server   = args[ "server" ]
                 username = args.get( "username" , "" )
-                command  = "xfreerdp /v:%s /t:'%s'" % ( server, args.get( "name", server ) )
-                if username                                    : command += " /u:%s" % quote( username )
+                command  = "xfreerdp /v:%s /t:'%s' /u:%s" % ( server, args.get( "name", server ), quote( username ) )
                 if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
                 if args.get( "fullscreen", "True"   ) == "True":
                     if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off,show:always"
