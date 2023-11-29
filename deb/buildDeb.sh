@@ -53,6 +53,7 @@ TARGET=$TARGET-docs
 DOCS=$TARGET/usr/share/doc/$TARGET-$(cat ../VERSION 2>/dev/null)
 mkdir -p $DOCS
 cp -r ../docs/* $DOCS
+rm -f $DOCS/conf.py $DOCS/requirements.txt
 INST_SIZE=`du -s myconnector-docs | cut -f 1`
 mkdir -p $TARGET/DEBIAN
 cd $TARGET

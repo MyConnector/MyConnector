@@ -99,3 +99,4 @@ remove:
 installdocs:
 	mkdir -p $(DOCS)
 	cp -r docs/* $(DOCS)
+	rm -f $(DOCS)/conf.py $(DOCS)/requirements.txt
