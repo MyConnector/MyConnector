@@ -26,7 +26,8 @@ from configparser import ( ConfigParser,
                            NoSectionError )
 from urllib.parse import unquote
 import pwd
-from subprocess import call
+from subprocess import ( call,
+                         check_output )
 from shutil import ( copy,
                      chown,
                      SameFileError )
@@ -47,6 +48,13 @@ _true = ( "True", "true", "Yes", "yes" )
 
 def check_dm():
     """Check DM"""
+    #Check in SystemD
+    for dm in [ "lightdm", "sddm" ]:
+        res = check_output( "systemctl status display-manager 2> /dev/null"
+                            "| grep %s >/dev/null; echo $?" % dm, shell=True, universal_newlines=True ).strip()
+        if res == "0":
+            return dm
+    #if systemctl: command not found
     if os.path.exists( _lightdm_conf ):
         return "lightdm"
     elif os.path.exists( _sddm_conf ):
