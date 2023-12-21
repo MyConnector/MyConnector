@@ -1,3 +1,12 @@
+2.5.2
+=====
+Bug Fixes:
+- [kiosk] Fixed altbug (#44818)
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.5.1
 =====
 Bug Fixes:
