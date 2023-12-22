@@ -251,7 +251,8 @@ def updateSelf():
 
     if need_update:
         print( "%s: %s" % ( _("Program update available"), currentVersion ) )
-        user_input = input( _("Try update? ") )
+        infotext = _("Try update (need unzip)? ") if install_type == "git" else _("Try update? ")
+        user_input = input( infotext )
         if not user_input.lower() in [ "yes", "y" ]:
             return 130
 

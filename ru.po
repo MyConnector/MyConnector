@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.5.1\n"
+"Project-Id-Version: 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-14 14:59+0300\n"
-"PO-Revision-Date: 2023-11-20 12:00+0300\n"
+"PO-Revision-Date: 2023-12-22 12:00+0300\n"
 "Last-Translator: Evgeniy Korneechev <ek@myconnector.ru>\n"
 "Language-Team: Evgeniy Korneechev <ek@myconnector.ru>\n"
 "Language: ru\n"
@@ -957,6 +957,9 @@ msgstr "Отключить автоматическое переподключе
 
 msgid "Try update? "
 msgstr "Пробуем обновить? "
+
+msgid "Try update (need unzip)? "
+msgstr "Пробуем обновить (нужен unzip)? "
 
 msgid "Type (protocol)"
 msgstr "Тип (протокол)"
