@@ -1802,8 +1802,8 @@ class Gui(Gtk.Application):
             button.set_sensitive( True )
 
     def onWiki(self, *args):
-        """Открытие wiki в Интернете"""
-        os.system ('xdg-open "http://wiki.myconnector.ru/"')
+        """Открытие документации в Интернете"""
+        os.system ('xdg-open "https://docs.myconnector.ru/')
 
     def onShowWindow(self, *args):
         if self.window.is_active():
@@ -2021,4 +2021,3 @@ def main( name ):
         initSignal(gui)
         gui.run(None)
         options.checkLogFile(LOGFILE); options.checkLogFile(STDLOGFILE)
-
