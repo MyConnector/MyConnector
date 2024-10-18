@@ -45,7 +45,10 @@ _global_conf_file = "/etc/%s/%s.conf" % ( APP, APP )
 def check_global( attr ):
     """Checking global settings"""
     conf = ConfigParser( interpolation = None )
-    conf.read( _global_conf_file )
+    try:
+        conf.read( _global_conf_file )
+    except:
+        pass
     try:
         return conf[ APP ].getboolean( attr )
     except:
@@ -375,8 +378,12 @@ def config_read():
                       "X2GO"   : _config[ "x2go"          ] }
         return main, protocols
     except:
-        err = Error( _("The configuration file is corrupted or requires updating, a new one will be created!") )
-        err.run()
+        errorText = _("The configuration file is corrupted or requires updating, a new one will be created!")
+        if os.getenv( "DISPLAY" ):
+            err = Error( errorText )
+            err.run()
+        else:
+            print ( errorText )
         try:
             os.rename( _config_file, "%s.bak" % _config_file )
         except PermissionError:
