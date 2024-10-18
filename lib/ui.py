@@ -273,7 +273,7 @@ def updateSelf():
             ret = call( "unzip %s -d /tmp > /dev/null" % archive, shell=True )
             if ret == 0:
                 print( "--> %s" % _("Installing...") )
-                ret = call( "make -C /tmp/MyConnector-master install > /dev/null", shell=True )
+                ret = call( "make -C /tmp/MyConnector-master install > /dev/null 2>&-", shell=True )
         print( "--> %s" % _("Clearing...") )
         os.system ("rm -rf /tmp/MyConnector-master %s" % archive )
         return ret
