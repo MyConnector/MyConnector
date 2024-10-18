@@ -947,6 +947,10 @@ class Gui(Gtk.Application):
         if protocol == "SPICE1":
             if args.getboolean( "fullscreen" ): self.SPICE_fullscreen.set_active( True )
 
+        if protocol == "SSH1":
+            self.SSH_user.set_text(  args.get( "username",   "" ) )
+            self.SSH_knock.set_text( args.get( "knocking",   "" ) )
+
     def initPreferences( self, protocol ):
         """В этой функции определяются различные для протоколов параметры"""
         if protocol == "RDP": #remmina
@@ -1475,10 +1479,11 @@ class Gui(Gtk.Application):
             self.initSubmenuTray()
             viewStatus( self.statusbar, "%s (%s)..." % ( _("The connection is saved"), namesave ) )
             self.fileCtor = ""
+            _filter = self.currentFilter
             self.currentFilter = namesave
             self.filterConnections.refilter()
             self.treeview.set_cursor( 0 )
-            self.currentFilter = ""
+            self.currentFilter = _filter
             self.filterConnections.refilter()
             self.window.set_sensitive( True )
         if error:
