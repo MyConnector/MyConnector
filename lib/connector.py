@@ -507,7 +507,7 @@ class Terminal:
         except:
             port = ""
         command = "%s -t \"%s\" -e \"ssh %s" %  ( _exec, args.get( "name", server ), server )
-        user = args.get( "user" , ""   ) if not login else login
+        user = args.get( "username" , ""   ) if not login else login
         if user: command += " -l%s" % user
         if port: command += " -p%s" % port
         knock = args.get( "knocking", "" )

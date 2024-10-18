@@ -373,7 +373,7 @@ def config_read():
                       "SPICE"  : _config[ "remmina_spice" ],
                       "SPICE1" : _config[ "virtviewer"    ],
                       "SSH"    : _config[ "remmina_ssh"   ],
-                      "SSH1"   : _config[ "ssh"           ],
+                      "SSH1"   : _config[ "terminal"      ],
                       "SFTP"   : _config[ "sftp"          ],
                       "X2GO"   : _config[ "x2go"          ] }
         return main, protocols
