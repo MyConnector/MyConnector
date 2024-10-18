@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see http://www.gnu.org/licenses/.
 
+from os import getenv
+
 from gi import require_version
 require_version('Gtk', '3.0')
 
@@ -79,27 +81,34 @@ class Password( Gtk.Window ):
 class Error( Gtk.Window ):
     """Error dialog"""
     def __init__( self, text, info = False ):
-        Gtk.Window.__init__( self, title = CONF._("Error") if not info else CONF._("Information") )
-        self.set_resizable( False )
-        self.set_modal( True )
-        self.set_default_size( 500, 100 )
-        self.set_default_icon_name( CONF.APP )
-        box = Gtk.Box( orientation = Gtk.Orientation.VERTICAL )
-        label = Gtk.Label( label = text )
-        label.set_valign( Gtk.Align.END )
-        box.pack_start( label, True, True, 0 )
-        button = Gtk.Button( label = "OK" )
-        button.set_halign( Gtk.Align.CENTER )
-        button.set_valign( Gtk.Align.CENTER )
-        button.set_size_request( 100, -1 )
-        button.connect( "clicked", self.quit )
-        box.pack_start( button, True, True, 0 )
-        self.add( box )
-        self.connect( "destroy", Gtk.main_quit )
+        self.display = getenv( "DISPLAY" )
+        if self.display:
+            Gtk.Window.__init__( self, title = CONF._("Error") if not info else CONF._("Information") )
+            self.set_resizable( False )
+            self.set_modal( True )
+            self.set_default_size( 500, 100 )
+            self.set_default_icon_name( CONF.APP )
+            box = Gtk.Box( orientation = Gtk.Orientation.VERTICAL )
+            label = Gtk.Label( label = text )
+            label.set_valign( Gtk.Align.END )
+            box.pack_start( label, True, True, 0 )
+            button = Gtk.Button( label = "OK" )
+            button.set_halign( Gtk.Align.CENTER )
+            button.set_valign( Gtk.Align.CENTER )
+            button.set_size_request( 100, -1 )
+            button.connect( "clicked", self.quit )
+            box.pack_start( button, True, True, 0 )
+            self.add( box )
+            self.connect( "destroy", Gtk.main_quit )
+        else:
+            self.text = text
 
     def run( self ):
-        self.show_all()
-        Gtk.main()
+        if self.display:
+            self.show_all()
+            Gtk.main()
+        else:
+            print ( self.text )
 
     def quit( self, button ):
         self.destroy()

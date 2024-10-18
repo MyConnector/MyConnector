@@ -379,11 +379,8 @@ def config_read():
         return main, protocols
     except:
         errorText = _("The configuration file is corrupted or requires updating, a new one will be created!")
-        if os.getenv( "DISPLAY" ):
-            err = Error( errorText )
-            err.run()
-        else:
-            print ( errorText )
+        err = Error( errorText )
+        err.run()
         try:
             os.rename( _config_file, "%s.bak" % _config_file )
         except PermissionError:
