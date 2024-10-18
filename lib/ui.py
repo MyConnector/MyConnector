@@ -229,21 +229,30 @@ def updateSelf():
         currentDebRelease = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/DEBRELEASE 2>/dev/null; exit 0",
                                 shell=True, universal_newlines=True ).strip()
     if VERSION == currentVersion:
+        from_git = _("Do you want to upgrade to the current version of the source code (not recommended)? ")
         if install_type == "git":
             print( actual )
-            user_input = input( _("But you can try to upgrade from the source code. OK (need unzip)? " ) )
+            user_input = input( from_git )
             if not user_input.lower() in [ "yes", "y" ]:
                 return 130
         elif install_type == "rpm":
             if RELEASE == currentRpmRelease:
-                print( actual )
-                return 0
+                print( "%s-%s" % ( actual, currentRpmRelease ) )
+                user_input = input( from_git )
+                if not user_input.lower() in [ "yes", "y" ]:
+                    return 0
+                else:
+                    install_type = "git"
             else:
                 need_update = True
         else: #install_type = "deb"
             if RELEASE == currentDebRelease:
-                print( actual )
-                return 0
+                print( "%s-%s" % ( actual, currentDebRelease ) )
+                user_input = input( from_git )
+                if not user_input.lower() in [ "yes", "y" ]:
+                    return 0
+                else:
+                    install_type = "git"
             else:
                 need_update = True
     else:
@@ -251,8 +260,7 @@ def updateSelf():
 
     if need_update:
         print( "%s: %s" % ( _("Program update available"), currentVersion ) )
-        infotext = _("Try update (need unzip)? ") if install_type == "git" else _("Try update? ")
-        user_input = input( infotext )
+        user_input = input( _("Try update? ") )
         if not user_input.lower() in [ "yes", "y" ]:
             return 130
 

@@ -103,8 +103,8 @@ msgstr "Автозапуск подключения"
 msgid "Black and white"
 msgstr "Оттенки серого"
 
-msgid "But you can try to upgrade from the source code. OK (need unzip)? "
-msgstr "Но можно попробовать обновить из исходного кода. ОК (нужен unzip)? "
+msgid "Do you want to upgrade to the current version of the source code (not recommended)? "
+msgstr "Хотите обновить до текущей версии исходного кода (не рекомендуется)? "
 
 msgid "Cancel"
 msgstr "Отмена"
@@ -958,9 +958,6 @@ msgstr "Отключить автоматическое переподключе
 msgid "Try update? "
 msgstr "Пробуем обновить? "
 
-msgid "Try update (need unzip)? "
-msgstr "Пробуем обновить (нужен unzip)? "
-
 msgid "Type (protocol)"
 msgstr "Тип (протокол)"
 
@@ -1218,4 +1215,3 @@ msgstr "пользователь не указан!"
 
 msgid "was created without password! Set, if need."
 msgstr "был создан без пароля! Установите, если требуется!"
-
