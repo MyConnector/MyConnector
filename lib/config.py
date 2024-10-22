@@ -322,7 +322,8 @@ DEF_PROTO[ "SPICE1" ] = { "fullscreen"       : "False",
 
 #terminal
 DEF_PROTO[ "SSH1" ] =  { "username"          : "",
-                         "knocking"          : ""}
+                         "knocking"          : "",
+                         "program"          : "terminal" }
 
 def config_init( global_enable = None ):
     """Initializing config"""
@@ -352,7 +353,7 @@ def config_save( default = False ):
         _config[ "vncviewer"     ] = DEF_PROTO[ "VNC1"   ].copy()
         _config[ "remmina_vnc"   ] = DEF_PROTO[ "VNC"    ].copy()
         _config[ "remmina_ssh"   ] = DEF_PROTO[ "SSH"    ].copy()
-        _config[ "ssh"           ] = DEF_PROTO[ "SSH1"    ].copy()
+        _config[ "terminal"      ] = DEF_PROTO[ "SSH1"   ].copy()
         _config[ "sftp"          ] = DEF_PROTO[ "SFTP"   ].copy()
         _config[ "remmina_rdp"   ] = DEF_PROTO[ "RDP"    ].copy()
         _config[ "nx"            ] = DEF_PROTO[ "NX"     ].copy()
