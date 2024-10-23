@@ -26,7 +26,7 @@ Requires: remmina
 Requires: remmina-plugins
 Requires: tigervnc
 Requires: xdg-utils
-Requires: xfreerdp
+Requires: /usr/bin/xfreerdp
 Requires: zenity
 
 Provides:  connector = %EVR

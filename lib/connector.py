@@ -61,6 +61,22 @@ class XFreeRdp:
     def start( self, args, window = False ):
         if freerdpCheck():
             freerdpVersion = freerdpCheckVersion()
+            if freerdpVersion >= "3.0.0":
+                glyph      = " /cache:glyph:on"
+                secnla     = " /sec:nla:off"
+                sertignore = " /cert:ignore"
+                gateway    = " /gateway:g:"
+                gateway_u  = " /gateway:u:"
+                gateway_d  = " /gateway:d:"
+                gateway_p  = " /gateway:p:"
+            else:
+                glyph      = " +glyph-cache"
+                secnla     = " -sec:-nla"
+                sertignore = " /cert-ignore"
+                gateway    = " /g:"
+                gateway_u  = " /gu:"
+                gateway_d  = " /gd:"
+                gateway_p  = " /gp:"
             if freerdpVersion > "1.2":
                 for key in CONFIGS[ "RDP1" ]:
                     if not key in args: args[ key ] = CONFIGS[ "RDP1" ][ key ]
@@ -75,12 +91,10 @@ class XFreeRdp:
                 if args.get( "resolution" , ""                ): command += " /size:%s" % args[ "resolution" ]
                 if args.get( "color" , ""                     ): command += " /bpp:%s" % args[ "color" ]
                 if args.get( "folder" , ""                    ): command += " /drive:SharedFolder,'%s'" % args[ "folder" ]
-                if args.get( "gserver" , ""                   ): command += " /g:%s" % args[ "gserver" ]
-                if args.get( "guser" , ""                     ): command += " /gu:%s" % args[ "guser" ]
-                if args.get( "gdomain" , ""                   ): command += " /gd:%s" % args[ "gdomain" ]
-                if args.get( "gpasswd" , "" ):
-                    command = "GATEPWD='%s' && %s" % ( args[ "gpasswd" ], command )
-                    command += " /gp:$GATEPWD"
+                if args.get( "gserver" , ""                   ): command += "%s%s" % ( gateway, args[ "gserver" ] )
+                if args.get( "guser" , ""                     ): command += "%s%s" % ( gateway_u, args[ "guser" ] )
+                if args.get( "gdomain" , ""                   ): command += "%s%s" % ( gateway_d, args[ "gdomain" ] )
+                if args.get( "gpasswd" , ""                   ): command += "%s%s" % ( gateway_p, quote( args[ "gpasswd" ] ) )
                 if args.get( "admin", "False"       ) == "True": command += " /admin"
                 if args.get( "smartcards", "False"  ) == "True": command += SCARD
                 if args.get( "printers", "False"    ) == "True": command += " /printer"
@@ -105,12 +119,12 @@ class XFreeRdp:
                 if args.get( "documents" , "False"  ) == "True": command += " /drive:Documents,%s" % DOCSFOLDER
                 if args.get( "gdi", "False"         ) == "True": command += " /gdi:hw"
                 else: command += " /gdi:sw"
-                if args.get( "certignore", "True"   ) == "True": command += " /cert-ignore"
+                if args.get( "certignore", "True"   ) == "True": command += sertignore
                 if args.get( "reconnect", "True"    ) == "True": command += " +auto-reconnect"
-                if args.get( "glyph", "False"       ) == "True": command += " +glyph-cache"
+                if args.get( "glyph", "False"       ) == "True": command += glyph
                 if args.get( "userparams" , ""                ): command += " %s" % args[ "userparams" ]
                 disable_nla = args.get( "disable_nla", "True" )
-                if disable_nla == "True"                       : command += " -sec-nla"
+                if disable_nla == "True"                       : command += secnla
                 security = args.get( "security", "False" )
                 if security != "False":
                     command += " /sec:%s" % security
@@ -133,7 +147,7 @@ class XFreeRdp:
                              command = command.replace( "/d:%s" % args[ "domain" ], "" )
                 if password:
                     command += " /p:%s" % quote( password )
-                if password == "":
+                if password == "" or password == None:
                     command += " /p:" #support empty password
                 if password != False: #if there is password
                     os.system(command + STD_TO_LOG)
