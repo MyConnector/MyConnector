@@ -126,7 +126,7 @@ def getSaveConnections( fileFromConnection = "" ):
     groups = []
     image = Gtk.Image()
     image.new_from_icon_name( APP, 1 )
-    for mycfile in os.listdir( WORKFOLDER ):
+    for mycfile in sorted ( os.listdir( WORKFOLDER ) ):
         if mycfile != fileFromConnection: # pass editing file
             if Path( mycfile ).suffix.lower() == ".myc":
                 conf = ConfigParser( interpolation = None )
