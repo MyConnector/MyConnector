@@ -57,7 +57,7 @@ def main():
     if "ERRCONNECT_DNS_NAME_NOT_FOUND" in log:
         system( "%s\n%s'" % ( MSG, _("DNS name not found!") ) )
         indent()
-    if "ERRCONNECT_CONNECT" in log:
+    if "ERRCONNECT_CONNECT" in log and not "ERRCONNECT_CONNECT_CANCELLED" in log:
         system( "%s\n%s'" % ( MSG, _("Check network or connection address!") ) )
         indent()
 
