@@ -39,17 +39,21 @@ Linux Mint & Ubuntu
 Для оптимальной работы приложения необходимо установить следующие пакеты:
 
 * libgtk-3-0 (версия 3.10 и выше);
-* python3 (>=3.2);
-* python3-gi (>=3.2);
-* remmina (>=1.0);
-* freerdp-x11 (>=1.2.0) (для Ubuntu14/Mint17), freerdp2-x11 (Ubuntu18/Mint19);
+* python3;
+* python3-gi;
+* remmina;
+* freerdp2-x11 | freerdp3-x11;
 * vncviewer;
-* python3-keyring.
+* python3-keyring;
+* zenity;
+* curl.
 
 Все данные программы можно установить либо в *Менеджере пакетов Synaptic*, либо через командную строку::
 
     $ sudo apt-get update
-    $ sudo apt-get install libgtk-3-0 python3 python3-gi remmina vncviewer python3-keyring
+    $ sudo apt-get install libgtk-3-0 python3 python3-gi remmina vncviewer python3-keyring zenity curl
+
+Либо они сами установятся после установки deb-пакета, либо по команде ``apt install -f`` после.
 
 Не обязательными, но необходимыми для полного функционала программы являются:
 
@@ -62,11 +66,9 @@ Linux Mint & Ubuntu
 git & make
 ~~~~~~~~~~
 
-После установки всех зависимостей (для mint/ubuntu - см. выше, для alt - указаны в `spec-файле <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L16>`_ в секциях requires) выполните (пакет ``git`` тоже должен быть установлен)::
+После установки всех зависимостей (для mint/ubuntu - см. `тут <https://github.com/MyConnector/MyConnector/blob/master/deb/control#L10>`_, для alt - `тут <https://github.com/MyConnector/MyConnector/blob/master/myconnector.spec#L19>`_ в секциях requires) выполните (пакет ``git`` тоже должен быть установлен)::
 
     $ git clone https://github.com/MyConnector/MyConnector
     $ cd MyConnector
     $ git checkout <release> # по умолчанию 'master', список релизов: `git tag -l`
     $ sudo make install
-
-
