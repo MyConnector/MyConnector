@@ -28,6 +28,7 @@ Requires: tigervnc
 Requires: xdg-utils
 Requires: /usr/bin/xfreerdp
 Requires: zenity
+Requires: curl
 
 Provides:  connector = %EVR
 Obsoletes: connector
