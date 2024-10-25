@@ -21,6 +21,7 @@ from os import system, getenv
 from sys import exit
 import gettext
 import locale
+from myconnector.config import XFREERDP_PATH
 
 APP         = "myconnector"
 MO_FOLDER   = "/usr/share/locale"
@@ -38,7 +39,7 @@ def indent():
         print( "-\n-\n-\n-\n-\n-\n-\n-\n-", file = f )
 
 def main():
-    help = check_output( "xfreerdp --help | tail -n15 2>/dev/null; exit 0",
+    help = check_output( "%s --help | tail -n15 2>/dev/null; exit 0" % XFREERDP_PATH,
                          shell=True, universal_newlines=True ).strip()
     log  = check_output( "sleep 7; tail -n15 %s 2>/dev/null; exit 0" % LOG,
                          shell=True, universal_newlines=True ).strip()

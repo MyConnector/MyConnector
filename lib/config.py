@@ -200,6 +200,19 @@ else:
         err.run()
         os.system ( "echo 1 > %s/.unsupported.os" % WORKFOLDER )
 
+
+_check_xfreerdp = check_output( "which xfreerdp > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip()
+if _check_xfreerdp == "0":
+    XFREERDP = True
+    XFREERDP_PATH = "/usr/bin/xfreerdp"
+else:
+    _check_xfreerdp = check_output( "which xfreerdp3 > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip()
+    if _check_xfreerdp == "0":
+        XFREERDP = True
+        XFREERDP_PATH = "/usr/bin/xfreerdp3"
+    else:
+        XFREERDP = False
+
 #Protocols' default options
 DEF_PROTO = {}
 #vncviewer

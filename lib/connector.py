@@ -59,7 +59,7 @@ class VncViewer:
 class XFreeRdp:
     """Класс для настройки RDP-соединения через xfreerdp"""
     def start( self, args, window = False ):
-        if freerdpCheck():
+        if XFREERDP:
             freerdpVersion = freerdpCheckVersion()
             if freerdpVersion >= "3.0.0":
                 glyph      = " /cache:glyph:on"
@@ -82,7 +82,7 @@ class XFreeRdp:
                     if not key in args: args[ key ] = CONFIGS[ "RDP1" ][ key ]
                 server   = args[ "server" ]
                 username = args.get( "username" , "" )
-                command  = "xfreerdp /v:%s /t:'%s' /u:%s" % ( server, args.get( "name", server ), quote( username ) )
+                command  = "%s /v:%s /t:'%s' /u:%s" % ( XFREERDP_PATH, server, args.get( "name", server ), quote( username ) )
                 if args.get( "domain" , ""                    ): command += " /d:%s" % args[ "domain" ]
                 if args.get( "fullscreen", "True"   ) == "True":
                     if freerdpCheckFloatbar(): command += " /f /floatbar:sticky:off,show:always"
@@ -581,21 +581,15 @@ def virtvCheck():
     check = not bool(check)
     return check
 
-def freerdpCheck():
-    """Фунцкия проверки наличия в системе FreeRDP"""
-    check = int( check_output( "which xfreerdp > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip() )
-    check = not bool(check)
-    return check
-
 def freerdpCheckVersion():
     """Фунцкия определения версии FreeRDP"""
-    version = check_output( "xfreerdp /version; exit 0",shell=True, universal_newlines=True ).strip().split( '\t' )
+    version = check_output( "%s /version; exit 0" % XFREERDP_PATH, shell=True, universal_newlines=True ).strip().split( '\t' )
     version = version[0].split(" "); version = version[4].split("-")[0];
     return version
 
 def freerdpCheckFloatbar():
     """Checking for existence /floatbar in FreeRDP"""
-    check = int( check_output( "xfreerdp --help | grep floatbar > /dev/null; echo $?", shell=True, universal_newlines=True ).strip() )
+    check = int( check_output( "%s --help | grep floatbar > /dev/null; echo $?" % XFREERDP_PATH, shell=True, universal_newlines=True ).strip() )
     check = not bool(check)
     return check
 

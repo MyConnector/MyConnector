@@ -62,7 +62,7 @@ def connectFileRdp(filename):
     if CONFIG[ "rdp" ] == "freerdp":
         tmpfile =  "%s/.tmp.rdp" % WORKFOLDER
         os.system('cp -r "%s" "%s"' % (filename, tmpfile))
-        os.system('xfreerdp "%s" -sec-nla %s' % (tmpfile, STD_TO_LOG))
+        os.system( '%s "%s" -sec-nla %s' % ( XFREERDP_PATH, tmpfile, STD_TO_LOG ) )
     else:
         os.system('remmina --connect "%s" %s' % (filename, STD_TO_LOG))
 
