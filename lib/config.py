@@ -192,13 +192,13 @@ elif OS == "linuxmint" or OS == "ubuntu":
 else:
     VERSION = RELEASE = USBPATH = CITRIX_CHECK = SCARD = ""
     try:
-        _tmp = open( "%s/.unsupported.os" % WORKFOLDER )
+        _tmp = open( "%s/.os_checked" % WORKFOLDER )
         _tmp.close()
     except FileNotFoundError:
         err = Error( "%s: https://docs.myconnector.ru/." % _("Unsupported OS!\n"
                      "Some features of the program may not work!\nLearn more about supported OS") )
         err.run()
-        os.system ( "echo 1 > %s/.unsupported.os" % WORKFOLDER )
+        os.system ( "echo 1 > %s/.os_checked" % WORKFOLDER )
 
 
 _check_xfreerdp = check_output( "which xfreerdp > /dev/null 2>&1; echo $?", shell=True, universal_newlines=True ).strip()
