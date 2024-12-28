@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # MyConnector
-# Copyright (C) 2014-2024 Evgeniy Korneechev <ek@myconnector.ru>
+# Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the version 2 of the GNU General
@@ -489,7 +489,7 @@ def CLI( option ):
 
 %s: man myconnector-kiosk
 
-Copyright (C) 2014-2024 Evgeniy Korneechev <ek@myconnector.ru>""" % (
+Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>""" % (
         _("KIOSK mode control"),
         _("Usage"),
         _("Options"),

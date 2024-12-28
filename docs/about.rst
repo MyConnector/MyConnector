@@ -1,5 +1,5 @@
 .. MyConnector
-.. Copyright (C) 2014-2024 Evgeniy Korneechev <ek@myconnector.ru>
+.. Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
 
 .. This program is free software; you can redistribute it and/or
 .. modify it under the terms of the version 2 of the GNU General
@@ -53,4 +53,4 @@
 * pyhoca-cli_ (консольный клиент X2G0);
 * `Virt Viewer`_.
 
-Copyright |copy| 2014-2024 Evgeniy Korneechev <ek@myconnector.ru>
+Copyright |copy| 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
