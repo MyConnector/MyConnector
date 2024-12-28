@@ -1,3 +1,21 @@
+2.6
+===
+New Features:
+- [FreeRDP] Added support for xfreerdp3
+- Checking the OS - once at the first startup
+- [update] Added git support (even if installed from rpm/deb)
+
+Bug Fixes:
+- Fixed an error when opening a corrupted configuration file
+
+Minor changes:
+- The documentation URL has been fixed
+- Tray indicator: connection sorting added
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.5.2
 =====
 Bug Fixes:
