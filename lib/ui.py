@@ -1816,7 +1816,7 @@ class Gui(Gtk.Application):
 
     def onWiki(self, *args):
         """Открытие документации в Интернете"""
-        os.system ('xdg-open "https://docs.myconnector.ru/')
+        os.system ('xdg-open "https://docs.myconnector.ru/"')
 
     def onShowWindow(self, *args):
         if self.window.is_active():
