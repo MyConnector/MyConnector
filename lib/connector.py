@@ -71,7 +71,7 @@ class XFreeRdp:
                 gateway_p  = " /gateway:p:"
             else:
                 glyph      = " +glyph-cache"
-                secnla     = " -sec:-nla"
+                secnla     = " -sec-nla"
                 sertignore = " /cert-ignore"
                 gateway    = " /g:"
                 gateway_u  = " /gu:"
