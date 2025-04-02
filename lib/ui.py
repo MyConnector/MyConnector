@@ -525,8 +525,8 @@ class Gui(Gtk.Application):
         about.set_comments( _("A frontend program for remote administration "
               "of computers with various OS. Most common connection types are supported.") )
         about.set_version( "%s (release: %s)" % ( VERSION, RELEASE ) )
-        about.set_website( "http://myconnector.ru" )
-        about.set_website_label( "http://myconnector.ru" )
+        about.set_website( "https://myconnector.ru" )
+        about.set_website_label( "https://myconnector.ru" )
         about.set_license(
             "MyConnector\n\n"
             "This program is free software; you can redistribute it and/or\n"

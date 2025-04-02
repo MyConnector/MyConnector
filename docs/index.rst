@@ -20,7 +20,7 @@
 
 .. figure:: _images/main.png
 
-http://myconnector.ru/
+https://myconnector.ru/
 
 Актуальную версию программы можете скачать со следующих ресурсов:
 

@@ -9,7 +9,7 @@ Summary:  MyConnector - remote desktop client
 License:  GPL-2.0
 Group:    Networking/Remote access
 
-Url:      http://myconnector.ru
+Url:      https://myconnector.ru
 Source0:  %name-%version.tar.gz
 Packager: Evgeniy Korneechev <ekorneechev@altlinux.org>
 
