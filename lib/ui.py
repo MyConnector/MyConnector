@@ -205,12 +205,33 @@ def editConfig():
                 os.system( "read -s -n 1 -p \"%s\"; echo" % text )
     return res
 
+def removeSelf():
+    "Removing MyConnector"
+    if not ROOT:
+        print( _("Access denied!") )
+        return 126
+    if RELEASE.find( "git" ) != 0:
+        print( _("Use the package manager to remove!") )
+        return 0
+    archive = "/tmp/myconnector_new.zip"
+    print( "--> %s (%s)..." % ( _("Downloading ZIP-archive"), _("with uninstaller") ) )
+    ret = call( "curl https://github.com/MyConnector/MyConnector/archive/refs/heads/master.zip -Lo %s" % archive, shell=True )
+    if ret == 0:
+        print( "--> %s..." % _("Uncompessing ZIP-archive") )
+        ret = call( "unzip %s -d /tmp > /dev/null" % archive, shell=True )
+        if ret == 0:
+            print( "--> %s" % _("Removing...") )
+            ret = call( "make -C /tmp/MyConnector-master remove > /dev/null 2>&-", shell=True )
+    print( "--> %s..." % _("Clearing") )
+    os.system ("rm -rf /tmp/MyConnector-master %s" % archive )
+    return ret
+
 def updateSelf():
     "Updating MyConnector"
     if not ROOT:
         print( _("Access denied!") )
         return 126
-    print( "--> %s" % _("Checking version...") )
+    print( "--> %s..." % _("Checking version") )
     currentVersion = check_output( "curl https://raw.githubusercontent.com/MyConnector/MyConnector/master/VERSION 2>/dev/null; exit 0",
                                    shell=True, universal_newlines=True ).strip()
     if not currentVersion:
@@ -266,15 +287,15 @@ def updateSelf():
 
     if install_type == "git":
         archive = "/tmp/myconnector_new.zip"
-        print( "--> %s" % _("Downloading ZIP-archive...") )
+        print( "--> %s..." % _("Downloading ZIP-archive") )
         ret = call( "curl https://github.com/MyConnector/MyConnector/archive/refs/heads/master.zip -Lo %s" % archive, shell=True )
         if ret == 0:
-            print( "--> %s" % _("Uncompessing ZIP-archive...") )
+            print( "--> %s..." % _("Uncompessing ZIP-archive") )
             ret = call( "unzip %s -d /tmp > /dev/null" % archive, shell=True )
             if ret == 0:
                 print( "--> %s" % _("Installing...") )
                 ret = call( "make -C /tmp/MyConnector-master install > /dev/null 2>&-", shell=True )
-        print( "--> %s" % _("Clearing...") )
+        print( "--> %s..." % _("Clearing") )
         os.system ("rm -rf /tmp/MyConnector-master %s" % archive )
         return ret
 
@@ -296,7 +317,7 @@ def updateSelf():
                    -Lo /tmp/myconnector-autostart_new.rpm".format( currentVersion, currentRpmRelease ), shell=True )
         print( "--> %s" % _("Installing...") )
         ret = call( "apt-get install -f /tmp/myconnector*_new.rpm", shell=True )
-        print( "--> %s" % _("Clearing...") )
+        print( "--> %s..." % _("Clearing") )
         os.system ("rm -rf /tmp/myconnector*_new.rpm" )
         return ret
 
@@ -311,7 +332,7 @@ def updateSelf():
                    -Lo /tmp/myconnector-docs_new.deb".format( currentVersion, currentDebRelease ), shell=True )
         print( "--> %s" % _("Installing...") )
         ret = call( "dpkg -i /tmp/myconnector*_new.deb", shell=True )
-        print( "--> %s" % _("Clearing...") )
+        print( "--> %s..." % _("Clearing") )
         os.system ("rm -rf /tmp/myconnector*_new.deb" )
         return ret
 

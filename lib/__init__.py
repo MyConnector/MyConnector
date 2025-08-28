@@ -39,6 +39,7 @@ def parseArgs():
     args.add_argument( "--kiosk", metavar="<option>", help = "%s ('--kiosk help' %s)" %
                      ( _("KIOSK mode control"), _("for more information") ) )
     args.add_argument( "-u", "--update", action = "store_true", default = False, help = _("updating the program via the Internet") )
+    args.add_argument( "-r", "--remove", action = "store_true", default = False, help = _("removing the program") )
     args.add_argument( "-v", "--version", action = "version", help = _("show the application version"), version = about )
     args.add_argument( "-d", "--debug", action = "store_true", default = False, help = _("show log files online") )
     args.add_argument( "-q", "--quit", action = "store_true", default = False, help = _("quit the application") )
@@ -76,6 +77,10 @@ def main():
         from .ui import updateSelf as update
         res = update()
         exit( res )
+    if args.remove:
+        from .ui import removeSelf as remove
+        res = remove()
+        exit( res )
     if args.connection:
         from .ui import connect
         connect( args.connection )
@@ -85,4 +90,3 @@ def main():
         file = args.file if args.file else args.name
     from .ui import main as run
     run ( file )
-
