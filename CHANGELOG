@@ -1,3 +1,19 @@
+2.6.1
+=====
+New Features:
+- [CLI] Added program removal
+
+Bug Fixes:
+- [FreeRDP] Fixed tiny typo (-sec-nla)
+- Fixed import from RDP-file
+
+Minor changes:
+- The documentation and site URLs have been fixed
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+- https://bugzilla.altlinux.org/43116
+
 2.6
 ===
 New Features:
