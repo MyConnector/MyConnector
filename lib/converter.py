@@ -36,7 +36,7 @@ def rdp_import( filename ):
     print( "[rdp]", file = tmpfile )
     with open( filename, "r", errors = "ignore" ) as f:
         text = f.read().replace( "\x00", "" ).replace( "\n\n", "\n" )
-        print( sub( ":.*:", "=", text ), file = tmpfile )
+        print( sub( ":.?:", "=", text ), file = tmpfile )
     tmpfile.close()
     conf = ConfigParser( interpolation = None )
     try:
@@ -275,4 +275,3 @@ def parseArgs():
 def main():
     args = parseArgs()
     myc_save( args )
-
