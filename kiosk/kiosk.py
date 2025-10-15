@@ -70,7 +70,7 @@ def enabled():
 def dm_clear_autologin():
     """Disable existing records for autologin-user"""
     if _DM == "lightdm":
-        clear_cmd = "sed -i \"s/^autologin-user.*/#autologin-user=/\""
+        clear_cmd = "sed -i 's|^\\(autologin-session=\\)|#\\1|g; s|^\\(autologin-user=\\)|#\\1|g'"
         os.system ("%s %s" % (clear_cmd, _lightdm_conf))
         if os.path.exists (_lightdm_conf_dir): os.system ("%s %s/*.conf 2>/dev/null" % (clear_cmd, _lightdm_conf_dir))
         if os.path.exists (_autologin_conf): os.remove(_autologin_conf)
@@ -91,7 +91,11 @@ def autologin_enable(username):
     dm_clear_autologin()
     if _DM == "lightdm":
         with open (_autologin_conf, "w") as f:
-            print("[Seat:*]\nautologin-user=%s" % username, file = f)
+            f.write( "[Seat:*]\n")
+            f.write( "autologin-user=%s\n" % username )
+            if os.path.exists ( "/usr//share/xsessions/plasmax11.desktop" ):
+                f.write( "autologin-session=plasmax11\n" )
+
     if _DM == "sddm":
         os.system ( "sed -i s/^Session.*/Session=plasma/ %s" % _sddm_conf )
         os.system ( "sed -i s/^User.*/User=%s/ %s" % ( username, _sddm_conf ) )
