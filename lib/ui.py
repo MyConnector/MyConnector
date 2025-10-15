@@ -359,10 +359,18 @@ class TrayIcon:
                         button, time )
 
     def hide( self ):
-        self.ind.set_status( AppIndicator.IndicatorStatus.PASSIVE )
+        try:
+            from gi.repository import AyatanaAppIndicator3 as AppIndicator
+            self.ind.set_status( AppIndicator.IndicatorStatus.PASSIVE )
+        except:
+            self.ind.set_visible( False )
 
     def show( self ):
-        self.ind.set_status( AppIndicator.IndicatorStatus.ACTIVE )
+        try:
+            from gi.repository import AyatanaAppIndicator3 as AppIndicator
+            self.ind.set_status( AppIndicator.IndicatorStatus.ACTIVE )
+        except:
+            self.ind.set_visible(True)
 
     def set_icon( self, icon_name ):
         self.ind.set_icon( icon_name )
