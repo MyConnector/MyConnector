@@ -337,27 +337,38 @@ def updateSelf():
         return ret
 
 class TrayIcon:
-    """Класс, описывающий индикатор и меню в трее (пока только для MATE)
-       Thanks: https://eax.me/python-gtk/"""
-    def __init__(self, icon, menu):
+    """Класс, описывающий индикатор и меню в трее"""
+    def __init__( self, icon, menu ):
         self.menu = menu
-        self.ind = Gtk.StatusIcon()
-        self.ind.set_from_icon_name(icon)
-        self.ind.connect('popup-menu', self.onTrayMenu)
-        self.ind.set_tooltip_text( "%s MyConnector" % _("Program") )
+        try:
+            require_version( 'AyatanaAppIndicator3', '0.1' )
+            from gi.repository import AyatanaAppIndicator3 as AppIndicator
+            self.ind = AppIndicator.Indicator.new( "myconnector", icon,
+                       AppIndicator.IndicatorCategory.APPLICATION_STATUS )
+            self.ind.set_status( AppIndicator.IndicatorStatus.ACTIVE )
+            self.ind.set_menu( menu )
+            self.ind.set_title( "%s MyConnector" % _("Program") )
+        except:
+            self.ind = Gtk.StatusIcon()
+            self.ind.set_from_icon_name( icon )
+            self.ind.connect( 'popup-menu', self.onTrayMenu )
+            self.ind.set_tooltip_text( "%s MyConnector" % _("Program") )
 
-    def onTrayMenu(self, icon, button, time):
-        self.menu.popup(None, None, Gtk.StatusIcon.position_menu, icon,
-                        button, time)
+    def onTrayMenu( self, icon, button, time ):
+        self.menu.popup( None, None, Gtk.StatusIcon.position_menu, icon,
+                        button, time )
+
+    def hide( self ):
+        self.ind.set_status( AppIndicator.IndicatorStatus.PASSIVE )
+
+    def show( self ):
+        self.ind.set_status( AppIndicator.IndicatorStatus.ACTIVE )
+
+    def set_icon( self, icon_name ):
+        self.ind.set_icon( icon_name )
 
     def connect(self, callback):
         self.ind.connect('activate', callback)
-
-    def hide(self):
-        self.ind.set_visible(False)
-
-    def show(self):
-        self.ind.set_visible(True)
 
 class Gui(Gtk.Application):
     def __init__(self):
@@ -484,7 +495,8 @@ class Gui(Gtk.Application):
         """Инициализация индикатора в системном лотке"""
         self.menu_tray = self.builder.get_object("menu_tray")
         self.iconTray = TrayIcon( "myconnector", self.menu_tray )
-        self.iconTray.connect(self.onShowWindow)
+        if hasattr ( self.iconTray.ind, "set_from_pixbuf" ):
+            self.iconTray.connect( self.onShowWindow )
         self.initSubmenuTray()
         self.menu_tray.show_all()
         return True
