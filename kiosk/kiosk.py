@@ -124,7 +124,7 @@ def enable_kiosk( mode = "kiosk" ):
 def fix_shortcut(mode, _input, output):
     """Replace variable in the desktop files"""
     shortcut = "%s/myconnector-%s.desktop" % (_etc_dir, mode)
-    os.system ("sed -i \"s|\%s|%s|g\" %s" % (_input, output, shortcut))
+    os.system ("sed -i \"s|\\%s|%s|g\" %s" % (_input, output, shortcut))
 
 def enable_kiosk_myc( _file ):
     """Exec MyConnector (with myc-file) in the mode KIOSK"""
