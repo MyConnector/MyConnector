@@ -28,6 +28,11 @@ from myconnector.connector import *
 from myconnector.config import *
 from myconnector.config import _
 
+settings = Gtk.Settings.get_default()
+if settings:
+    settings.set_property( "gtk-button-images", True )
+    settings.set_property( "gtk-menu-images", True )
+
 def viewStatus(bar, message):
     """Функция отображения происходящих действий в строке состояния"""
     bar.push(bar.get_context_id ("statusbar"), message)

@@ -144,6 +144,7 @@ msgfmt ru.po -o %buildroot%_datadir/locale/ru/LC_MESSAGES/%name.mo
 
 - [kiosk] Uses x11 instead of wayland on KDE (ALT #56375)
 - Fixed tray indicator (ALT #56313)
+- Fixed menu icons (ALT #43116)
 
 * Fri Aug 29 2025 Evgeniy Korneechev <ekorneechev@altlinux.org> 2.6.1-alt1
 - [CLI] Added program removal
