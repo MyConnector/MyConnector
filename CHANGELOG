@@ -1,3 +1,13 @@
+2.6.2
+=====
+Bug Fixes:
+- [kiosk] Uses x11 instead of wayland on KDE (altbug #56375)
+- Fixed tray indicator (altbug #56313)
+- Fixed menu icons (altbug #43116)
+
+Known Issues:
+- http://bugs.myconnector.ru/22
+
 2.6.1
 =====
 New Features:
