@@ -336,7 +336,12 @@ DEF_PROTO[ "SPICE1" ] = { "fullscreen"       : "False",
 #terminal
 DEF_PROTO[ "SSH1" ] =  { "username"          : "",
                          "knocking"          : "",
-                         "program"          : "terminal" }
+                         "program"           : "terminal" }
+
+DEF_PROTO[ "FS" ] =    { "type"              : "smb",
+                         "user"              : "",
+                         "domain"            : "",
+                         "folder"            : "" }
 
 def config_init( global_enable = None ):
     """Initializing config"""
@@ -375,6 +380,7 @@ def config_save( default = False ):
         _config[ "virtviewer"    ] = DEF_PROTO[ "SPICE1" ].copy()
         _config[ "freerdp"       ] = DEF_PROTO[ "RDP1"   ].copy()
         _config[ "x2go"          ] = DEF_PROTO[ "X2GO"   ].copy()
+        _config[ "fs"            ] = DEF_PROTO[ "FS"     ].copy()
     with open( _config_file, 'w' ) as configfile:
         _config.write( configfile )
 
@@ -394,6 +400,7 @@ def config_read():
                       "SSH"    : _config[ "remmina_ssh"   ],
                       "SSH1"   : _config[ "terminal"      ],
                       "SFTP"   : _config[ "sftp"          ],
+                      "FS"     : _config[ "fs"            ],
                       "X2GO"   : _config[ "x2go"          ] }
         return main, protocols
     except:
