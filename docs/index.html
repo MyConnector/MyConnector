@@ -63,7 +63,8 @@
 <li><p>возможность сохранять кнопку быстрого подключения в любое место компьютера;</p></li>
 <li><p>ведение списка сохраненных подключений с возможностью группировки;</p></li>
 <li><p>ведение логов, как самой программы, так и каждого подключения;</p></li>
-<li><p><a class="reference internal" href="index.html#rst-kiosk"><span class="std std-ref">Режим КИОСК</span></a>.</p></li>
+<li><p><a class="reference internal" href="index.html#rst-kiosk"><span class="std std-ref">Режим КИОСК</span></a>;</p></li>
+<li><p><a class="reference internal" href="index.html#rst-admin"><span class="std std-ref">Режимы "только для чтения" и "stealth"</span></a>.</p></li>
 </ul>
 <p>Программа написана на Python (3-ей версии) с использованием GTK+ для графического интерфейса.</p>
 <p>MyConnector является программой, реализующей интерфейс для пользователя к предустановленным программам для запуска их с введенными параметрами. Такими программами на данный момент являются:</p>
@@ -81,7 +82,7 @@
 <span id="document-install"></span><section id="rst-install">
 <span id="id1"></span><h2>Установка<a class="headerlink" href="#rst-install" title="Ссылка на этот заголовок">¶</a></h2>
 <section id="alt-linux">
-<h3>Alt Linux<a class="headerlink" href="#alt-linux" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>ОС Альт<a class="headerlink" href="#alt-linux" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Актуальная версия пакета всегда доступна в репозиториях:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ su -
 # apt-get update
@@ -182,7 +183,7 @@ $ sudo make install
 </section>
 <span id="document-kiosk"></span><section id="rst-kiosk">
 <span id="id1"></span><h2>Режим КИОСК<a class="headerlink" href="#rst-kiosk" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Данная функция находится в режиме тестирования и доступна только на семействе операционных систем Альт. За основу взята статья <a class="reference external" href="https://wiki.altlinux.org/kiosk">https://wiki.altlinux.org/kiosk</a>.</p>
+<p>Данная функция доступна только на семействе ОС Альт. За основу взята статья <a class="reference external" href="https://www.altlinux.org/index.php?title=Киоск&oldid=57563">https://www.altlinux.org/index.php?title=Киоск&oldid=57563</a>.</p>
 <section id="id2">
 <h3>Доступ к настройке<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Доступ к настройке данного режима открывается через пункт главного меню «Режим КИОСК»:</p>
@@ -191,7 +192,7 @@ $ sudo make install
 </figure>
 <p>Как видно на данном изображении, по умолчанию доступ к настройке отключен. Для получения доступа необходимо выполнение следующих условий:</p>
 <ul>
-<li><p>ОС принадлежит семейству Альт (Alt Linux);</p></li>
+<li><p>ОС принадлежит семейству Альт;</p></li>
 <li><p>наличие установленного пакета <code class="docutils literal notranslate"><span class="pre">myconnector-kiosk</span></code>;</p></li>
 <li><p>наличие одного из поддерживаемых дисплейных менеджеров - LightDM или SDDM;</p></li>
 <li><p>программа MyConnector запущена с правами администратора:</p>
