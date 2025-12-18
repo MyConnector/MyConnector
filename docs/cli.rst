@@ -1,5 +1,5 @@
 .. MyConnector
-.. Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
+.. Copyright (C) 2014-2026 Evgeniy Korneechev <ek@myconnector.ru>
 
 .. This program is free software; you can redistribute it and/or
 .. modify it under the terms of the version 2 of the GNU General
@@ -48,7 +48,7 @@
 
     Не указывайте опций для запуска графического интерфейса.
 
-    Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
+    Copyright (C) 2014-2026 Evgeniy Korneechev <ek@myconnector.ru>
 
     $ man myconnector
     НАИМЕНОВАНИЕ
@@ -110,7 +110,7 @@
 
     См. также: man myconnector-kiosk
 
-    Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
+    Copyright (C) 2014-2026 Evgeniy Korneechev <ek@myconnector.ru>
 
     $ man myconnector-kiosk
     НАИМЕНОВАНИЕ

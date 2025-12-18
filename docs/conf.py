@@ -1,6 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# Copyright (C) 2014-2025 Evgeniy Korneechev <ek@myconnector.ru>
+# Copyright (C) 2014-2026 Evgeniy Korneechev <ek@myconnector.ru>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the version 2 of the GNU General
@@ -15,7 +15,7 @@
 # along with this program. If not, see http://www.gnu.org/licenses/.
 
 project = "MyConnector"
-copyright = "2014-2025, Evgeniy Korneechev <ek@myconnector.ru>"
+copyright = "2014-2026, Evgeniy Korneechev <ek@myconnector.ru>"
 author = "Evgeniy Korneechev"
 
 extensions = [
